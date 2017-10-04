@@ -1,0 +1,29 @@
+# Use Travis container-based infrastructure
+sudo: false
+
+# Elixir baby!
+language: 'elixir'
+
+elixir:
+  - 1.5
+
+# Make sure PostgreSQL is running
+addons:
+  postgresql: 9.4
+
+# Set global environment variables
+env:
+  global:
+    - MIX_ENV: 'test'
+    - SECRET_KEY_BASE: 'lolwut'
+    - DATABASE_URL: 'postgres://localhost/______________'
+
+# Output Travis server IP for debugging
+before_install:
+  - 'echo `curl --verbose http://jsonip.com`'
+
+# Create database and prepare the application
+before_script:
+  - 'psql -c "create database ___________;" -U postgres'
+  - 'mix compile'
+  - 'mix ecto.setup'
