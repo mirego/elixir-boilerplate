@@ -4,10 +4,8 @@ defmodule PhoenixBoilerplate.Application do
   """
 
   use Application
-  alias PhoenixBoilerplateWeb.{
-    Endpoint,
-    Repo
-  }
+  alias PhoenixBoilerplate.Repo
+  alias PhoenixBoilerplateWeb.Endpoint
 
   def start(_type, _args) do
     import Supervisor.Spec
