@@ -34,6 +34,9 @@ defmodule PhoenixBoilerplate.Mixfile do
       # Database
       {:postgrex, ">= 0.0.0"},
 
+      # Authentication
+      {:basic_auth, "~> 2.2"},
+
       # HTTP server
       {:cowboy, "~> 1.0"},
 

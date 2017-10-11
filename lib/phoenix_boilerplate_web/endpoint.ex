@@ -38,6 +38,10 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
     key: System.get_env("SESSION_KEY"),
     signing_salt: "G5pYBEen"
 
+  if Application.get_env(:phoenix_boilerplate, :basic_auth) do
+    plug BasicAuth, use_config: {:phoenix_boilerplate, :basic_auth}
+  end
+
   plug PhoenixBoilerplateWeb.Router
 
   @doc """

@@ -21,6 +21,13 @@ config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL")
 
+if System.get_env("BASIC_AUTH_USERNAME") do
+  config :phoenix_boilerplate, basic_auth: [
+    username: System.get_env("BASIC_AUTH_USERNAME"),
+    password: System.get_env("BASIC_AUTH_PASSWORD")
+  ]
+end
+
 config :sentry,
   dsn: System.get_env("SENTRY_DSN"),
   included_environments: [:prod],
