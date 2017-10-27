@@ -15,6 +15,11 @@ defmodule PhoenixBoilerplateWeb.ConnCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.{Adapters.SQL.Sandbox, Changeset}
+  alias Phoenix.ConnTest
+  alias PhoenixBoilerplateWeb.Endpoint
+  alias PhoenixBoilerplate.Repo
+
   using do
     quote do
       # Import conveniences for testing with connections
@@ -22,15 +27,17 @@ defmodule PhoenixBoilerplateWeb.ConnCase do
       import PhoenixBoilerplateWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint PhoenixBoilerplateWeb.Endpoint
+      @endpoint Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PhoenixBoilerplate.Repo)
+    :ok = Sandbox.checkout(Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PhoenixBoilerplate.Repo, {:shared, self()})
+      Sandbox.mode(Repo, {:shared, self()})
     end
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+
+    {:ok, conn: ConnTest.build_conn()}
   end
 end

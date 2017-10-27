@@ -15,21 +15,27 @@ defmodule PhoenixBoilerplateWeb.ChannelCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.{Adapters.SQL.Sandbox, Changeset}
+  alias PhoenixBoilerplateWeb.Endpoint
+  alias PhoenixBoilerplate.Repo
+
   using do
     quote do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint PhoenixBoilerplateWeb.Endpoint
+      @endpoint Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PhoenixBoilerplate.Repo)
+    :ok = Sandbox.checkout(Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PhoenixBoilerplate.Repo, {:shared, self()})
+      Sandbox.mode(Repo, {:shared, self()})
     end
+
     :ok
   end
 end
