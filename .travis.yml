@@ -24,6 +24,5 @@ before_install:
 
 # Create database and prepare the application
 before_script:
-  - 'psql -c "create database ___________;" -U postgres'
   - 'mix compile'
   - 'mix ecto.setup'
