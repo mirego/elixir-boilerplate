@@ -3,6 +3,10 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
 
   socket "/socket", PhoenixBoilerplateWeb.UserSocket
 
+  if Application.get_env(:familiprix, :force_ssl) do
+    plug Plug.SSL, rewrite_on: [:x_forwarded_proto]
+  end
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
