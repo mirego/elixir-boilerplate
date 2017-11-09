@@ -1,5 +1,11 @@
 use Mix.Config
 
+defmodule Utilities do
+  def string_to_boolean("true"), do: true
+  def string_to_boolean("1"), do: true
+  def string_to_boolean(_), do: false
+end
+
 # General application configuration
 config :phoenix_boilerplate,
   ecto_repos: [PhoenixBoilerplate.Repo]
@@ -22,6 +28,10 @@ config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL")
 
+# Configure SSL
+config :phoenix_boilerplate, force_ssl: Utilities.string_to_boolean(System.get_env("FORCE_SSL"))
+
+# Configure Basic Auth
 if System.get_env("BASIC_AUTH_USERNAME") do
   config :phoenix_boilerplate, basic_auth: [
     username: System.get_env("BASIC_AUTH_USERNAME"),
