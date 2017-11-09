@@ -3,7 +3,7 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
 
   socket "/socket", PhoenixBoilerplateWeb.UserSocket
 
-  if Application.get_env(:familiprix, :force_ssl) do
+  if Application.get_env(:phoenix_boilerplate, :force_ssl) do
     plug Plug.SSL, rewrite_on: [:x_forwarded_proto]
   end
 
