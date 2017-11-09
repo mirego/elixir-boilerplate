@@ -6,12 +6,10 @@ defmodule Utilities do
   def string_to_boolean(_), do: false
 end
 
-if Utilities.string_to_boolean(System.get_env("FORCE_SSL")) do
-  force_ssl = true
-  endpoint_url = [schema: "https", port: 443, host: System.get_env("CANONICAL_HOST")]
+{force_ssl, endpoint_url} = if Utilities.string_to_boolean(System.get_env("FORCE_SSL")) do
+  {true, [schema: "https", port: 443, host: System.get_env("CANONICAL_HOST")]}
 else
-  force_ssl = false
-  endpoint_url = [schema: "http", port: 80, host: System.get_env("CANONICAL_HOST")]
+  {false, [schema: "http", port: 80, host: System.get_env("CANONICAL_HOST")]}
 end
 
 # General application configuration
