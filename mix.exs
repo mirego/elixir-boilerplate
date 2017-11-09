@@ -28,6 +28,7 @@ defmodule PhoenixBoilerplate.Mixfile do
     [
       # Phoenix
       {:phoenix, "~> 1.3.0"},
+      {:phoenix_html, "~> 2.10"},
       {:phoenix_ecto, "~> 3.2"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
 
