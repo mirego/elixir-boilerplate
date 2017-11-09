@@ -6,6 +6,14 @@ defmodule Utilities do
   def string_to_boolean(_), do: false
 end
 
+if Utilities.string_to_boolean(System.get_env("FORCE_SSL")) do
+  force_ssl = true
+  endpoint_url = [schema: "https", port: 443, host: System.get_env("CANONICAL_HOST")]
+else
+  force_ssl = false
+  endpoint_url = [schema: "http", port: 80, host: System.get_env("CANONICAL_HOST")]
+end
+
 # General application configuration
 config :phoenix_boilerplate,
   ecto_repos: [PhoenixBoilerplate.Repo]
@@ -13,7 +21,7 @@ config :phoenix_boilerplate,
 # Configures the endpoint
 config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
   http: [port: System.get_env("PORT")],
-  url: [host: System.get_env("CANONICAL_HOST") || "localhost"],
+  url: endpoint_url,
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   render_errors: [view: PhoenixBoilerplateWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: PhoenixBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2]
@@ -29,7 +37,7 @@ config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
   url: System.get_env("DATABASE_URL")
 
 # Configure SSL
-config :phoenix_boilerplate, force_ssl: Utilities.string_to_boolean(System.get_env("FORCE_SSL"))
+config :phoenix_boilerplate, force_ssl: force_ssl
 
 # Configure Basic Auth
 if System.get_env("BASIC_AUTH_USERNAME") do

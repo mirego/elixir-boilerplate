@@ -20,3 +20,23 @@ Every following steps assume you have this kind of system.
   2. Install dependencies with `mix deps.get`.
   3. Create and migrate your database with `mix ecto.setup`
   4. Start Phoenix endpoint with `mix phx.server`
+
+## Environment variables
+
+The application needs the following environment variables:
+
+```
+PORT=
+CANONICAL_HOST=
+
+SECRET_KEY_BASE=
+SESSION_KEY=
+```
+
+It also supports these optional environment variables:
+
+```
+FORCE_SSL=
+BASIC_AUTH_USERNAME=
+BASIC_AUTH_PASSWORD=
+```
