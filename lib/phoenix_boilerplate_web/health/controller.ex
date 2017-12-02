@@ -1,4 +1,4 @@
-defmodule PhoenixBoilerplateWeb.Controllers.HealthController do
+defmodule PhoenixBoilerplateWeb.Health.Controller do
   use Phoenix.Controller
 
   def index(conn, _) do

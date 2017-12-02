@@ -10,6 +10,6 @@ defmodule PhoenixBoilerplateWeb.Router do
   scope "/", PhoenixBoilerplateWeb do
     pipe_through :api
 
-    get "/health", Controllers.HealthController, :index
+    get "/health", Health.Controller, :index
   end
 end

@@ -21,7 +21,7 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
   http: [port: System.get_env("PORT")],
   url: endpoint_url,
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
-  render_errors: [view: PhoenixBoilerplateWeb.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: PhoenixBoilerplateWeb.Errors.View, accepts: ~w(html json)],
   pubsub: [name: PhoenixBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
