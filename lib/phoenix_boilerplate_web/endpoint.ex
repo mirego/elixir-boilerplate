@@ -1,7 +1,7 @@
 defmodule PhoenixBoilerplateWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :phoenix_boilerplate
 
-  socket "/socket", PhoenixBoilerplateWeb.UserSocket
+  socket "/socket", PhoenixBoilerplateWeb.Socket
 
   if Application.get_env(:phoenix_boilerplate, :force_ssl) do
     plug Plug.SSL, rewrite_on: [:x_forwarded_proto]

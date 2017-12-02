@@ -1,4 +1,4 @@
-defmodule PhoenixBoilerplateWeb.UserSocket do
+defmodule PhoenixBoilerplateWeb.Socket do
   use Phoenix.Socket
 
   ## Transports
