@@ -1,52 +1,54 @@
 defmodule PhoenixBoilerplateWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :phoenix_boilerplate
 
-  socket "/socket", PhoenixBoilerplateWeb.Socket
+  socket("/socket", PhoenixBoilerplateWeb.Socket)
 
   if Application.get_env(:phoenix_boilerplate, :force_ssl) do
-    plug Plug.SSL, rewrite_on: [:x_forwarded_proto]
+    plug(Plug.SSL, rewrite_on: [:x_forwarded_proto])
   end
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
-  plug Plug.Static,
-    at: "/", from: :phoenix_boilerplate, gzip: false,
-    only: ~w(css fonts images js favicon.ico)
+  plug(Plug.Static, at: "/", from: :phoenix_boilerplate, gzip: false, only: ~w(css fonts images js favicon.ico))
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
-    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
-    plug Phoenix.LiveReloader
-    plug Phoenix.CodeReloader
+    socket("/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket)
+    plug(Phoenix.LiveReloader)
+    plug(Phoenix.CodeReloader)
   end
 
-  plug Plug.RequestId
-  plug Plug.Logger
+  plug(Plug.RequestId)
+  plug(Plug.Logger)
 
-  plug Plug.Parsers,
+  plug(
+    Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
     json_decoder: Poison
+  )
 
-  plug Plug.MethodOverride
-  plug Plug.Head
+  plug(Plug.MethodOverride)
+  plug(Plug.Head)
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
-  plug Plug.Session,
+  plug(
+    Plug.Session,
     store: :cookie,
     key: System.get_env("SESSION_KEY"),
     signing_salt: "G5pYBEen"
+  )
 
   if Application.get_env(:phoenix_boilerplate, :basic_auth) do
-    plug BasicAuth, use_config: {:phoenix_boilerplate, :basic_auth}
+    plug(BasicAuth, use_config: {:phoenix_boilerplate, :basic_auth})
   end
 
-  plug PhoenixBoilerplateWeb.Router
+  plug(PhoenixBoilerplateWeb.Router)
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.

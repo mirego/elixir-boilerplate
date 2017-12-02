@@ -12,7 +12,7 @@ defmodule PhoenixBoilerplate.Application do
 
     children = [
       supervisor(Repo, []),
-      supervisor(Endpoint, []),
+      supervisor(Endpoint, [])
     ]
 
     opts = [strategy: :one_for_one, name: PhoenixBoilerplate.Supervisor]

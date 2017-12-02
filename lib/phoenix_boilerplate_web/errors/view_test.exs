@@ -5,17 +5,14 @@ defmodule PhoenixBoilerplateWeb.Errors.ViewTest do
   import Phoenix.View
 
   test "renders 404.html" do
-    assert render_to_string(PhoenixBoilerplateWeb.Errors.View, "404.html", []) ==
-           "Page not found"
+    assert render_to_string(PhoenixBoilerplateWeb.Errors.View, "404.html", []) == "Page not found"
   end
 
   test "render 500.html" do
-    assert render_to_string(PhoenixBoilerplateWeb.Errors.View, "500.html", []) ==
-           "Internal server error"
+    assert render_to_string(PhoenixBoilerplateWeb.Errors.View, "500.html", []) == "Internal server error"
   end
 
   test "render any other" do
-    assert render_to_string(PhoenixBoilerplateWeb.Errors.View, "505.html", []) ==
-           "Internal server error"
+    assert render_to_string(PhoenixBoilerplateWeb.Errors.View, "505.html", []) == "Internal server error"
   end
 end

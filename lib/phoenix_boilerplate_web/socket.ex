@@ -2,7 +2,7 @@ defmodule PhoenixBoilerplateWeb.Socket do
   use Phoenix.Socket
 
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
+  transport(:websocket, Phoenix.Transports.WebSocket)
 
   def connect(_params, socket) do
     {:ok, socket}

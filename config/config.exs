@@ -6,15 +6,15 @@ defmodule Utilities do
   def string_to_boolean(_), do: false
 end
 
-{force_ssl, endpoint_url} = if Utilities.string_to_boolean(System.get_env("FORCE_SSL")) do
-  {true, [schema: "https", port: 443, host: System.get_env("CANONICAL_HOST")]}
-else
-  {false, [schema: "http", port: 80, host: System.get_env("CANONICAL_HOST")]}
-end
+{force_ssl, endpoint_url} =
+  if Utilities.string_to_boolean(System.get_env("FORCE_SSL")) do
+    {true, [schema: "https", port: 443, host: System.get_env("CANONICAL_HOST")]}
+  else
+    {false, [schema: "http", port: 80, host: System.get_env("CANONICAL_HOST")]}
+  end
 
 # General application configuration
-config :phoenix_boilerplate,
-  ecto_repos: [PhoenixBoilerplate.Repo]
+config :phoenix_boilerplate, ecto_repos: [PhoenixBoilerplate.Repo]
 
 # Configures the endpoint
 config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
@@ -39,20 +39,21 @@ config :phoenix_boilerplate, force_ssl: force_ssl
 
 # Configure Basic Auth
 if System.get_env("BASIC_AUTH_USERNAME") do
-  config :phoenix_boilerplate, basic_auth: [
-    username: System.get_env("BASIC_AUTH_USERNAME"),
-    password: System.get_env("BASIC_AUTH_PASSWORD")
-  ]
+  config :phoenix_boilerplate,
+    basic_auth: [
+      username: System.get_env("BASIC_AUTH_USERNAME"),
+      password: System.get_env("BASIC_AUTH_PASSWORD")
+    ]
 end
 
 config :sentry,
   dsn: System.get_env("SENTRY_DSN"),
   included_environments: [:prod],
-  environment_name: Mix.env,
+  environment_name: Mix.env(),
   use_error_logger: true,
-  root_source_code_path: File.cwd!,
+  root_source_code_path: File.cwd!(),
   enable_source_code_context: true
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"
