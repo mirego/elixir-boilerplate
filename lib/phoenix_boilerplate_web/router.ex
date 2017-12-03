@@ -4,12 +4,12 @@ defmodule PhoenixBoilerplateWeb.Router do
   use Sentry.Plug
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   scope "/", PhoenixBoilerplateWeb do
-    pipe_through :api
+    pipe_through(:api)
 
-    get "/health", Health.Controller, :index
+    get("/health", Health.Controller, :index)
   end
 end
