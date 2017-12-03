@@ -35,7 +35,9 @@ config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
   url: System.get_env("DATABASE_URL")
 
 # Configure SSL
-config :phoenix_boilerplate, force_ssl: force_ssl
+config :phoenix_boilerplate,
+  force_ssl: force_ssl,
+  canonical_host: System.get_env("CANONICAL_HOST")
 
 # Configure Basic Auth
 if System.get_env("BASIC_AUTH_USERNAME") do
