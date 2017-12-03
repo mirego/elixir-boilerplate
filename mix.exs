@@ -42,6 +42,7 @@ defmodule PhoenixBoilerplate.Mixfile do
 
       # HTTP server
       {:cowboy, "~> 1.0"},
+      {:plug_canonical_host, "~> 0.3"},
 
       # Errors
       {:sentry, "~> 5.0"},

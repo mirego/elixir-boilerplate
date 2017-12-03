@@ -7,6 +7,8 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
     plug(Plug.SSL, rewrite_on: [:x_forwarded_proto])
   end
 
+  plug(PlugCanonicalHost, canonical_host: Application.get_env(:phoenix_boilerplate, :canonical_host))
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
