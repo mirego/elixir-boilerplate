@@ -32,7 +32,8 @@ config :logger, :console,
 # Configure your database
 config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("DATABASE_URL")
+  url: System.get_env("DATABASE_URL"),
+  size: System.get_env("DATABASE_POOL_SIZE")
 
 # Configure SSL
 config :phoenix_boilerplate,
