@@ -41,7 +41,7 @@ config :phoenix_boilerplate,
   canonical_host: System.get_env("CANONICAL_HOST")
 
 # Configure Basic Auth
-if System.get_env("BASIC_AUTH_USERNAME") && String.strip(System.get_env("BASIC_AUTH_USERNAME")) != "" do
+if System.get_env("BASIC_AUTH_USERNAME") && String.trim(System.get_env("BASIC_AUTH_USERNAME")) != "" do
   config :phoenix_boilerplate,
     basic_auth: [
       username: System.get_env("BASIC_AUTH_USERNAME"),
