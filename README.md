@@ -51,8 +51,8 @@ BASIC_AUTH_PASSWORD=
 
 All projects using the `phoenix-boilerplate` must include the latest `credo` configuration. 
 
-You will need to add the following file to you project root:
+You will need to add the `.credo.exs` file to you project root. The latest version can be found here:
  
  * [mirego-horizontal-web/configurations/credo.exs](https://github.com/mirego/mirego-horizontal-web/blob/master/configurations/credo.exs)
 
-To run it use: `mix credo`
+To run it, use: `mix credo`
