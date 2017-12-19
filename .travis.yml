@@ -24,6 +24,8 @@ before_install:
 
 # Create database and prepare the application
 before_script:
-  - 'mix credo'
   - 'mix compile'
   - 'mix ecto.setup'
+
+script:
+  - mix credo --strict

@@ -55,4 +55,4 @@ You will need to add the `.credo.exs` file to you project root. The latest versi
  
  * [mirego-horizontal-web/configurations/credo.exs](https://github.com/mirego/mirego-horizontal-web/blob/master/configurations/credo.exs)
 
-To run it, use: `mix credo`
+To run it, use: `mix credo --strict`
