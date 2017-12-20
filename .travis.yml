@@ -26,3 +26,7 @@ before_install:
 before_script:
   - 'mix compile'
   - 'mix ecto.setup'
+
+script:
+  - mix credo --strict
+  - mix test

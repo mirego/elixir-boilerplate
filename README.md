@@ -46,3 +46,13 @@ FORCE_SSL=
 BASIC_AUTH_USERNAME=
 BASIC_AUTH_PASSWORD=
 ```
+
+## Linting
+
+All projects using the `phoenix-boilerplate` must include the latest `credo` configuration. 
+
+You will need to add the `.credo.exs` file to you project root. The latest version can be found here:
+ 
+ * [mirego-horizontal-web/configurations/credo.exs](https://github.com/mirego/mirego-horizontal-web/blob/master/configurations/credo.exs)
+
+To run it, use: `mix credo --strict`
