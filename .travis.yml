@@ -29,4 +29,5 @@ before_script:
 
 script:
   - mix credo --strict
+  - mix compile --warnings-as-errors --force
   - mix test
