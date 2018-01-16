@@ -1,19 +1,21 @@
+#!/usr/bin/env bash
+
 if [[ -z "$1" ]] ; then
   echo 'You must specify your project name in CamelCase as first argument.'
   exit 0
 fi
 
 # Used as the root module of your app
-camelCaseBefore=PhoenixBoilerplate
-camelCaseAfter=$1
+camelCaseBefore="PhoenixBoilerplate"
+camelCaseAfter=${1}
 
 # Used as the name of the OTP app
-snakeCaseBefore=phoenix_boilerplate
-snakeCaseAfter=$(elixir -e "IO.puts(Macro.underscore "$1")")
+snakeCaseBefore="phoenix_boilerplate"
+snakeCaseAfter=$(elixir -e "IO.puts(Macro.underscore \"$1\")")
 
 # Used in package.json and js files
-hyphenCaseBefore=phoenix-boilerplate
-hyphenCaseAfter=$(echo $snakeCaseAfter | sed -e 's/_/\-/g')
+hyphenCaseBefore="phoenix-boilerplate"
+hyphenCaseAfter="${snakeCaseAfter/_/-}"
 
 # Template files
 find ./config ./test ./lib ./priv mix.exs -name "*.eex" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+'
@@ -31,7 +33,7 @@ find ./assets/package.json -exec sed -i '' -e "s/$hyphenCaseBefore/$hyphenCaseAf
 find ./assets -name '*.js' -exec sed -i '' -e "s/$hyphenCaseBefore/$hyphenCaseAfter/g" '{}' '+'
 
 # Rename folder and main app file in lib
-mv ./lib/$snakeCaseBefore ./lib/$snakeCaseAfter
-mv ./lib/$snakeCaseBefore.ex ./lib/$snakeCaseAfter.ex
-mv ./lib/${snakeCaseBefore}_web ./lib/${snakeCaseAfter}_web
-mv ./test/${snakeCaseBefore}_web ./test/${snakeCaseAfter}_web
+mv "./lib/${snakeCaseBefore}" "./lib/${snakeCaseAfter}"
+mv "./lib/${snakeCaseBefore}.ex" "./lib/${snakeCaseAfter}.ex"
+mv "./lib/${snakeCaseBefore}_web" "./lib/${snakeCaseAfter}_web"
+mv "./test/${snakeCaseBefore}_web" "./test/${snakeCaseAfter}_web"
