@@ -5,7 +5,7 @@ sudo: false
 language: 'elixir'
 
 elixir:
-  - 1.5
+  - 1.6
 
 # Make sure PostgreSQL is running
 addons:
@@ -28,6 +28,7 @@ before_script:
   - 'mix ecto.setup'
 
 script:
+  - mix format --check-formatted --dry-run
   - mix credo --strict
   - mix compile --warnings-as-errors --force
   - mix test
