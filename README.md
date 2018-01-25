@@ -45,6 +45,9 @@ It also supports these optional environment variables:
 FORCE_SSL=
 BASIC_AUTH_USERNAME=
 BASIC_AUTH_PASSWORD=
+CDN_SCHEME=
+CDN_HOST=
+CDN_PORT=
 ```
 
 ## Linting

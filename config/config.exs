@@ -22,7 +22,12 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
   url: endpoint_url,
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   render_errors: [view: PhoenixBoilerplateWeb.Errors.View, accepts: ~w(html json)],
-  pubsub: [name: PhoenixBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: PhoenixBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2],
+  static_url: [
+    scheme: System.get_env("CDN_SCHEME"),
+    host: System.get_env("CDN_HOST"),
+    port: System.get_env("CDN_PORT")
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,
