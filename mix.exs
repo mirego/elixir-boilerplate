@@ -48,7 +48,7 @@ defmodule PhoenixBoilerplate.Mixfile do
       {:sentry, "~> 5.0"},
 
       # Linting
-      {:credo, "~> 0.8", only: [:dev, :test]}
+      {:credo, "~> 0.9", only: [:dev, :test]}
     ]
   end
 
