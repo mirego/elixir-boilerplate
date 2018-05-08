@@ -4,12 +4,12 @@ sudo: false
 # Elixir baby!
 language: 'elixir'
 
-elixir:
-  - 1.6
+elixir: 1.6.4
+otp_release: 20.2.1
 
 # Make sure PostgreSQL is running
 addons:
-  postgresql: 9.4
+  postgresql: 9.6
 
 # Set global environment variables
 env:
@@ -24,11 +24,8 @@ before_install:
 
 # Create database and prepare the application
 before_script:
-  - 'mix compile'
-  - 'mix ecto.setup'
+  - mix compile
+  - mix ecto.setup
 
 script:
-  - mix format --check-formatted --dry-run
-  - mix credo --strict
-  - mix compile --warnings-as-errors --force
-  - mix test
+  - ./priv/scripts/ci-check.sh

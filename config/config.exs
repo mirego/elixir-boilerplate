@@ -55,13 +55,12 @@ if System.get_env("BASIC_AUTH_USERNAME") && String.trim(System.get_env("BASIC_AU
     ]
 end
 
+# Configures Sentry to report errors
 config :sentry,
   dsn: System.get_env("SENTRY_DSN"),
   included_environments: [:prod],
   environment_name: Mix.env(),
-  use_error_logger: true,
-  root_source_code_path: File.cwd!(),
-  enable_source_code_context: true
+  root_source_code_path: File.cwd!()
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

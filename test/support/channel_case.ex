@@ -15,7 +15,7 @@ defmodule PhoenixBoilerplateWeb.ChannelCase do
 
   use ExUnit.CaseTemplate
 
-  alias Ecto.{Adapters.SQL.Sandbox, Changeset}
+  alias Ecto.Adapters.SQL.Sandbox
   alias PhoenixBoilerplateWeb.Endpoint
   alias PhoenixBoilerplate.Repo
 

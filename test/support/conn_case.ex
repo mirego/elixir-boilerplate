@@ -15,7 +15,7 @@ defmodule PhoenixBoilerplateWeb.ConnCase do
 
   use ExUnit.CaseTemplate
 
-  alias Ecto.{Adapters.SQL.Sandbox, Changeset}
+  alias Ecto.Adapters.SQL.Sandbox
   alias Phoenix.ConnTest
   alias PhoenixBoilerplateWeb.Endpoint
   alias PhoenixBoilerplate.Repo

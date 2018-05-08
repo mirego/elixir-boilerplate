@@ -35,7 +35,7 @@ defmodule PhoenixBoilerplate.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
 
       # Database
-      {:postgrex, ">= 0.0.0"},
+      {:postgrex, "~> 0.13"},
 
       # Authentication
       {:basic_auth, "~> 2.2"},
@@ -45,7 +45,7 @@ defmodule PhoenixBoilerplate.Mixfile do
       {:plug_canonical_host, "~> 0.3"},
 
       # Errors
-      {:sentry, "~> 5.0"},
+      {:sentry, "~> 6.2"},
 
       # Linting
       {:credo, "~> 0.9", only: [:dev, :test]}
