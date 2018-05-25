@@ -23,32 +23,7 @@ Every following steps assume you have this kind of system.
 
 ## Environment variables
 
-The application needs the following environment variables:
-
-```
-PORT=
-CANONICAL_HOST=
-
-# Secret key. You can use `mix phx.gen.secret` to get one or use any secret string you want
-SECRET_KEY_BASE=
-SESSION_KEY=
-
-# Url of the database
-DATABASE_URL=
-# Pool size of the DB connections. You may use 20 connections as a starting point.
-DATABASE_POOL_SIZE=
-```
-
-It also supports these optional environment variables:
-
-```
-FORCE_SSL=
-BASIC_AUTH_USERNAME=
-BASIC_AUTH_PASSWORD=
-CDN_SCHEME=
-CDN_HOST=
-CDN_PORT=
-```
+All environment variables needed (or supported) to run this application are listed in [`.env.dev`](./.env.dev).
 
 ## Linting
 
