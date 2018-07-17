@@ -11,6 +11,13 @@ otp_release: 20.2.1
 addons:
   postgresql: 9.6
 
+
+# Use the cache to build faster
+cache:
+  directories:
+    - _build
+    - deps
+
 # Set global environment variables
 env:
   global:
