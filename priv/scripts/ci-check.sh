@@ -46,6 +46,9 @@ run mix format --dry-run --check-formatted
 header "API code lint…"
 run mix credo --strict
 
+header "Execute data seed…"
+mix run priv/repo/seeds.exs
+
 if [ ${error_status} -ne 0 ]; then
   header "${fail_emoji}   Something went wrong. Please fix it before committing."
 else

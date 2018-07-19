@@ -37,7 +37,8 @@ before_script:
   - npm install -g npm@6.1.0
   - npm --prefix assets install
   - mix compile
-  - mix ecto.setup
+  - mix ecto.create
+  - mix ecto.migrate
 
 script:
   - ./priv/scripts/ci-check.sh
