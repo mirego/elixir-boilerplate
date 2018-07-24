@@ -7,7 +7,7 @@ defmodule PhoenixBoilerplate.Mixfile do
       version: "0.0.1",
       elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env()),
-      test_paths: ["lib"],
+      test_paths: ["test"],
       test_pattern: "**/*_test.exs",
       compilers: [:phoenix] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,

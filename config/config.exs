@@ -19,15 +19,16 @@ config :phoenix_boilerplate, ecto_repos: [PhoenixBoilerplate.Repo]
 # Configures the endpoint
 config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
   http: [port: System.get_env("PORT")],
-  url: endpoint_url,
-  secret_key_base: System.get_env("SECRET_KEY_BASE"),
-  render_errors: [view: PhoenixBoilerplateWeb.Errors.View, accepts: ~w(html json)],
   pubsub: [name: PhoenixBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2],
+  render_errors: [view: PhoenixBoilerplateWeb.Errors.View, accepts: ~w(html json)],
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  session_key: System.get_env("SESSION_KEY"),
   static_url: [
     scheme: System.get_env("CDN_SCHEME"),
     host: System.get_env("CDN_HOST"),
     port: System.get_env("CDN_PORT")
-  ]
+  ],
+  url: endpoint_url
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -37,14 +38,14 @@ config :logger, :console,
 # Configure your database
 config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("DATABASE_URL"),
   ssl: Utilities.string_to_boolean(System.get_env("DATABASE_SSL")),
-  size: System.get_env("DATABASE_POOL_SIZE")
+  size: System.get_env("DATABASE_POOL_SIZE"),
+  url: System.get_env("DATABASE_URL")
 
 # Configure SSL
 config :phoenix_boilerplate,
-  force_ssl: force_ssl,
-  canonical_host: System.get_env("CANONICAL_HOST")
+  canonical_host: System.get_env("CANONICAL_HOST"),
+  force_ssl: force_ssl
 
 # Configure Basic Auth
 if System.get_env("BASIC_AUTH_USERNAME") && String.trim(System.get_env("BASIC_AUTH_USERNAME")) != "" do
@@ -58,8 +59,8 @@ end
 # Configures Sentry to report errors
 config :sentry,
   dsn: System.get_env("SENTRY_DSN"),
-  included_environments: [:prod],
   environment_name: Mix.env(),
+  included_environments: [:prod],
   root_source_code_path: File.cwd!()
 
 # Import environment specific config. This must remain at the bottom
