@@ -24,9 +24,9 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   session_key: System.get_env("SESSION_KEY"),
   static_url: [
-    scheme: System.get_env("CDN_SCHEME"),
-    host: System.get_env("CDN_HOST"),
-    port: System.get_env("CDN_PORT")
+    scheme: System.get_env("STATIC_URL_SCHEME"),
+    host: System.get_env("STATIC_URL_HOST"),
+    port: System.get_env("STATIC_URL_PORT")
   ],
   url: endpoint_url
 
