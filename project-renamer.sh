@@ -18,19 +18,23 @@ hyphenCaseBefore="phoenix-boilerplate"
 hyphenCaseAfter="${snakeCaseAfter/_/-}"
 
 # Template files
-find ./config ./test ./lib ./priv mix.exs -name "*.eex" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+'
+find ./config ./test ./lib ./priv -name "*.eex" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./config ./test ./lib ./priv -name "*.eex" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 
 # Elixir compiled files
-find ./config ./test ./lib ./priv mix.exs -name "*.ex" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+'
-find ./config ./test ./lib ./priv mix.exs -name "*.ex" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+'
+find ./config ./test ./lib ./priv -name "*.ex" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./config ./test ./lib ./priv -name "*.ex" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 
 # Elixir script files
-find ./config ./test ./lib ./priv mix.exs -name "*.exs" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+'
-find ./config ./test ./lib ./priv mix.exs -name "*.exs" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+'
+find ./config ./test ./lib ./priv mix.exs -name "*.exs" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./config ./test ./lib ./priv mix.exs -name "*.exs" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 
 # Package.json and js files
-find ./assets/package.json -exec sed -i '' -e "s/$hyphenCaseBefore/$hyphenCaseAfter/g" '{}' '+'
-find ./assets -name '*.js' -exec sed -i '' -e "s/$hyphenCaseBefore/$hyphenCaseAfter/g" '{}' '+'
+find ./assets/package.json -exec sed -i '' -e "s/$hyphenCaseBefore/$hyphenCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./assets -name '*.js' -exec sed -i '' -e "s/$hyphenCaseBefore/$hyphenCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+
+# Travis configuration file
+find ./.travis.yml -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 
 # Rename folder and main app file in lib
 mv "./lib/${snakeCaseBefore}" "./lib/${snakeCaseAfter}"

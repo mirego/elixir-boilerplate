@@ -23,7 +23,7 @@ env:
   global:
     - MIX_ENV: 'test'
     - SECRET_KEY_BASE: 'lolwut'
-    - DATABASE_URL: 'postgres://localhost/______________'
+    - DATABASE_URL: 'postgres://localhost/phoenix_boilerplate_test'
 
 # Output Travis server IP for debugging
 before_install:
