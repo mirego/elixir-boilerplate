@@ -13,6 +13,7 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
 config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
   live_reload: [
     patterns: [
+      ~r{priv/gettext/.*$},
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{lib/phoenix_boilerplate_web/views/.*(ex)$},
       ~r{lib/phoenix_boilerplate_web/templates/.*(eex)$}

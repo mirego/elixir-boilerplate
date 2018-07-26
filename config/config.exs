@@ -56,6 +56,9 @@ if System.get_env("BASIC_AUTH_USERNAME") && String.trim(System.get_env("BASIC_AU
     ]
 end
 
+# Configure Gettext
+config :phoenix_boilerplate, PhoenixBoilerplate.Gettext, default_locale: "en"
+
 # Configures Sentry to report errors
 config :sentry,
   dsn: System.get_env("SENTRY_DSN"),

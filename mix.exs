@@ -9,7 +9,7 @@ defmodule PhoenixBoilerplate.Mixfile do
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
       test_pattern: "**/*_test.exs",
-      compilers: [:phoenix] ++ Mix.compilers(),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -43,6 +43,9 @@ defmodule PhoenixBoilerplate.Mixfile do
       # HTTP server
       {:cowboy, "~> 1.0"},
       {:plug_canonical_host, "~> 0.3"},
+
+      # Translations
+      {:gettext, "~> 0.15.0"},
 
       # Errors
       {:sentry, "~> 6.2"},
