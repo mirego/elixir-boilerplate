@@ -28,7 +28,8 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
     host: System.get_env("STATIC_URL_HOST"),
     port: System.get_env("STATIC_URL_PORT")
   ],
-  url: endpoint_url
+  url: endpoint_url,
+  debug_errors: Utilities.string_to_boolean(System.get_env("DEBUG_ERRORS"))
 
 # Configures Elixir's Logger
 config :logger, :console,
