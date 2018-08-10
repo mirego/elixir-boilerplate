@@ -1,0 +1,12 @@
+{
+  "plugins": [
+    "mirego"
+  ],
+  "extends": [
+    "plugin:mirego/recommended"
+  ],
+  "env": {
+    "es6": true,
+    "jquery": true
+  }
+}

@@ -46,8 +46,17 @@ run mix format --dry-run --check-formatted
 header "API code lint…"
 run mix credo --strict
 
+header "Web app JavaScript lint…"
+run npm --prefix assets run lint-scripts
+
+header "Web app styles lint…"
+run npm --prefix assets run lint-styles
+
+header "Web app code auto-formatting…"
+run npm --prefix assets run prettier-check
+
 header "Execute data seed…"
-mix run priv/repo/seeds.exs
+run mix run priv/repo/seeds.exs
 
 if [ ${error_status} -ne 0 ]; then
   header "${fail_emoji}   Something went wrong. Please fix it before committing."

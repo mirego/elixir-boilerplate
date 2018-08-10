@@ -27,10 +27,10 @@ All environment variables needed (or supported) to run this application are list
 
 ## Linting
 
-All projects using the `phoenix-boilerplate` must include the latest `credo` configuration. 
+You will need to add these files to you project root:
 
-You will need to add the `.credo.exs` file to you project root. The latest version can be found here:
- 
- * [mirego-horizontal-web/configurations/credo.exs](https://github.com/mirego/mirego-horizontal-web/blob/master/configurations/credo.exs)
+* `.svgo.yml`
 
-To run it, use: `mix credo --strict`
+Their latest version can be found [here](https://github.com/mirego/mirego-horizontal-web/blob/master/configurations).
+
+The linting/testing script can be ran with `./priv/scripts/ci-check.sh`.

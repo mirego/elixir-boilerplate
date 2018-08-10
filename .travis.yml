@@ -17,6 +17,7 @@ cache:
   directories:
     - _build
     - deps
+    - assets/node_modules
 
 # Set global environment variables
 env:

@@ -16,8 +16,8 @@ defmodule PhoenixBoilerplateWeb.ChannelCase do
   use ExUnit.CaseTemplate
 
   alias Ecto.Adapters.SQL.Sandbox
-  alias PhoenixBoilerplateWeb.Endpoint
   alias PhoenixBoilerplate.Repo
+  alias PhoenixBoilerplateWeb.Endpoint
 
   using do
     quote do

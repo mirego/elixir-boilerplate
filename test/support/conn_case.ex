@@ -17,8 +17,8 @@ defmodule PhoenixBoilerplateWeb.ConnCase do
 
   alias Ecto.Adapters.SQL.Sandbox
   alias Phoenix.ConnTest
-  alias PhoenixBoilerplateWeb.Endpoint
   alias PhoenixBoilerplate.Repo
+  alias PhoenixBoilerplateWeb.Endpoint
 
   using do
     quote do
@@ -38,6 +38,10 @@ defmodule PhoenixBoilerplateWeb.ConnCase do
       Sandbox.mode(Repo, {:shared, self()})
     end
 
-    {:ok, conn: ConnTest.build_conn()}
+    conn =
+      ConnTest.build_conn()
+      |> Map.put(:host, System.get_env("CANONICAL_HOST"))
+
+    {:ok, conn: conn}
   end
 end
