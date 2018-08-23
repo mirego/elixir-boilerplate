@@ -2,15 +2,21 @@
 
 ## The first step
 
-Use the included `./project-renamer.sh YourProjectName` to remove all reference from `PhoenixBoilerplate` in your app.
-When this is done, you should remove this part from the file, update the title and delete the script ;)
+1. Clone this project.
+2. Remove the `.git` folder with `rm -rf .git`.
+3. Run the `./project-renamer.sh YourProjectName` script to remove every references to `PhoenixBoilerplate`.
+4. Delete the renamer script.
+5. Update the `README`.
+6. Create the new repository and commit as usual.
+
+_Voila!_
 
 ## Executing mix commands
 
 Because the app is modeled with the Twelve-Factor app architecture, all configs are stored in the environment.
 
-When executing mix command, you should always make sure that the required system env are present.
-You can use `source`, [nv](https://github.com/jcouture/nv) or a custom l33t bash script.
+When executing mix command, you should always make sure that the required system env are present. You can 
+use `source`, [nv](https://github.com/jcouture/nv) or a custom l33t bash script.
 
 Every following steps assume you have this kind of system.
 
