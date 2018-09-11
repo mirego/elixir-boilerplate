@@ -41,7 +41,7 @@
         {Credo.Check.Refactor.Nesting},
         {Credo.Check.Refactor.UnlessWithElse},
         {Credo.Check.Warning.IExPry},
-        {Credo.Check.Warning.IoInspect, false},
+        {Credo.Check.Warning.IoInspect},
         {Credo.Check.Warning.OperationOnSameValues},
         {Credo.Check.Warning.BoolOperationOnSameValues},
         {Credo.Check.Warning.UnusedEnumOperation},
