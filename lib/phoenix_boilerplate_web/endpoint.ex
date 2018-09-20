@@ -3,11 +3,8 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
 
   socket("/socket", PhoenixBoilerplateWeb.Socket)
 
-  if Application.get_env(:phoenix_boilerplate, :force_ssl) do
-    plug(Plug.SSL, rewrite_on: [:x_forwarded_proto])
-  end
-
-  plug(PlugCanonicalHost, canonical_host: Application.get_env(:phoenix_boilerplate, :canonical_host))
+  plug(:force_ssl)
+  plug(:canonical_host)
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -64,6 +61,20 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
       {:ok, Keyword.put(config, :http, [:inet6, port: port])}
     else
       {:ok, config}
+    end
+  end
+
+  defp canonical_host(conn, _opts) do
+    opts = PlugCanonicalHost.init(canonical_host: System.get_env("CANONICAL_HOST"))
+    PlugCanonicalHost.call(conn, opts)
+  end
+
+  defp force_ssl(conn, _opts) do
+    if System.get_env("FORCE_SSL") == "true" do
+      opts = Plug.SSL.init(rewrite_on: [:x_forwarded_proto])
+      Plug.SSL.call(conn, opts)
+    else
+      conn
     end
   end
 end

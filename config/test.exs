@@ -9,7 +9,7 @@ config :phoenix_boilerplate, PhoenixBoilerplate.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-# Configure the database
+# Configure Repo with a sandboxed Postgres
 config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),

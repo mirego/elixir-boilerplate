@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  api:
+    image: phoenix_boilerplate
+    container_name: phoenix_boilerplate-api
+    env_file:
+      - .env.docker
+    ports:
+      - 4000:4000
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:10.3
+    container_name: phoenix_boilerplate-postgres
+    environment:
+      - POSTGRES_DB=phoenix_boilerplate_dev
+      - POSTGRES_PASSWORD=development
+    ports:
+      - 5432:5432
+    volumes:
+      - phoenix_boilerplate_psql:/var/lib/postgresql/data
+volumes:
+  phoenix_boilerplate_psql:

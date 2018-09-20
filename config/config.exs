@@ -2,23 +2,28 @@ use Mix.Config
 
 defmodule Utilities do
   def string_to_boolean("true"), do: true
-  def string_to_boolean("1"), do: true
   def string_to_boolean(_), do: false
 end
 
-{force_ssl, endpoint_url} =
-  if Utilities.string_to_boolean(System.get_env("FORCE_SSL")) do
-    {true, [schema: "https", port: 443, host: System.get_env("CANONICAL_HOST")]}
-  else
-    {false, [schema: "http", port: 80, host: System.get_env("CANONICAL_HOST")]}
-  end
+force_ssl = System.get_env("FORCE_SSL") |> Utilities.string_to_boolean()
+schema = if force_ssl == true, do: "https", else: "http"
+host = System.get_env("CANONICAL_HOST")
+port = System.get_env("PORT")
 
 # General application configuration
 config :phoenix_boilerplate, ecto_repos: [PhoenixBoilerplate.Repo]
 
-# Configures the endpoint
+# Configure Repo with Postgres
+config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  size: System.get_env("DATABASE_POOL_SIZE"),
+  ssl: System.get_env("DATABASE_SSL") |> Utilities.string_to_boolean(),
+  url: System.get_env("DATABASE_URL")
+
+# Configure the endpoint
 config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
-  http: [port: System.get_env("PORT")],
+  debug_errors: System.get_env("DEBUG_ERRORS"),
+  http: [port: port],
   pubsub: [name: PhoenixBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2],
   render_errors: [view: PhoenixBoilerplateWeb.Errors.View, accepts: ~w(html json)],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
@@ -28,28 +33,10 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
     host: System.get_env("STATIC_URL_HOST"),
     port: System.get_env("STATIC_URL_PORT")
   ],
-  url: endpoint_url,
-  debug_errors: Utilities.string_to_boolean(System.get_env("DEBUG_ERRORS"))
-
-# Configures Elixir's Logger
-config :logger, :console,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
-
-# Configure your database
-config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  ssl: Utilities.string_to_boolean(System.get_env("DATABASE_SSL")),
-  size: System.get_env("DATABASE_POOL_SIZE"),
-  url: System.get_env("DATABASE_URL")
-
-# Configure SSL
-config :phoenix_boilerplate,
-  canonical_host: System.get_env("CANONICAL_HOST"),
-  force_ssl: force_ssl
+  url: [schema: schema, host: host, port: port]
 
 # Configure Basic Auth
-if System.get_env("BASIC_AUTH_USERNAME") && String.trim(System.get_env("BASIC_AUTH_USERNAME")) != "" do
+if System.get_env("BASIC_AUTH_USERNAME") && System.get_env("BASIC_AUTH_USERNAME") |> String.trim() != "" do
   config :phoenix_boilerplate,
     basic_auth: [
       username: System.get_env("BASIC_AUTH_USERNAME"),
@@ -60,7 +47,12 @@ end
 # Configure Gettext
 config :phoenix_boilerplate, PhoenixBoilerplate.Gettext, default_locale: "en"
 
-# Configures Sentry to report errors
+# Configure Elixir’s Logger
+config :logger, :console,
+  format: "$time $metadata[$level] $message\n",
+  metadata: [:request_id]
+
+# Configure Sentry
 config :sentry,
   dsn: System.get_env("SENTRY_DSN"),
   environment_name: Mix.env(),
