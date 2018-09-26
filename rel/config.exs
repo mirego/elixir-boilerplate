@@ -14,13 +14,13 @@ use Mix.Releases.Config,
 environment :dev do
   set dev_mode: true
   set include_erts: false
-  set cookie: :"=6yFnxJ1$^TfFZsr2qrpqF}9QJdDuQ6grRN]w3X<iev:V4(f`|pm,/om,pd{{Nh4"
+  set cookie: "_this_is_a_development_only_magic_secret_"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :"DpMAf{x2V$>ienfo6J}PypRYo$&4&/S?%Jaup5?|>{mt>WO8/?wtq~N0&os)F!{E"
+  set cookie: "${ERLANG_COOKIE}"
 end
 
 release :phoenix_boilerplate do

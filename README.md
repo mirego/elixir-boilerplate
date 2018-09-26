@@ -51,7 +51,7 @@ The docker command beautifully wrapped in a [Makefile](./Makefile), so to build 
 Jenkins job, simply use the `build` task.
 
 ```shell
-> make Build
+> make build
 Sending build context to Docker daemon  418.3kB
 Step 1/26 : ARG ALPINE_VERSION=3.8
 Step 2/26 : FROM elixir:1.7.3-alpine AS builder
@@ -83,7 +83,6 @@ docker_postgres_1 is up-to-date
 Recreating docker_api_1 ... done
 Attaching to docker_api_1
 ```
-
 
 You may also use the `Make` tasks for an even simpler setup.
 

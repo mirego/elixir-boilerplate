@@ -2,6 +2,7 @@ use Mix.Config
 
 defmodule Utilities do
   def string_to_boolean("true"), do: true
+  def string_to_boolean("1"), do: true
   def string_to_boolean(_), do: false
 end
 
@@ -11,7 +12,10 @@ host = System.get_env("CANONICAL_HOST")
 port = System.get_env("PORT")
 
 # General application configuration
-config :phoenix_boilerplate, ecto_repos: [PhoenixBoilerplate.Repo]
+config :phoenix_boilerplate,
+  canonical_host: host,
+  ecto_repos: [PhoenixBoilerplate.Repo],
+  force_ssl: force_ssl
 
 # Configure Repo with Postgres
 config :phoenix_boilerplate, PhoenixBoilerplate.Repo,

@@ -9,10 +9,10 @@ defmodule PhoenixBoilerplate.Release.Migrations do
   end
 
   defp start_services do
-    IO.puts("Starting dependencies..")
+    IO.puts("Starting dependencies…")
     Enum.each(@start_apps, &Application.ensure_all_started/1)
 
-    IO.puts("Starting repos..")
+    IO.puts("Starting repos…")
     Enum.each(@repos, & &1.start_link(pool_size: 1))
   end
 

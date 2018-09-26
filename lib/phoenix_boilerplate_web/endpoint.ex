@@ -65,13 +65,17 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
   end
 
   defp canonical_host(conn, _opts) do
-    opts = PlugCanonicalHost.init(canonical_host: System.get_env("CANONICAL_HOST"))
+    opts =
+      [canonical_host: Application.get_env(:phoenix_boilerplate, :canonical_host)]
+      |> PlugCanonicalHost.init()
+
     PlugCanonicalHost.call(conn, opts)
   end
 
   defp force_ssl(conn, _opts) do
-    if System.get_env("FORCE_SSL") == "true" do
+    if Application.get_env(:phoenix_boilerplate, :force_ssl) do
       opts = Plug.SSL.init(rewrite_on: [:x_forwarded_proto])
+
       Plug.SSL.call(conn, opts)
     else
       conn
