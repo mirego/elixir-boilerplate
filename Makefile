@@ -1,4 +1,4 @@
-.PHONY: help build
+.PHONY: help build start stop
 
 APP_NAME ?= `grep 'app:' mix.exs | sed -e 's/\[//g' -e 's/ //g' -e 's/app://' -e 's/[:,]//g'`
 APP_VERSION ?= `grep 'version:' mix.exs | cut -d '"' -f2`

@@ -7,11 +7,7 @@ defmodule Utilities do
 end
 
 force_ssl = System.get_env("FORCE_SSL") |> Utilities.string_to_boolean()
-schema = if System.get_env("FORCE_SSL") |> Utilities.string_to_boolean() do
-  "https"
-else
-  "http"
-end
+schema = if force_ssl, do: "https", else: "http"
 host = System.get_env("CANONICAL_HOST")
 port = System.get_env("PORT")
 
