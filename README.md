@@ -41,21 +41,42 @@ Their latest version can be found [here](https://github.com/mirego/mirego-horizo
 
 The linting/testing script can be ran with `./priv/scripts/ci-check.sh`.
 
-# OTP Release
+# Makefile targets!
 
-This boilerplate include a basic OTP/Docker setup with automated Ecto migration support.
+Usefull commands to run services are wrapped in a [Makefile](./Makefile)!
 
-## Build
+```shell
+> make
+phoenix_boilerplate:0.0.1 → phoenix_boilerplate:'latest'
+build                          Build the OTP Docker image
+postgres                       Start a local Postgres instance inside of a docker-compose environment
+run_release                    Run the OTP release locally inside of a docker-compose environment
+stop                           Stop every services of in the docker-compose environment
+```
 
-The docker command beautifully wrapped in a [Makefile](./Makefile), so to build a Docker image, locally or in a
-Jenkins job, simply use the `build` task.
+## Development
+
+For development purposes, a `docker-compose` setup is available in [infra/docker](./infra/docker). To start the a Postgres instance locally:
+
+```shell
+> make postgres
+docker-compose --file 'infra/docker/docker-compose.yml' up --detach postgres
+Creating network "docker_default" with the default driver
+Creating phoenix_boilerplate-postgres ... done
+```
+
+The instance is automatically bound to the host port `5432` so you may use it as a _baremetal_ installation.
+
+## OTP Release
+
+This boilerplate include a basic OTP/Docker setup with automated Ecto migration support. To build a Docker image, locally or in a Jenkins job, use the `build` target.
 
 ```shell
 > make build
 Sending build context to Docker daemon  418.3kB
 Step 1/26 : ARG ALPINE_VERSION=3.8
 Step 2/26 : FROM elixir:1.7.3-alpine AS builder
-...
+…
 Step 25/26 : ENTRYPOINT ["docker-entrypoint.sh"]
  ---> Using cache
  ---> dbc449799819
@@ -68,36 +89,24 @@ Successfully tagged phoenix_boilerplate:latest
 
 That’s it, you now have a distributable OTP release!
 
-## Run
+## Test the OTP release
 
-A `docker-compose.yml` file is available in [infra/docker](./infra/docker) to run the boilerplate project
-with a vanilla Postgres instance/service.
-
-```shell
-> cd infra/docker
-> docker-compose up -d postgres
-Creating network "docker_default" with the default driver
-Creating docker_postgres_1 ... done
-> docker-compose up api
-docker_postgres_1 is up-to-date
-Recreating docker_api_1 ... done
-Attaching to docker_api_1
-```
-
-You may also use the `Make` tasks for an even simpler setup.
+To run the docker image with a vanilla Postgres instance in a single command, run the `run_release` target:
 
 ```shell
-> make start
-docker-compose --file 'infra/docker/docker-compose.yml' up --detach postgres
-phoenix_boilerplate-postgres is up-to-date
+> make run_release
+docker build \
+…
+Successfully built 0a14e9bc8c32
+Successfully tagged phoenix_boilerplate:latest
 docker-compose --file 'infra/docker/docker-compose.yml' up api
 phoenix_boilerplate-postgres is up-to-date
 phoenix_boilerplate-api is up-to-date
 Attaching to phoenix_boilerplate-api
-phoenix_boilerplate-api | Starting dependencies..
-phoenix_boilerplate-api | Starting repos..
+phoenix_boilerplate-api | Starting dependencies…
+phoenix_boilerplate-api | Starting repos…
 phoenix_boilerplate-api | Running migrations for phoenix_boilerplate
 phoenix_boilerplate-api | Success!
-phoenix_boilerplate-api | 02:35:22.931 [info] Already up
-phoenix_boilerplate-api | 02:35:24.554 [info] Running PhoenixBoilerplateWeb.Endpoint with Cowboy using http://0.0.0.0:4000
+phoenix_boilerplate-api | 19:55:19.515 [info] Already up
+phoenix_boilerplate-api | 19:55:21.139 [info] Running PhoenixBoilerplateWeb.Endpoint with Cowboy using http://0.0.0.0:4000
 ```
