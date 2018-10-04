@@ -5,10 +5,12 @@ defmodule PhoenixBoilerplate.Mixfile do
     [
       app: :phoenix_boilerplate,
       version: "0.0.1",
-      elixir: "~> 1.6",
+      elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
       test_pattern: "**/*_test.exs",
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -45,7 +47,7 @@ defmodule PhoenixBoilerplate.Mixfile do
       {:plug_canonical_host, "~> 0.3"},
 
       # Translations
-      {:gettext, "~> 0.15.0"},
+      {:gettext, "~> 0.16"},
 
       # Errors
       {:sentry, "~> 6.2"},
@@ -54,7 +56,10 @@ defmodule PhoenixBoilerplate.Mixfile do
       {:credo, "~> 0.9", only: [:dev, :test]},
 
       # OTP Release
-      {:distillery, "~> 2.0"}
+      {:distillery, "~> 2.0"},
+
+      # Test coverage
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 

@@ -58,6 +58,9 @@ run npm --prefix assets run prettier-check
 header "Execute data seed…"
 run mix run priv/repo/seeds.exs
 
+header "Test coverage…"
+run mix coveralls
+
 if [ ${error_status} -ne 0 ]; then
   header "${fail_emoji}   Something went wrong. Please fix it before committing."
 else

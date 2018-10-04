@@ -4,13 +4,12 @@ sudo: false
 # Elixir baby!
 language: 'elixir'
 
-elixir: 1.6.4
+elixir: 1.7.3
 otp_release: 20.2.1
 
 # Make sure PostgreSQL is running
 addons:
   postgresql: 9.6
-
 
 # Use the cache to build faster
 cache:
