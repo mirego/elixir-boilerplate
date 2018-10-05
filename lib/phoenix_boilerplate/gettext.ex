@@ -5,10 +5,4 @@ defmodule PhoenixBoilerplate.Gettext do
   """
 
   use Gettext, otp_app: :phoenix_boilerplate
-
-  def get_locale do
-    __MODULE__
-    |> Gettext.get_locale()
-    |> String.to_atom()
-  end
 end

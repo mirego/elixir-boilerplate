@@ -9,6 +9,10 @@ GREEN_BOLD='\033[1;32m'
 YELLOW='\033[0;33m'
 NO_COLOR='\033[0m'
 
+header() {
+  echo "\n\n${YELLOW}▶ $1${NO_COLOR}"
+}
+
 run() {
   eval "${@}"
   last_exit_status=${?}
@@ -21,21 +25,14 @@ run() {
   fi
 }
 
-header() {
-  echo "\n\n${YELLOW}▶ $1${NO_COLOR}"
-}
+header "Code format and linting…"
+run make lint
 
-header "API tests…"
-run mix test
+header "Run tests…"
+run make test
 
-header "Compilation without warnings…"
-run mix compile --warnings-as-errors --force
-
-header "API code auto-formatting…"
-run mix format --dry-run --check-formatted
-
-header "API code lint…"
-run mix credo --strict
+header "Code coverage…"
+run make coverage 
 
 header "Web app JavaScript lint…"
 run npm --prefix assets run lint-scripts
@@ -48,9 +45,6 @@ run npm --prefix assets run prettier-check
 
 header "Execute data seed…"
 run mix run priv/repo/seeds.exs
-
-header "Test coverage…"
-run mix coveralls
 
 if [ ${error_status} -ne 0 ]; then
   echo "\n\n${YELLOW}▶▶ One of the checks ${RED_BOLD}failed${YELLOW}. Please fix it before committing.${NO_COLOR}"
