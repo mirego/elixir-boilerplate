@@ -37,7 +37,7 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
     host: System.get_env("STATIC_URL_HOST"),
     port: System.get_env("STATIC_URL_PORT")
   ],
-  url: [schema: schema, host: host, port: port]
+  url: [scheme: schema, host: host, port: port]
 
 # Configure Basic Auth
 if System.get_env("BASIC_AUTH_USERNAME") && System.get_env("BASIC_AUTH_USERNAME") |> String.trim() != "" do
