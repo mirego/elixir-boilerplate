@@ -35,4 +35,5 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
   ],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   session_key: System.get_env("SESSION_KEY"),
+  signing_salt: System.get_env("SIGNING_SALT"),
   url: [schema: schema, host: host, port: port]

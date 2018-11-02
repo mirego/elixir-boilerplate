@@ -32,6 +32,7 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
   render_errors: [view: PhoenixBoilerplateWeb.Errors.View, accepts: ~w(html json)],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   session_key: System.get_env("SESSION_KEY"),
+  signing_salt: System.get_env("SIGNING_SALT"),
   static_url: [
     scheme: System.get_env("STATIC_URL_SCHEME"),
     host: System.get_env("STATIC_URL_HOST"),

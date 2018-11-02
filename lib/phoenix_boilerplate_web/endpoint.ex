@@ -5,6 +5,8 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
 
   plug(:force_ssl)
   plug(:canonical_host)
+  plug(:session)
+  plug(:basic_auth)
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -32,20 +34,6 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
 
   plug(Plug.MethodOverride)
   plug(Plug.Head)
-
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
-  plug(
-    Plug.Session,
-    store: :cookie,
-    key: Application.get_env(:phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint)[:session_key],
-    signing_salt: "G5pYBEen"
-  )
-
-  if Application.get_env(:phoenix_boilerplate, :basic_auth) do
-    plug(BasicAuth, use_config: {:phoenix_boilerplate, :basic_auth})
-  end
 
   plug(PhoenixBoilerplateWeb.Router)
 
@@ -80,5 +68,34 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
     else
       conn
     end
+  end
+
+  defp basic_auth(conn, _opts) do
+    basic_auth_config = Application.get_env(:phoenix_boilerplate, :basic_auth)
+
+    if basic_auth_config do
+      opts =
+        [use_config: basic_auth_config]
+        |> BasicAuth.init()
+
+      BasicAuth.call(conn, opts)
+    else
+      conn
+    end
+  end
+
+  # The session will be stored in the cookie and signed,
+  # this means its contents can be read but not tampered with.
+  # Set :encryption_salt if you would also like to encrypt it.
+  defp session(conn, _opts) do
+    opts =
+      [
+        store: :cookie,
+        key: Application.get_env(:phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint)[:session_key],
+        signing_salt: Application.get_env(:phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint)[:signing_salt]
+      ]
+      |> Plug.Session.init()
+
+    Plug.Session.call(conn, opts)
   end
 end
