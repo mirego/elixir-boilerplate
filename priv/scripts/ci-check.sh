@@ -32,7 +32,10 @@ header "Run tests…"
 run make test
 
 header "Code coverage…"
-run make coverage 
+run make coverage
+
+header "Dialyzer…"
+run make dialyzer
 
 header "Web app JavaScript lint…"
 run npm --prefix assets run lint-scripts

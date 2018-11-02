@@ -29,17 +29,19 @@ build: lint ## Build the OTP docker image
 test: ## Run the tests
 	mix test
 
+dialyzer: ## Run the Dialyzer
+	mix dialyzer --halt-exit-status --format dialyxir
+
 coverage: ## Generate the code coverage report
 	mix coveralls
 
 COMPOSE_FILE = 'infra/docker/docker-compose.yml'
 
 postgres: ## Start a local Postgres instance inside of a docker-compose environment
-	docker-compose --file $(COMPOSE_FILE) up --detach postgres	
+	docker-compose --file $(COMPOSE_FILE) up --detach postgres
 
-run_release: build ## Run the OTP release locally inside of a docker-compose environment 
+run_release: build ## Run the OTP release locally inside of a docker-compose environment
 	docker-compose --file $(COMPOSE_FILE) up api
 
 stop: ## Stop every services of in the docker-compose environment
 	docker-compose --file $(COMPOSE_FILE) down
-

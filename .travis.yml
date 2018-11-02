@@ -17,6 +17,7 @@ cache:
     - _build
     - deps
     - assets/node_modules
+    - priv/plts
 
 # Set global environment variables
 env:

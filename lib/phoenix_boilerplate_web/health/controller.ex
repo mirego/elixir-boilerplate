@@ -3,6 +3,7 @@ defmodule PhoenixBoilerplateWeb.Health.Controller do
 
   import PhoenixBoilerplate.Gettext
 
+  @spec index(Plug.Conn.t(), map) :: Plug.Conn.t()
   def index(conn, _) do
     text(conn, dgettext("health", "ok"))
   end
