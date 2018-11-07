@@ -3,8 +3,8 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
 
   socket("/socket", PhoenixBoilerplateWeb.Socket)
 
-  plug(:force_ssl)
   plug(:canonical_host)
+  plug(:force_ssl)
   plug(:session)
   plug(:basic_auth)
 
