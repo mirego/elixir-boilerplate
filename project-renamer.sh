@@ -36,6 +36,9 @@ find ./assets -name '*.js' -exec sed -i '' -e "s/$hyphenCaseBefore/$hyphenCaseAf
 # Travis configuration file
 find ./.travis.yml -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 
+# Readme
+find ./README.md -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+
 # Rename folder and main app file in lib
 mv "./lib/${snakeCaseBefore}" "./lib/${snakeCaseAfter}"
 mv "./lib/${snakeCaseBefore}.ex" "./lib/${snakeCaseAfter}.ex"

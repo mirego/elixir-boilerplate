@@ -1,112 +1,98 @@
+***
+
+⚠️ Ces instructions concernent le _boilerplate_ seulement et devraient être retirées une fois le nouveau projet démarré.
+
+1. Cloner ce projet
+2. Supprimer le repository Git (`rm -rf .git`)
+3. Exécuter le script de renommage de projet (`./project-renamer.sh YourProjectName`)
+4. Supprimer le script de renommage de projet
+5. Créer un nouveau repository Git (`git init`)
+6. Supprimer cette section du fichier `README.md`
+7. Créer le premier commit du repository (`git commit -a -m "Initial commit"`)
+
+***
+
 # PhoenixBoilerplate
 
-## The first step
+| Section                                                  | Description                                                            |
+|----------------------------------------------------------|------------------------------------------------------------------------|
+| [🚧 Dépendances](#-dépendances)                          | Les dépendances techniques du projet et comment les installer          |
+| [🏎 Démarrage](#-démarrage)                              | Les détails de mise en route le projet                                 |
+| [🏗 Code et architecture](#-code-et-architecture)        | Les différents modules et particularités du _codebase_                 |
+| [🔭 Améliorations possibles](#-améliorations-possibles)  | Les différents _refactors_ possibles ainsi que les pistes potentielles |
+| [🚑 Résolution de problèmes](#-résolutions-de-problèmes) | Les problèmes récurrents et les solutions reliées                      |
+| [🚀 Déploiement](#-déploiement)                          | Les détails du setup de déploiement dans les différents environnements |
 
-1. Clone this project.
-2. Remove the `.git` folder with `rm -rf .git`.
-3. Run the `./project-renamer.sh YourProjectName` script to remove every references to `PhoenixBoilerplate`.
-4. Delete the renamer script.
-5. Update the `README`.
-6. Create the new repository and commit as usual.
+## 🚧 Dépendances
 
-_Voila!_
+* Node.js (`^10.4.1`)
+* NPM (`^6.1.0`)
+* Elixir (`~1.7.0`)
+* Erlang (`~20.1.0`)
+* PostgreSQL (`~10.3`)
 
-## Executing mix commands
+## 🏎 Démarrage
 
-Because the app is modeled with the Twelve-Factor app architecture, all configs are stored in the environment.
+### Variables d’environnement
 
-When executing mix command, you should always make sure that the required system env are present. You can
-use `source`, [nv](https://github.com/jcouture/nv) or a custom l33t bash script.
+Toutes les variables d’environnement nécessaires au démarrage de l’application sont documentées dans le fichier [`.env.dev`](./.env.dev).
 
-Every following steps assume you have this kind of system.
+Lors d’exécutions de commandes `mix`, il est impératif que toutes ces variables soient présentes dans l’environnement. Pour ce faire, on peut utiliser `source`, [`nv`](https://github.com/jcouture/nv) ou un autre script personnalisé.
 
-## Running the app
+### Setup initial
 
-  1. Create your .env and .env.test config file.
-  2. Install dependencies with `mix deps.get`.
-  3. Create and migrate your database with `mix ecto.setup`
-  4. Start Phoenix endpoint with `mix phx.server`
+1. Créer les fichiers `.env` et `.env.test` à partir du fichier [`.env.dev`](./.env.dev)
+2. Installer les dépendances Mix avec `mix deps.get`
+3. Installer les dépendances NPM avec `npm install --prefix assets`
+4. Créer et migrer la base de données avec `mix ecto.setup`
+5. Compiler l’application avec `mix`
+6. Démarrer le serveur Phoenix avec `iex -S mix phx.server`
 
-## Environment variables
+### Commandes `make`
 
-All environment variables needed (or supported) to run this application are listed in [`.env.dev`](./.env.dev).
+Un fichier `Makefile` est présent à la racine du code et permet d’effectuer plusieurs tâches courantes. La liste des commandes et leur description sont disponibles via `make help`.
 
-## Linting
+### Base de données
 
-You will need to add these files to you project root:
+Pour éviter d’avoir à rouler PostgreSQL localement sur sa machine, un fichier `docker-compose.yml` permet de lancer une instance de serveur PostgreSQL dans un container Docker avec `make postgres`.
 
-* `.svgo.yml`
+### Tests
 
-Their latest version can be found [here](https://github.com/mirego/mirego-horizontal-web/blob/master/configurations).
+Les tests peuvent être exécutés avec `make test`, toujours avec les bonnes variables d’environnement définies (ie. ne pas utiliser la même base de données définie dans `.env`).
 
-The linting/testing script can be ran with `./priv/scripts/ci-check.sh`.
+Le taux de couverture des tests peut être calculé avec `make coverage`.
 
-# Makefile targets!
+### Lint
 
-Usefull commands to run services are wrapped in a [Makefile](./Makefile)!
+Plusieurs outils de lint/formattage peuvent être exécutés pour s’assurer de la constance du code :
 
-```shell
-> make
-phoenix_boilerplate:0.0.1 → phoenix_boilerplate:'latest'
-build                          Build the OTP Docker image
-postgres                       Start a local Postgres instance inside of a docker-compose environment
-run_release                    Run the OTP release locally inside of a docker-compose environment
-stop                           Stop every services of in the docker-compose environment
-```
+* `mix format --check-formatted --dry-run` s’assure que le code Elixir est bien formatté
+* `mix credo --strict` s’assure que le code respecte nos bonnes pratiques Elixir
+* `mix compile --warnings-as-errors --force` s’assure que la compilation du code Elixir ne soulève aucun avertissement
+* `npm --prefix assets run lint-scripts` s’assure que le code respecte nos bonnes pratiques JavaScript
+* `npm --prefix assets run lint-styles` s’assure que le code respecte nos bonnes pratiques CSS
+* `npm --prefix assets run prettier-check` s’assure que le code JavaScript est bien formatté
 
-## Development
+### Intégration continue
 
-For development purposes, a `docker-compose` setup is available in [infra/docker](./infra/docker). To start the a Postgres instance locally:
+Le script `priv/scripts/ci-check.sh` roule une multitude de commandes (tests, lint, etc.) pour s’assurer que le projet et son code sont dans un bon état.
 
-```shell
-> make postgres
-docker-compose --file 'infra/docker/docker-compose.yml' up --detach postgres
-Creating network "docker_default" with the default driver
-Creating phoenix_boilerplate-postgres ... done
-```
+## 🏗 Code et architecture
 
-The instance is automatically bound to the host port `5432` so you may use it as a _baremetal_ installation.
-
-## OTP Release
-
-This boilerplate include a basic OTP/Docker setup with automated Ecto migration support. To build a Docker image, locally or in a Jenkins job, use the `build` target.
-
-```shell
-> make build
-Sending build context to Docker daemon  418.3kB
-Step 1/26 : ARG ALPINE_VERSION=3.8
-Step 2/26 : FROM elixir:1.7.3-alpine AS builder
 …
-Step 25/26 : ENTRYPOINT ["docker-entrypoint.sh"]
- ---> Using cache
- ---> dbc449799819
-Step 26/26 : CMD ["foreground"]
- ---> Using cache
- ---> 3a746cec33fa
-Successfully built 3a746cec33fa
-Successfully tagged phoenix_boilerplate:latest
-```
 
-That’s it, you now have a distributable OTP release!
+## 🔭 Améliorations possibles
 
-## Test the OTP release
+| Description | Priorité | Complexité | Pistes |
+|-------------|----------|------------|--------|
+| …           | …        | …          | …      |
 
-To run the docker image with a vanilla Postgres instance in a single command, run the `run_release` target:
+## 🚑 Résolution de problèmes
 
-```shell
-> make run_release
-docker build \
 …
-Successfully built 0a14e9bc8c32
-Successfully tagged phoenix_boilerplate:latest
-docker-compose --file 'infra/docker/docker-compose.yml' up api
-phoenix_boilerplate-postgres is up-to-date
-phoenix_boilerplate-api is up-to-date
-Attaching to phoenix_boilerplate-api
-phoenix_boilerplate-api | Starting dependencies…
-phoenix_boilerplate-api | Starting repos…
-phoenix_boilerplate-api | Running migrations for phoenix_boilerplate
-phoenix_boilerplate-api | Success!
-phoenix_boilerplate-api | 19:55:19.515 [info] Already up
-phoenix_boilerplate-api | 19:55:21.139 [info] Running PhoenixBoilerplateWeb.Endpoint with Cowboy using http://0.0.0.0:4000
-```
+
+## 🚀 Déploiement
+
+### Distribution OTP
+
+Une nouvelle _release OTP_ peut être créée avec `make build` et testée avec `make run_release`.
