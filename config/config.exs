@@ -60,8 +60,8 @@ config :logger, :console,
 # Configure Sentry
 config :sentry,
   dsn: System.get_env("SENTRY_DSN"),
-  environment_name: Mix.env(),
-  included_environments: [:prod],
+  environment_name: System.get_env("SENTRY_ENVIRONMENT_NAME"),
+  included_environments: [System.get_env("SENTRY_ENVIRONMENT_NAME")],
   root_source_code_path: File.cwd!()
 
 # Import environment specific config. This must remain at the bottom
