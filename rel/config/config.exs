@@ -6,7 +6,7 @@ defmodule Utilities do
   def string_to_boolean(_), do: false
 end
 
-force_ssl = System.get_env("FORCE_SSL") |> Utilities.string_to_boolean()
+force_ssl = Utilities.string_to_boolean(System.get_env("FORCE_SSL"))
 schema = if force_ssl, do: "https", else: "http"
 host = System.get_env("CANONICAL_HOST")
 port = System.get_env("PORT")
@@ -19,7 +19,7 @@ config :phoenix_boilerplate,
   # Configure Repo with Postgres
 config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
   size: System.get_env("DATABASE_POOL_SIZE"),
-  ssl: System.get_env("DATABASE_SSL") |> Utilities.string_to_boolean(),
+  ssl: Utilities.string_to_boolean(System.get_env("DATABASE_SSL")),
   url: System.get_env("DATABASE_URL")
 
 # Configures the endpoint

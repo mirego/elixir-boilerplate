@@ -53,9 +53,7 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
   end
 
   defp canonical_host(conn, _opts) do
-    opts =
-      [canonical_host: Application.get_env(:phoenix_boilerplate, :canonical_host)]
-      |> PlugCanonicalHost.init()
+    opts = PlugCanonicalHost.init(canonical_host: Application.get_env(:phoenix_boilerplate, :canonical_host))
 
     PlugCanonicalHost.call(conn, opts)
   end
@@ -74,9 +72,7 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
     basic_auth_config = Application.get_env(:phoenix_boilerplate, :basic_auth)
 
     if basic_auth_config do
-      opts =
-        [use_config: basic_auth_config]
-        |> BasicAuth.init()
+      opts = BasicAuth.init(use_config: basic_auth_config)
 
       BasicAuth.call(conn, opts)
     else
@@ -89,12 +85,11 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   defp session(conn, _opts) do
     opts =
-      [
+      Plug.Session.init(
         store: :cookie,
         key: Application.get_env(:phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint)[:session_key],
         signing_salt: Application.get_env(:phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint)[:signing_salt]
-      ]
-      |> Plug.Session.init()
+      )
 
     Plug.Session.call(conn, opts)
   end

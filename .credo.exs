@@ -26,6 +26,7 @@
         {Credo.Check.Readability.ModuleNames},
         {Credo.Check.Readability.ParenthesesInCondition},
         {Credo.Check.Readability.PredicateFunctionNames},
+        {Credo.Check.Readability.SinglePipe},
         {Credo.Check.Readability.TrailingBlankLine},
         {Credo.Check.Readability.TrailingWhiteSpace},
         {Credo.Check.Readability.VariableNames},

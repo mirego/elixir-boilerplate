@@ -1,12 +1,18 @@
 use Mix.Config
 
 defmodule Utilities do
-  def string_to_boolean("true"), do: true
-  def string_to_boolean("1"), do: true
-  def string_to_boolean(_), do: false
+  def get_boolean_env(key) do
+    key
+    |> System.get_env()
+    |> string_to_boolean()
+  end
+
+  defp string_to_boolean("true"), do: true
+  defp string_to_boolean("1"), do: true
+  defp string_to_boolean(_), do: false
 end
 
-force_ssl = System.get_env("FORCE_SSL") |> Utilities.string_to_boolean()
+force_ssl = Utilities.get_boolean_env("FORCE_SSL")
 schema = if force_ssl == true, do: "https", else: "http"
 host = System.get_env("CANONICAL_HOST")
 port = System.get_env("PORT")
@@ -21,7 +27,7 @@ config :phoenix_boilerplate,
 config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
   adapter: Ecto.Adapters.Postgres,
   size: System.get_env("DATABASE_POOL_SIZE"),
-  ssl: System.get_env("DATABASE_SSL") |> Utilities.string_to_boolean(),
+  ssl: Utilities.get_boolean_env("DATABASE_SSL"),
   url: System.get_env("DATABASE_URL")
 
 # Configure the endpoint
@@ -41,7 +47,7 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
   url: [scheme: schema, host: host, port: port]
 
 # Configure Basic Auth
-if System.get_env("BASIC_AUTH_USERNAME") && System.get_env("BASIC_AUTH_USERNAME") |> String.trim() != "" do
+if System.get_env("BASIC_AUTH_USERNAME") && String.trim(System.get_env("BASIC_AUTH_USERNAME")) != "" do
   config :phoenix_boilerplate,
     basic_auth: [
       username: System.get_env("BASIC_AUTH_USERNAME"),

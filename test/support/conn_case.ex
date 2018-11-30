@@ -38,9 +38,8 @@ defmodule PhoenixBoilerplateWeb.ConnCase do
       Sandbox.mode(Repo, {:shared, self()})
     end
 
-    conn =
-      ConnTest.build_conn()
-      |> Map.put(:host, System.get_env("CANONICAL_HOST"))
+    host = System.get_env("CANONICAL_HOST")
+    conn = Map.put(ConnTest.build_conn(), :host, host)
 
     {:ok, conn: conn}
   end
