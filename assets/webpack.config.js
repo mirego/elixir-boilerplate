@@ -1,3 +1,4 @@
+/* eslint-env node, mocha */
 const path = require('path');
 const glob = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -5,7 +6,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = (env, options) => ({
+module.exports = (_env, _options) => ({
   optimization: {
     minimizer: [
       new UglifyJsPlugin({cache: true, parallel: true, sourceMap: false}),
