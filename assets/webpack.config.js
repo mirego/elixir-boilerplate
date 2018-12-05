@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* eslint-env node */
 const path = require('path');
 const glob = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
