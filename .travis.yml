@@ -1,6 +1,3 @@
-# Use Travis container-based infrastructure
-sudo: false
-
 # Elixir baby!
 language: 'elixir'
 
