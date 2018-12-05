@@ -1,15 +1,11 @@
 use Mix.Config
 
-defmodule Utilities do
-  def string_to_boolean("true"), do: true
-  def string_to_boolean("1"), do: true
-  def string_to_boolean(_), do: false
-end
+import_config "environment.exs"
 
-force_ssl = Utilities.string_to_boolean(System.get_env("FORCE_SSL"))
+force_ssl = Environment.get_boolean("FORCE_SSL")
 schema = if force_ssl, do: "https", else: "http"
-host = System.get_env("CANONICAL_HOST")
-port = System.get_env("PORT")
+host = Environment.get("CANONICAL_HOST")
+port = Environment.get("PORT")
 
 # General application configuration
 config :phoenix_boilerplate,
@@ -18,22 +14,27 @@ config :phoenix_boilerplate,
 
   # Configure Repo with Postgres
 config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
-  size: System.get_env("DATABASE_POOL_SIZE"),
-  ssl: Utilities.string_to_boolean(System.get_env("DATABASE_SSL")),
-  url: System.get_env("DATABASE_URL")
+  size: Environment.get("DATABASE_POOL_SIZE"),
+  ssl: Environment.get_boolean("DATABASE_SSL"),
+  url: Environment.get("DATABASE_URL")
 
 # Configures the endpoint
 config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
-  debug_errors: System.get_env("DEBUG_ERRORS"),
+  debug_errors: Environment.get("DEBUG_ERRORS"),
   http: [port: port],
   root: ".",
+  secret_key_base: Environment.get("SECRET_KEY_BASE"),
   server: true,
+  session_key: Environment.get("SESSION_KEY"),
+  signing_salt: Environment.get("SIGNING_SALT"),
   static_url: [
-    scheme: System.get_env("STATIC_URL_SCHEME"),
-    host: System.get_env("STATIC_URL_HOST"),
-    port: System.get_env("STATIC_URL_PORT")
+    scheme: Environment.get("STATIC_URL_SCHEME"),
+    host: Environment.get("STATIC_URL_HOST"),
+    port: Environment.get("STATIC_URL_PORT")
   ],
-  secret_key_base: System.get_env("SECRET_KEY_BASE"),
-  session_key: System.get_env("SESSION_KEY"),
-  signing_salt: System.get_env("SIGNING_SALT"),
   url: [schema: schema, host: host, port: port]
+
+# Configure Sentry
+config :sentry,
+  dsn: Environment.get("SENTRY_DSN"),
+  environment_name: Environment.get("SENTRY_ENVIRONMENT_NAME")

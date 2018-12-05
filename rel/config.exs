@@ -35,6 +35,7 @@ release :phoenix_boilerplate do
   ]
 
   set overlays: [
+    {:copy, "config/environment.exs", "etc/environment.exs"},
     {:copy, "rel/config/config.exs", "etc/config.exs"}
   ]
 

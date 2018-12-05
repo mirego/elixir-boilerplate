@@ -5,8 +5,8 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
 
   plug(:canonical_host)
   plug(:force_ssl)
-  plug(:session)
   plug(:basic_auth)
+  plug(:session)
 
   # Serve at "/" the static files from "priv/static" directory.
   #

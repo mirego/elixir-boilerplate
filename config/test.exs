@@ -12,5 +12,4 @@ config :logger, level: :warn
 # Configure Repo with a sandboxed Postgres
 config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("DATABASE_URL"),
   pool: Ecto.Adapters.SQL.Sandbox
