@@ -1,4 +1,5 @@
 [
-  inputs: ["mix.exs", ".credo.exs", ".formatter.exs", "{config,lib,test,priv}/**/*.{ex,exs}"],
+  import_deps: [:phoenix],
+  inputs: ["mix.exs", ".credo.exs", ".formatter.exs", "{config,lib,priv,rel,test}/**/*.{ex,exs}"],
   line_length: 180
 ]

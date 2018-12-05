@@ -7,24 +7,31 @@
   "scripts": {
     "lint-scripts": "./node_modules/.bin/eslint --ignore-path .eslintignore --config .eslintrc .",
     "lint-styles": "./node_modules/.bin/stylelint --syntax scss --config .stylelintrc css",
-    "prettier": "./node_modules/.bin/prettier --write '{js,css}/**/*.{js,graphql,scss,css}'",
-    "prettier-check": "./node_modules/.bin/prettier -l '{js,css}/**/*.{js,graphql,scss,css}'",
-    "deploy": "./node_modules/.bin/brunch build --production",
-    "watch": "./node_modules/.bin/brunch watch --stdin"
+    "prettier": "./node_modules/.bin/prettier --write '.babelrc' 'webpack.config.js' '{js,css}/**/*.{js,graphql,scss,css})'",
+    "prettier-check": "./node_modules/.bin/prettier -l '.babelrc' 'webpack.config.js' '{js,css}/**/*.{js,graphql,scss,css})'",
+    "deploy": "./node_modules/.bin/webpack --mode production",
+    "watch": "./node_modules/.bin/webpack --mode development --watch-stdin"
   },
   "devDependencies": {
-    "babel-brunch": "6.1.1",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
     "babel-eslint": "8.2.3",
-    "brunch": "2.10.12",
-    "clean-css-brunch": "2.10.0",
+    "babel-loader": "^8.0.0",
+    "copy-webpack-plugin": "^4.5.0",
+    "css-loader": "^0.28.10",
     "eslint": "4.19.1",
     "eslint-plugin-mirego": "0.0.1",
+    "mini-css-extract-plugin": "^0.4.0",
+    "optimize-css-assets-webpack-plugin": "^4.0.0",
     "prettier": "1.13.0",
     "sass-brunch": "2.10.4",
     "stylelint": "9.2.1",
     "stylelint-config-mirego": "1.0.1",
     "stylelint-order": "0.8.1",
-    "svgo": "1.0.5"
+    "svgo": "1.0.5",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "webpack": "4.4.0",
+    "webpack-cli": "^2.0.10"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",

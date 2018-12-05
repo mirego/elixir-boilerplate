@@ -1,7 +1,11 @@
 defmodule PhoenixBoilerplateWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :phoenix_boilerplate
 
-  socket("/socket", PhoenixBoilerplateWeb.Socket)
+  socket(
+    "/socket",
+    PhoenixBoilerplateWeb.Socket,
+    websocket: true
+  )
 
   plug(:canonical_host)
   plug(:force_ssl)
@@ -17,7 +21,12 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
-    socket("/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket)
+    socket(
+      "/phoenix/live_reload/socket",
+      Phoenix.LiveReloader.Socket,
+      websocket: true
+    )
+
     plug(Phoenix.LiveReloader)
     plug(Phoenix.CodeReloader)
   end

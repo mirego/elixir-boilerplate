@@ -10,6 +10,4 @@ config :phoenix_boilerplate, PhoenixBoilerplate.Endpoint,
 config :logger, level: :warn
 
 # Configure Repo with a sandboxed Postgres
-config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  pool: Ecto.Adapters.SQL.Sandbox
+config :phoenix_boilerplate, PhoenixBoilerplate.Repo, pool: Ecto.Adapters.SQL.Sandbox

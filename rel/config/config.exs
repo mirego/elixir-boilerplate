@@ -12,7 +12,7 @@ config :phoenix_boilerplate,
   canonical_host: host,
   force_ssl: force_ssl
 
-  # Configure Repo with Postgres
+# Configure Repo with Postgres
 config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
   size: Environment.get("DATABASE_POOL_SIZE"),
   ssl: Environment.get_boolean("DATABASE_SSL"),

@@ -5,41 +5,49 @@
 |> Enum.map(&Code.eval_file(&1))
 
 use Mix.Releases.Config,
-    default_release: :default,
-    default_environment: Mix.env()
+  default_release: :default,
+  default_environment: Mix.env()
 
 # For a full list of config options for both releases
 # and environments, visit https://hexdocs.pm/distillery/config/distillery.html
 
 environment :dev do
-  set dev_mode: true
-  set include_erts: false
-  set cookie: "_this_is_a_development_only_magic_secret_"
+  set(dev_mode: true)
+  set(include_erts: false)
+  set(cookie: "_this_is_a_development_only_magic_secret_")
 end
 
 environment :prod do
-  set include_erts: true
-  set include_src: false
-  set cookie: "${ERLANG_COOKIE}"
+  set(include_erts: true)
+  set(include_src: false)
+  set(cookie: "${ERLANG_COOKIE}")
 end
 
 release :phoenix_boilerplate do
-  set version: current_version(:phoenix_boilerplate)
+  set(version: current_version(:phoenix_boilerplate))
 
-  set applications: [
-    :runtime_tools
-  ]
+  set(
+    applications: [
+      :runtime_tools
+    ]
+  )
 
-  set config_providers: [
-    {Mix.Releases.Config.Providers.Elixir, ["${RELEASE_ROOT_DIR}/etc/config.exs"]}
-  ]
+  set(
+    config_providers: [
+      {Mix.Releases.Config.Providers.Elixir, ["${RELEASE_ROOT_DIR}/etc/config.exs"]}
+    ]
+  )
 
-  set overlays: [
-    {:copy, "config/environment.exs", "etc/environment.exs"},
-    {:copy, "rel/config/config.exs", "etc/config.exs"}
-  ]
+  set(
+    overlays: [
+      {:copy, "config/environment.exs", "etc/environment.exs"},
+      {:copy, "rel/config/config.exs", "etc/config.exs"}
+    ]
+  )
 
-  set commands: [
-    migrate: "rel/commands/migrate.sh",
-  ]
+  set(
+    commands: [
+      migrate: "rel/commands/migrate.sh"
+    ]
+  )
 end

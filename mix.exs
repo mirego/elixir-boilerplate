@@ -31,21 +31,23 @@ defmodule PhoenixBoilerplate.Mixfile do
 
   defp deps do
     [
+      # HTTP server
+      {:plug_cowboy, "~> 2.0"},
+      {:plug_canonical_host, "~> 0.3"},
+
       # Phoenix
-      {:phoenix, "~> 1.3.0"},
+      {:phoenix, "~> 1.4.0"},
       {:phoenix_html, "~> 2.10"},
-      {:phoenix_ecto, "~> 3.2"},
+      {:phoenix_ecto, "~> 4.0"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:jason, "~> 1.0"},
 
       # Database
-      {:postgrex, "~> 0.13"},
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, "~> 0.14"},
 
       # Authentication
       {:basic_auth, "~> 2.2"},
-
-      # HTTP server
-      {:cowboy, "~> 1.0"},
-      {:plug_canonical_host, "~> 0.3"},
 
       # Translations
       {:gettext, "~> 0.16"},

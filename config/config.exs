@@ -2,6 +2,9 @@ use Mix.Config
 
 import_config "environment.exs"
 
+# Configure Phoenix
+config :phoenix, :json_library, Jason
+
 force_ssl = Environment.get_boolean("FORCE_SSL")
 schema = if force_ssl == true, do: "https", else: "http"
 host = Environment.get("CANONICAL_HOST")
@@ -15,7 +18,6 @@ config :phoenix_boilerplate,
 
 # Configure Repo with Postgres
 config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
-  adapter: Ecto.Adapters.Postgres,
   size: Environment.get("DATABASE_POOL_SIZE"),
   ssl: Environment.get_boolean("DATABASE_SSL"),
   url: Environment.get("DATABASE_URL")
@@ -56,7 +58,7 @@ config :logger, :console,
 # Configure Sentry
 config :sentry,
   dsn: Environment.get("SENTRY_DSN"),
-  environment_name: Environment.get("SENTRY_ENVIRONMENT_NAME") || Mix.env(),
+  environment_name: Environment.get("SENTRY_ENVIRONMENT_NAME"),
   included_environments: [:prod],
   root_source_code_path: File.cwd!()
 
