@@ -3,7 +3,7 @@ use Mix.Config
 import_config "environment.exs"
 
 force_ssl = Environment.get_boolean("FORCE_SSL")
-schema = if force_ssl, do: "https", else: "http"
+scheme = if force_ssl, do: "https", else: "http"
 host = Environment.get("CANONICAL_HOST")
 port = Environment.get("PORT")
 
@@ -32,7 +32,7 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
     host: Environment.get("STATIC_URL_HOST"),
     port: Environment.get("STATIC_URL_PORT")
   ],
-  url: [schema: schema, host: host, port: port]
+  url: [scheme: scheme, host: host, port: port]
 
 # Configure Sentry
 config :sentry,

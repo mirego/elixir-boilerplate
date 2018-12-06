@@ -6,7 +6,7 @@ import_config "environment.exs"
 config :phoenix, :json_library, Jason
 
 force_ssl = Environment.get_boolean("FORCE_SSL")
-schema = if force_ssl == true, do: "https", else: "http"
+scheme = if force_ssl == true, do: "https", else: "http"
 host = Environment.get("CANONICAL_HOST")
 port = Environment.get("PORT")
 
@@ -36,7 +36,7 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
     host: Environment.get("STATIC_URL_HOST"),
     port: Environment.get("STATIC_URL_PORT")
   ],
-  url: [scheme: schema, host: host, port: port]
+  url: [scheme: scheme, host: host, port: port]
 
 # Configure Basic Auth
 if Environment.exists?("BASIC_AUTH_USERNAME") do
