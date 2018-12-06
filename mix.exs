@@ -56,7 +56,8 @@ defmodule PhoenixBoilerplate.Mixfile do
       {:sentry, "~> 6.2"},
 
       # Linting
-      {:credo, "~> 0.9", only: [:dev, :test]},
+      {:credo, "~> 1.0.0", only: [:dev, :test]},
+      {:credo_envvar, "~> 0.1.0", only: ~w(dev test)a, runtime: false},
 
       # OTP Release
       {:distillery, "~> 2.0"},

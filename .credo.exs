@@ -50,7 +50,8 @@
         {Credo.Check.Warning.UnusedListOperation},
         {Credo.Check.Warning.UnusedStringOperation},
         {Credo.Check.Warning.UnusedTupleOperation},
-        {Credo.Check.Warning.OperationWithConstantResult}
+        {Credo.Check.Warning.OperationWithConstantResult},
+        {CredoEnvvar.Check.Warning.EnvironmentVariablesAtCompileTime}
       ]
     }
   ]

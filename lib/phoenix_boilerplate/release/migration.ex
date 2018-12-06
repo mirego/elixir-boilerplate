@@ -1,6 +1,5 @@
 defmodule PhoenixBoilerplate.Release.Migrations do
   @start_apps ~w(crypto ssl postgrex ecto)a
-  @repos Application.get_env(:phoenix_boilerplate, :ecto_repos, [])
 
   def migrate do
     start_services()
@@ -13,7 +12,7 @@ defmodule PhoenixBoilerplate.Release.Migrations do
     Enum.each(@start_apps, &Application.ensure_all_started/1)
 
     IO.puts("Starting repos…")
-    Enum.each(@repos, & &1.start_link(pool_size: 1))
+    Enum.each(repos(), & &1.start_link(pool_size: 1))
   end
 
   defp stop_services do
@@ -22,7 +21,7 @@ defmodule PhoenixBoilerplate.Release.Migrations do
   end
 
   defp run_migrations do
-    Enum.each(@repos, &run_migrations_for/1)
+    Enum.each(repos(), &run_migrations_for/1)
   end
 
   defp run_migrations_for(repo) do
@@ -44,4 +43,6 @@ defmodule PhoenixBoilerplate.Release.Migrations do
 
     Path.join([priv_dir, repo_underscore, filename])
   end
+
+  defp repos, do: Application.get_env(:phoenix_boilerplate, :ecto_repos, [])
 end
