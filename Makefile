@@ -1,4 +1,4 @@
-.PHONY: help dependencies lint build coverage test postgres run_release stop
+.PHONY: help dependencies lint build dializer coverage test postgres run_release stop
 
 APP_NAME ?= `grep 'app:' mix.exs | sed -e 's/\[//g' -e 's/ //g' -e 's/app://' -e 's/[:,]//g'`
 APP_VERSION ?= `grep 'version:' mix.exs | cut -d '"' -f2`
@@ -11,6 +11,7 @@ help:
 
 dependencies: ## Install dependencies
 	mix deps.get --force
+	cd assets && npm install --force && cd ..
 
 lint: dependencies ## Validate warnings, format and code
 	mix compile --warnings-as-errors --force

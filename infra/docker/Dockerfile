@@ -38,9 +38,8 @@ RUN mix compile --force
 
 RUN cd assets && \
     npm install && \
-    ./node_modules/brunch/bin/brunch b -p && \
     cd .. \
-    mix phx.digest
+RUN mix phx.digest
 
 RUN mkdir -p /opt/build && \
     mix release --verbose && \

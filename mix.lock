@@ -7,7 +7,7 @@
   "cowboy": {:hex, :cowboy, "2.6.1", "f2e06f757c337b3b311f9437e6e072b678fcd71545a7b2865bdaa154d078593f", [:rebar3], [{:cowlib, "~> 2.7.0", [hex: :cowlib, repo: "hexpm", optional: false]}, {:ranch, "~> 1.7.1", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"},
   "cowlib": {:hex, :cowlib, "2.7.0", "3ef16e77562f9855a2605900cedb15c1462d76fb1be6a32fc3ae91973ee543d2", [:rebar3], [], "hexpm"},
   "credo": {:hex, :credo, "1.0.0", "aaa40fdd0543a0cf8080e8c5949d8c25f0a24e4fc8c1d83d06c388f5e5e0ea42", [:mix], [{:bunt, "~> 0.2.0", [hex: :bunt, repo: "hexpm", optional: false]}, {:jason, "~> 1.0", [hex: :jason, repo: "hexpm", optional: false]}], "hexpm"},
-  "credo_envvar": {:hex, :credo_envvar, "0.1.0", "00ac129030ef0078b2cea653a76749ef24e9ddd3b7b4ef7d5a4c97b767a4c894", [], [{:credo, "~> 1.0.0", [hex: :credo, repo: "hexpm", optional: false]}], "hexpm"},
+  "credo_envvar": {:hex, :credo_envvar, "0.1.0", "00ac129030ef0078b2cea653a76749ef24e9ddd3b7b4ef7d5a4c97b767a4c894", [:mix], [{:credo, "~> 1.0.0", [hex: :credo, repo: "hexpm", optional: false]}], "hexpm"},
   "db_connection": {:hex, :db_connection, "2.0.3", "b4e8aa43c100e16f122ccd6798cd51c48c79fd391c39d411f42b3cd765daccb0", [:mix], [{:connection, "~> 1.0.2", [hex: :connection, repo: "hexpm", optional: false]}], "hexpm"},
   "decimal": {:hex, :decimal, "1.6.0", "bfd84d90ff966e1f5d4370bdd3943432d8f65f07d3bab48001aebd7030590dcc", [:mix], [], "hexpm"},
   "dialyxir": {:hex, :dialyxir, "1.0.0-rc.4", "71b42f5ee1b7628f3e3a6565f4617dfb02d127a0499ab3e72750455e986df001", [:mix], [{:erlex, "~> 0.1", [hex: :erlex, repo: "hexpm", optional: false]}], "hexpm"},

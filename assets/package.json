@@ -24,7 +24,6 @@
     "mini-css-extract-plugin": "^0.4.0",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
     "prettier": "1.13.0",
-    "sass-brunch": "2.10.4",
     "stylelint": "9.2.1",
     "stylelint-config-mirego": "1.0.1",
     "stylelint-order": "0.8.1",

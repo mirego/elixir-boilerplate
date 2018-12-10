@@ -1,2 +1,2 @@
 #!/bin/sh
-release_ctl eval --mfa "PhoenixBoilerplate.Release.Migrations.migrate/0"
+release_ctl eval --mfa "PhoenixBoilerplate.ReleaseTasks.migrate/0"
