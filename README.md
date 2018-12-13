@@ -20,7 +20,7 @@
 | [🏎 Démarrage](#-démarrage)                              | Les détails de mise en route le projet                                 |
 | [🏗 Code et architecture](#-code-et-architecture)        | Les différents modules et particularités du _codebase_                 |
 | [🔭 Améliorations possibles](#-améliorations-possibles)  | Les différents _refactors_ possibles ainsi que les pistes potentielles |
-| [🚑 Résolution de problèmes](#-résolutions-de-problèmes) | Les problèmes récurrents et les solutions reliées                      |
+| [🚑 Résolution de problèmes](#-résolution-de-problèmes)  | Les problèmes récurrents et les solutions reliées                      |
 | [🚀 Déploiement](#-déploiement)                          | Les détails du setup de déploiement dans les différents environnements |
 
 ## 🚧 Dépendances
