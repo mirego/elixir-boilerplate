@@ -22,16 +22,28 @@ find ./config ./test ./lib ./priv -name "*.eex" -exec sed -i '' -e "s/$camelCase
 find ./config ./test ./lib ./priv -name "*.eex" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 
 # Elixir compiled files
-find ./config ./test ./lib ./priv -name "*.ex" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
-find ./config ./test ./lib ./priv -name "*.ex" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./config ./rel ./test ./lib ./priv -name "*.ex" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./config ./rel ./test ./lib ./priv -name "*.ex" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 
 # Elixir script files
-find ./config ./test ./lib ./priv mix.exs -name "*.exs" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
-find ./config ./test ./lib ./priv mix.exs -name "*.exs" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./config ./rel ./test ./lib ./priv mix.exs -name "*.exs" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./config ./rel ./test ./lib ./priv mix.exs -name "*.exs" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 
-# Package.json and js files
+# Shell script files
+find ./config ./rel ./test ./lib ./priv mix.exs -name "*.sh" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./config ./rel ./test ./lib ./priv mix.exs -name "*.sh" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+
+# Infrastructure files
+find ./infra -name "*.yml" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./infra -name "*.yml" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./infra -name "Dockerfile" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find ./infra -name "Dockerfile" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find Makefile -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+
+# JSON and JavaScript files
 find ./assets/package.json -exec sed -i '' -e "s/$hyphenCaseBefore/$hyphenCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 find ./assets -name '*.js' -exec sed -i '' -e "s/$hyphenCaseBefore/$hyphenCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find coveralls.json -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 
 # Travis configuration file
 find ./.travis.yml -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
