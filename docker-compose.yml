@@ -3,22 +3,13 @@ services:
   application:
     image: phoenix_boilerplate
     container_name: phoenix_boilerplate
+    env_file: .env.dev
     environment:
-      - CANNONICAL_HOST=localhost
-      - FORCE_SSL=false
-      - PORT=4000
-      - SESSION_KEY=phoenix_boilerplate_session
-      - SECRET_KEY_BASE=md7okHvbfCImL1Y8UBMCHUANaY6Vmnlj36diu62/yZmMC5Rbz55FC3RZj3aLUQe1
-      - SIGNING_SALT=_add_a_little_salt_here_
-      - DEBUG_ERRORS=false
-      - ERLANG_COOKIE=x39mN8c47NPvfKVLXVELLPsNWI10NrE9E3CcpgNhdQx0KGS0R7y2omO53gy8QO/V
-      - DATABASE_URL=postgres://postgres:development@postgres/phoenix_boilerplate_dev
-      - DATABASE_POOL_SIZE=20
-      - DATABASE_SSL=false
+      - DATABASE_URL=postgres://postgres:development@postgresql/phoenix_boilerplate_dev
     ports:
       - 4000:4000
     depends_on:
-      - postgres
+      - postgresql
   postgresql:
     image: postgres:10.3
     container_name: phoenix_boilerplate-postgres
