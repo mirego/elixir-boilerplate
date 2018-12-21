@@ -37,16 +37,15 @@
 
 Toutes les variables d’environnement nécessaires au démarrage de l’application sont documentées dans le fichier [`.env.dev`](./.env.dev).
 
-Lors d’exécutions de commandes `mix`, il est impératif que toutes ces variables soient présentes dans l’environnement. Pour ce faire, on peut utiliser `source`, [`nv`](https://github.com/jcouture/nv) ou un autre script personnalisé.
+Lors d’exécutions de commandes `mix` ou `make`, il est impératif que toutes ces variables soient présentes dans l’environnement. Pour ce faire, on peut utiliser `source`, [`nv`](https://github.com/jcouture/nv) ou un autre script personnalisé.
 
 ### Setup initial
 
-1. Créer les fichiers `.env` et `.env.test` à partir du fichier [`.env.dev`](./.env.dev)
-2. Installer les dépendances Mix avec `mix deps.get`
-3. Installer les dépendances NPM avec `npm install --prefix assets`
+1. Créer un fichier `.env.dev.local` et `.env.test.local ` à partir des variables sans valeurs du fichier [`.env.dev`](./.env.dev) et [`.env.test`](./.env.test)
+2. Installer les dépendances Mix et NPM avec `make dependencies`
 4. Créer et migrer la base de données avec `mix ecto.setup`
-5. Compiler l’application avec `mix`
-6. Démarrer le serveur Phoenix avec `iex -S mix phx.server`
+5. Compiler l’application avec `make compile`
+6. Démarrer le serveur Phoenix avec `iex -S mix phx.server` en chargeant dans l’environnement les fichiers `.env.dev` et `.env.dev.local`
 
 ### Commandes `make`
 
@@ -54,24 +53,24 @@ Un fichier `Makefile` est présent à la racine du code et permet d’effectuer 
 
 ### Base de données
 
-Pour éviter d’avoir à rouler PostgreSQL localement sur sa machine, un fichier `docker-compose.yml` permet de lancer une instance de serveur PostgreSQL dans un container Docker avec `make postgres`.
+Pour éviter d’avoir à rouler PostgreSQL localement sur sa machine, un fichier `docker-compose.yml` permet de lancer une instance de serveur PostgreSQL dans un container Docker avec `make dev-start-postgresql`.
 
 ### Tests
 
-Les tests peuvent être exécutés avec `make test`, toujours avec les bonnes variables d’environnement définies (ie. ne pas utiliser la même base de données définie dans `.env`).
-
-Le taux de couverture des tests peut être calculé avec `make coverage`.
+Les tests peuvent être exécutés avec `make test` et le taux de couverture des tests peut être calculé avec `make test-coverage`.
 
 ### Lint
 
 Plusieurs outils de lint/formattage peuvent être exécutés pour s’assurer de la constance du code :
 
-* `mix format --check-formatted --dry-run` s’assure que le code Elixir est bien formatté
-* `mix credo --strict` s’assure que le code respecte nos bonnes pratiques Elixir
-* `mix compile --warnings-as-errors --force` s’assure que la compilation du code Elixir ne soulève aucun avertissement
-* `npm --prefix assets run lint-scripts` s’assure que le code respecte nos bonnes pratiques JavaScript
-* `npm --prefix assets run lint-styles` s’assure que le code respecte nos bonnes pratiques CSS
-* `npm --prefix assets run prettier-check` s’assure que le code JavaScript est bien formatté
+* `make lint-format` s’assure que le code Elixir est bien formatté
+* `make lint-credo` s’assure que le code respecte nos bonnes pratiques Elixir
+* `make lint-compile` s’assure que la compilation du code Elixir ne soulève aucun avertissement
+* `make lint-eslint` s’assure que le code respecte nos bonnes pratiques JavaScript
+* `make lint-stylelint` s’assure que le code respecte nos bonnes pratiques CSS
+* `make lint-prettier` s’assure que le code JavaScript, CSS, SCSS et GraphQL est bien formatté
+
+Toutes ces commandes peuvent être roulées en même temps à l’aide la commande pratique `make lint`.
 
 ### Intégration continue
 

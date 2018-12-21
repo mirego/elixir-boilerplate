@@ -5,10 +5,6 @@
     "npm": "6.1.0"
   },
   "scripts": {
-    "lint-scripts": "./node_modules/.bin/eslint --ignore-path .eslintignore --config .eslintrc .",
-    "lint-styles": "./node_modules/.bin/stylelint --syntax scss --config .stylelintrc css",
-    "prettier": "./node_modules/.bin/prettier --write '.babelrc' 'webpack.config.js' '{js,css}/**/*.{js,graphql,scss,css})'",
-    "prettier-check": "./node_modules/.bin/prettier -l '.babelrc' 'webpack.config.js' '{js,css}/**/*.{js,graphql,scss,css})'",
     "deploy": "./node_modules/.bin/webpack --mode production",
     "watch": "./node_modules/.bin/webpack --mode development --watch-stdin"
   },

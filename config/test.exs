@@ -1,10 +1,22 @@
 use Mix.Config
 
-# We don't run a server during test. If one is required,
-# you can enable the server option below.
-config :phoenix_boilerplate, PhoenixBoilerplate.Endpoint,
+# Configure the endpoint for tests
+config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
   http: [port: 4001],
-  server: false
+  server: false,
+  secret_key_base: "test",
+  session_key: "test",
+  signing_salt: "test",
+  static_url: [
+    scheme: "https",
+    host: "example.com",
+    port: "443"
+  ],
+  url: [
+    scheme: "https",
+    host: "example.",
+    port: "443"
+  ]
 
 # Print only warnings and errors during test
 config :logger, level: :warn

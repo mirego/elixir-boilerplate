@@ -1,4 +1,4 @@
-# The version of Alpine to use for the final image have to match 
+# The version of Alpine to use for the final image have to match
 # the version `elixir:1.7.3-alpine`/`erlang:21-alpine` are based on.
 ARG ALPINE_VERSION=3.8
 
@@ -20,12 +20,7 @@ WORKDIR /build
 # This step installs all the build tools we'll need
 RUN apk update && \
     apk upgrade --no-cache && \
-    apk add --no-cache \
-      nodejs \
-      npm \
-      git \
-      build-base \
-      python
+    apk add --no-cache nodejs npm git build-base python
 RUN mix local.rebar --force && \
     mix local.hex --force
 
@@ -36,9 +31,7 @@ RUN mix deps.get --only ${MIX_ENV}
 COPY . .
 RUN mix compile --force
 
-RUN cd assets && \
-    npm install && \
-    cd .. \
+RUN npm install --prefix assets
 RUN mix phx.digest
 
 RUN mkdir -p /opt/build && \
@@ -68,14 +61,14 @@ WORKDIR /opt/phoenix_boilerplate
 COPY --from=builder /opt/build .
 
 # Copy the entrypoint script
-COPY infra/docker/docker-entrypoint.sh /usr/local/bin
-RUN chmod a+x /usr/local/bin/docker-entrypoint.sh 
+COPY priv/scripts/docker-entrypoint.sh /usr/local/bin
+RUN chmod a+x /usr/local/bin/docker-entrypoint.sh
 
 # Create a non-root user
-RUN adduser -D mirego && \
-    chown -R mirego: /opt/phoenix_boilerplate
+RUN adduser -D phoenix_boilerplate && \
+    chown -R phoenix_boilerplate: /opt/phoenix_boilerplate
 
-USER mirego
+USER phoenix_boilerplate
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["foreground"]

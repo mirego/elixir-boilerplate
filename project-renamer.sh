@@ -34,10 +34,10 @@ find ./config ./rel ./test ./lib ./priv mix.exs -name "*.sh" -exec sed -i '' -e 
 find ./config ./rel ./test ./lib ./priv mix.exs -name "*.sh" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 
 # Infrastructure files
-find ./infra -name "*.yml" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
-find ./infra -name "*.yml" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
-find ./infra -name "Dockerfile" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
-find ./infra -name "Dockerfile" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find . -name "*.yml" -exec sed -i '' -e "s/$camelCaseBefore/$camelCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find . -name "*.yml" -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find Dockerfile -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
+find Dockerfile -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 find Makefile -exec sed -i '' -e "s/$snakeCaseBefore/$snakeCaseAfter/g" '{}' '+' 2>&1 >/dev/null
 
 # JSON and JavaScript files

@@ -2,7 +2,7 @@
 language: 'elixir'
 
 elixir: 1.7.3
-otp_release: 20.2.1
+otp_release: 21.1.3
 
 # Make sure PostgreSQL is running
 addons:
@@ -19,16 +19,12 @@ cache:
 # Set global environment variables
 env:
   global:
-    - PORT: 3000
-    - CANONICAL_HOST: 'test.local'
-    - MIX_ENV: 'test'
-    - SECRET_KEY_BASE: 'lolwut'
-    - SIGNING_SALT: 'salt'
-    - DATABASE_URL: 'postgres://localhost/phoenix_boilerplate_test'
+    - MIX_ENV: test
+    - DATABASE_URL: postgres://localhost/phoenix_boilerplate_test
 
 # Output Travis server IP for debugging
 before_install:
-  - 'echo `curl --verbose http://jsonip.com`'
+  - echo `curl --verbose http://jsonip.com`
 
 # Install the node version we need, install the node packages,
 # create the database and prepare the application

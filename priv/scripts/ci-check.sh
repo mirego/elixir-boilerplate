@@ -34,19 +34,10 @@ header "Run tests…"
 run make test
 
 header "Code coverage…"
-run make coverage
+run make test-coverage
 
 header "Dialyzer…"
-run make dialyzer
-
-header "Web app JavaScript lint…"
-run npm --prefix assets run lint-scripts
-
-header "Web app styles lint…"
-run npm --prefix assets run lint-styles
-
-header "Web app code auto-formatting…"
-run npm --prefix assets run prettier-check
+run make dialyze
 
 header "Execute data seed…"
 run mix run priv/repo/seeds.exs

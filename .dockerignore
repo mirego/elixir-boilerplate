@@ -7,13 +7,7 @@ infra/
 test/
 priv/static/
 
-.credo.exs
-.dockerignore
-.gitignore
-.env.*
-.envrc
-.formatter.exs
-.travis.yml
-Dockerfile
+.*
+docker-compose.yml
 Makefile
-README*
+README.md
