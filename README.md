@@ -94,4 +94,4 @@ Le script `priv/scripts/ci-check.sh` roule une multitude de commandes (tests, li
 
 ### Distribution OTP
 
-Une nouvelle _release OTP_ peut être créée avec `make build` et testée avec `make run_release`.
+Une nouvelle _release OTP_ peut être créée avec `make build` et testée avec `make dev-start-application`.
