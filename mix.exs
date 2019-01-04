@@ -5,7 +5,7 @@ defmodule PhoenixBoilerplate.Mixfile do
     [
       app: :phoenix_boilerplate,
       version: "0.0.1",
-      elixir: "~> 1.7",
+      elixir: "1.7.4",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
       test_pattern: "**/*_test.exs",
