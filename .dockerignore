@@ -2,8 +2,6 @@ _build/
 .git/
 assets/node_modules/
 deps/
-infra/
-!infra/docker/docker-entrypoint.sh
 test/
 priv/static/
 
