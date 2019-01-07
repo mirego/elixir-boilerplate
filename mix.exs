@@ -6,6 +6,7 @@ defmodule PhoenixBoilerplate.Mixfile do
       app: :phoenix_boilerplate,
       version: "0.0.1",
       elixir: "1.7.4",
+      erlang: "21.1.3",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
       test_pattern: "**/*_test.exs",
@@ -74,7 +75,8 @@ defmodule PhoenixBoilerplate.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      loadpaths: ["run priv/scripts/enforce_otp_release_version.exs", "loadpaths"]
     ]
   end
 
