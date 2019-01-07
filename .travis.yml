@@ -29,9 +29,9 @@ before_install:
 # Install the node version we need, install the node packages,
 # create the database and prepare the application
 before_script:
-  - nvm install 10.4.1
-  - nvm use 10.4.1
-  - npm install -g npm@6.1.0
+  - nvm install 10.15.0
+  - nvm use 10.15.0
+  - npm install -g npm@6.4.1
   - npm --prefix assets install
   - mix compile
   - mix ecto.create

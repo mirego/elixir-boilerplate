@@ -1,12 +1,14 @@
 {
   "private": true,
   "engines": {
-    "node": "10.4.1",
-    "npm": "6.1.0"
+    "node": "10.15.0",
+    "npm": "6.4.1"
   },
   "scripts": {
-    "deploy": "./node_modules/.bin/webpack --mode production",
-    "watch": "./node_modules/.bin/webpack --mode development --watch-stdin"
+    "deploy": "./scripts/enforce-engine-versions.js && ./node_modules/.bin/webpack --mode production",
+    "watch": "./scripts/enforce-engine-versions.js && ./node_modules/.bin/webpack --mode development --watch-stdin",
+    "enforce-engine-versions": "./scripts/enforce-engine-versions.js",
+    "preinstall": "npm run enforce-engine-versions"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
