@@ -9,6 +9,7 @@
       },
       checks: [
         {Credo.Check.Consistency.ExceptionNames},
+        {Credo.Check.Consistency.Filenames, excluded_paths: ["test/support", "priv/scripts"]},
         {Credo.Check.Consistency.LineEndings},
         {Credo.Check.Consistency.SpaceAroundOperators},
         {Credo.Check.Consistency.SpaceInParentheses},

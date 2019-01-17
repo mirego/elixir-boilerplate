@@ -57,7 +57,7 @@ defmodule PhoenixBoilerplate.Mixfile do
       {:sentry, "~> 6.2"},
 
       # Linting
-      {:credo, "~> 1.0.0", only: [:dev, :test]},
+      {:credo, git: "https://github.com/mirego/credo", branch: "feature/add-consistency-filenames-check", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1.0", only: ~w(dev test)a, runtime: false},
 
       # OTP Release

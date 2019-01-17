@@ -1,4 +1,4 @@
-defmodule PhoenixBoilerplateWeb.Heatlh.ControllerTest do
+defmodule PhoenixBoilerplateWeb.Health.ControllerTest do
   use PhoenixBoilerplateWeb.ConnCase
 
   test "GET /health", %{conn: conn} do
