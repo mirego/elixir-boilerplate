@@ -25,10 +25,10 @@
 
 ## 🚧 Dépendances
 
-* Node.js (`^10.4.1`)
-* NPM (`^6.1.0`)
-* Elixir (`~1.7.0`)
-* Erlang (`~20.1.0`)
+* Node.js (`10.15.0`)
+* NPM (`6.4.1`)
+* Elixir (`1.7.4`)
+* Erlang (`21.1.3`)
 * PostgreSQL (`~10.3`)
 
 ## 🏎 Démarrage
