@@ -5,8 +5,8 @@
     "npm": "6.4.1"
   },
   "scripts": {
-    "deploy": "./scripts/enforce-engine-versions.js && ./node_modules/.bin/webpack --mode production",
-    "watch": "./scripts/enforce-engine-versions.js && ./node_modules/.bin/webpack --mode development --watch-stdin",
+    "deploy": "npm run enforce-engine-versions && ./node_modules/.bin/webpack --mode production",
+    "watch": "npm run enforce-engine-versions && ./node_modules/.bin/webpack --mode development --watch-stdin",
     "enforce-engine-versions": "./scripts/enforce-engine-versions.js",
     "preinstall": "npm run enforce-engine-versions"
   },
