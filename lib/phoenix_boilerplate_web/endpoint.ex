@@ -81,7 +81,7 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
     basic_auth_config = Application.get_env(:phoenix_boilerplate, :basic_auth)
 
     if basic_auth_config do
-      opts = BasicAuth.init(use_config: basic_auth_config)
+      opts = BasicAuth.init(use_config: {:phoenix_boilerplate, :basic_auth})
 
       BasicAuth.call(conn, opts)
     else
