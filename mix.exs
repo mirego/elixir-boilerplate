@@ -5,8 +5,8 @@ defmodule PhoenixBoilerplate.Mixfile do
     [
       app: :phoenix_boilerplate,
       version: "0.0.1",
-      elixir: "1.7.4",
-      erlang: "21.1.3",
+      elixir: "1.8.0",
+      erlang: "21.2.4",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
       test_pattern: "**/*_test.exs",
@@ -76,13 +76,13 @@ defmodule PhoenixBoilerplate.Mixfile do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"],
-      loadpaths: ["run priv/scripts/enforce_otp_release_version.exs", "loadpaths"]
+      "compile.app": ["erlang.check_version", "compile.app"]
     ]
   end
 
   defp dialyzer do
     [
-      plt_add_apps: [:ex_unit],
+      plt_add_apps: [:ex_unit, :mix],
       plt_add_deps: :app_tree,
       plt_file: {:no_warn, "priv/plts/phoenix_boilerplate.plt"}
     ]

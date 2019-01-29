@@ -27,8 +27,8 @@
 
 * Node.js (`10.15.0`)
 * NPM (`6.4.1`)
-* Elixir (`1.7.4`)
-* Erlang (`21.1.3`)
+* Elixir (`1.8.0`)
+* Erlang (`21.2.4`)
 * PostgreSQL (`~10.3`)
 
 ## 🏎 Démarrage

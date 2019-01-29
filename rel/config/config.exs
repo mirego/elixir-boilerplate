@@ -60,8 +60,6 @@ config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
 
 # Configures Phoenix endpoint
 config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
-  root: ".",
-  server: true,
   debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
   http: [port: port],
   secret_key_base: Environment.get("SECRET_KEY_BASE"),

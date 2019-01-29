@@ -1,5 +1,16 @@
-defmodule EnforceOTPReleaseVersion do
-  def enforce!(config) do
+defmodule Mix.Tasks.Erlang.CheckVersion do
+  use Mix.Task
+
+  @shortdoc "Check the Erlang/OTP version"
+
+  @impl true
+  def run(args) do
+    config = Mix.Project.config()
+
+    check_erlang_version(config, args)
+  end
+
+  defp check_erlang_version(config, _) do
     app = ":#{Keyword.get(config, :app)}"
     expected_version = Keyword.get(config, :erlang)
     actual_version = otp_release_version()
@@ -27,5 +38,3 @@ defmodule EnforceOTPReleaseVersion do
     end
   end
 end
-
-EnforceOTPReleaseVersion.enforce!(Mix.Project.config())
