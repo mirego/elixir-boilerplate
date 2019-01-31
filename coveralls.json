@@ -3,7 +3,7 @@
     "minimum_coverage": 30
   },
   "skip_files": [
-    "phoenix_boilerplate/release/migration.ex",
+    "elixir_boilerplate/release/migration.ex",
     "test/support"
   ]
 }

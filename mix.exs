@@ -1,9 +1,9 @@
-defmodule PhoenixBoilerplate.Mixfile do
+defmodule ElixirBoilerplate.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :phoenix_boilerplate,
+      app: :elixir_boilerplate,
       version: "0.0.1",
       elixir: "1.8.0",
       erlang: "21.2.4",
@@ -22,7 +22,7 @@ defmodule PhoenixBoilerplate.Mixfile do
 
   def application do
     [
-      mod: {PhoenixBoilerplate.Application, []},
+      mod: {ElixirBoilerplate.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -84,7 +84,7 @@ defmodule PhoenixBoilerplate.Mixfile do
     [
       plt_add_apps: [:ex_unit, :mix],
       plt_add_deps: :app_tree,
-      plt_file: {:no_warn, "priv/plts/phoenix_boilerplate.plt"}
+      plt_file: {:no_warn, "priv/plts/elixir_boilerplate.plt"}
     ]
   end
 end

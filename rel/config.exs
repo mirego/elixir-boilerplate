@@ -23,8 +23,8 @@ environment :prod do
   set(cookie: "${ERLANG_COOKIE}")
 end
 
-release :phoenix_boilerplate do
-  set(version: current_version(:phoenix_boilerplate))
+release :elixir_boilerplate do
+  set(version: current_version(:elixir_boilerplate))
 
   set(
     applications: [

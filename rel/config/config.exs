@@ -44,22 +44,22 @@ host = Environment.get("CANONICAL_HOST")
 port = Environment.get("PORT")
 
 # General application configuration
-config :phoenix_boilerplate,
+config :elixir_boilerplate,
   canonical_host: host,
   force_ssl: force_ssl,
-  ecto_repos: [PhoenixBoilerplate.Repo]
+  ecto_repos: [ElixirBoilerplate.Repo]
 
 # Configure Phoenix
 config :phoenix, :json_library, Jason
 
 # Configure Repo with Postgres
-config :phoenix_boilerplate, PhoenixBoilerplate.Repo,
+config :elixir_boilerplate, ElixirBoilerplate.Repo,
   size: Environment.get("DATABASE_POOL_SIZE"),
   ssl: Environment.get_boolean("DATABASE_SSL"),
   url: Environment.get("DATABASE_URL")
 
 # Configures Phoenix endpoint
-config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
+config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
   http: [port: port],
   secret_key_base: Environment.get("SECRET_KEY_BASE"),
@@ -71,11 +71,11 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
     port: Environment.get("STATIC_URL_PORT")
   ],
   url: [scheme: scheme, host: host, port: port],
-  pubsub: [name: PhoenixBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2],
-  render_errors: [view: PhoenixBoilerplateWeb.Errors.View, accepts: ~w(html json)]
+  pubsub: [name: ElixirBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2],
+  render_errors: [view: ElixirBoilerplateWeb.Errors.View, accepts: ~w(html json)]
 
 # Configure Gettext
-config :phoenix_boilerplate, PhoenixBoilerplate.Gettext, default_locale: "en"
+config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
 
 # Configure Logger
 config :logger, :console,
@@ -84,7 +84,7 @@ config :logger, :console,
 
 # Configure Basic Auth
 if Environment.exists?("BASIC_AUTH_USERNAME") do
-  config :phoenix_boilerplate,
+  config :elixir_boilerplate,
     basic_auth: [
       username: Environment.get("BASIC_AUTH_USERNAME"),
       password: Environment.get("BASIC_AUTH_PASSWORD")

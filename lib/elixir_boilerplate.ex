@@ -1,6 +1,6 @@
-defmodule PhoenixBoilerplate do
+defmodule ElixirBoilerplate do
   @moduledoc """
-  PhoenixBoilerplate keeps the contexts that define your domain
+  ElixirBoilerplate keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

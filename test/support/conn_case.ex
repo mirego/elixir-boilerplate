@@ -1,4 +1,4 @@
-defmodule PhoenixBoilerplateWeb.ConnCase do
+defmodule ElixirBoilerplateWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -16,15 +16,15 @@ defmodule PhoenixBoilerplateWeb.ConnCase do
   use ExUnit.CaseTemplate
 
   alias Ecto.Adapters.SQL.Sandbox
+  alias ElixirBoilerplate.Repo
+  alias ElixirBoilerplateWeb.Endpoint
   alias Phoenix.ConnTest
-  alias PhoenixBoilerplate.Repo
-  alias PhoenixBoilerplateWeb.Endpoint
 
   using do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import PhoenixBoilerplateWeb.Router.Helpers
+      import ElixirBoilerplateWeb.Router.Helpers
 
       # The default endpoint for testing
       @endpoint Endpoint

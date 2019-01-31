@@ -1,7 +1,7 @@
-defmodule PhoenixBoilerplateWeb.Health.Controller do
+defmodule ElixirBoilerplateWeb.Health.Controller do
   use Phoenix.Controller
 
-  import PhoenixBoilerplate.Gettext
+  import ElixirBoilerplate.Gettext
 
   @spec index(Plug.Conn.t(), map) :: Plug.Conn.t()
   def index(conn, _) do

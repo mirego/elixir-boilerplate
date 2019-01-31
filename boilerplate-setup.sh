@@ -4,9 +4,9 @@
 # Configuration
 # -----------------------------------------------------------------------------
 
-pascalCaseBefore="PhoenixBoilerplate"
-snakeCaseBefore="phoenix_boilerplate"
-kebabCaseBefore="phoenix-boilerplate"
+pascalCaseBefore="ElixirBoilerplate"
+snakeCaseBefore="elixir_boilerplate"
+kebabCaseBefore="elixir-boilerplate"
 
 # The identifiers above will be replaced in the content of the files found below
 content=$(find . -type f \( \
@@ -32,7 +32,8 @@ paths=$(find . -depth 2 \( \
   -path "./lib/${snakeCaseBefore}*" -or \
   -path "./lib/${snakeCaseBefore}_*" -or \
   -path "./lib/${snakeCaseBefore}.*" -or \
-  -path "./test/${snakeCaseBefore}" \
+  -path "./test/${snakeCaseBefore}" -or \
+  -path "./test/${snakeCaseBefore}_*" \
 \))
 
 # -----------------------------------------------------------------------------

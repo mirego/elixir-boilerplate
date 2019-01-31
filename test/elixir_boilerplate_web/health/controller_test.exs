@@ -1,5 +1,5 @@
-defmodule PhoenixBoilerplateWeb.Health.ControllerTest do
-  use PhoenixBoilerplateWeb.ConnCase
+defmodule ElixirBoilerplateWeb.Health.ControllerTest do
+  use ElixirBoilerplateWeb.ConnCase
 
   test "GET /health", %{conn: conn} do
     conn = get(conn, "/health")

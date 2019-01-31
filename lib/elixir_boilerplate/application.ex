@@ -1,11 +1,11 @@
-defmodule PhoenixBoilerplate.Application do
+defmodule ElixirBoilerplate.Application do
   @moduledoc """
   Main entry point of the app
   """
 
   use Application
-  alias PhoenixBoilerplate.Repo
-  alias PhoenixBoilerplateWeb.Endpoint
+  alias ElixirBoilerplate.Repo
+  alias ElixirBoilerplateWeb.Endpoint
 
   def start(_type, _args) do
     import Supervisor.Spec
@@ -15,7 +15,7 @@ defmodule PhoenixBoilerplate.Application do
       supervisor(Endpoint, [])
     ]
 
-    opts = [strategy: :one_for_one, name: PhoenixBoilerplate.Supervisor]
+    opts = [strategy: :one_for_one, name: ElixirBoilerplate.Supervisor]
     Supervisor.start_link(children, opts)
   end
 

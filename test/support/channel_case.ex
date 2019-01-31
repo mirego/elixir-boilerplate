@@ -1,4 +1,4 @@
-defmodule PhoenixBoilerplateWeb.ChannelCase do
+defmodule ElixirBoilerplateWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -16,8 +16,8 @@ defmodule PhoenixBoilerplateWeb.ChannelCase do
   use ExUnit.CaseTemplate
 
   alias Ecto.Adapters.SQL.Sandbox
-  alias PhoenixBoilerplate.Repo
-  alias PhoenixBoilerplateWeb.Endpoint
+  alias ElixirBoilerplate.Repo
+  alias ElixirBoilerplateWeb.Endpoint
 
   using do
     quote do

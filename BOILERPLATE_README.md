@@ -1,4 +1,4 @@
-# PhoenixBoilerplate
+# ElixirBoilerplate
 
 | Section                                               | Description                                                     |
 | ---                                                   | ---                                                             |

@@ -1,4 +1,4 @@
-defmodule PhoenixBoilerplate.ReleaseTasks do
+defmodule ElixirBoilerplate.ReleaseTasks do
   @start_apps ~w(crypto ssl postgrex ecto_sql)a
 
   def migrate do
@@ -7,7 +7,7 @@ defmodule PhoenixBoilerplate.ReleaseTasks do
     stop_services()
   end
 
-  defp repos, do: Application.get_env(:phoenix_boilerplate, :ecto_repos, [])
+  defp repos, do: Application.get_env(:elixir_boilerplate, :ecto_repos, [])
 
   defp start_services do
     IO.puts("Starting dependencies…")

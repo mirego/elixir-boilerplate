@@ -20,7 +20,7 @@ cache:
 env:
   global:
     - MIX_ENV: test
-    - DATABASE_URL: postgres://localhost/phoenix_boilerplate_test
+    - DATABASE_URL: postgres://localhost/elixir_boilerplate_test
 
 # Output Travis server IP for debugging
 before_install:

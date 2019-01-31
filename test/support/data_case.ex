@@ -1,4 +1,4 @@
-defmodule PhoenixBoilerplate.DataCase do
+defmodule ElixirBoilerplate.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -15,16 +15,16 @@ defmodule PhoenixBoilerplate.DataCase do
   use ExUnit.CaseTemplate
 
   alias Ecto.{Adapters.SQL.Sandbox, Changeset}
-  alias PhoenixBoilerplate.Repo
+  alias ElixirBoilerplate.Repo
 
   using do
     quote do
-      alias PhoenixBoilerplate.Repo
+      alias ElixirBoilerplate.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import PhoenixBoilerplate.DataCase
+      import ElixirBoilerplate.DataCase
     end
   end
 

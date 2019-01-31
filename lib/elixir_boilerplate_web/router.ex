@@ -1,4 +1,4 @@
-defmodule PhoenixBoilerplateWeb.Router do
+defmodule ElixirBoilerplateWeb.Router do
   use Phoenix.Router
   use Plug.ErrorHandler
   use Sentry.Plug
@@ -7,7 +7,7 @@ defmodule PhoenixBoilerplateWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  scope "/", PhoenixBoilerplateWeb do
+  scope "/", ElixirBoilerplateWeb do
     pipe_through(:api)
 
     get("/health", Health.Controller, :index)

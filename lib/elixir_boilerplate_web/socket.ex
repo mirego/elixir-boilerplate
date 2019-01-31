@@ -1,4 +1,4 @@
-defmodule PhoenixBoilerplateWeb.Socket do
+defmodule ElixirBoilerplateWeb.Socket do
   use Phoenix.Socket
 
   def connect(_params, socket) do

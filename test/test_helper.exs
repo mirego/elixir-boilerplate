@@ -1,3 +1,3 @@
 ExUnit.start()
 
-Ecto.Adapters.SQL.Sandbox.mode(PhoenixBoilerplate.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(ElixirBoilerplate.Repo, :manual)

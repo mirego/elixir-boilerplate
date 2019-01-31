@@ -1,24 +1,24 @@
 version: '3.3'
 services:
   application:
-    image: phoenix_boilerplate
-    container_name: phoenix_boilerplate
+    image: elixir_boilerplate
+    container_name: elixir_boilerplate
     env_file: .env.dev
     environment:
-      - DATABASE_URL=postgres://postgres:development@postgresql/phoenix_boilerplate_dev
+      - DATABASE_URL=postgres://postgres:development@postgresql/elixir_boilerplate_dev
     ports:
       - 4000:4000
     depends_on:
       - postgresql
   postgresql:
     image: postgres:10.3
-    container_name: phoenix_boilerplate-postgres
+    container_name: elixir_boilerplate-postgres
     environment:
-      - POSTGRES_DB=phoenix_boilerplate_dev
+      - POSTGRES_DB=elixir_boilerplate_dev
       - POSTGRES_PASSWORD=development
     ports:
       - 5432:5432
     volumes:
-      - phoenix_boilerplate_psql:/var/lib/postgresql/data
+      - elixir_boilerplate_psql:/var/lib/postgresql/data
 volumes:
-  phoenix_boilerplate_psql:
+  elixir_boilerplate_psql:

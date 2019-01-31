@@ -1,7 +1,7 @@
 use Mix.Config
 
 # Configure the endpoint for tests
-config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
+config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   http: [port: 4001],
   server: false,
   secret_key_base: "test",
@@ -22,4 +22,4 @@ config :phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint,
 config :logger, level: :warn
 
 # Configure Repo with a sandboxed Postgres
-config :phoenix_boilerplate, PhoenixBoilerplate.Repo, pool: Ecto.Adapters.SQL.Sandbox
+config :elixir_boilerplate, ElixirBoilerplate.Repo, pool: Ecto.Adapters.SQL.Sandbox

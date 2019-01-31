@@ -1,5 +1,5 @@
-defmodule PhoenixBoilerplateWeb.Errors.View do
-  use Phoenix.View, root: "lib/phoenix_boilerplate_web", path: "errors/templates", namespace: PhoenixBoilerplateWeb
+defmodule ElixirBoilerplateWeb.Errors.View do
+  use Phoenix.View, root: "lib/elixir_boilerplate_web", path: "errors/templates", namespace: ElixirBoilerplateWeb
 
   def render("404.html", _assigns) do
     "Page not found"

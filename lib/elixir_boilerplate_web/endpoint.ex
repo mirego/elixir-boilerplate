@@ -1,9 +1,9 @@
-defmodule PhoenixBoilerplateWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :phoenix_boilerplate
+defmodule ElixirBoilerplateWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :elixir_boilerplate
 
   socket(
     "/socket",
-    PhoenixBoilerplateWeb.Socket,
+    ElixirBoilerplateWeb.Socket,
     websocket: true
   )
 
@@ -16,7 +16,7 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
-  plug(Plug.Static, at: "/", from: :phoenix_boilerplate, gzip: false, only: ~w(css fonts images js favicon.ico))
+  plug(Plug.Static, at: "/", from: :elixir_boilerplate, gzip: false, only: ~w(css fonts images js favicon.ico))
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -44,7 +44,7 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
-  plug(PhoenixBoilerplateWeb.Router)
+  plug(ElixirBoilerplateWeb.Router)
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.
@@ -54,7 +54,7 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
   """
   def init(_key, config) do
     if config[:load_from_system_env] do
-      port = Application.get_env(:phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint)[:http][:port] || raise "expected the PORT environment variable to be set"
+      port = Application.get_env(:elixir_boilerplate, ElixirBoilerplateWeb.Endpoint)[:http][:port] || raise "expected the PORT environment variable to be set"
       {:ok, Keyword.put(config, :http, [:inet6, port: port])}
     else
       {:ok, config}
@@ -62,13 +62,13 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
   end
 
   defp canonical_host(conn, _opts) do
-    opts = PlugCanonicalHost.init(canonical_host: Application.get_env(:phoenix_boilerplate, :canonical_host))
+    opts = PlugCanonicalHost.init(canonical_host: Application.get_env(:elixir_boilerplate, :canonical_host))
 
     PlugCanonicalHost.call(conn, opts)
   end
 
   defp force_ssl(conn, _opts) do
-    if Application.get_env(:phoenix_boilerplate, :force_ssl) do
+    if Application.get_env(:elixir_boilerplate, :force_ssl) do
       opts = Plug.SSL.init(rewrite_on: [:x_forwarded_proto])
 
       Plug.SSL.call(conn, opts)
@@ -78,10 +78,10 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
   end
 
   defp basic_auth(conn, _opts) do
-    basic_auth_config = Application.get_env(:phoenix_boilerplate, :basic_auth)
+    basic_auth_config = Application.get_env(:elixir_boilerplate, :basic_auth)
 
     if basic_auth_config do
-      opts = BasicAuth.init(use_config: {:phoenix_boilerplate, :basic_auth})
+      opts = BasicAuth.init(use_config: {:elixir_boilerplate, :basic_auth})
 
       BasicAuth.call(conn, opts)
     else
@@ -96,8 +96,8 @@ defmodule PhoenixBoilerplateWeb.Endpoint do
     opts =
       Plug.Session.init(
         store: :cookie,
-        key: Application.get_env(:phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint)[:session_key],
-        signing_salt: Application.get_env(:phoenix_boilerplate, PhoenixBoilerplateWeb.Endpoint)[:signing_salt]
+        key: Application.get_env(:elixir_boilerplate, ElixirBoilerplateWeb.Endpoint)[:session_key],
+        signing_salt: Application.get_env(:elixir_boilerplate, ElixirBoilerplateWeb.Endpoint)[:signing_salt]
       )
 
     Plug.Session.call(conn, opts)

@@ -55,7 +55,7 @@ RUN apk --no-cache update && \
     apk --no-cache upgrade && \
     apk --no-cache add bash openssl
 
-WORKDIR /opt/phoenix_boilerplate
+WORKDIR /opt/elixir_boilerplate
 
 # Copy the OTP binary from the build step
 COPY --from=builder /opt/build .
@@ -65,10 +65,10 @@ COPY priv/scripts/docker-entrypoint.sh /usr/local/bin
 RUN chmod a+x /usr/local/bin/docker-entrypoint.sh
 
 # Create a non-root user
-RUN adduser -D phoenix_boilerplate && \
-    chown -R phoenix_boilerplate: /opt/phoenix_boilerplate
+RUN adduser -D elixir_boilerplate && \
+    chown -R elixir_boilerplate: /opt/elixir_boilerplate
 
-USER phoenix_boilerplate
+USER elixir_boilerplate
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["foreground"]
