@@ -18,6 +18,7 @@ content=$(find . -type f \( \
   -name "*.js" -or \
   -name "*.yml" -or \
   -name "*.md" -or \
+  -name ".env.*" -or \
   -name "Dockerfile" -or \
   -name "Makefile" \
 \) \

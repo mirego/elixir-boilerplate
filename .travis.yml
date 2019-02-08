@@ -1,8 +1,8 @@
 # Elixir baby!
 language: 'elixir'
 
-elixir: 1.8.0
-otp_release: 21.2.4
+elixir: 1.8.1
+otp_release: 21.2.5
 
 # Make sure PostgreSQL is running
 addons:
