@@ -79,9 +79,9 @@ echo ""
 
 header "Replacing boilerplate identifiers in content"
 for file in $content; do
-  run sed -i '' "s/$snakeCaseBefore/$snakeCaseAfter/g" $file
-  run sed -i '' "s/$kebabCaseBefore/$kebabCaseAfter/g" $file
-  run sed -i '' "s/$pascalCaseBefore/$pascalCaseAfter/g" $file
+  run sed -i "''" "s/$snakeCaseBefore/$snakeCaseAfter/g" $file
+  run sed -i "''" "s/$kebabCaseBefore/$kebabCaseAfter/g" $file
+  run sed -i "''" "s/$pascalCaseBefore/$pascalCaseAfter/g" $file
 done
 success "Done!\n"
 
