@@ -1,8 +1,8 @@
 use Mix.Config
 
-defmodule Environment do
+defmodule Utils.Environment do
   @moduledoc """
-  This modules provdes various helpers to handle data stored
+  This modules provides various helpers to handle data stored
   in environment variables (obtained via `System.get_env/1`).
   """
 
@@ -38,7 +38,7 @@ defmodule Environment do
   defp parse_integer(_, default), do: default
 end
 
-defmodule VersionHelper do
+defmodule Utils.Version do
   @moduledoc """
   This modules exposes the application version number, either
   through the application spec (when building an OTP release) or
@@ -55,10 +55,10 @@ defmodule VersionHelper do
   end
 end
 
-force_ssl = Environment.get_boolean("FORCE_SSL")
+force_ssl = Utils.Environment.get_boolean("FORCE_SSL")
 scheme = if force_ssl, do: "https", else: "http"
-host = Environment.get("CANONICAL_HOST")
-port = Environment.get("PORT")
+host = Utils.Environment.get("CANONICAL_HOST")
+port = Utils.Environment.get("PORT")
 
 # General application configuration
 config :elixir_boilerplate,
@@ -71,21 +71,21 @@ config :phoenix, :json_library, Jason
 
 # Configure Repo with Postgres
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
-  size: Environment.get("DATABASE_POOL_SIZE"),
-  ssl: Environment.get_boolean("DATABASE_SSL"),
-  url: Environment.get("DATABASE_URL")
+  size: Utils.Environment.get("DATABASE_POOL_SIZE"),
+  ssl: Utils.Environment.get_boolean("DATABASE_SSL"),
+  url: Utils.Environment.get("DATABASE_URL")
 
 # Configures Phoenix endpoint
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
-  debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
+  debug_errors: Utils.Environment.get_boolean("DEBUG_ERRORS"),
   http: [port: port],
-  secret_key_base: Environment.get("SECRET_KEY_BASE"),
-  session_key: Environment.get("SESSION_KEY"),
-  signing_salt: Environment.get("SIGNING_SALT"),
+  secret_key_base: Utils.Environment.get("SECRET_KEY_BASE"),
+  session_key: Utils.Environment.get("SESSION_KEY"),
+  signing_salt: Utils.Environment.get("SIGNING_SALT"),
   static_url: [
-    scheme: Environment.get("STATIC_URL_SCHEME"),
-    host: Environment.get("STATIC_URL_HOST"),
-    port: Environment.get("STATIC_URL_PORT")
+    scheme: Utils.Environment.get("STATIC_URL_SCHEME"),
+    host: Utils.Environment.get("STATIC_URL_HOST"),
+    port: Utils.Environment.get("STATIC_URL_PORT")
   ],
   url: [scheme: scheme, host: host, port: port],
   pubsub: [name: ElixirBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2],
@@ -100,18 +100,18 @@ config :logger, :console,
   metadata: [:request_id]
 
 # Configure Basic Auth
-if Environment.exists?("BASIC_AUTH_USERNAME") do
+if Utils.Environment.exists?("BASIC_AUTH_USERNAME") do
   config :elixir_boilerplate,
     basic_auth: [
-      username: Environment.get("BASIC_AUTH_USERNAME"),
-      password: Environment.get("BASIC_AUTH_PASSWORD")
+      username: Utils.Environment.get("BASIC_AUTH_USERNAME"),
+      password: Utils.Environment.get("BASIC_AUTH_PASSWORD")
     ]
 end
 
 # Configure Sentry
 config :sentry,
-  dsn: Environment.get("SENTRY_DSN"),
-  environment_name: Environment.get("SENTRY_ENVIRONMENT_NAME"),
+  dsn: Utils.Environment.get("SENTRY_DSN"),
+  environment_name: Utils.Environment.get("SENTRY_ENVIRONMENT_NAME"),
   included_environments: [:prod],
   root_source_code_path: File.cwd!(),
-  release: VersionHelper.get()
+  release: Utils.Version.get()
