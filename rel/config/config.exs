@@ -38,6 +38,23 @@ defmodule Environment do
   defp parse_integer(_, default), do: default
 end
 
+defmodule VersionHelper do
+  @moduledoc """
+  This modules exposes the application version number, either
+  through the application spec (when building an OTP release) or
+  the project configuration (when compiling the code with `mix`).
+  """
+
+  def get do
+    :elixir_boilerplate
+    |> Application.spec(:vsn)
+    |> case do
+      nil -> Mix.Project.config()[:version]
+      version -> List.to_string(version)
+    end
+  end
+end
+
 force_ssl = Environment.get_boolean("FORCE_SSL")
 scheme = if force_ssl, do: "https", else: "http"
 host = Environment.get("CANONICAL_HOST")
@@ -96,4 +113,5 @@ config :sentry,
   dsn: Environment.get("SENTRY_DSN"),
   environment_name: Environment.get("SENTRY_ENVIRONMENT_NAME"),
   included_environments: [:prod],
-  root_source_code_path: File.cwd!()
+  root_source_code_path: File.cwd!(),
+  release: VersionHelper.get()
