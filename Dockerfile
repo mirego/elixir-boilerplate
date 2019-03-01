@@ -16,7 +16,7 @@ WORKDIR /build
 # This step installs all the build tools we'll need
 RUN apk update && \
     apk upgrade --no-cache && \
-    apk add --no-cache nodejs npm git build-base python
+    apk add --no-cache nodejs=10.14.2-r0 npm=10.14.2-r0 git build-base
 RUN mix local.rebar --force && \
     mix local.hex --force
 
@@ -27,7 +27,7 @@ RUN mix deps.get --only ${MIX_ENV}
 COPY . .
 RUN mix compile --force
 
-RUN npm install --prefix assets
+RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm
 RUN mix phx.digest
 
 RUN mkdir -p /opt/build && \
