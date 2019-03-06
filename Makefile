@@ -81,7 +81,7 @@ lint-stylelint:
 
 .PHONY: lint-prettier
 lint-prettier:
-	./assets/node_modules/.bin/prettier -l assets/.babelrc assets/webpack.config.js 'assets/{js,css}/**/*.{js,graphql,scss,css})'
+	./assets/node_modules/.bin/prettier -l assets/.babelrc assets/webpack.config.js 'assets/{js,css}/**/*.{js,graphql,scss,css})' '*.md'
 
 .PHONY: test
 test: ## Run the test suite
