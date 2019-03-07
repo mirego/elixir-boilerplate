@@ -104,7 +104,7 @@ format-elixir:
 
 .PHONY: format-prettier
 format-prettier:
-	./assets/node_modules/.bin/prettier --write 'assets/.babelrc' 'assets/webpack.config.js' 'assets/{js,css}/**/*.{js,graphql,scss,css})'
+	./assets/node_modules/.bin/prettier --write 'assets/.babelrc' 'assets/webpack.config.js' 'assets/{js,css} /**/*.{js,graphql,scss,css})' '**/*.md'
 
 # Development targets
 # -------------------
