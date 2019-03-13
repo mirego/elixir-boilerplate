@@ -49,7 +49,7 @@ ENV APP_NAME=${APP_NAME}
 # Update kernel and install runtime dependencies
 RUN apk --no-cache update && \
     apk --no-cache upgrade && \
-    apk --no-cache add bash openssl ca-certificates erlang-crypto
+    apk --no-cache add bash openssl-dev erlang-crypto
 
 WORKDIR /opt/elixir_boilerplate
 
