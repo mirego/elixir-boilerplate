@@ -6,7 +6,11 @@ otp_release: 21.2.7
 
 # Make sure PostgreSQL is running
 addons:
-  postgresql: 9.6
+  postgresql: "10"
+  apt:
+    packages:
+      - postgresql-10
+      - postgresql-client-10
 
 # Use the cache to build faster
 cache:
@@ -20,11 +24,14 @@ cache:
 env:
   global:
     - MIX_ENV: test
-    - DATABASE_URL: postgres://localhost/elixir_boilerplate_test
+    - DATABASE_URL: postgres://elixir_boilerplate:password@localhost:5433/elixir_boilerplate_test
+    - PGPORT: 5433
 
 # Output Travis server IP for debugging
 before_install:
   - echo `curl --verbose http://jsonip.com`
+  - sudo -u postgres psql -c "CREATE USER elixir_boilerplate WITH PASSWORD 'password'"
+  - sudo -u postgres psql -c "ALTER ROLE elixir_boilerplate SUPERUSER"
 
 # Install the node version we need, install the node packages,
 # create the database and prepare the application
@@ -32,7 +39,7 @@ before_script:
   - nvm install 10.14.2
   - nvm use 10.14.2
   - npm install -g npm@6.4.1
-  - npm --prefix assets install
+  - npm --prefix assets ci
   - mix compile
   - mix ecto.create
   - mix ecto.migrate
