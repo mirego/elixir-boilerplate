@@ -35,6 +35,7 @@
         {Credo.Check.Refactor.CaseTrivialMatches},
         {Credo.Check.Refactor.CondStatements},
         {Credo.Check.Refactor.FunctionArity},
+        {Credo.Check.Refactor.MapInto, false},
         {Credo.Check.Refactor.MatchInCondition},
         {Credo.Check.Refactor.PipeChainStart, excluded_argument_types: ~w(atom binary fn keyword)a, excluded_functions: ~w(from)},
         {Credo.Check.Refactor.CyclomaticComplexity},
