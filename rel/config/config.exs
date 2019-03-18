@@ -1,56 +1,58 @@
 use Mix.Config
 
-defmodule Utils.Environment do
-  @moduledoc """
-  This modules provides various helpers to handle data stored
-  in environment variables (obtained via `System.get_env/1`).
-  """
+defmodule Utils do
+  defmodule Environment do
+    @moduledoc """
+    This modules provides various helpers to handle data stored
+    in environment variables (obtained via `System.get_env/1`).
+    """
 
-  def get(key), do: System.get_env(key)
+    def get(key), do: System.get_env(key)
 
-  def get_boolean(key) do
-    key
-    |> get()
-    |> parse_boolean()
-  end
-
-  def get_integer(key, default \\ 0) do
-    key
-    |> get()
-    |> parse_integer(default)
-  end
-
-  def exists?(key) do
-    key
-    |> get()
-    |> case do
-      "" -> false
-      nil -> false
-      _ -> true
+    def get_boolean(key) do
+      key
+      |> get()
+      |> parse_boolean()
     end
+
+    def get_integer(key, default \\ 0) do
+      key
+      |> get()
+      |> parse_integer(default)
+    end
+
+    def exists?(key) do
+      key
+      |> get()
+      |> case do
+        "" -> false
+        nil -> false
+        _ -> true
+      end
+    end
+
+    defp parse_boolean("true"), do: true
+    defp parse_boolean("1"), do: true
+    defp parse_boolean(_), do: false
+
+    defp parse_integer(value, _) when is_bitstring(value), do: String.to_integer(value)
+    defp parse_integer(_, default), do: default
   end
 
-  defp parse_boolean("true"), do: true
-  defp parse_boolean("1"), do: true
-  defp parse_boolean(_), do: false
+  defmodule Version do
+    @moduledoc """
+    This modules exposes the application version number, either
+    through the application spec (when building an OTP release) or
+    the project configuration (when compiling the code with `mix`).
+    """
 
-  defp parse_integer(value, _) when is_bitstring(value), do: String.to_integer(value)
-  defp parse_integer(_, default), do: default
-end
-
-defmodule Utils.Version do
-  @moduledoc """
-  This modules exposes the application version number, either
-  through the application spec (when building an OTP release) or
-  the project configuration (when compiling the code with `mix`).
-  """
-
-  def get do
-    :elixir_boilerplate
-    |> Application.spec(:vsn)
-    |> case do
-      nil -> Mix.Project.config()[:version]
-      version -> List.to_string(version)
+    def get do
+      :elixir_boilerplate
+      |> Application.spec(:vsn)
+      |> case do
+        nil -> Mix.Project.config()[:version]
+        version -> List.to_string(version)
+      end
     end
   end
 end
