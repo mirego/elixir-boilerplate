@@ -2,7 +2,7 @@
 language: 'elixir'
 
 elixir: 1.8.1
-otp_release: 21.2.7
+otp_release: 21.3
 
 # Make sure PostgreSQL is running
 addons:
