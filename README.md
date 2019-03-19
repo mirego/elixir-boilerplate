@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://user-images.githubusercontent.com/11348/52080254-520cb580-2565-11e9-8c21-156cf0b7bcf3.png" width="600" />
   <p><br />This repository is the stable base upon which we build our Elixir projects at Mirego.<br />We want to share it with the world so you can build awesome Elixir applications too.</p>
-  <a href="https://travis-ci.org/mirego/elixir-boilerplate"><img src="https://travis-ci.com/mirego/elixir-boilerplate.svg?branch=master" /></a>
+  <a href="https://travis-ci.com/mirego/elixir-boilerplate"><img src="https://travis-ci.com/mirego/elixir-boilerplate.svg?branch=master" /></a>
 </div>
 
 ## Content
