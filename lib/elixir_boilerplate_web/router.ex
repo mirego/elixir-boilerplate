@@ -19,7 +19,7 @@ defmodule ElixirBoilerplateWeb.Router do
   scope "/", ElixirBoilerplateWeb do
     pipe_through(:api)
 
-    get("/health", Health.Controller, :index, as: :api_health)
+    get("/health", Health.Controller, :index, as: :health)
   end
 
   scope "/", ElixirBoilerplateWeb do
