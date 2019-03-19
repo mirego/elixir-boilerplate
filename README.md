@@ -18,6 +18,7 @@ This boilerplate comes with batteries included, you’ll find:
 - [Dialyzer](https://hexdocs.pm/dialyxir/readme.html)
 - Useful utilities for standard web server: [HTTP Basic Auth](https://github.com/CultivateHQ/basic_auth), [canonical host](https://github.com/remiprev/plug_canonical_host)
 - Error reporting with [Sentry](https://hexdocs.pm/sentry/readme.html)
+- A clean and useful [`README.md`](./BOILERPLATE_README.md) template
 
 ## Usage
 
