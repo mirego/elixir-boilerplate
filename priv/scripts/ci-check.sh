@@ -39,8 +39,11 @@ run make test-coverage
 header "Dialyzer…"
 run make dialyze
 
-header "Execute data seed…"
+header "Run seed data…"
 run mix run priv/repo/seeds.exs
+
+header "Run dummy data…"
+run mix run priv/repo/dummy.exs
 
 header "Build Docker image running an OTP release…"
 run make build
