@@ -47,7 +47,7 @@ if [[ -z "$1" ]] ; then
 fi
 
 pascalCaseAfter=$1
-snakeCaseAfter=$(echo $pascalCaseAfter | sed 's/\(.\)\([A-Z]\)/\1_\2/g' | tr '[:upper:]' '[:lower:]')
+snakeCaseAfter=$(echo $pascalCaseAfter | /usr/bin/sed 's/\(.\)\([A-Z]\)/\1_\2/g' | tr '[:upper:]' '[:lower:]')
 kebabCaseAfter=$(echo $snakeCaseAfter | tr '_' '-')
 
 # -----------------------------------------------------------------------------
@@ -79,15 +79,15 @@ echo ""
 
 header "Replacing boilerplate identifiers in content"
 for file in $content; do
-  run sed -i "''" "s/$snakeCaseBefore/$snakeCaseAfter/g" $file
-  run sed -i "''" "s/$kebabCaseBefore/$kebabCaseAfter/g" $file
-  run sed -i "''" "s/$pascalCaseBefore/$pascalCaseAfter/g" $file
+  run /usr/bin/sed -i "''" "s/$snakeCaseBefore/$snakeCaseAfter/g" $file
+  run /usr/bin/sed -i "''" "s/$kebabCaseBefore/$kebabCaseAfter/g" $file
+  run /usr/bin/sed -i "''" "s/$pascalCaseBefore/$pascalCaseAfter/g" $file
 done
 success "Done!\n"
 
 header "Replacing boilerplate identifiers in file and directory paths"
 for path in $paths; do
-  run mv $path $(echo $path | sed "s/$snakeCaseBefore/$snakeCaseAfter/g" | sed "s/$kebabCaseBefore/$kebabCaseAfter/g" | sed "s/$pascalCaseBefore/$pascalCaseAfter/g")
+  run mv $path $(echo $path | /usr/bin/sed "s/$snakeCaseBefore/$snakeCaseAfter/g" | /usr/bin/sed "s/$kebabCaseBefore/$kebabCaseAfter/g" | /usr/bin/sed "s/$pascalCaseBefore/$pascalCaseAfter/g")
 done
 success "Done!\n"
 
