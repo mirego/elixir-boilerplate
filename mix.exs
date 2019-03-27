@@ -58,7 +58,7 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Linting
       {:credo, git: "https://github.com/mirego/credo", branch: "feature/add-consistency-filenames-check", only: [:dev, :test], override: true},
-      {:credo_envvar, git: "https://github.com/remiprev/credo_envvar", branch: "feature/feature/add-support-for-nested-module-with-siblings", only: ~w(dev test)a, runtime: false},
+      {:credo_envvar, "~> 0.1", only: ~w(dev test)a, runtime: false},
 
       # OTP Release
       {:distillery, "~> 2.0"},
