@@ -3,7 +3,8 @@
     "minimum_coverage": 30
   },
   "skip_files": [
-    "elixir_boilerplate/release/migration.ex",
+    "lib/elixir-boilerplate/release_tasks.ex",
+    "lib/mix/tasks/erlang.check_version.ex",
     "test/support"
   ]
 }
