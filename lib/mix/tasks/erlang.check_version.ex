@@ -15,7 +15,7 @@ defmodule Mix.Tasks.Erlang.CheckVersion do
     expected_version = Keyword.get(config, :erlang)
     actual_version = otp_release_version()
 
-    if actual_version != expected_version do
+    if !Version.match?(actual_version, expected_version) do
       Mix.raise("You're trying to run #{app} on Erlang/OTP #{actual_version} but it has declared in its mix.exs file it supports only Erlang/OTP #{expected_version}")
     end
   end
@@ -30,11 +30,23 @@ defmodule Mix.Tasks.Erlang.CheckVersion do
     |> Path.join()
     |> File.read()
     |> case do
-      {:ok, version} ->
-        String.trim(version)
+      {:ok, version} -> sanitize_version(String.trim(version))
+      _ -> nil
+    end
+  end
 
-      _ ->
-        nil
+  defp sanitize_version(version) do
+    ~r/^\d+\.\d+$/
+    |> Regex.run(version)
+    |> case do
+      [version] ->
+        # OTP versions are not always compatible with Semantic Versioning. For example,
+        # `21.3` is a valid OTP version, but is not a valid “semver” one. We need to set
+        # it to `21.3.0` to match it against our expected version requirement.
+        "#{version}.0"
+
+      nil ->
+        version
     end
   end
 end

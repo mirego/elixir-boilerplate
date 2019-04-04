@@ -1,14 +1,14 @@
 {
+  "name": "",
   "private": true,
   "engines": {
-    "node": "10.14.2",
-    "npm": "6.4.1"
+    "node": "~> 10.14",
+    "npm": "~> 6.9"
   },
   "scripts": {
-    "deploy": "npm run enforce-engine-versions && ./node_modules/.bin/webpack --mode production",
-    "watch": "npm run enforce-engine-versions && ./node_modules/.bin/webpack --mode development --watch-stdin",
-    "enforce-engine-versions": "./scripts/enforce-engine-versions.js",
-    "preinstall": "npm run enforce-engine-versions"
+    "deploy": "npm run enforce-engine-versions && npx webpack --mode production",
+    "watch": "npm run enforce-engine-versions && npx webpack --mode development --watch-stdin",
+    "enforce-engine-versions": "./scripts/enforce-engine-versions.js"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -22,6 +22,7 @@
     "mini-css-extract-plugin": "^0.4.0",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
     "prettier": "1.16.4",
+    "semver": "6.0.0",
     "stylelint": "9.2.1",
     "stylelint-config-mirego": "1.0.1",
     "stylelint-order": "0.8.1",
