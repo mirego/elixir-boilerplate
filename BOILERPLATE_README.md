@@ -50,7 +50,7 @@ A `Makefile` is present at the root and expose common tasks. The list of these c
 
 ### Database
 
-To avoid running PostgreSQL locally on your macine, a `docker-compose.yml` file is included to be able start a PostgreSQL server in a Docker container with `make dev-start-postgresql`.
+To avoid running PostgreSQL locally on your machine, a `docker-compose.yml` file is included to be able start a PostgreSQL server in a Docker container with `make dev-start-postgresql`.
 
 ### Tests
 
