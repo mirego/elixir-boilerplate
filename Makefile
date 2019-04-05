@@ -81,7 +81,7 @@ lint-stylelint:
 
 .PHONY: lint-prettier
 lint-prettier:
-	./assets/node_modules/.bin/prettier -l assets/.babelrc assets/webpack.config.js 'assets/{js,css,scripts}/**/*.{js,graphql,scss,css})' '**/*.md'
+	./assets/node_modules/.bin/prettier -l assets/.babelrc assets/webpack.config.js 'assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' '**/*.md'
 
 .PHONY: test
 test: ## Run the test suite
@@ -104,7 +104,7 @@ format-elixir:
 
 .PHONY: format-prettier
 format-prettier:
-	./assets/node_modules/.bin/prettier --write 'assets/.babelrc' 'assets/webpack.config.js' 'assets/{js,css,scripts} /**/*.{js,graphql,scss,css})' '**/*.md'
+	./assets/node_modules/.bin/prettier --write 'assets/.babelrc' 'assets/webpack.config.js' 'assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' '**/*.md'
 
 # Development targets
 # -------------------
