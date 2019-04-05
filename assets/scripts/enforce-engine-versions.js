@@ -11,7 +11,9 @@ try {
 } catch {
   // The `semver` might not be available since we run this
   // script as a `preinstall` hook.
-  console.info('Skipping “enforce-engine-versions” script because `semver` module is not available.');
+  console.info(
+    'Skipping “enforce-engine-versions” script because `semver` module is not available.'
+  );
   process.exit(exitStatus);
 }
 
