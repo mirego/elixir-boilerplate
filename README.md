@@ -30,7 +30,7 @@ This boilerplate comes with batteries included, you’ll find:
 
 ## License
 
-Elixir Boilerplate is © 2017-2019 [Mirego](https://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause). See the [`LICENSE.md`](https://github.com/mirego/phonix-boilerplate/blob/master/LICENSE.md) file.
+Elixir Boilerplate is © 2017-2019 [Mirego](https://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause). See the [`LICENSE.md`](https://github.com/mirego/elixir-boilerplate/blob/master/LICENSE.md) file.
 
 The drop logo is based on [this lovely icon by Creative Stall](https://thenounproject.com/term/drop/174999), from The Noun Project. Used under a [Creative Commons BY 3.0](http://creativecommons.org/licenses/by/3.0/) license.
 
