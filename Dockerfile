@@ -27,7 +27,6 @@ RUN mix deps.get --only ${MIX_ENV}
 COPY . .
 RUN mix compile --force
 
-RUN npm install -g npm@6.9.0
 RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm
 RUN mix phx.digest
 
