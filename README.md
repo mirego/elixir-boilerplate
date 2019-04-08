@@ -8,15 +8,14 @@
 
 This boilerplate comes with batteries included, you’ll find:
 
-- The battle-tested production-ready web framework [Phoenix](https://phoenixframework.org)
-- Popular databases integration with [Ecto](https://hexdocs.pm/ecto/Ecto.html)
-- Tests with [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html), with coverage
-- Linting with [Credo](http://credo-ci.org)
-- Formatting with [mix format](https://hexdocs.pm/mix/master/Mix.Tasks.Format.html)
-- A [Distillery](https://hexdocs.pm/distillery/home.html) setup with [Docker](https://www.docker.com) integration
-- Translations powered by [Gettext](https://hexdocs.pm/gettext/Gettext.html)
-- [Dialyzer](https://hexdocs.pm/dialyxir/readme.html)
-- Useful utilities for standard web server: [HTTP Basic Auth](https://github.com/CultivateHQ/basic_auth), [canonical host](https://github.com/remiprev/plug_canonical_host)
+- [Phoenix](https://phoenixframework.org), the battle-tested production-ready web framework
+- Database integration using [Ecto](https://hexdocs.pm/ecto/Ecto.html)
+- Translations with [Gettext](https://hexdocs.pm/gettext/Gettext.html)
+- [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) tests and code coverage using [ExCoveralls](https://hexdocs.pm/excoveralls/api-reference.html)
+- Opinionated linting with [Credo](http://credo-ci.org)
+- Static code analysis with _Dialyzer_/[Dialyxir](https://hexdocs.pm/dialyxir/readme.html)
+- OTP release using [Distillery](https://hexdocs.pm/distillery/home.html) and [Docker](https://www.docker.com)
+- Useful utilities for web features: _basic auth_, _canonical host_, etc…
 - Error reporting with [Sentry](https://hexdocs.pm/sentry/readme.html)
 - A clean and useful [`README.md`](./BOILERPLATE_README.md) template
 
