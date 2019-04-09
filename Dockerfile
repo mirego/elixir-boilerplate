@@ -1,7 +1,7 @@
 #
 # Step 1 - build the OTP binary
 #
-FROM elixir:1.8.1-alpine AS builder
+FROM elixir:1.8-alpine AS builder
 
 ARG APP_NAME
 ARG APP_VERSION

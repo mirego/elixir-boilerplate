@@ -1,7 +1,7 @@
 # Elixir baby!
 language: 'elixir'
 
-elixir: 1.8.1
+elixir: 1.8
 otp_release: 21.3.3
 
 # Make sure PostgreSQL is running
