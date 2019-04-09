@@ -38,7 +38,6 @@ before_install:
 before_script:
   - nvm install 10.14.2
   - nvm use 10.14.2
-  - npm install -g npm@6.9.0
   - npm --prefix assets ci
   - mix compile
   - mix ecto.create

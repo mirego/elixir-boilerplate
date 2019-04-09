@@ -1,14 +1,18 @@
 {
-  "name": "",
+  "name": "elixir-boilerplate",
+  "version": "0.0.1",
   "private": true,
+  "engine-strict": true,
   "engines": {
-    "node": "~> 10.14",
-    "npm": "~> 6.9"
+    "node": "~10.14",
+    "npm": "~6.4"
   },
   "scripts": {
     "deploy": "npm run enforce-engine-versions && npx webpack --mode production",
     "watch": "npm run enforce-engine-versions && npx webpack --mode development --watch-stdin",
-    "enforce-engine-versions": "./scripts/enforce-engine-versions.js"
+    "enforce-engine-versions": "./scripts/enforce-engine-versions.js",
+    "preinstall": "npm run enforce-engine-versions",
+    "postinstall": "npm run enforce-engine-versions"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
