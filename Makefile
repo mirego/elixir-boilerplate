@@ -3,8 +3,8 @@
 
 APP_NAME = `grep 'app:' mix.exs | sed -e 's/\[//g' -e 's/ //g' -e 's/app://' -e 's/[:,]//g'`
 APP_VERSION = `grep 'version:' mix.exs | cut -d '"' -f2`
+GIT_REVISION = `git rev-parse HEAD`
 DOCKER_IMAGE_TAG ?= latest
-GIT_REVISION ?= `git rev-parse HEAD`
 
 # Introspection targets
 # ---------------------
