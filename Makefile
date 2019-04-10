@@ -5,6 +5,7 @@ APP_NAME = `grep 'app:' mix.exs | sed -e 's/\[//g' -e 's/ //g' -e 's/app://' -e 
 APP_VERSION = `grep 'version:' mix.exs | cut -d '"' -f2`
 GIT_REVISION = `git rev-parse HEAD`
 DOCKER_IMAGE_TAG ?= latest
+DOCKER_REGISTRY ?=
 
 # Introspection targets
 # ---------------------
@@ -27,6 +28,9 @@ header:
 	@echo ""
 	@printf "\033[33m%-23s\033[0m" "DOCKER_IMAGE_TAG"
 	@printf "\033[35m%s\033[0m" $(DOCKER_IMAGE_TAG)
+	@echo ""
+	@printf "\033[33m%-23s\033[0m" "DOCKER_REGISTRY"
+	@printf "\033[35m%s\033[0m" $(DOCKER_REGISTRY)
 	@echo "\n"
 
 .PHONY: targets
@@ -52,6 +56,11 @@ dependencies-npm:
 .PHONY: build
 build: ## Build the Docker image for the OTP release
 	docker build --build-arg APP_NAME=$(APP_NAME) --build-arg APP_VERSION=$(APP_VERSION) --rm --tag $(APP_NAME):$(DOCKER_IMAGE_TAG) .
+
+.PHONY: push
+push: ## Push the Docker image
+	docker tag $(APP_NAME):$(DOCKER_IMAGE_TAG) $(DOCKER_REGISTRY)/$(APP_NAME):$(DOCKER_IMAGE_TAG)
+	docker push $(DOCKER_REGISTRY)/$(APP_NAME):$(DOCKER_IMAGE_TAG)
 
 # CI targets
 # ----------
