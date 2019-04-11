@@ -1,10 +1,8 @@
-<div align="center">
-  <br />
-  <img src="https://user-images.githubusercontent.com/11348/52080254-520cb580-2565-11e9-8c21-156cf0b7bcf3.png" width="500" />
-  <p><br />This repository is the stable base upon which we build our Elixir projects at Mirego.<br />We want to share it with the world so you can build awesome Elixir applications too.</p>
+<div class="home">
+  <a target="_blank" href="https://github.com/mirego/elixir-boilerplate">
+    <img src="https://user-images.githubusercontent.com/11348/52080254-520cb580-2565-11e9-8c21-156cf0b7bcf3.png" width="500" />
+  </a>
 
-  <div>
-    <strong>Health:</strong>
-    <%= @health %>
-  </div>
+  <p>This repository is the stable base upon which we build our Elixir projects at Mirego.<br />We want to share it with the world so you can build awesome Elixir applications too.</p>
+  <p><strong>Health:</strong> <%= @health %></p>
 </div>
