@@ -123,11 +123,11 @@ dev-start-postgresql: ## Run a PostgreSQL server inside of a Docker Compose envi
 	docker-compose up --detach postgresql
 
 .PHONY: dev-start-application
-dev-start-application: ## Run the OTP release inside of a Docker Compose environment
+dev-start-application: build ## Run the OTP release inside of a Docker Compose environment
 	docker-compose up application
 
 .PHONY: dev-start
-dev-start: ## Start every service of in the Docker Compose environment
+dev-start: build ## Start every service of in the Docker Compose environment
 	docker-compose up
 
 .PHONY: dev-stop
