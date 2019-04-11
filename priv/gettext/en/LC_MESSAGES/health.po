@@ -1,0 +1,6 @@
+msgid ""
+msgstr ""
+"Language: en"
+
+msgid "ok"
+msgstr "The system looks OK."
