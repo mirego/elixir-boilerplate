@@ -3,6 +3,9 @@ defmodule ElixirBoilerplateWeb.Health.PlugTest do
 
   test "GET /health", %{conn: conn} do
     conn = get(conn, "/health")
-    assert html_response(conn, 200) =~ "The system looks OK."
+    assert json_response(conn, 200) == %{
+      "status" => "ok",
+      "version" => Application.spec(:elixir_boilerplate, :vsn)
+    }
   end
 end
