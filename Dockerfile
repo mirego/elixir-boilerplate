@@ -16,7 +16,7 @@ WORKDIR /build
 # This step installs all the build tools we'll need
 RUN apk update && \
     apk upgrade --no-cache && \
-    apk add --no-cache nodejs=10.14.2-r0 npm=10.14.2-r0 git build-base
+    apk add --no-cache nodejs~=10.14 npm~=10.14 git build-base
 RUN mix local.rebar --force && \
     mix local.hex --force
 
