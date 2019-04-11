@@ -28,6 +28,9 @@ COPY . .
 RUN mix compile --force
 
 RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm
+
+# Compile assets and generate digest filenames
+RUN npm run --prefix assets deploy
 RUN mix phx.digest
 
 RUN mkdir -p /opt/build && \
