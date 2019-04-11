@@ -7,6 +7,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     websocket: true
   )
 
+  plug(ElixirBoilerplateWeb.Health.Plug)
   plug(:canonical_host)
   plug(:force_ssl)
   plug(:basic_auth)
