@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "phoenix_html": "phoenixframework/phoenix_html#49e9a4ed636fc9d836d3c4904c64a9e64f706300"
+    "phoenix_html": "phoenixframework/phoenix_html#49e9a4ed636fc9d836d3c4904c64a9e64f706300",
+    "simple-css-reset": "^3.0.0"
   }
 }

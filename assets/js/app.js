@@ -1,1 +1,2 @@
-import _css from '../css/app.css';
+import 'simple-css-reset/reset.css';
+import '../css/app.css';

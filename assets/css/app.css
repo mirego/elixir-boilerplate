@@ -1,1 +1,22 @@
-/* This file is for your main application css. */
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.home a {
+  display: block;
+  margin: 0 0 20px;
+}
+
+.home p {
+  margin: 0 0 20px;
+}
+
+.home p:last-child {
+  margin-bottom: 0;
+}
