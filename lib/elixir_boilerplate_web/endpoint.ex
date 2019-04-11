@@ -1,5 +1,6 @@
 defmodule ElixirBoilerplateWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :elixir_boilerplate
+  use Sentry.Phoenix.Endpoint
 
   socket(
     "/socket",
