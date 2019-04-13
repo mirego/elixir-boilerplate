@@ -95,4 +95,4 @@ Each deployment is made from a Git tag. The codebase version is managed with [`i
 
 ### Container
 
-A new _OTP release_ running in a Docker container can be created with `make build`, tested with `make dev-start-application` and pushed to a registry with `make push`.
+A Docker image running an _OTP release_ can be created with `make build`, tested with `make dev-start` and pushed to a registry with `make push`.
