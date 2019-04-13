@@ -93,6 +93,6 @@ The `priv/scripts/ci-check.sh` script runs a set of commands (tests, linting, et
 
 Each deployment is made from a Git tag. The codebase version is managed with [`incr`](https://github.com/jcouture/incr).
 
-### OTP release
+### Container
 
-A new _OTP release_ can be created with `make build` and tested with `make dev-start-application`.
+A new _OTP release_ running in a Docker container can be created with `make build`, tested with `make dev-start-application` and pushed to a registry with `make push`.
