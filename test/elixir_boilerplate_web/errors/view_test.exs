@@ -1,18 +1,17 @@
 defmodule ElixirBoilerplateWeb.Errors.ViewTest do
   use ElixirBoilerplateWeb.ConnCase, async: true
 
-  # Bring render/3 and render_to_string/3 for testing custom views
-  import Phoenix.View
+  import Phoenix.View, only: [render_to_string: 3]
 
   test "renders 404.html" do
-    assert render_to_string(ElixirBoilerplateWeb.Errors.View, "404.html", []) == "Page not found"
+    assert render_to_string(ElixirBoilerplateWeb.Errors.View, "404.html", []) == "Not Found"
   end
 
   test "render 500.html" do
-    assert render_to_string(ElixirBoilerplateWeb.Errors.View, "500.html", []) == "Internal server error"
+    assert render_to_string(ElixirBoilerplateWeb.Errors.View, "500.html", []) == "Internal Server Error"
   end
 
   test "render any other" do
-    assert render_to_string(ElixirBoilerplateWeb.Errors.View, "505.html", []) == "Internal server error"
+    assert render_to_string(ElixirBoilerplateWeb.Errors.View, "505.html", []) == "HTTP Version Not Supported"
   end
 end

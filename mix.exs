@@ -54,7 +54,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:gettext, "~> 0.16"},
 
       # Errors
-      {:sentry, "~> 6.2"},
+      {:sentry, "~> 7.0"},
 
       # Linting
       {:credo, git: "https://github.com/mirego/credo", branch: "feature/add-consistency-filenames-check", only: [:dev, :test], override: true},
