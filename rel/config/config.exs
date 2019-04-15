@@ -73,7 +73,7 @@ config :phoenix, :json_library, Jason
 
 # Configure Repo with Postgres
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
-  size: Utils.Environment.get("DATABASE_POOL_SIZE"),
+  pool_size: Utils.Environment.get_integer("DATABASE_POOL_SIZE"),
   ssl: Utils.Environment.get_boolean("DATABASE_SSL"),
   url: Utils.Environment.get("DATABASE_URL")
 
