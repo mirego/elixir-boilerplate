@@ -7,8 +7,7 @@ use Mix.Config
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   root: ".",
-  server: true,
-  version: Application.spec(:elixir_boilerplate, :vsn)
+  server: true
 
 # Do not print debug messages in production
 config :logger, level: :info
