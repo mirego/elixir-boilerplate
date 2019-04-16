@@ -51,7 +51,7 @@ defmodule Utils do
       |> Application.spec(:vsn)
       |> case do
         nil -> Mix.Project.config()[:version]
-        version -> List.to_string(version)
+        version -> to_string(version)
       end
     end
   end
@@ -64,6 +64,7 @@ port = Utils.Environment.get("PORT")
 
 # General application configuration
 config :elixir_boilerplate,
+  version: Utils.Version.get(),
   canonical_host: host,
   force_ssl: force_ssl,
   ecto_repos: [ElixirBoilerplate.Repo]
