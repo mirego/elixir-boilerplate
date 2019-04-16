@@ -82,7 +82,7 @@ lint-credo:
 
 .PHONY: lint-eslint
 lint-eslint:
-	./assets/node_modules/.bin/eslint --ignore-path assets/.eslintignore --config assets/.eslintrc assets
+	./assets/node_modules/.bin/eslint --ignore-path assets/.eslintignore --config assets
 
 .PHONY: lint-stylelint
 lint-stylelint:
