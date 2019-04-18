@@ -57,7 +57,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:sentry, "~> 7.0"},
 
       # Linting
-      {:credo, git: "https://github.com/mirego/credo", branch: "feature/add-consistency-filenames-check", only: [:dev, :test], override: true},
+      {:credo, "~> 1.0", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: ~w(dev test)a, runtime: false},
 
       # OTP Release
