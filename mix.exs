@@ -58,7 +58,8 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Linting
       {:credo, "~> 1.0", only: [:dev, :test], override: true},
-      {:credo_envvar, "~> 0.1", only: ~w(dev test)a, runtime: false},
+      {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},
+      {:credo_filename_consistency, "~> 0.1", only: [:dev, :test], runtime: false},
 
       # OTP Release
       {:distillery, "~> 2.0"},
