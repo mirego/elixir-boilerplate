@@ -118,3 +118,9 @@ config :sentry,
   included_environments: [:prod],
   root_source_code_path: File.cwd!(),
   release: Utils.Version.get()
+
+# Configure production settings (that we don’t want to manage using environment variables)
+if Utils.Environment.get("MIX_ENV") == "prod" do
+  config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint, server: true, cache_static_manifest: "priv/static/cache_manifest.json"
+  config :logger, level: :info
+end
