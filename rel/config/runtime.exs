@@ -15,10 +15,10 @@ defmodule Environment do
     end
   end
 
-  def get_integer(key, default \\ 0) do
+  def get_integer(key) do
     case get(key) do
       value when is_bitstring(value) -> String.to_integer(value)
-      _ -> default
+      _ -> nil
     end
   end
 
