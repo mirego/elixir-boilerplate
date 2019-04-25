@@ -82,6 +82,4 @@ end
 config :sentry,
   dsn: Environment.get("SENTRY_DSN"),
   environment_name: Environment.get("SENTRY_ENVIRONMENT_NAME"),
-  included_environments: [:prod],
-  root_source_code_path: File.cwd!(),
   release: Environment.version()

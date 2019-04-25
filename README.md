@@ -27,6 +27,18 @@ This boilerplate comes with batteries included, you’ll find:
 4. Create a new Git repository (`git init`)
 5. Create the initial Git commit (`git commit -a -m "Initial commit"`)
 
+## Development
+
+Before starting the server with `mix phx.server` or testing the OTP/Docker setup with `make dev-start`, generate secret values for the following keys in [`.env.dev`](./.env.dev):
+
+- `SECRET_KEY_BASE`
+- `SIGNING_SALT`
+
+```shell
+> mix phx.gen.secret
+Eif/HWo9DB0A8h+tYYJDZOZUKXVTzLnHa7faTFySn6eIqocYqbcE8Hs9C9qp98Po
+```
+
 ## License
 
 Elixir Boilerplate is © 2017-2019 [Mirego](https://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause). See the [`LICENSE.md`](https://github.com/mirego/elixir-boilerplate/blob/master/LICENSE.md) file.

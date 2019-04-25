@@ -14,8 +14,13 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
 # Configure Gettext
 config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
 
-# Import runtime configuration
-import_config "../rel/config/release.exs"
+# Configure Sentry
+config :sentry,
+  included_environments: [:prod],
+  root_source_code_path: File.cwd!()
 
 # Import environment configuration
 import_config "#{Mix.env()}.exs"
+
+# Import runtime configuration
+import_config "../rel/config/runtime.exs"
