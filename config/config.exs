@@ -1,8 +1,21 @@
 use Mix.Config
 
-# Import release config
-import_config "../rel/config/config.exs"
+# Configure application
+config :elixir_boilerplate, ecto_repos: [ElixirBoilerplate.Repo]
 
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
+# Configure Phoenix
+config :phoenix, :json_library, Jason
+
+# Configure endpoint
+config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
+  pubsub: [name: ElixirBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2],
+  render_errors: [view: ElixirBoilerplateWeb.Errors.View, accepts: ~w(html json)]
+
+# Configure Gettext
+config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
+
+# Import environment configuration
 import_config "#{Mix.env()}.exs"
+
+# Import runtime configuration
+import_config "../rel/config/release.exs"

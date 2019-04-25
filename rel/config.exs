@@ -34,13 +34,13 @@ release :elixir_boilerplate do
 
   set(
     config_providers: [
-      {Mix.Releases.Config.Providers.Elixir, ["${RELEASE_ROOT_DIR}/etc/config.exs"]}
+      {Mix.Releases.Config.Providers.Elixir, ["${RELEASE_ROOT_DIR}/config.exs"]}
     ]
   )
 
   set(
     overlays: [
-      {:copy, "rel/config/config.exs", "etc/config.exs"}
+      {:copy, "rel/config/release.exs", "config.exs"}
     ]
   )
 
