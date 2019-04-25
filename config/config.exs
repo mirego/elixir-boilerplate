@@ -19,8 +19,8 @@ config :sentry,
   included_environments: [:prod],
   root_source_code_path: File.cwd!()
 
-# Import environment configuration
-import_config "#{Mix.env()}.exs"
-
 # Import runtime configuration
 import_config "../rel/config/runtime.exs"
+
+# Import environment configuration
+import_config "#{Mix.env()}.exs"
