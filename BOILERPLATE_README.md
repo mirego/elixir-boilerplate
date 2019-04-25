@@ -40,8 +40,8 @@ When running `mix` or `make` commands, it is important that these variables are 
 
 1. Create both `.env.dev.local` and `.env.test.local` from empty values in [`.env.dev`](./.env.dev) and [`.env.test`](./.env.test)
 2. Install Mix and NPM dependencies with `make dependencies`
-3. Create and migrate the database with `mix ecto.setup`
-4. Compile the application with `make compile`
+3. Generate values for mandatory secrets in [`.env.dev`](./.env.dev) with `mix phx.gen.secret`
+4. Create and migrate the database with `mix ecto.setup`
 5. Start the Phoenix server with `iex -S mix phx.server` with environment variables from `.env.dev` and `.env.dev.local`
 
 ### `make` commands
