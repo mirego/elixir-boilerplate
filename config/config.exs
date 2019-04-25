@@ -14,8 +14,8 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
 # Configure Gettext
 config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
 
-# Import environment configuration
-import_config "#{Mix.env()}.exs"
-
 # Import runtime configuration
 import_config "../rel/config/release.exs"
+
+# Import environment configuration
+import_config "#{Mix.env()}.exs"
