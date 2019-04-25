@@ -22,6 +22,13 @@ defmodule Environment do
     end
   end
 
+  def get_list(key) do
+    case get(key) do
+      value when is_bitstring(value) -> String.split(value, ",")
+      _ -> []
+    end
+  end
+
   def exists?(key) do
     case get(key) do
       "" -> false
@@ -69,6 +76,11 @@ if Environment.exists?("BASIC_AUTH_USERNAME") do
       password: Environment.get("BASIC_AUTH_PASSWORD")
     ]
 end
+
+# Configure CORS
+config :elixir_boilerplate, :corsica,
+  origins: Environment.get_list("CORS_ALLOWED_ORIGINS"),
+  allow_headers: :all
 
 # Configure Sentry
 config :sentry,

@@ -9,6 +9,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   )
 
   plug(ElixirBoilerplateWeb.Health.Plug)
+  plug(:cors)
   plug(:canonical_host)
   plug(:force_ssl)
   plug(:basic_auth)
@@ -86,6 +87,18 @@ defmodule ElixirBoilerplateWeb.Endpoint do
       opts = BasicAuth.init(use_config: {:elixir_boilerplate, :basic_auth})
 
       BasicAuth.call(conn, opts)
+    else
+      conn
+    end
+  end
+
+  defp cors(conn, _opts) do
+    corsica_config = Application.get_env(:elixir_boilerplate, :corsica)
+
+    if corsica_config do
+      opts = Corsica.init(corsica_config)
+
+      Corsica.call(conn, opts)
     else
       conn
     end
