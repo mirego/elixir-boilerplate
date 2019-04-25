@@ -31,23 +31,23 @@ defmodule Environment do
   end
 end
 
-# Configure application
 force_ssl = Environment.get_boolean("FORCE_SSL")
 scheme = if force_ssl, do: "https", else: "http"
 host = Environment.get("CANONICAL_HOST")
 port = Environment.get("PORT")
 
+# Configure application
 config :elixir_boilerplate,
   canonical_host: host,
   force_ssl: force_ssl
 
-# Configure Repo with Postgres
+# Configure Ecto repo
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool_size: Environment.get_integer("DATABASE_POOL_SIZE"),
   ssl: Environment.get_boolean("DATABASE_SSL"),
   url: Environment.get("DATABASE_URL")
 
-# Configure endpoint
+# Configure Phoenix endpoint
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
   http: [port: port],

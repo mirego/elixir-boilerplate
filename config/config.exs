@@ -1,8 +1,9 @@
 use Mix.Config
 
-# Configure application
+# Extract version from Mix
 version = Mix.Project.config()[:version]
 
+# Configure application
 config :elixir_boilerplate,
   ecto_repos: [ElixirBoilerplate.Repo],
   version: version
@@ -10,7 +11,7 @@ config :elixir_boilerplate,
 # Configure Phoenix
 config :phoenix, :json_library, Jason
 
-# Configure endpoint
+# Configure Phoenix endpoint
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   pubsub: [name: ElixirBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2],
   render_errors: [view: ElixirBoilerplateWeb.Errors.View, accepts: ~w(html json)]
