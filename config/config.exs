@@ -1,7 +1,11 @@
 use Mix.Config
 
 # Configure application
-config :elixir_boilerplate, ecto_repos: [ElixirBoilerplate.Repo]
+version = Mix.Project.config()[:version]
+
+config :elixir_boilerplate,
+  ecto_repos: [ElixirBoilerplate.Repo],
+  version: version
 
 # Configure Phoenix
 config :phoenix, :json_library, Jason
@@ -17,7 +21,8 @@ config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
 # Configure Sentry
 config :sentry,
   included_environments: [:prod],
-  root_source_code_path: File.cwd!()
+  root_source_code_path: File.cwd!(),
+  release: version
 
 # Import runtime configuration
 import_config "../rel/config/runtime.exs"

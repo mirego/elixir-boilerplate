@@ -29,13 +29,6 @@ defmodule Environment do
       _ -> true
     end
   end
-
-  def version do
-    case Application.spec(:elixir_boilerplatecase, :vsn) do
-      nil -> Mix.Project.config()[:version]
-      version -> to_string(version)
-    end
-  end
 end
 
 # Configure application
@@ -46,8 +39,7 @@ port = Environment.get("PORT")
 
 config :elixir_boilerplate,
   canonical_host: host,
-  force_ssl: force_ssl,
-  version: Environment.version()
+  force_ssl: force_ssl
 
 # Configure Repo with Postgres
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
@@ -81,5 +73,4 @@ end
 # Configure Sentry
 config :sentry,
   dsn: Environment.get("SENTRY_DSN"),
-  environment_name: Environment.get("SENTRY_ENVIRONMENT_NAME"),
-  release: Environment.version()
+  environment_name: Environment.get("SENTRY_ENVIRONMENT_NAME")
