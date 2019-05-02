@@ -1,11 +1,17 @@
-# Configuration
-# -------------
+# Build configuration
+# -------------------
 
 APP_NAME = `grep 'app:' mix.exs | sed -e 's/\[//g' -e 's/ //g' -e 's/app://' -e 's/[:,]//g'`
 APP_VERSION = `grep 'version:' mix.exs | cut -d '"' -f2`
 GIT_REVISION = `git rev-parse HEAD`
 DOCKER_IMAGE_TAG ?= latest
 DOCKER_REGISTRY ?=
+
+# Linter and formatter configuration
+# ----------------------------------
+
+PRETTIER_FILES_PATTERN = 'assets/.babelrc' 'assets/webpack.config.js' 'assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' '**/*.md'
+STYLES_PATTERN = assets/css
 
 # Introspection targets
 # ---------------------
@@ -42,17 +48,6 @@ targets:
 # Build targets
 # -------------
 
-.PHONY: dependencies
-dependencies: dependencies-mix dependencies-npm ## Install dependencies required by the application
-
-.PHONY: dependencies-mix
-dependencies-mix:
-	mix deps.get --force
-
-.PHONY: dependencies-npm
-dependencies-npm:
-	npm install --prefix assets
-
 .PHONY: build
 build: ## Build the Docker image for the OTP release
 	docker build --build-arg APP_NAME=$(APP_NAME) --build-arg APP_VERSION=$(APP_VERSION) --rm --tag $(APP_NAME):$(DOCKER_IMAGE_TAG) .
@@ -62,74 +57,62 @@ push: ## Push the Docker image
 	docker tag $(APP_NAME):$(DOCKER_IMAGE_TAG) $(DOCKER_REGISTRY)/$(APP_NAME):$(DOCKER_IMAGE_TAG)
 	docker push $(DOCKER_REGISTRY)/$(APP_NAME):$(DOCKER_IMAGE_TAG)
 
-# CI targets
-# ----------
+# Development targets
+# -------------------
 
-.PHONY: lint
-lint: lint-compile lint-format lint-credo lint-eslint lint-stylelint lint-prettier ## Run lint tools on the code
-
-.PHONY: lint-compile
-lint-compile:
-	mix compile --warnings-as-errors --force
-
-.PHONY: lint-format
-lint-format:
-	mix format --dry-run --check-formatted
-
-.PHONY: lint-credo
-lint-credo:
-	mix credo --strict
-
-.PHONY: lint-eslint
-lint-eslint:
-	./assets/node_modules/.bin/eslint --ignore-path assets/.eslintignore --config assets
-
-.PHONY: lint-stylelint
-lint-stylelint:
-	./assets/node_modules/.bin/stylelint --syntax scss --config assets/.stylelintrc assets/css
-
-.PHONY: lint-prettier
-lint-prettier:
-	./assets/node_modules/.bin/prettier -l assets/.babelrc assets/webpack.config.js 'assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' '**/*.md'
+.PHONY: dependencies
+dependencies: ## Install dependencies required by the application
+	mix deps.get --force
+	npm install --prefix assets
 
 .PHONY: test
 test: ## Run the test suite
 	mix test
 
-.PHONY: test-coverage
-test-coverage: ## Generate the code coverage report
+# Check, lint and format targets
+# ------------------------------
+
+.PHONY: check-code-coverage
+check-code-coverage:
 	mix coveralls
 
-.PHONY: dialyze
-dialyze: ## Run Dialyzer on the code
+.PHONY: check-format
+check-format:
+	mix format --dry-run --check-formatted
+	./assets/node_modules/.bin/prettier --check $(PRETTIER_FILES_PATTERN)
+
+.PHONY: check-typespecs
+check-typespecs:
 	mix dialyzer --halt-exit-status --format dialyxir
 
 .PHONY: format
-format: format-elixir format-prettier ## Run formatting tools on the code
-
-.PHONY: format-elixir
-format-elixir:
+format: ## Format project files
 	mix format
+	./assets/node_modules/.bin/prettier --write $(PRETTIER_FILES_PATTERN)
 
-.PHONY: format-prettier
-format-prettier:
-	./assets/node_modules/.bin/prettier --write 'assets/.babelrc' 'assets/webpack.config.js' 'assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' '**/*.md'
+.PHONY: lint
+lint: lint-elixir lint-scripts lint-styles ## Lint project files
 
-# Development targets
-# -------------------
+.PHONY: lint-elixir
+lint-elixir:
+	mix compile --warnings-as-errors --force
+	mix credo --strict
 
-.PHONY: dev-start-postgresql
-dev-start-postgresql: ## Run a PostgreSQL server inside of a Docker Compose environment
-	docker-compose up --detach postgresql
+.PHONY: lint-scripts
+lint-scripts:
+	./assets/node_modules/.bin/eslint --ignore-path assets/.eslintignore --config assets/.eslintrc assets
 
-.PHONY: dev-start-application
-dev-start-application: build ## Run the OTP release inside of a Docker Compose environment
-	docker-compose up application
+.PHONY: lint-styles
+lint-styles:
+	./assets/node_modules/.bin/stylelint --syntax scss --config assets/.stylelintrc $(STYLES_PATTERN)
 
-.PHONY: dev-start
-dev-start: build ## Start every service of in the Docker Compose environment
+# Service container targets
+# -------------------------
+
+.PHONY: services-start
+services-start: build ## Start every service in the Docker Compose environment
 	docker-compose up
 
-.PHONY: dev-stop
-dev-stop: ## Stop every service of in the Docker Compose environment
+.PHONY: stop
+services-stop: ## Stop every service in the Docker Compose environment
 	docker-compose down
