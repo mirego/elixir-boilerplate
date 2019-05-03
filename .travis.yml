@@ -1,16 +1,15 @@
+# Use Ubuntu Xenial
+dist: xenial
+
 # Elixir baby!
-language: 'elixir'
+language: elixir
 
 elixir: 1.8
 otp_release: 21.3.3
 
 # Make sure PostgreSQL is running
 addons:
-  postgresql: "10"
-  apt:
-    packages:
-      - postgresql-10
-      - postgresql-client-10
+  postgresql: 10
 
 # Use the cache to build faster
 cache:
@@ -24,14 +23,7 @@ cache:
 env:
   global:
     - MIX_ENV: test
-    - DATABASE_URL: postgres://elixir_boilerplate:password@localhost:5433/elixir_boilerplate_test
-    - PGPORT: 5433
-
-# Output Travis server IP for debugging
-before_install:
-  - echo `curl --verbose http://jsonip.com`
-  - sudo -u postgres psql -c "CREATE USER elixir_boilerplate WITH PASSWORD 'password'"
-  - sudo -u postgres psql -c "ALTER ROLE elixir_boilerplate SUPERUSER"
+    - DATABASE_URL: postgres://localhost/elixir_boilerplate_test
 
 # Install the node version we need, install the node packages,
 # create the database and prepare the application
