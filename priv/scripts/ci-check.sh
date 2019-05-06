@@ -27,17 +27,20 @@ run() {
   fi
 }
 
-header "Code format and linting…"
+header "Lint files…"
 run make lint
+
+header "Check code format…"
+run make check-format
 
 header "Run tests…"
 run make test
 
-header "Code coverage…"
-run make test-coverage
+header "Check test code coverage…"
+run make check-code-coverage
 
-header "Dialyzer…"
-run make dialyze
+header "Typecheck files…"
+run make check-typespecs
 
 header "Run seed data…"
 run mix run priv/repo/seeds.exs
@@ -45,7 +48,7 @@ run mix run priv/repo/seeds.exs
 header "Run dummy data…"
 run mix run priv/repo/dummy.exs
 
-header "Build Docker image running an OTP release…"
+header "Build Docker image…"
 run make build
 
 if [ ${error_status} -ne 0 ]; then
