@@ -60,12 +60,11 @@ Tests can be ran with `make test` and test coverage can be calculated with `make
 
 Several linting and formatting tools can be ran to ensure coding style consistency:
 
-- `make lint-format` ensures Elixir code is properly formatted
-- `make lint-credo` ensures Elixir code follows our best practices
-- `make lint-compile` ensures Elixir code compilation does not raise any warning
-- `make lint-eslint` ensures JavaScript code follows our best practices
-- `make lint-stylelint` ensures SCSS code follows our best practices
-- `make lint-prettier` ensures JavaScript, SCSS and GraphQL code is properly formatted
+- `make lint-elixir` ensures Elixir code follows our guidelines and best practices
+- `make lint-scripts` ensures JavaScript code follows our guidelines and best practices
+- `make lint-styles` ensures SCSS code follows our guidelines and best practices
+- `make check-format` ensures JavaScript, SCSS and GraphQL code is properly formatted
+- `make check-typespecs` ensures Elixir typespecs are valid
 
 All of these commands can be executed at the same time with the helpful `make lint` command.
 
