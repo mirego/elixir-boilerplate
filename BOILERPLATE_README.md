@@ -54,7 +54,7 @@ To avoid running PostgreSQL locally on your machine, a `docker-compose.yml` file
 
 ### Tests
 
-Tests can be ran with `make test` and test coverage can be calculated with `make test-coverage`.
+Tests can be ran with `make test` and test coverage can be calculated with `make check-code-coverage`.
 
 ### Linting
 
