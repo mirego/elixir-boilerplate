@@ -22,8 +22,8 @@
 
 ## 🚧 Dependencies
 
-- Node.js (`~> 10.14`)
-- NPM (`~> 6.4`)
+- Node.js (`>= 10.14, < 11.0`)
+- NPM (`>= 6.4, < 7.0`)
 - Elixir (`~> 1.8`)
 - Erlang (`~> 21.3`)
 - PostgreSQL (`~> 10.0`)
