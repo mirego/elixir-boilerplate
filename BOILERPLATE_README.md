@@ -36,6 +36,8 @@ All required environment variables are documented in [`.env.dev`](./.env.dev).
 
 When running `mix` or `make` commands, it is important that these variables are present in the environment. You can use `source`, [`nv`](https://github.com/jcouture/nv) or any custom script to achieve this.
 
+If using `source` : update the appropriate `.env` file so that the variables are exported like `export PORT=4000` **before** you run `source .env.dev.local` (Else you might get errors)
+
 ### Initial setup
 
 1. Create both `.env.dev.local` and `.env.test.local` from empty values in [`.env.dev`](./.env.dev) and [`.env.test`](./.env.test)
