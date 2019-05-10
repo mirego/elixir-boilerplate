@@ -34,7 +34,7 @@
 
 All required environment variables are documented in [`.env.dev`](./.env.dev).
 
-When running `mix` or `make` commands, it is important that these variables are present in the environment. You can use `source`, [`nv`](https://github.com/jcouture/nv) or any custom script to achieve this.
+When running `mix` or `make` commands, it is important that these variables are present in the environment. There are several ways to achieve this. Using [`nv`](https://github.com/jcouture/nv) is recommended since it works out of the box with `.env.*` files.
 
 ### Initial setup
 
