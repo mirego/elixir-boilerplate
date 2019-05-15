@@ -25,8 +25,8 @@ config :sentry,
   root_source_code_path: File.cwd!(),
   release: version
 
-# Import runtime configuration
-import_config "../rel/config/runtime.exs"
+# Import release/runtime configuration
+import_config "releases.exs"
 
 # Import environment configuration
 import_config "#{Mix.env()}.exs"

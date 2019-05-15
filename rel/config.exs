@@ -40,7 +40,7 @@ release :elixir_boilerplate do
 
   set(
     overlays: [
-      {:copy, "rel/config/runtime.exs", "config.exs"}
+      {:copy, "config/releases.exs", "config.exs"}
     ]
   )
 
