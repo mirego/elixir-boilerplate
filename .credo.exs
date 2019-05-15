@@ -54,7 +54,7 @@
         {Credo.Check.Warning.UnusedTupleOperation},
         {Credo.Check.Warning.OperationWithConstantResult},
         {CredoEnvvar.Check.Warning.EnvironmentVariablesAtCompileTime},
-        {CredoFilenameConsistency.Check.Consistency.FilenameConsistency, excluded_paths: ["test/support", "priv", "rel", "mix.exs"]}
+        {CredoFilenameConsistency.Check.Consistency.FilenameConsistency, excluded_paths: ["config", "mix.exs", "priv", "test/support"]}
       ]
     }
   ]
