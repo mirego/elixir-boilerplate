@@ -30,23 +30,23 @@ defmodule Mix.Tasks.Erlang.CheckVersion do
     |> Path.join()
     |> File.read()
     |> case do
-      {:ok, version} -> sanitize_version(String.trim(version))
+      {:ok, version} -> sanitize_version(version)
       _ -> nil
     end
   end
 
+  # OTP versions are not always compatible with Semantic Versioning. For
+  # example, `21.3` and `21.3.0.1` are valid OTP versions, but not valid
+  # “semver” ones. We need to set them both to `21.3.0` to match it against our
+  # expected version requirement.
   defp sanitize_version(version) do
-    ~r/^\d+\.\d+$/
-    |> Regex.run(version)
+    version
+    |> String.trim()
+    |> String.split(".")
     |> case do
-      [version] ->
-        # OTP versions are not always compatible with Semantic Versioning. For example,
-        # `21.3` is a valid OTP version, but is not a valid “semver” one. We need to set
-        # it to `21.3.0` to match it against our expected version requirement.
-        "#{version}.0"
-
-      nil ->
-        version
+      [major] -> "#{major}.0.0"
+      [major, minor] -> "#{major}.#{minor}.0"
+      [major, minor, patch | _] -> "#{major}.#{minor}.#{patch}"
     end
   end
 end
