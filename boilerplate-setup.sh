@@ -91,8 +91,8 @@ for path in $paths; do
 done
 success "Done!\n"
 
-header "Importing project README.md"
-run "rm -fr README.md && mv BOILERPLATE_README.md README.md"
+header "Importing project README.md and README.fr.md"
+run "rm -fr README.md && mv BOILERPLATE_README.md README.md && mv BOILERPLATE_README.fr.md README.fr.md"
 success "Done!\n"
 
 header "Removing boilerplate license → https://choosealicense.com"
