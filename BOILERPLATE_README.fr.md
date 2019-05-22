@@ -57,7 +57,7 @@ Pour éviter de rouler PostgreSQL localement sur votre machine, un fichier `dock
 
 ### Tests
 
-La suite de tests peut être exécutée avec `make test` et le niveau de couvertur de celle-ci peut être calculé et validé avec `make check-code-coverage`.
+La suite de tests peut être exécutée avec `make test` et le niveau de couverture de celle-ci peut être calculé et validé avec `make check-code-coverage`.
 
 ### _Linting_
 
