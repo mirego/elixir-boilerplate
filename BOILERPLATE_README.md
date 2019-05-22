@@ -50,7 +50,7 @@ A `Makefile` is present at the root and expose common tasks. The list of these c
 
 ### Database
 
-To avoid running PostgreSQL locally on your machine, a `docker-compose.yml` file is included to be able start a PostgreSQL server in a Docker container with `make services-start`.
+To avoid running PostgreSQL locally on your machine, a `docker-compose.yml` file is included to be able start a PostgreSQL server in a Docker container with `docker-compose up postgresql`.
 
 ### Tests
 
@@ -93,4 +93,4 @@ Each deployment is made from a Git tag. The codebase version is managed with [`i
 
 ### Container
 
-A Docker image running an _OTP release_ can be created with `make build`, tested with `make services-start` and pushed to a registry with `make push`.
+A Docker image running an _OTP release_ can be created with `make build`, tested with `docker-compose up application` and pushed to a registry with `make push`.
