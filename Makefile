@@ -105,14 +105,3 @@ lint-scripts:
 .PHONY: lint-styles
 lint-styles:
 	./assets/node_modules/.bin/stylelint --syntax scss --config assets/.stylelintrc $(STYLES_PATTERN)
-
-# Service container targets
-# -------------------------
-
-.PHONY: services-start
-services-start: build ## Start every service in the Docker Compose environment
-	docker-compose up
-
-.PHONY: services-stop
-services-stop: ## Stop every service in the Docker Compose environment
-	docker-compose down
