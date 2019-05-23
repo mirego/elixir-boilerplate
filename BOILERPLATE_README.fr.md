@@ -96,4 +96,4 @@ Chaque déploiement est effectué à partir d’un tag Git. La version du codeba
 
 ### _Container_
 
-Un _container_ Docker exposant une _release OTP_ peut être créé avec `make build`, testé avec `make services-start` et poussé dans un registre avec `make push`.
+Un _container_ Docker exposant une _release OTP_ peut être créé avec `make build`, testé avec `docker-compose up application` et poussé dans un registre avec `make push`.
