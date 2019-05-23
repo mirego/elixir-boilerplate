@@ -7,7 +7,7 @@
 | [🏎 Départ rapide](#-départ-rapide)                      | Détails sur comment démarrer rapidement le développement du projet |
 | [🏗 Code et architecture](#-code-et-architecture)        | Détails sur les composantes techniques de l’application            |
 | [🔭 Améliorations possibles](#-améliorations-possibles) | Améliorations, idées et _refactors_ potentiels                     |
-| [🚑 Problèmes et solutions](#-problèmes-et-solutions)   | Problèmes récurrents et solutions éprouvés                         |
+| [🚑 Problèmes et solutions](#-problèmes-et-solutions)   | Problèmes récurrents et solutions éprouvées                        |
 | [🚀 Déploiement](#-deploiement)                         | Détails pour le déploiement dans différents environnements         |
 
 ## 🎯 Objectifs et contexte
@@ -59,7 +59,7 @@ Pour éviter de rouler PostgreSQL localement sur votre machine, un fichier `dock
 
 La suite de tests peut être exécutée avec `make test` et le niveau de couverture de celle-ci peut être calculé et validé avec `make check-code-coverage`.
 
-### _Linting_
+### _Linting_ et _formatting_
 
 Plusieurs outils de _linting_ et de _formatting_ peuvent être exécutés pour s’assurer du respect des bonnes pratiques de code :
 
@@ -92,7 +92,7 @@ Le script `priv/scripts/ci-check.sh` exécute un ensemble de commantes (tests, _
 
 ### Versions et branches
 
-Chaque déploiement est effectué à partir d’un tag Git. La version du codebase est gérée avec [`incr`](https://github.com/jcouture/incr).
+Chaque déploiement est effectué à partir d’un tag Git. La version du _codebase_ est gérée avec [`incr`](https://github.com/jcouture/incr).
 
 ### _Container_
 
