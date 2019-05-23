@@ -9,9 +9,9 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   )
 
   plug(ElixirBoilerplateWeb.Health.Plug)
-  plug(:cors)
   plug(:canonical_host)
   plug(:force_ssl)
+  plug(:cors)
   plug(:basic_auth)
   plug(:session)
 
