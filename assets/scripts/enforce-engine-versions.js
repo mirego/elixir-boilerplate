@@ -8,7 +8,7 @@ let semver;
 
 try {
   semver = require('semver');
-} catch {
+} catch (_) {
   // The `semver` might not be available since we run this
   // script as a `preinstall` hook.
   console.info(
