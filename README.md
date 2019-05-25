@@ -18,7 +18,7 @@ This boilerplate comes with batteries included, you’ll find:
 - OTP release using [Distillery](https://hexdocs.pm/distillery/home.html) and [Docker](https://www.docker.com)
 - Useful utilities for web features: _basic auth_, _canonical host_, etc…
 - Error reporting with [Sentry](https://hexdocs.pm/sentry/readme.html)
-- A clean and useful [`README.md`](./BOILERPLATE_README.md) template
+- A clean and useful `README.md` template (in both [english](./BOILERPLATE_README.md) and [french](./BOILERPLATE_README.fr.md))
 
 ## Usage
 
