@@ -77,10 +77,7 @@ if Environment.exists?("BASIC_AUTH_USERNAME") do
     ]
 end
 
-# Configure CORS
-config :elixir_boilerplate, :corsica,
-  origins: Environment.get_list("CORS_ALLOWED_ORIGINS"),
-  allow_headers: :all
+config :elixir_boilerplate, :corsica, origins: Environment.get_list("CORS_ALLOWED_ORIGINS")
 
 # Configure Sentry
 config :sentry,

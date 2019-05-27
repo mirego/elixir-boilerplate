@@ -19,6 +19,8 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
 # Configure Gettext
 config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
 
+config :elixir_boilerplate, :corsica, allow_headers: :all
+
 # Configure Sentry
 config :sentry,
   included_environments: [:prod],
