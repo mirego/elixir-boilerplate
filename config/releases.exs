@@ -43,18 +43,15 @@ scheme = if force_ssl, do: "https", else: "http"
 host = Environment.get("CANONICAL_HOST")
 port = Environment.get("PORT")
 
-# Configure application
 config :elixir_boilerplate,
   canonical_host: host,
   force_ssl: force_ssl
 
-# Configure Ecto repo
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool_size: Environment.get_integer("DATABASE_POOL_SIZE"),
   ssl: Environment.get_boolean("DATABASE_SSL"),
   url: Environment.get("DATABASE_URL")
 
-# Configure Phoenix endpoint
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
   http: [port: port],
@@ -68,7 +65,6 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   ],
   url: [scheme: scheme, host: host, port: port]
 
-# Configure Basic Auth
 if Environment.exists?("BASIC_AUTH_USERNAME") do
   config :elixir_boilerplate,
     basic_auth: [
@@ -79,7 +75,6 @@ end
 
 config :elixir_boilerplate, :corsica, origins: Environment.get_list("CORS_ALLOWED_ORIGINS")
 
-# Configure Sentry
 config :sentry,
   dsn: Environment.get("SENTRY_DSN"),
   environment_name: Environment.get("SENTRY_ENVIRONMENT_NAME")
