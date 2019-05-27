@@ -14,8 +14,7 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
     patterns: [
       ~r{priv/gettext/.*$},
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
-      ~r{lib/elixir_boilerplate_web/views/.*(ex)$},
-      ~r{lib/elixir_boilerplate_web/templates/.*(eex)$}
+      ~r{lib/elixir_boilerplate_web/.*(ee?x)$}
     ]
   ]
 
