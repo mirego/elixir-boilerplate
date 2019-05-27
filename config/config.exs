@@ -23,7 +23,7 @@ config :elixir_boilerplate, :corsica, allow_headers: :all
 
 # Configure Sentry
 config :sentry,
-  included_environments: [:prod],
+  included_environments: ~w(prod)a,
   root_source_code_path: File.cwd!(),
   release: version
 

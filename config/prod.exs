@@ -9,4 +9,4 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   level: :info,
-  metadata: [:request_id]
+  metadata: ~w(request_id)a
