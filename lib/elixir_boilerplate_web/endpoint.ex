@@ -80,6 +80,12 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     end
   end
 
+  defp cors(conn, _opts) do
+    opts = Corsica.init(Application.get_env(:elixir_boilerplate, Corsica))
+
+    Corsica.call(conn, opts)
+  end
+
   defp basic_auth(conn, _opts) do
     basic_auth_config = Application.get_env(:elixir_boilerplate, :basic_auth)
 
@@ -87,18 +93,6 @@ defmodule ElixirBoilerplateWeb.Endpoint do
       opts = BasicAuth.init(use_config: {:elixir_boilerplate, :basic_auth})
 
       BasicAuth.call(conn, opts)
-    else
-      conn
-    end
-  end
-
-  defp cors(conn, _opts) do
-    corsica_config = Application.get_env(:elixir_boilerplate, :corsica)
-
-    if corsica_config do
-      opts = Corsica.init(corsica_config)
-
-      Corsica.call(conn, opts)
     else
       conn
     end

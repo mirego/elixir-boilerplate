@@ -22,10 +22,13 @@ defmodule Environment do
     end
   end
 
-  def get_list(key) do
-    case get(key) do
-      value when is_bitstring(value) -> String.split(value, ",")
-      _ -> []
+  def get_list_or_first_value(key) do
+    with value when is_bitstring(value) <- get(key),
+         [single_value] <- String.split(value, ",") do
+      single_value
+    else
+      values when is_list(values) -> values
+      _ -> nil
     end
   end
 
@@ -65,6 +68,8 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   ],
   url: [scheme: scheme, host: host, port: port]
 
+config :elixir_boilerplate, Corsica, origins: Environment.get_list_or_first_value("CORS_ALLOWED_ORIGINS")
+
 if Environment.exists?("BASIC_AUTH_USERNAME") do
   config :elixir_boilerplate,
     basic_auth: [
@@ -72,8 +77,6 @@ if Environment.exists?("BASIC_AUTH_USERNAME") do
       password: Environment.get("BASIC_AUTH_PASSWORD")
     ]
 end
-
-config :elixir_boilerplate, :corsica, origins: Environment.get_list("CORS_ALLOWED_ORIGINS")
 
 config :sentry,
   dsn: Environment.get("SENTRY_DSN"),
