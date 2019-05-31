@@ -1,0 +1,7 @@
+<%= if @errors != [] do %>
+  <ul>
+    <%= for error <- @errors do %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
