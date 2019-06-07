@@ -22,6 +22,15 @@ This boilerplate comes with batteries included, you’ll find:
 
 ## Usage
 
+### With GitHub template
+
+1. Click on the [**Use this template**](https://github.com/mirego/elixir-boilerplate/generate) button to create a new repository
+2. Clone your newly created project (`git clone https://github.com/you/repo.git`)
+3. Run the boilerplate setup script (`./boilerplate-setup.sh YourProjectName`)
+4. Commit the changes (`git commit -a -m "Rename elixir-boilerplate parts"`)
+
+### Without GitHub template
+
 1. Clone this project (`git clone https://github.com/mirego/elixir-boilerplate.git`)
 2. Delete the internal Git directory (`rm -rf .git`)
 3. Run the boilerplate setup script (`./boilerplate-setup.sh YourProjectName`)
