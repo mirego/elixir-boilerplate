@@ -42,6 +42,7 @@
         {Credo.Check.Refactor.NegatedConditionsWithElse},
         {Credo.Check.Refactor.Nesting},
         {Credo.Check.Refactor.UnlessWithElse},
+        {Credo.Check.Refactor.WithClauses},
         {Credo.Check.Warning.IExPry},
         {Credo.Check.Warning.IoInspect},
         {Credo.Check.Warning.LazyLogging, false},

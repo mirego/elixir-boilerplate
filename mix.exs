@@ -58,7 +58,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:sentry, "~> 7.0"},
 
       # Linting
-      {:credo, "~> 1.0", only: [:dev, :test], override: true},
+      {:credo, "~> 1.1", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},
       {:credo_filename_consistency, "~> 0.1", only: [:dev, :test], runtime: false},
 
