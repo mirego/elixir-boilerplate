@@ -48,6 +48,9 @@ run mix run priv/repo/seeds.exs
 header "Run dummy data…"
 run mix run priv/repo/dummy.exs
 
+header "Check unused locked dependencies…"
+run make check-unused-locked-dependencies
+
 header "Build Docker image…"
 run make build
 

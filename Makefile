@@ -85,6 +85,10 @@ check-format:
 check-typespecs:
 	mix dialyzer --halt-exit-status --format dialyxir
 
+.PHONY: check-unused-locked-dependencies
+check-unused-locked-dependencies:
+	mix check.unused_locked_deps
+
 .PHONY: format
 format: ## Format project files
 	mix format

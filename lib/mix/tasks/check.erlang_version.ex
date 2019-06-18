@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Erlang.CheckVersion do
+defmodule Mix.Tasks.Check.ErlangVersion do
   use Mix.Task
 
   @shortdoc "Check the Erlang/OTP version"
