@@ -12,7 +12,6 @@ defmodule ElixirBoilerplate.Mixfile do
       test_pattern: "**/*_test.exs",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
-      dialyzer: dialyzer(),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -66,10 +65,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:distillery, "~> 2.0"},
 
       # Test coverage
-      {:excoveralls, "~> 0.10", only: :test},
-
-      # Success typing
-      {:dialyxir, "~> 1.0.0-rc.4", only: [:dev, :test], runtime: false}
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 
@@ -79,14 +75,6 @@ defmodule ElixirBoilerplate.Mixfile do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"],
       "compile.app": ["check.erlang_version", "compile.app"]
-    ]
-  end
-
-  defp dialyzer do
-    [
-      plt_add_apps: [:ex_unit, :mix],
-      plt_add_deps: :app_tree,
-      plt_file: {:no_warn, "priv/plts/elixir_boilerplate.plt"}
     ]
   end
 end

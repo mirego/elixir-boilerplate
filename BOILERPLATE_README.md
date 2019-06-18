@@ -67,7 +67,6 @@ Several linting and formatting tools can be ran to ensure coding style consisten
 - `make lint-scripts` ensures JavaScript code follows our guidelines and best practices
 - `make lint-styles` ensures SCSS code follows our guidelines and best practices
 - `make check-format` ensures all code is properly formatted
-- `make check-typespecs` ensures Elixir typespecs are valid
 - `make format` formats files using Prettier and `mix format`
 
 ### Continuous integration

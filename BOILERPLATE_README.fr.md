@@ -67,7 +67,6 @@ Plusieurs outils de _linting_ et de _formatting_ peuvent être exécutés pour s
 - `make lint-scripts` s’assure que le code JavaScript respecte nos bonnes pratiques
 - `make lint-styles` s’assure que le code SCSS respecte nos bonnes pratiques
 - `make check-format` valide que le code est bien formatté
-- `make check-typespecs` valide que les _typespecs_ Elixir sont valides
 - `make format` formatte les fichiers en utilisant Prettier et `mix format`
 
 ### Intégration continue
