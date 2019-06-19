@@ -39,9 +39,6 @@ run make test
 header "Check test code coverage…"
 run make check-code-coverage
 
-header "Typecheck files…"
-run make check-typespecs
-
 header "Run seed data…"
 run mix run priv/repo/seeds.exs
 

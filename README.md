@@ -14,7 +14,6 @@ This boilerplate comes with batteries included, you’ll find:
 - [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) tests and code coverage using [ExCoveralls](https://hexdocs.pm/excoveralls/api-reference.html)
 - CORS management with [Corsica](https://github.com/whatyouhide/corsica)
 - Opinionated linting with [Credo](http://credo-ci.org)
-- Static code analysis with _Dialyzer_/[Dialyxir](https://hexdocs.pm/dialyxir/readme.html)
 - OTP release using [Distillery](https://hexdocs.pm/distillery/home.html) and [Docker](https://www.docker.com)
 - Useful utilities for web features: _basic auth_, _canonical host_, etc…
 - Error reporting with [Sentry](https://hexdocs.pm/sentry/readme.html)

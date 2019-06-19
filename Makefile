@@ -81,10 +81,6 @@ check-format:
 	mix format --dry-run --check-formatted
 	./assets/node_modules/.bin/prettier --check $(PRETTIER_FILES_PATTERN)
 
-.PHONY: check-typespecs
-check-typespecs:
-	mix dialyzer --halt-exit-status --format dialyxir
-
 .PHONY: check-unused-locked-dependencies
 check-unused-locked-dependencies:
 	mix check.unused_locked_deps

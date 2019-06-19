@@ -19,10 +19,6 @@ npm-debug.log
 # this depending on your deployment strategy.
 /priv/static/
 
-# Dialyzer plts are ignored to allow CI to cache the files
-/priv/plts/*.plt
-/priv/plts/*.plt.hash
-
 # Files matching config/*.secret.exs pattern contain sensitive
 # data and you should not commit them into version control.
 #
