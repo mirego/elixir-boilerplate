@@ -55,6 +55,7 @@
         {Credo.Check.Warning.UnusedTupleOperation},
         {Credo.Check.Warning.OperationWithConstantResult},
         {CredoEnvvar.Check.Warning.EnvironmentVariablesAtCompileTime},
+        {CredoNaming.Check.Warning.AvoidSpecificTermsInModuleNames, terms: ["Manager", "Fetcher", "Builder", "Persister", "Serializer", "Helper", "Helpers", "Utils"]},
         {CredoNaming.Check.Consistency.ModuleFilename, excluded_paths: ["config", "mix.exs", "priv", "test/support"]}
       ]
     }
