@@ -1,7 +1,7 @@
-defmodule ElixirBoilerplateWeb.Errors.HelpersTest do
+defmodule ElixirBoilerplateWeb.ErrorsTest do
   use ElixirBoilerplate.DataCase, async: true
 
-  alias ElixirBoilerplateWeb.Errors.Helpers
+  alias ElixirBoilerplateWeb.Errors
 
   defmodule UserRole do
     use Ecto.Schema
@@ -73,7 +73,7 @@ defmodule ElixirBoilerplateWeb.Errors.HelpersTest do
 
   defp changeset_to_error_messages(changeset) do
     changeset
-    |> Helpers.error_messages()
+    |> Errors.error_messages()
     |> Phoenix.HTML.safe_to_string()
   end
 end

@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplateWeb.Errors.Helpers do
+defmodule ElixirBoilerplateWeb.Errors do
   alias Ecto.Changeset
   alias ElixirBoilerplateWeb.Errors.View
 
