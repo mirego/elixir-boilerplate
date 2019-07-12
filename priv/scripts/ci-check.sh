@@ -36,6 +36,9 @@ run make check-format
 header "Run tests…"
 run make test
 
+header "Check code security…"
+run make check-code-security
+
 header "Check test code coverage…"
 run make check-code-coverage
 
