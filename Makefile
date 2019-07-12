@@ -76,6 +76,10 @@ test: ## Run the test suite
 check-code-coverage:
 	mix coveralls
 
+.PHONY: check-code-security
+check-code-security:
+	mix sobelow --config
+
 .PHONY: check-format
 check-format:
 	mix format --dry-run --check-formatted
