@@ -73,6 +73,9 @@ defmodule ElixirBoilerplate.Mixfile do
       # OTP Release
       {:distillery, "~> 2.0"},
 
+      # Test factories
+      {:ex_machina, "~> 2.3"},
+
       # Test coverage
       {:excoveralls, "~> 0.10", only: :test}
     ]
