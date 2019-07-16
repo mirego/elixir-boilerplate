@@ -56,7 +56,8 @@
         {Credo.Check.Warning.OperationWithConstantResult},
         {CredoEnvvar.Check.Warning.EnvironmentVariablesAtCompileTime},
         {CredoNaming.Check.Warning.AvoidSpecificTermsInModuleNames, terms: ["Manager", "Fetcher", "Builder", "Persister", "Serializer", ~r/^Helpers?$/i, ~r/^Utils?$/i]},
-        {CredoNaming.Check.Consistency.ModuleFilename, excluded_paths: ["config", "mix.exs", "priv", "test/support"]}
+        {CredoNaming.Check.Consistency.ModuleFilename,
+         excluded_paths: ["config", "mix.exs", "priv", "test/support"], acronyms: [{"ElixirBoilerplateGraphQL", "elixir_boilerplate_graphql"}, {"GraphQL", "graphql"}]}
       ]
     }
   ]

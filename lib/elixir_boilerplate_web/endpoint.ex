@@ -47,6 +47,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
+  plug(ElixirBoilerplateWeb.GraphQLRouter)
   plug(ElixirBoilerplateWeb.Router)
 
   @doc """
