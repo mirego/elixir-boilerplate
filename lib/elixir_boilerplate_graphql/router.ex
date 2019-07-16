@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplateWeb.GraphQLRouter do
+defmodule ElixirBoilerplateGraphQL.Router do
   use Plug.Router
 
   @absinthe_configuration [document_providers: {ElixirBoilerplateGraphQL, :document_providers}, json_codec: Jason, schema: ElixirBoilerplateGraphQL.Schema]
