@@ -9,15 +9,15 @@
 This boilerplate comes with batteries included, you’ll find:
 
 - [Phoenix](https://phoenixframework.org), the battle-tested production-ready web framework
-- Database integration using [Ecto](https://hexdocs.pm/ecto/Ecto.html)
-- GraphQL API setup with [Absinthe](https://hexdocs.pm/absinthe), [Absinthe.Plug](https://hexdocs.pm/absinthe_plug/Absinthe.Plug.html) and [Dataloader](https://hexdocs.pm/dataloader/Dataloader.html)
-- Translations with [Gettext](https://hexdocs.pm/gettext/Gettext.html)
-- [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) tests, factories using [ExMachina](https://hexdocs.pm/ex_machina/readme.html) and code coverage using [ExCoveralls](https://hexdocs.pm/excoveralls/api-reference.html)
+- Database integration using [Ecto](https://hexdocs.pm/ecto)
+- GraphQL API setup with [Absinthe](https://hexdocs.pm/absinthe), [Absinthe.Plug](https://hexdocs.pm/absinthe_plug) and [Dataloader](https://hexdocs.pm/dataloader)
+- Translations with [Gettext](https://hexdocs.pm/gettext)
+- [ExUnit](https://hexdocs.pm/ex_unit) tests, factories using [ExMachina](https://hexdocs.pm/ex_machina) and code coverage using [ExCoveralls](https://hexdocs.pm/excoveralls)
 - CORS management with [Corsica](https://github.com/whatyouhide/corsica)
 - Opinionated linting with [Credo](http://credo-ci.org)
-- OTP release using [Distillery](https://hexdocs.pm/distillery/home.html) and [Docker](https://www.docker.com)
+- OTP release using [Distillery](https://hexdocs.pm/distillery) and [Docker](https://www.docker.com)
 - Useful utilities for web features: _basic auth_, _canonical host_, etc…
-- Error reporting with [Sentry](https://hexdocs.pm/sentry/readme.html)
+- Error reporting with [Sentry](https://hexdocs.pm/sentry)
 - A clean and useful `README.md` template (in both [english](./BOILERPLATE_README.md) and [french](./BOILERPLATE_README.fr.md))
 
 ## Usage
