@@ -43,8 +43,14 @@ defmodule ElixirBoilerplate.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:jason, "~> 1.0"},
 
+      # GraphQL
+      {:absinthe, "~> 1.4"},
+      {:absinthe_plug, "~> 1.4"},
+      {:dataloader, "~> 1.0"},
+      {:absinthe_error_payload, "~> 1.0"},
+
       # Database
-      {:ecto_sql, "~> 3.0"},
+      {:ecto_sql, "~> 3.1"},
       {:postgrex, "~> 0.14"},
 
       # Authentication
