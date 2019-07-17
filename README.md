@@ -10,8 +10,9 @@ This boilerplate comes with batteries included, you’ll find:
 
 - [Phoenix](https://phoenixframework.org), the battle-tested production-ready web framework
 - Database integration using [Ecto](https://hexdocs.pm/ecto/Ecto.html)
+- GraphQL API setup with [Absinthe](https://hexdocs.pm/absinthe), [Absinthe.Plug](https://hexdocs.pm/absinthe_plug/Absinthe.Plug.html) and [Dataloader](https://hexdocs.pm/dataloader/Dataloader.html)
 - Translations with [Gettext](https://hexdocs.pm/gettext/Gettext.html)
-- [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) tests and code coverage using [ExCoveralls](https://hexdocs.pm/excoveralls/api-reference.html)
+- [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) tests, factories using [ExMachina](https://hexdocs.pm/ex_machina/readme.html) and code coverage using [ExCoveralls](https://hexdocs.pm/excoveralls/api-reference.html)
 - CORS management with [Corsica](https://github.com/whatyouhide/corsica)
 - Opinionated linting with [Credo](http://credo-ci.org)
 - OTP release using [Distillery](https://hexdocs.pm/distillery/home.html) and [Docker](https://www.docker.com)
