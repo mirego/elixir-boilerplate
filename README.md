@@ -15,8 +15,9 @@ This boilerplate comes with batteries included, you’ll find:
 - [ExUnit](https://hexdocs.pm/ex_unit) tests, factories using [ExMachina](https://hexdocs.pm/ex_machina) and code coverage using [ExCoveralls](https://hexdocs.pm/excoveralls)
 - CORS management with [Corsica](https://github.com/whatyouhide/corsica)
 - Opinionated linting with [Credo](http://credo-ci.org)
+- Security scanning with [Sobelow](https://hexdocs.pm/sobelow)
 - OTP release using [Distillery](https://hexdocs.pm/distillery) and [Docker](https://www.docker.com)
-- Useful utilities for web features: _basic auth_, _canonical host_, etc…
+- Useful utilities for web features: Basic authentication with [BasicAuth](https://hexdocs.pm/basic_auth), canonical host with [PlugCanonicalHost](https://hexdocs.pm/plug_canonical_host), etc.
 - Error reporting with [Sentry](https://hexdocs.pm/sentry)
 - A clean and useful `README.md` template (in both [english](./BOILERPLATE_README.md) and [french](./BOILERPLATE_README.fr.md))
 
