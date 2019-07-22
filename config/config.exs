@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 version = Mix.Project.config()[:version]
 

@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   http: [port: 4001],

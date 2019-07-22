@@ -1,11 +1,16 @@
-use Mix.Config
+import Config
 
 defmodule Environment do
   @moduledoc """
   This modules provides various helpers to handle environment metadata
   """
 
-  def get(key), do: System.get_env(key)
+  def get(key) do
+    case System.fetch_env(key) do
+      {:ok, value} -> value
+      _ -> :missing
+    end
+  end
 
   def get_boolean(key) do
     case get(key) do
@@ -27,7 +32,7 @@ defmodule Environment do
          [single_value] <- String.split(value, ",") do
       single_value
     else
-      values when is_list(values) -> values
+      value when is_list(value) -> value
       _ -> nil
     end
   end
@@ -35,7 +40,7 @@ defmodule Environment do
   def exists?(key) do
     case get(key) do
       "" -> false
-      nil -> false
+      :missing -> false
       _ -> true
     end
   end
