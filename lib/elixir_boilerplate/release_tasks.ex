@@ -1,48 +1,24 @@
 defmodule ElixirBoilerplate.ReleaseTasks do
-  @start_apps ~w(crypto ssl postgrex ecto_sql)a
+  @app :elixir_boilerplate
+
+  alias Ecto.Migrator
 
   def migrate do
-    start_services()
-    run_migrations()
-    stop_services()
-  end
+    IO.puts("Running migrations for #{@app}")
 
-  defp repos, do: Application.get_env(:elixir_boilerplate, :ecto_repos, [])
+    for repo <- repos() do
+      {:ok, _, _} = Migrator.with_repo(repo, &Migrator.run(&1, :up, all: true))
+    end
 
-  defp start_services do
-    IO.puts("Starting dependencies…")
-    Enum.each(@start_apps, &Application.ensure_all_started/1)
-
-    IO.puts("Starting repos…")
-    Enum.each(repos(), & &1.start_link(pool_size: 2))
-  end
-
-  defp run_migrations do
-    Enum.each(repos(), &run_migrations_for/1)
-  end
-
-  defp run_migrations_for(repo) do
-    app = Keyword.get(repo.config, :otp_app)
-    migrations_path = priv_path_for(app, repo, "migrations")
-
-    IO.puts("Running migrations for #{app}")
-    Ecto.Migrator.run(repo, migrations_path, :up, all: true)
-  end
-
-  defp priv_path_for(app, repo, filename) do
-    priv_dir = "#{:code.priv_dir(app)}"
-
-    repo_underscore =
-      repo
-      |> Module.split()
-      |> List.last()
-      |> Macro.underscore()
-
-    Path.join([priv_dir, repo_underscore, filename])
-  end
-
-  defp stop_services do
     IO.puts("Success!")
-    :init.stop()
+  end
+
+  def rollback(repo, version) do
+    {:ok, _, _} = Migrator.with_repo(repo, &Migrator.run(&1, :down, to: version))
+  end
+
+  defp repos do
+    Application.load(@app)
+    Application.fetch_env!(@app, :ecto_repos)
   end
 end
