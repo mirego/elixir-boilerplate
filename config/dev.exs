@@ -21,3 +21,6 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
 config :logger, :console, format: "[$level] $message\n"
 
 config :phoenix, :stacktrace_depth, 20
+
+# Import runtime configuration
+import_config "releases.exs"

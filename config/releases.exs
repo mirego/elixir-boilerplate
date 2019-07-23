@@ -5,12 +5,7 @@ defmodule Environment do
   This modules provides various helpers to handle environment metadata
   """
 
-  def get(key) do
-    case System.fetch_env(key) do
-      {:ok, value} -> value
-      _ -> :missing
-    end
-  end
+  def get(key), do: System.get_env(key)
 
   def get_boolean(key) do
     case get(key) do
@@ -34,14 +29,6 @@ defmodule Environment do
     else
       value when is_list(value) -> value
       _ -> nil
-    end
-  end
-
-  def exists?(key) do
-    case get(key) do
-      "" -> false
-      :missing -> false
-      _ -> true
     end
   end
 end
@@ -75,13 +62,11 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
 
 config :elixir_boilerplate, Corsica, origins: Environment.get_list_or_first_value("CORS_ALLOWED_ORIGINS")
 
-if Environment.exists?("BASIC_AUTH_USERNAME") do
-  config :elixir_boilerplate,
-    basic_auth: [
-      username: Environment.get("BASIC_AUTH_USERNAME"),
-      password: Environment.get("BASIC_AUTH_PASSWORD")
-    ]
-end
+config :elixir_boilerplate,
+  basic_auth: [
+    username: Environment.get("BASIC_AUTH_USERNAME"),
+    password: Environment.get("BASIC_AUTH_PASSWORD")
+  ]
 
 config :sentry,
   dsn: Environment.get("SENTRY_DSN"),

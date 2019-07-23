@@ -20,3 +20,6 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
 config :logger, level: :warn
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo, pool: Ecto.Adapters.SQL.Sandbox
+
+# Import runtime configuration
+import_config "releases.exs"
