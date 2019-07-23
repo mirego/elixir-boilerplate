@@ -90,7 +90,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   defp basic_auth(conn, _opts) do
     basic_auth_config = Application.get_env(:elixir_boilerplate, :basic_auth)
 
-    if basic_auth_config do
+    if basic_auth_config[:username] do
       opts = BasicAuth.init(use_config: {:elixir_boilerplate, :basic_auth})
 
       BasicAuth.call(conn, opts)
