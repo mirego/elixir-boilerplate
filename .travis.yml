@@ -25,8 +25,9 @@ env:
     - MIX_ENV: test
     - DATABASE_URL: postgres://localhost/elixir_boilerplate_test
     - PORT: 4000
-    - SECRET_KEY_BASE: Qj/tmW7195a20AUFohAWjiorD1LreX38/8X5q+Xx2OTcde6J
-    - SIGNING_SALT: vwi6XmxGL5eqiQSFlOut+s1v1KhoRU7ouA31F6Fd/YjvTv+t
+    - SECRET_KEY_BASE: 6Z6Tv8zu0vg+D9I7WU6e7sl0HMqvq1lXDDodLTLSZogGGfwPSoNJHCyipz7XVNbi
+    - SESSION_KEY: elixir_boilerplate
+    - SIGNING_SALT: /gdYXAjk3FYyLWrL+CQCzuTEmmyouMYZp1BzYq2RNZQo4bKb1yelp5MwLzq3Zd5I
 
 # Install the node version we need, install the node packages,
 # create the database and prepare the application
