@@ -115,7 +115,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   end
 
   # Splitting the web and GraphQL router in separates modules
-  # has a negative side effect : Phoenix.Router does not check 
+  # has a negative side effect : Phoenix.Router does not check
   # the Plug.Conn state and tries to match the route even if
   # it was already handled/sent by the Absinthe.Plug!
   defp halt_if_sent(%{state: :sent, halted: false} = conn, _opts), do: halt(conn)

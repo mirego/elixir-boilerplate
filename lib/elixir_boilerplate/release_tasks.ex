@@ -9,8 +9,6 @@ defmodule ElixirBoilerplate.ReleaseTasks do
     for repo <- repos() do
       {:ok, _, _} = Migrator.with_repo(repo, &Migrator.run(&1, :up, all: true))
     end
-
-    IO.puts("Success!")
   end
 
   def rollback(repo, version) do

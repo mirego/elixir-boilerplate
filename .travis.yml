@@ -4,8 +4,8 @@ dist: xenial
 # Elixir baby!
 language: elixir
 
-elixir: 1.8
-otp_release: 21.3.3
+elixir: 1.9
+otp_release: 22.0.7
 
 # Make sure PostgreSQL is running
 addons:
@@ -24,6 +24,9 @@ env:
   global:
     - MIX_ENV: test
     - DATABASE_URL: postgres://localhost/elixir_boilerplate_test
+    - PORT: 4000
+    - SECRET_KEY_BASE: Qj/tmW7195a20AUFohAWjiorD1LreX38/8X5q+Xx2OTcde6J
+    - SIGNING_SALT: vwi6XmxGL5eqiQSFlOut+s1v1KhoRU7ouA31F6Fd/YjvTv+t
 
 # Install the node version we need, install the node packages,
 # create the database and prepare the application
