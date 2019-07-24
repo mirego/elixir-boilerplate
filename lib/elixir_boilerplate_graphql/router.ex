@@ -9,7 +9,6 @@ defmodule ElixirBoilerplateGraphQL.Router do
 
   plug(:match)
   plug(:dispatch)
-
   plug(ElixirBoilerplateGraphQL.Plugs.Context)
 
   forward("/graphql",
