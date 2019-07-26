@@ -1,13 +1,11 @@
-defmodule ElixirBoilerplateGraphQL.Types.Application do
+defmodule ElixirBoilerplateGraphQL.Application.Types do
   use Absinthe.Schema.Notation
 
-  # Types
   object :application do
     @desc "The application version"
     field(:version, :string)
   end
 
-  # Queries
   object :application_queries do
     @desc "A list of application information"
     field :application, :application do

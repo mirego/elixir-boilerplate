@@ -4,12 +4,16 @@ defmodule ElixirBoilerplateGraphQL.Schema do
   alias ElixirBoilerplate.Repo
 
   import_types(Absinthe.Type.Custom)
-  import_types(ElixirBoilerplateGraphQL.Types.Application)
+  import_types(ElixirBoilerplateGraphQL.Application.Types)
 
   query do
     import_fields(:application_queries)
   end
 
+  # Even if having an empty mutation block is valid and works in Ansinthe, it
+  # causes a Javascript error in GraphiQL so uncomment it when you add the
+  # first mutation.
+  #
   # mutation do
   # end
 
