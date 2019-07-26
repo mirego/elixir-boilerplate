@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 version = Mix.Project.config()[:version]
 
@@ -20,9 +20,6 @@ config :sentry,
   included_environments: ~w(prod)a,
   root_source_code_path: File.cwd!(),
   release: version
-
-# Import release/runtime configuration
-import_config "releases.exs"
 
 # Import environment configuration
 import_config "#{Mix.env()}.exs"

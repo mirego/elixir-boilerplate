@@ -1,7 +1,7 @@
 #
 # Step 1 - build the OTP binary
 #
-FROM elixir:1.8-alpine AS builder
+FROM elixir:1.9-alpine AS builder
 
 ARG APP_NAME
 ARG APP_VERSION
@@ -25,7 +25,7 @@ COPY mix.* ./
 RUN mix deps.get --only ${MIX_ENV}
 
 COPY . .
-RUN mix compile --force
+RUN mix compile
 
 RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm
 
@@ -34,12 +34,8 @@ RUN npm run --prefix assets deploy
 RUN mix phx.digest
 
 RUN mkdir -p /opt/build && \
-    mix release --verbose && \
-    cp _build/${MIX_ENV}/rel/${APP_NAME}/releases/${APP_VERSION}/${APP_NAME}.tar.gz /opt/build
-
-RUN cd /opt/build && \
-    tar -xzf ${APP_NAME}.tar.gz && \
-    rm ${APP_NAME}.tar.gz
+    mix release && \
+    cp -R _build/${MIX_ENV}/rel/${APP_NAME}/* /opt/build
 
 #
 # Step 2 - build a lean runtime container
@@ -70,4 +66,4 @@ RUN adduser -D elixir_boilerplate && \
 USER elixir_boilerplate
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["foreground"]
+CMD ["start"]

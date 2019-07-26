@@ -1,4 +1,7 @@
-use Mix.Config
+import Config
+
+# Import runtime configuration
+import_config "releases.exs"
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   code_reloader: true,

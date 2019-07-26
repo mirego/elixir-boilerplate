@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 defmodule Environment do
   @moduledoc """
@@ -27,16 +27,8 @@ defmodule Environment do
          [single_value] <- String.split(value, ",") do
       single_value
     else
-      values when is_list(values) -> values
+      value when is_list(value) -> value
       _ -> nil
-    end
-  end
-
-  def exists?(key) do
-    case get(key) do
-      "" -> false
-      nil -> false
-      _ -> true
     end
   end
 end
@@ -70,13 +62,11 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
 
 config :elixir_boilerplate, Corsica, origins: Environment.get_list_or_first_value("CORS_ALLOWED_ORIGINS")
 
-if Environment.exists?("BASIC_AUTH_USERNAME") do
-  config :elixir_boilerplate,
-    basic_auth: [
-      username: Environment.get("BASIC_AUTH_USERNAME"),
-      password: Environment.get("BASIC_AUTH_PASSWORD")
-    ]
-end
+config :elixir_boilerplate,
+  basic_auth: [
+    username: Environment.get("BASIC_AUTH_USERNAME"),
+    password: Environment.get("BASIC_AUTH_PASSWORD")
+  ]
 
 config :sentry,
   dsn: Environment.get("SENTRY_DSN"),

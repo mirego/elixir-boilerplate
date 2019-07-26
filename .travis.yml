@@ -4,8 +4,8 @@ dist: xenial
 # Elixir baby!
 language: elixir
 
-elixir: 1.8
-otp_release: 21.3.3
+elixir: 1.9
+otp_release: 22.0.7
 
 # Make sure PostgreSQL is running
 addons:

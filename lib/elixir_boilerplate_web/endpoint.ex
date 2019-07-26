@@ -48,6 +48,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   plug(Plug.Head)
 
   plug(ElixirBoilerplateGraphQL.Router)
+  plug(:halt_if_sent)
   plug(ElixirBoilerplateWeb.Router)
 
   @doc """
@@ -90,7 +91,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   defp basic_auth(conn, _opts) do
     basic_auth_config = Application.get_env(:elixir_boilerplate, :basic_auth)
 
-    if basic_auth_config do
+    if basic_auth_config[:username] do
       opts = BasicAuth.init(use_config: {:elixir_boilerplate, :basic_auth})
 
       BasicAuth.call(conn, opts)
@@ -112,4 +113,10 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
     Plug.Session.call(conn, opts)
   end
+
+  # Splitting the Web and GraphQL router in separate modules has a negative
+  # side effect: Phoenix.Router does not check the Plug.Conn state and tries to
+  # match the route even if it was already handled/sent by Absinthe.Plug.
+  defp halt_if_sent(%{state: :sent, halted: false} = conn, _opts), do: halt(conn)
+  defp halt_if_sent(conn, _opts), do: conn
 end
