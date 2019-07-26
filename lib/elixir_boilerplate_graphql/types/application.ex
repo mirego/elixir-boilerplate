@@ -2,7 +2,7 @@ defmodule ElixirBoilerplateGraphQL.Types.Application do
   use Absinthe.Schema.Notation
 
   # Types
-  object :application_info do
+  object :application do
     @desc "The application version"
     field(:version, :string)
   end
