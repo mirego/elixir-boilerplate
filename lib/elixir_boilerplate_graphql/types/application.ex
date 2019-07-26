@@ -10,7 +10,7 @@ defmodule ElixirBoilerplateGraphQL.Types.Application do
   # Queries
   object :application_queries do
     @desc "A list of application information"
-    field :application, :application_info do
+    field :application, :application do
       resolve(fn _, _, _ -> {:ok, %{version: version()}} end)
     end
   end
