@@ -11,6 +11,10 @@
 .home a {
   display: block;
   margin: 0 0 20px;
+  text-decoration: none;
+  font-size: 40px;
+  font-weight: bold;
+  color: #3a186a;
 }
 
 .home p {
