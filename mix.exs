@@ -77,7 +77,7 @@ defmodule ElixirBoilerplate.Mixfile do
       # Linting
       {:credo, "~> 1.1", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},
-      {:credo_naming, "~> 0.3", only: [:dev, :test], runtime: false},
+      {:credo_naming, "~> 0.4", only: [:dev, :test], runtime: false},
 
       # Security check
       {:sobelow, "~> 0.8", only: [:dev, :test], runtime: true},
