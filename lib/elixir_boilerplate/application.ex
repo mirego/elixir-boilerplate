@@ -4,15 +4,11 @@ defmodule ElixirBoilerplate.Application do
   """
 
   use Application
-  alias ElixirBoilerplate.Repo
-  alias ElixirBoilerplateWeb.Endpoint
 
   def start(_type, _args) do
-    import Supervisor.Spec
-
     children = [
-      supervisor(Repo, []),
-      supervisor(Endpoint, [])
+      ElixirBoilerplate.Repo,
+      ElixirBoilerplateWeb.Endpoint
     ]
 
     {:ok, _} = Logger.add_backend(Sentry.LoggerBackend)
@@ -22,7 +18,7 @@ defmodule ElixirBoilerplate.Application do
   end
 
   def config_change(changed, _new, removed) do
-    Endpoint.config_change(changed, removed)
+    ElixirBoilerplateWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end
