@@ -21,6 +21,8 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
     ]
   ]
 
+config :elixir_boilerplate, ElixirBoilerplateWeb.ContentSecurityPolicy, allow_unsafe_scripts: true
+
 config :logger, :console, format: "[$level] $message\n"
 
 config :phoenix, :stacktrace_depth, 20
