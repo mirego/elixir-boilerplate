@@ -1,8 +1,8 @@
 # Build configuration
 # -------------------
 
-APP_NAME = `grep 'app:' mix.exs | sed -e 's/\[//g' -e 's/ //g' -e 's/app://' -e 's/[:,]//g'`
-APP_VERSION = `grep -E '@version "([0-9\.]*)"' mix.exs | cut -d '"' -f2`
+APP_NAME = `grep -Eo 'app: :\w*' mix.exs | cut -d ':' -f 3`
+APP_VERSION = `grep -Eo '@version "[0-9\.]*"' mix.exs | cut -d '"' -f 2`
 GIT_REVISION = `git rev-parse HEAD`
 DOCKER_IMAGE_TAG ?= latest
 DOCKER_REGISTRY ?=
