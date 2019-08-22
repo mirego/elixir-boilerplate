@@ -45,8 +45,7 @@ config :elixir_boilerplate,
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool_size: Environment.get_integer("DATABASE_POOL_SIZE"),
   ssl: Environment.get_boolean("DATABASE_SSL"),
-  url: Environment.get("DATABASE_URL"),
-  start_apps_before_migration: if(Environment.get_boolean("DATABASE_SSL"), do: [:ssl], else: [])
+  url: Environment.get("DATABASE_URL")
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
