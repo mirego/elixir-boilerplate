@@ -7,6 +7,6 @@
   format: "txt",
   out: "",
   threshold: "low",
-  ignore: ["Config.HTTPS"],
+  ignore: ["Config.HTTPS", "Config.Headers"],
   ignore_files: [""]
 ]
