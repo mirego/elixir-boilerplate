@@ -12,6 +12,8 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   pubsub: [name: ElixirBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2],
   render_errors: [view: ElixirBoilerplateWeb.Errors.View, accepts: ~w(html json)]
 
+config :elixir_boilerplate, ElixirBoilerplate.Repo, start_apps_before_migration: [:ssl]
+
 config :elixir_boilerplate, Corsica, allow_headers: :all
 
 config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
