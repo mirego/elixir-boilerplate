@@ -29,7 +29,7 @@ Les regroupements utilises les APIs des contextes dans leurs "leafs" (controller
 Comme la façon que `Accounts` utilise `Repo`, un context peut utilisé un autre context partagé pour avoir accès à une fonctionnalité "global" et "abstraite" du système.
 "Global" et "abstraite" veut dire que ce n’est pas une fonctionnalité de l’app. `LinkSharing` est une fonctionnalité, `Permissions` non.
 
-> Mais `Audits` devient une foncitonnalité si on a un listing d’historiques dans l’app.
+> Mais `Audits` devient une fonctionnalité si on a un listing d’historiques dans l’app.
 
 Dans ce cas, un context d’historique pourrait être rendu disponible (qui utiliserait le module partagé `Audits`). Ce context `History` expose un API qui reflèterait la fonctionnalité et qui ne serait pas mêlé au module `Audits` pour qui le role de "prendre n’importe quel action et en garder une trace" ne serait pas touché.
 

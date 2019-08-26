@@ -24,8 +24,8 @@
 
 - Node.js (`>= 10.14, < 11.0`)
 - NPM (`>= 6.4, < 7.0`)
-- Elixir (`~> 1.8`)
-- Erlang (`~> 21.3`)
+- Elixir (`~> 1.9`)
+- Erlang (`~> 22.0`)
 - PostgreSQL (`~> 10.0`)
 
 ## 🏎 Départ rapide
