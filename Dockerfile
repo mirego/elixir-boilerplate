@@ -1,7 +1,7 @@
 #
 # Step 1 - build the JS/CSS assets
 #
-FROM node:12-alpine AS js-builder
+FROM node:10.16-alpine AS js-builder
 
 ARG NODE_ENV=prod
 
@@ -10,7 +10,9 @@ ENV NODE_ENV=${NODE_ENV}
 WORKDIR /build
 
 # Install Alpine dependencies
-RUN apk add --no-cache git
+RUN apk update --no-cacje && \
+    apk upgrade --no-cache && \
+    apk add --no-cache git
 
 # Copy codebase and compile
 COPY . .
@@ -33,7 +35,9 @@ ENV APP_NAME=${APP_NAME} \
 WORKDIR /build
 
 # Install Alpine dependencies
-RUN apk --no-cache add git
+RUN apk update --no-cacje && \
+    apk upgrade --no-cache && \
+    apk add --no-cache git
 
 # Install Erlang dependencies
 RUN mix local.rebar --force && \
