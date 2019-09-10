@@ -1,5 +1,24 @@
 #
-# Step 1 - build the OTP binary
+# Step 1 - build the JS/CSS assets
+#
+FROM node:12-alpine AS js-builder
+
+ARG NODE_ENV=prod
+
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /build
+
+# Install Alpine dependencies
+RUN apk add --no-cache git
+
+# Copy codebase and compile
+COPY . .
+RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm
+RUN npm run --prefix assets deploy
+
+#
+# Step 2 - build the OTP binary
 #
 FROM elixir:1.9-alpine AS builder
 
@@ -13,24 +32,23 @@ ENV APP_NAME=${APP_NAME} \
 
 WORKDIR /build
 
-# This step installs all the build tools we'll need
-RUN apk update && \
-    apk upgrade --no-cache && \
-    apk add --no-cache nodejs~=10.14 npm~=10.14 git build-base
+# Install Alpine dependencies
+RUN apk --no-cache add git
+
+# Install Erlang dependencies
 RUN mix local.rebar --force && \
     mix local.hex --force
 
-# This copies our app source code into the build container
+# Copy dependency config first
 COPY mix.* ./
 RUN mix deps.get --only ${MIX_ENV}
 
+# Copy codebase and compile
 COPY . .
 RUN mix compile
 
-RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm
-
-# Compile assets and generate digest filenames
-RUN npm run --prefix assets deploy
+# Copy compiled assets from Step 1
+COPY --from=js-builder /build/priv/static priv/static
 RUN mix phx.digest
 
 RUN mkdir -p /opt/build && \
@@ -38,17 +56,17 @@ RUN mkdir -p /opt/build && \
     cp -R _build/${MIX_ENV}/rel/${APP_NAME}/* /opt/build
 
 #
-# Step 2 - build a lean runtime container
+# Step 3 - build a lean runtime container
 #
 FROM alpine:3.9
 
 ARG APP_NAME
 ENV APP_NAME=${APP_NAME}
 
-# Update kernel and install runtime dependencies
-RUN apk --no-cache update && \
-    apk --no-cache upgrade && \
-    apk --no-cache add bash openssl-dev erlang-crypto
+# Update Alpine and install dependencies
+RUN apk update --no-cache && \
+    apk upgrade --no-cache && \
+    apk add --no-cache bash openssl-dev erlang-crypto
 
 WORKDIR /opt/elixir_boilerplate
 
