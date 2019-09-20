@@ -7,9 +7,10 @@ defmodule ElixirBoilerplateGraphQL.Router do
     schema: ElixirBoilerplateGraphQL.Schema
   ]
 
+  plug(ElixirBoilerplateGraphQL.Plugs.Context)
+
   plug(:match)
   plug(:dispatch)
-  plug(ElixirBoilerplateGraphQL.Plugs.Context)
 
   forward("/graphql",
     to: Absinthe.Plug,
