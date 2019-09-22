@@ -4,7 +4,8 @@
   },
   "skip_files": [
     "lib/elixir-boilerplate/release_tasks.ex",
-    "lib/mix/tasks/erlang.check_version.ex",
+    "lib/mix/tasks/check.erlang_version.ex",
+    "lib/mix/tasks/check.unused_locked_deps.ex",
     "test/support"
   ]
 }
