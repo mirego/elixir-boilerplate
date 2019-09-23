@@ -44,16 +44,16 @@ defmodule ElixirBoilerplate.Mixfile do
   defp deps do
     [
       # HTTP server
-      {:plug_cowboy, "~> 2.0"},
-      {:plug_canonical_host, "~> 0.6"},
-      {:corsica, "~> 1.0"},
+      {:plug_cowboy, "~> 2.1"},
+      {:plug_canonical_host, "~> 1.0"},
+      {:corsica, "~> 1.1"},
 
       # Phoenix
-      {:phoenix, "~> 1.4.0"},
-      {:phoenix_html, "~> 2.10"},
+      {:phoenix, "~> 1.4.10"},
+      {:phoenix_html, "~> 2.13.3"},
       {:phoenix_ecto, "~> 4.0"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:jason, "~> 1.0"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:jason, "~> 1.1"},
 
       # GraphQL
       {:absinthe, "~> 1.4"},
@@ -62,8 +62,8 @@ defmodule ElixirBoilerplate.Mixfile do
       {:absinthe_error_payload, "~> 1.0"},
 
       # Database
-      {:ecto_sql, "~> 3.1"},
-      {:postgrex, "~> 0.14"},
+      {:ecto_sql, "~> 3.2"},
+      {:postgrex, "~> 0.15"},
 
       # Authentication
       {:basic_auth, "~> 2.2"},
@@ -72,7 +72,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:gettext, "~> 0.16"},
 
       # Errors
-      {:sentry, "~> 7.0"},
+      {:sentry, "~> 7.1"},
 
       # Linting
       {:credo, "~> 1.1", only: [:dev, :test], override: true},
@@ -87,7 +87,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:faker, "~> 0.12", only: :test},
 
       # Test coverage
-      {:excoveralls, "~> 0.10", only: :test}
+      {:excoveralls, "~> 0.11", only: :test}
     ]
   end
 
