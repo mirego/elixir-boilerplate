@@ -10,7 +10,7 @@ ENV NODE_ENV=${NODE_ENV}
 WORKDIR /build
 
 # Install Alpine dependencies
-RUN apk update --no-cacje && \
+RUN apk update --no-cache && \
     apk upgrade --no-cache && \
     apk add --no-cache git
 
@@ -35,7 +35,7 @@ ENV APP_NAME=${APP_NAME} \
 WORKDIR /build
 
 # Install Alpine dependencies
-RUN apk update --no-cacje && \
+RUN apk update --no-cache && \
     apk upgrade --no-cache && \
     apk add --no-cache git
 
