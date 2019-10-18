@@ -99,6 +99,10 @@ header "Removing boilerplate license → https://choosealicense.com"
 run rm -fr LICENSE.md
 success "Done!\n"
 
+header "Removing boilerplate changelog"
+run rm -fr CHANGELOG.md
+success "Done!\n"
+
 header "Removing boilerplate code of conduct and contribution information → https://help.github.com/articles/setting-guidelines-for-repository-contributors/"
 run rm -fr CODE_OF_CONDUCT.md CONTRIBUTING.md
 success "Done!\n"
