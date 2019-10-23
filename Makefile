@@ -61,7 +61,7 @@ push: ## Push the Docker image
 # -------------------
 
 .PHONY: run
-run: ## Run the server as IEX
+run: ## Run the server inside an IEx shell
 	iex -S mix phx.server
 
 .PHONY: dependencies
