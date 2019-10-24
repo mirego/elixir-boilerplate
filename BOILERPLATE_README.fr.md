@@ -45,7 +45,7 @@ Ces variables doivent être présentes dans l’environnement lorsque des comman
 Ensuite, avec les variables de `.env.dev` et `.env.dev.local` présentes dans l’environnement :
 
 1. Créer et migrer la base de données avec `mix ecto.setup`
-2. Démarrer le serveur Phoenix avec `iex -S mix phx.server`
+2. Démarrer le serveur Phoenix avec `make run`
 
 ### Commandes `make`
 

@@ -45,7 +45,7 @@ When running `mix` or `make` commands, it is important that these variables are 
 Then, with variables from `.env.dev` and `.env.dev.local` present in the environment:
 
 4. Create and migrate the database with `mix ecto.setup`
-5. Start the Phoenix server with `iex -S mix phx.server` with environment variables from `.env.dev` and `.env.dev.local`
+5. Start the Phoenix server with `make run`
 
 ### `make` commands
 

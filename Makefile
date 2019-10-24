@@ -60,6 +60,10 @@ push: ## Push the Docker image
 # Development targets
 # -------------------
 
+.PHONY: run
+run: ## Run the server inside an IEx shell
+	iex -S mix phx.server
+
 .PHONY: dependencies
 dependencies: ## Install dependencies required by the application
 	mix deps.get --force
