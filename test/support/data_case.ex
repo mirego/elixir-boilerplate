@@ -14,7 +14,8 @@ defmodule ElixirBoilerplate.DataCase do
 
   use ExUnit.CaseTemplate
 
-  alias Ecto.{Adapters.SQL.Sandbox, Changeset}
+  alias Ecto.Adapters.SQL.Sandbox
+  alias Ecto.Changeset
   alias ElixirBoilerplate.Repo
 
   using do
