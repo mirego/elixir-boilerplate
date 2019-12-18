@@ -4,6 +4,6 @@ defmodule ElixirBoilerplateWeb.PingTest do
   test "GET /ping", %{conn: conn} do
     conn = get(conn, "/ping")
 
-    assert response(conn, 200) == "OK"
+    assert response(conn, 200)
   end
 end

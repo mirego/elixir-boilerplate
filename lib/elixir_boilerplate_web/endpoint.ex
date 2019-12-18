@@ -69,9 +69,11 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   end
 
   defp ping(%{request_path: @ping_route_path} = conn, _opts) do
+    version = Application.get_env(:elixir_boilerplate, :version)
+
     conn
-    |> Conn.resp(200, "OK")
-    |> Conn.send_resp()
+    |> Conn.put_resp_header("content-type", "application/json")
+    |> Conn.send_resp(200, Jason.encode!(%{status: "ok", version: version}))
     |> halt()
   end
 
