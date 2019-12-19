@@ -12,6 +12,10 @@ Since it is a boilerplate project, there are technically no official (versioned)
 
 - Improved healthcheck setup with `plug_checkup` (#84)
 
+### Updated
+
+- Upgrade from `alpine:3.9` to `alpine:3.10` as base Docker image
+
 ## 2019-10-18
 
 ### Added
