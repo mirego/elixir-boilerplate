@@ -6,11 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Since it is a boilerplate project, there are technically no official (versioned) _releases_. Therefore, the `master` branch should always be stable and usable.
 
-## 2019-12-…
+## 2019-12-19
 
 ### Added
 
-- Improved healthcheck setup with `plug_checkup` (#…)
+- Improved healthcheck setup with `plug_checkup` (#84)
 
 ## 2019-10-18
 
