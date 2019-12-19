@@ -62,7 +62,7 @@ RUN mkdir -p /opt/build && \
 #
 # Step 3 - build a lean runtime container
 #
-FROM alpine:3.9
+FROM alpine:3.10
 
 ARG APP_NAME
 ENV APP_NAME=${APP_NAME}
