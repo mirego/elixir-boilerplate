@@ -14,6 +14,18 @@ defmodule ElixirBoilerplateWeb.Router do
     plug(:put_layout, {ElixirBoilerplateWeb.Layouts.View, :app})
   end
 
+  forward(
+    "/health",
+    PlugCheckup,
+    PlugCheckup.Options.new(
+      json_encoder: Jason,
+      checks: ElixirBoilerplateHealth.checks(),
+      error_code: ElixirBoilerplateHealth.error_code(),
+      timeout: :timer.seconds(5),
+      pretty: false
+    )
+  )
+
   scope "/", ElixirBoilerplateWeb do
     pipe_through(:browser)
 

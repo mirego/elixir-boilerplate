@@ -2,9 +2,14 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :elixir_boilerplate
   use Sentry.Phoenix.Endpoint
 
+  alias Plug.Conn
+
+  @health_route_path "/health"
+  @ping_route_path "/ping"
+
   socket("/socket", ElixirBoilerplateWeb.Socket)
 
-  plug(ElixirBoilerplateWeb.Health.Plug)
+  plug(:ping)
   plug(:canonical_host)
   plug(:force_ssl)
   plug(:cors)
@@ -63,11 +68,26 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     end
   end
 
+  defp ping(%{request_path: @ping_route_path} = conn, _opts) do
+    version = Application.get_env(:elixir_boilerplate, :version)
+
+    conn
+    |> Conn.put_resp_header("content-type", "application/json")
+    |> Conn.send_resp(200, Jason.encode!(%{status: "ok", version: version}))
+    |> halt()
+  end
+
+  defp ping(conn, _opts), do: conn
+
+  defp canonical_host(%{request_path: @health_route_path} = conn, _opts), do: conn
+
   defp canonical_host(conn, _opts) do
     opts = PlugCanonicalHost.init(canonical_host: Application.get_env(:elixir_boilerplate, :canonical_host))
 
     PlugCanonicalHost.call(conn, opts)
   end
+
+  defp force_ssl(%{request_path: @health_route_path} = conn, _opts), do: conn
 
   defp force_ssl(conn, _opts) do
     if Application.get_env(:elixir_boilerplate, :force_ssl) do

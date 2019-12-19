@@ -82,6 +82,9 @@ defmodule ElixirBoilerplate.Mixfile do
       # Security check
       {:sobelow, "~> 0.8", only: [:dev, :test], runtime: true},
 
+      # Health
+      {:plug_checkup, "~> 0.6"},
+
       # Test factories
       {:ex_machina, "~> 2.3", only: :test},
       {:faker, "~> 0.12", only: :test},

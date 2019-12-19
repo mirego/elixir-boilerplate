@@ -16,6 +16,7 @@ This boilerplate comes with batteries included, you’ll find:
 - CORS management with [Corsica](https://github.com/whatyouhide/corsica)
 - Opinionated linting with [Credo](http://credo-ci.org)
 - Security scanning with [Sobelow](https://hexdocs.pm/sobelow)
+- Healthcheck setup with [plug_checkup](https://hexdocs.pm/plug_checkup)
 - OTP release using [`mix release`](https://hexdocs.pm/mix/Mix.Tasks.Release.html) and [Docker](https://www.docker.com)
 - Useful utilities for web features: Basic authentication with [BasicAuth](https://hexdocs.pm/basic_auth), canonical host with [PlugCanonicalHost](https://hexdocs.pm/plug_canonical_host), etc.
 - Error reporting with [Sentry](https://hexdocs.pm/sentry)
