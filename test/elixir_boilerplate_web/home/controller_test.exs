@@ -3,6 +3,10 @@ defmodule ElixirBoilerplateWeb.Home.ControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")
-    assert html_response(conn, 200) =~ "Hello, world!"
+    html_response = html_response(conn, 200)
+
+    assert html_response =~ "Hello, world!"
+    assert html_response =~ "data-testid=\"description-paragraph\""
+    assert html_response =~ "data-testid=\"message-paragraph\""
   end
 end
