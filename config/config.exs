@@ -8,6 +8,8 @@ config :elixir_boilerplate,
 
 config :phoenix, :json_library, Jason
 
+config :elixir_boilerplate, ElixirBoilerplateWeb, data_identity_provider: ElixirBoilerplateWeb.DataIdentifier.TestID
+
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   pubsub: [name: ElixirBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2],
   render_errors: [view: ElixirBoilerplateWeb.Errors.View, accepts: ~w(html json)]

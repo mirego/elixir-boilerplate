@@ -3,8 +3,6 @@ import Config
 # Import runtime configuration
 import_config "releases.exs"
 
-config :elixir_boilerplate, ElixirBoilerplateWeb, data_identity_provider: ElixirBoilerplateWeb.DataIdentifier.TestID
-
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   http: [port: 4001],
   server: false,
