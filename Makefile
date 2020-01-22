@@ -4,8 +4,10 @@
 APP_NAME = `grep -Eo 'app: :\w*' mix.exs | cut -d ':' -f 3`
 APP_VERSION = `grep -Eo '@version "[0-9\.]*"' mix.exs | cut -d '"' -f 2`
 GIT_REVISION = `git rev-parse HEAD`
-DOCKER_IMAGE_TAG ?= latest
+DOCKER_IMAGE_TAG ?= $(APP_VERSION)
 DOCKER_REGISTRY ?=
+DOCKER_LOCAL_IMAGE = $(APP_NAME):$(DOCKER_IMAGE_TAG)
+DOCKER_REMOTE_IMAGE = $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
 
 # Linter and formatter configuration
 # ----------------------------------
@@ -37,6 +39,12 @@ header:
 	@echo ""
 	@printf "\033[33m%-23s\033[0m" "DOCKER_REGISTRY"
 	@printf "\033[35m%s\033[0m" $(DOCKER_REGISTRY)
+	@echo ""
+	@printf "\033[33m%-23s\033[0m" "DOCKER_LOCAL_IMAGE"
+	@printf "\033[35m%s\033[0m" $(DOCKER_LOCAL_IMAGE)
+	@echo ""
+	@printf "\033[33m%-23s\033[0m" "DOCKER_REMOTE_IMAGE"
+	@printf "\033[35m%s\033[0m" $(DOCKER_REMOTE_IMAGE)
 	@echo "\n"
 
 .PHONY: targets
@@ -50,12 +58,12 @@ targets:
 
 .PHONY: build
 build: ## Build the Docker image for the OTP release
-	docker build --build-arg APP_NAME=$(APP_NAME) --build-arg APP_VERSION=$(APP_VERSION) --rm --tag $(APP_NAME):$(DOCKER_IMAGE_TAG) .
+	docker build --build-arg APP_NAME=$(APP_NAME) --build-arg APP_VERSION=$(APP_VERSION) --rm --tag $(DOCKER_LOCAL_IMAGE) .
 
 .PHONY: push
-push: ## Push the Docker image
-	docker tag $(APP_NAME):$(DOCKER_IMAGE_TAG) $(DOCKER_REGISTRY)/$(APP_NAME):$(DOCKER_IMAGE_TAG)
-	docker push $(DOCKER_REGISTRY)/$(APP_NAME):$(DOCKER_IMAGE_TAG)
+push: ## Push the Docker image to the registry
+	docker tag $(DOCKER_LOCAL_IMAGE) $(DOCKER_REMOTE_IMAGE)
+	docker push $(DOCKER_REMOTE_IMAGE)
 
 # Development targets
 # -------------------
