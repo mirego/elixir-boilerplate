@@ -1,12 +1,9 @@
 [
-  verbose: false,
+  verbose: true,
   private: false,
-  skip: false,
-  router: "",
+  skip: true,
   exit: "low",
   format: "txt",
-  out: "",
   threshold: "low",
-  ignore: ["Config.HTTPS", "Config.Headers"],
-  ignore_files: [""]
+  ignore: ["Config.HTTPS", "Config.Headers"]
 ]

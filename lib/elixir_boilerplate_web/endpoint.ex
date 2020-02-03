@@ -68,13 +68,15 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     end
   end
 
+  # sobelow_skip ["XSS.SendResp"]
   defp ping(%{request_path: @ping_route_path} = conn, _opts) do
     version = Application.get_env(:elixir_boilerplate, :version)
+    response = Jason.encode!(%{status: "ok", version: version})
 
     conn
     |> Conn.put_resp_header("content-type", "application/json")
-    |> Conn.send_resp(200, Jason.encode!(%{status: "ok", version: version}))
-    |> halt()
+    |> Conn.send_resp(200, response)
+    |> Conn.halt()
   end
 
   defp ping(conn, _opts), do: conn

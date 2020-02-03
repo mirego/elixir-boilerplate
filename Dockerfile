@@ -43,7 +43,9 @@ RUN mix local.rebar --force && \
     mix local.hex --force
 
 # Install dependencies
-RUN mix deps.get --only prod
+COPY mix.* ./
+RUN mix deps.get --only prod && \
+    mix deps.compile
 
 # Compile codebase
 COPY config config
@@ -57,9 +59,7 @@ RUN mix phx.digest
 
 # Build OTP release
 COPY rel rel
-RUN mkdir -p /opt/build && \
-    mix release && \
-    cp _build/prod/${APP_NAME}-${APP_VERSION}.tar.gz /opt/build
+RUN mix release
 
 #
 # Step 3 - build a lean runtime container
@@ -80,7 +80,7 @@ RUN apk update --no-cache && \
 WORKDIR /opt/elixir_boilerplate
 
 # Copy the OTP binary from the build step
-COPY --from=otp-builder /opt/build .
+COPY --from=otp-builder /build/_build/prod/${APP_NAME}-${APP_VERSION}.tar.gz .
 RUN tar -xvzf ${APP_NAME}-${APP_VERSION}.tar.gz && \ 
     rm ${APP_NAME}-${APP_VERSION}.tar.gz
 
