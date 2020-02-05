@@ -45,7 +45,7 @@ RUN apk update --no-cache && \
 RUN mix local.rebar --force && \
     mix local.hex --force
 
-# Install Hex dependencies
+# Install dependencies
 COPY mix.* ./
 RUN mix deps.get --only ${MIX_ENV} && \
     mix deps.compile
@@ -54,7 +54,6 @@ RUN mix deps.get --only ${MIX_ENV} && \
 COPY config config
 COPY lib lib
 COPY priv priv
-COPY rel rel
 RUN mix compile
 
 # Copy assets from step 1
@@ -62,6 +61,7 @@ COPY --from=js-builder /build/priv/static priv/static
 RUN mix phx.digest
 
 # Build OTP release
+COPY rel rel
 RUN mkdir -p /opt/build && \
     mix release && \
     cp -R _build/${MIX_ENV}/rel/${APP_NAME}/* /opt/build
