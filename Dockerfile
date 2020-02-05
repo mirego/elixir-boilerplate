@@ -14,9 +14,11 @@ RUN apk update --no-cache && \
     apk upgrade --no-cache && \
     apk add --no-cache git
 
-# Copy codebase and compile
-COPY . .
+# Install JS dependencies
+COPY assets assets
 RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm
+
+# Build JS/CSS assets 
 RUN npm run --prefix assets deploy
 
 #
@@ -43,18 +45,23 @@ RUN apk update --no-cache && \
 RUN mix local.rebar --force && \
     mix local.hex --force
 
-# Copy dependency config first
+# Install dependencies
 COPY mix.* ./
-RUN mix deps.get --only ${MIX_ENV}
+RUN mix deps.get --only ${MIX_ENV} && \
+    mix deps.compile
 
-# Copy codebase and compile
-COPY . .
+# Compile codebase
+COPY config config
+COPY lib lib
+COPY priv priv
 RUN mix compile
 
-# Copy compiled assets from Step 1
+# Copy assets from step 1
 COPY --from=js-builder /build/priv/static priv/static
 RUN mix phx.digest
 
+# Build OTP release
+COPY rel rel
 RUN mkdir -p /opt/build && \
     mix release && \
     cp -R _build/${MIX_ENV}/rel/${APP_NAME}/* /opt/build
@@ -67,24 +74,23 @@ FROM alpine:3.10
 ARG APP_NAME
 ENV APP_NAME=${APP_NAME}
 
-# Update Alpine and install dependencies
+# Install Alpine dependencies
 RUN apk update --no-cache && \
     apk upgrade --no-cache && \
     apk add --no-cache bash openssl-dev erlang-crypto
 
 WORKDIR /opt/elixir_boilerplate
 
-# Copy the OTP binary from the build step
+# Copy OTP release from step 2
 COPY --from=builder /opt/build .
 
-# Copy the entrypoint script
+# Copy Docker entrypoint
 COPY priv/scripts/docker-entrypoint.sh /usr/local/bin
 RUN chmod a+x /usr/local/bin/docker-entrypoint.sh
 
-# Create a non-root user
-RUN adduser -D elixir_boilerplate && \
+# Create non-root user
+RUN adduser -D elixir_boilerplate && \ 
     chown -R elixir_boilerplate: /opt/elixir_boilerplate
-
 USER elixir_boilerplate
 
 ENTRYPOINT ["docker-entrypoint.sh"]
