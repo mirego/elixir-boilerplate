@@ -14,8 +14,8 @@ RUN apk update --no-cache && \
     apk upgrade --no-cache && \
     apk add --no-cache git
 
-# Copy codebase and compile
-COPY . .
+# Install JS dependencies
+COPY assets assets
 RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm
 RUN npm run --prefix assets deploy
 
@@ -43,12 +43,16 @@ RUN apk update --no-cache && \
 RUN mix local.rebar --force && \
     mix local.hex --force
 
-# Copy dependency config first
+# Install & complie Hex dependencies
 COPY mix.* ./
-RUN mix deps.get --only ${MIX_ENV}
+RUN mix deps.get --only ${MIX_ENV} && \
+    mix deps.compile
 
-# Copy codebase and compile
-COPY . .
+# Compile codebase
+COPY config config
+COPY lib lib
+COPY priv priv
+COPY rel rel
 RUN mix compile
 
 # Copy compiled assets from Step 1
