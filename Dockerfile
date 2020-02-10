@@ -1,7 +1,7 @@
 #
 # Step 1 - build the JS/CSS assets
 #
-FROM node:12.14-alpine AS js-builder
+FROM node:12.15-alpine AS js-builder
 
 ENV NODE_ENV=prod
 

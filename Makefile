@@ -84,6 +84,9 @@ test: ## Run the test suite
 # Check, lint and format targets
 # ------------------------------
 
+.PHONY: check
+check: check-format check-code-security check-code-coverage check-unused-locked-dependencies
+
 .PHONY: check-code-coverage
 check-code-coverage:
 	mix coveralls

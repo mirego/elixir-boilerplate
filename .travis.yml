@@ -28,8 +28,8 @@ env:
 # Install the node version we need, install the node packages,
 # create the database and prepare the application
 before_script:
-  - nvm install 12.14
-  - nvm use 12.14
+  - nvm install 12.15
+  - nvm use 12.15
   - npm --prefix assets ci
   - mix compile
   - mix ecto.create
