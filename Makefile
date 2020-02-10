@@ -75,7 +75,7 @@ run: ## Run the server inside an IEx shell
 .PHONY: dependencies
 dependencies: ## Install dependencies
 	mix deps.get --force
-	npm install --prefix assets
+	npm ci --prefix assets
 
 .PHONY: clean
 clean: ## Clean dependencies
@@ -87,6 +87,8 @@ test: ## Run the test suite
 
 # Check, lint and format targets
 # ------------------------------
+.PHONY: check
+check: check-format check-code-security check-code-coverage check-unused-locked-dependencies
 
 .PHONY: check
 check: check-format check-unused-dependencies check-code-security check-code-coverage

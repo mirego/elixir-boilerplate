@@ -1,0 +1,59 @@
+name: Run codebase checks and tests
+
+on: [push, pull_request]
+
+jobs:
+  dependencies:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-elixir@v1
+        with:
+          elixir-version: 1.10.1
+          otp-version: 22.2 
+      - uses: actions/cache@v1
+        id: cache-mix
+        with:
+          path: deps
+          key: ${{ runner.os }}-mix-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
+          restore-keys: |
+            ${{ runner.os }}-mix-
+      - uses: actions/cache@v1
+        id: cache-npm
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles(format('{0}/assets/package-lock.json', github.workspace)) }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - if: steps.cache-mix.outputs.cache-hit != 'true' &&
+            steps.cache-npm.outputs.cache-hit != 'true'
+        run: make dependencies
+
+  check:
+    runs-on: ubuntu-latest
+    needs: dependencies
+
+    steps:
+      - run: make check
+      - run: make lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: dependencies
+
+    services:
+      db:
+        image: postgres:11
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      MIX_ENV: test
+      DATABASE_URL: postgres://postgres:postgres@localhost/elixir_boilerplate_test
+
+    steps:
+      - run: make test
