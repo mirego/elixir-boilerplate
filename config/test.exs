@@ -23,3 +23,6 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
 config :logger, level: :warn
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo, pool: Ecto.Adapters.SQL.Sandbox
+
+config :elixir_boilerplate, ElixirBoilerplate.Repo,
+  url: Environment.local_database_url?("DATABASE_URL")
