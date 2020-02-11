@@ -32,25 +32,21 @@ defmodule Environment do
     end
   end
 
-  def local_database_url?(key) do
+  def get_local_url(key) do
     url = get(key)
 
-    if get_boolean("EXTERNAL_TEST_DATABASE_URL") do
-      url
-    else
-      case URI.parse(url) do
-        %{host: "localhost"} ->
-          url
+    case URI.parse(get(key)) do
+      %{host: "localhost"} ->
+        url
 
-        %{host: "127.0.0.1"} ->
-          url
+      %{host: "127.0.0.1"} ->
+        url
 
-        %{host: nil} ->
-          url
+      %{host: nil} ->
+        url
 
-        %{host: _} ->
-          raise "Make sure that the DATABASE_URL environment variable for the tests points to a local database or set the EXTERNAL_TEST_DATABASE_URL environment variable to true."
-      end
+      %{host: _} ->
+        raise "Make sure that the DATABASE_URL environment variable for the tests points to a local database."
     end
   end
 end
