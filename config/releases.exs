@@ -35,18 +35,9 @@ defmodule Environment do
   def get_local_url(key) do
     url = get(key)
 
-    case URI.parse(get(key)) do
-      %{host: "localhost"} ->
-        url
-
-      %{host: "127.0.0.1"} ->
-        url
-
-      %{host: nil} ->
-        url
-
-      %{host: _} ->
-        raise "Make sure that the DATABASE_URL environment variable for the tests points to a local database."
+    case URI.parse(url).host do
+      host when host in ~w(localhost 127.0.0.1) -> url
+      host -> raise "Expected host of the #{key} environment variable to be `localhost` or `127.0.0.1`, got: #{host}"
     end
   end
 end
