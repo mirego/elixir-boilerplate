@@ -1,14 +1,12 @@
 defmodule ElixirBoilerplate.Mixfile do
   use Mix.Project
 
-  @version "0.0.1"
-
   def project do
     [
       app: :elixir_boilerplate,
-      version: @version,
-      elixir: "~> 1.9",
-      erlang: "~> 22.0",
+      version: "0.0.1",
+      elixir: "~> 1.10",
+      erlang: "~> 22.2",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
       test_pattern: "**/*_test.exs",
@@ -49,7 +47,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:corsica, "~> 1.1"},
 
       # Phoenix
-      {:phoenix, "~> 1.4.10"},
+      {:phoenix, "~> 1.4.12"},
       {:phoenix_html, "~> 2.13.3"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -97,8 +95,10 @@ defmodule ElixirBoilerplate.Mixfile do
   defp releases do
     [
       elixir_boilerplate: [
-        version: @version,
-        applications: [elixir_boilerplate: :permanent]
+        version: {:from_app, :elixir_boilerplate},
+        applications: [elixir_boilerplate: :permanent],
+        include_executables_for: [:unix],
+        steps: [:assemble, :tar]
       ]
     ]
   end

@@ -1,11 +1,9 @@
 #
 # Step 1 - build the JS/CSS assets
 #
-FROM node:10.16-alpine AS js-builder
+FROM node:12.15-alpine AS js-builder
 
-ARG NODE_ENV=prod
-
-ENV NODE_ENV=${NODE_ENV}
+ENV NODE_ENV=prod
 
 WORKDIR /build
 
@@ -24,15 +22,14 @@ RUN npm run --prefix assets deploy
 #
 # Step 2 - build the OTP binary
 #
-FROM elixir:1.9-alpine AS builder
+FROM hexpm/elixir:1.10.1-erlang-22.2.4-alpine-3.11.3 AS otp-builder
 
 ARG APP_NAME
 ARG APP_VERSION
-ARG MIX_ENV=prod
 
 ENV APP_NAME=${APP_NAME} \
     APP_VERSION=${APP_VERSION} \
-    MIX_ENV=${MIX_ENV}
+    MIX_ENV=prod
 
 WORKDIR /build
 
@@ -47,7 +44,7 @@ RUN mix local.rebar --force && \
 
 # Install dependencies
 COPY mix.* ./
-RUN mix deps.get --only ${MIX_ENV} && \
+RUN mix deps.get --only prod && \
     mix deps.compile
 
 # Compile codebase
@@ -62,17 +59,18 @@ RUN mix phx.digest
 
 # Build OTP release
 COPY rel rel
-RUN mkdir -p /opt/build && \
-    mix release && \
-    cp -R _build/${MIX_ENV}/rel/${APP_NAME}/* /opt/build
+RUN mix release
 
 #
 # Step 3 - build a lean runtime container
 #
-FROM alpine:3.10
+FROM alpine:3.11.3
 
 ARG APP_NAME
-ENV APP_NAME=${APP_NAME}
+ARG APP_VERSION
+
+ENV APP_NAME=${APP_NAME} \
+    APP_VERSION=${APP_VERSION}
 
 # Install Alpine dependencies
 RUN apk update --no-cache && \
@@ -81,8 +79,10 @@ RUN apk update --no-cache && \
 
 WORKDIR /opt/elixir_boilerplate
 
-# Copy OTP release from step 2
-COPY --from=builder /opt/build .
+# Copy the OTP binary from the build step
+COPY --from=otp-builder /build/_build/prod/${APP_NAME}-${APP_VERSION}.tar.gz .
+RUN tar -xvzf ${APP_NAME}-${APP_VERSION}.tar.gz && \ 
+    rm ${APP_NAME}-${APP_VERSION}.tar.gz
 
 # Copy Docker entrypoint
 COPY priv/scripts/docker-entrypoint.sh /usr/local/bin

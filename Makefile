@@ -2,7 +2,7 @@
 # -------------------
 
 APP_NAME = `grep -Eo 'app: :\w*' mix.exs | cut -d ':' -f 3`
-APP_VERSION = `grep -Eo '@version "[0-9\.]*"' mix.exs | cut -d '"' -f 2`
+APP_VERSION = `grep -Eo 'version: "[0-9\.]*"' mix.exs | cut -d '"' -f 2`
 GIT_REVISION = `git rev-parse HEAD`
 DOCKER_IMAGE_TAG ?= $(APP_VERSION)
 DOCKER_REGISTRY ?=
@@ -13,7 +13,7 @@ DOCKER_REMOTE_IMAGE = $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
 # ----------------------------------
 
 PRETTIER_FILES_PATTERN = 'assets/.babelrc' 'assets/webpack.config.js' 'assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' '**/*.md'
-STYLES_PATTERN = assets/css
+STYLES_PATTERN = 'assets/css'
 
 # Introspection targets
 # ---------------------
@@ -84,6 +84,9 @@ test: ## Run the test suite
 # Check, lint and format targets
 # ------------------------------
 
+.PHONY: check
+check: check-format check-code-security check-code-coverage check-unused-locked-dependencies
+
 .PHONY: check-code-coverage
 check-code-coverage:
 	mix coveralls
@@ -116,7 +119,7 @@ lint-elixir:
 
 .PHONY: lint-scripts
 lint-scripts:
-	./assets/node_modules/.bin/eslint --ignore-path assets/.eslintignore --config assets/.eslintrc assets
+	./assets/node_modules/.bin/eslint --config assets/.eslintrc --ignore-path assets/.eslintignore assets
 
 .PHONY: lint-styles
 lint-styles:

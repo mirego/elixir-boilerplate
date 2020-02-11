@@ -4,8 +4,8 @@ dist: xenial
 # Elixir baby!
 language: elixir
 
-elixir: 1.9
-otp_release: 22.0.7
+elixir: 1.10
+otp_release: 22.2
 
 # Make sure PostgreSQL is running
 addons:
@@ -28,8 +28,8 @@ env:
 # Install the node version we need, install the node packages,
 # create the database and prepare the application
 before_script:
-  - nvm install 10.16.3
-  - nvm use 10.16.3
+  - nvm install 12.15
+  - nvm use 12.15
   - npm --prefix assets ci
   - mix compile
   - mix ecto.create

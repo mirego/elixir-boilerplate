@@ -4,7 +4,7 @@
   "private": true,
   "engine-strict": true,
   "engines": {
-    "node": "^10.16",
+    "node": "^12.15",
     "npm": "^6.9"
   },
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "phoenix": "phoenixframework/phoenix#v1.4.10",
+    "phoenix": "phoenixframework/phoenix#v1.4.12",
     "phoenix_html": "phoenixframework/phoenix_html#v2.13.3",
     "simple-css-reset": "^3.0.0"
   },

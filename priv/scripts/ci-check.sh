@@ -30,26 +30,17 @@ run() {
 header "Lint files…"
 run make lint
 
-header "Check code format…"
-run make check-format
+header "Check codebase…"
+run make check
 
 header "Run tests…"
 run make test
-
-header "Check code security…"
-run make check-code-security
-
-header "Check test code coverage…"
-run make check-code-coverage
 
 header "Run seed data…"
 run mix run priv/repo/seeds.exs
 
 header "Run dummy data…"
 run mix run priv/repo/dummy.exs
-
-header "Check unused locked dependencies…"
-run make check-unused-locked-dependencies
 
 header "Build Docker image…"
 run make build
