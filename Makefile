@@ -73,9 +73,13 @@ run: ## Run the server inside an IEx shell
 	iex -S mix phx.server
 
 .PHONY: dependencies
-dependencies: ## Install dependencies required by the application
+dependencies: ## Install dependencies
 	mix deps.get --force
 	npm install --prefix assets
+
+.PHONY: clean
+clean: ## Clean dependencies
+	mix deps.clean --unused --unlock
 
 .PHONY: test
 test: ## Run the test suite
@@ -85,7 +89,7 @@ test: ## Run the test suite
 # ------------------------------
 
 .PHONY: check
-check: check-format check-code-security check-code-coverage check-unused-locked-dependencies
+check: check-format check-unused-dependencies check-code-security check-code-coverage
 
 .PHONY: check-code-coverage
 check-code-coverage:
@@ -100,9 +104,9 @@ check-format:
 	mix format --dry-run --check-formatted
 	./assets/node_modules/.bin/prettier --check $(PRETTIER_FILES_PATTERN)
 
-.PHONY: check-unused-locked-dependencies
-check-unused-locked-dependencies:
-	mix check.unused_locked_deps
+.PHONY: check-unused-dependencies
+check-unused-dependencies:
+	mix deps.unlock --check-unused
 
 .PHONY: format
 format: ## Format project files
