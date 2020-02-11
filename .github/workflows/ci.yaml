@@ -42,7 +42,8 @@ jobs:
           key: ${{ runner.os }}-npm-${{ hashFiles(format('{0}/assets/package-lock.json', github.workspace)) }}
           restore-keys: |
             ${{ runner.os }}-npm-
-      - run: make dependencies 
+      - run: make prepare 
       - run: make check
       - run: make lint
       - run: make test
+      - run: make build DOCKER_IMAGE_TAG=latest  

@@ -56,6 +56,11 @@ targets:
 # Build targets
 # -------------
 
+.PHONY: prepare
+prepare: ## Install dependencies
+	mix deps.get
+	npm ci --prefix assets
+
 .PHONY: build
 build: ## Build the Docker image for the OTP release
 	docker build --build-arg APP_NAME=$(APP_NAME) --build-arg APP_VERSION=$(APP_VERSION) --rm --tag $(DOCKER_LOCAL_IMAGE) .
@@ -74,8 +79,8 @@ run: ## Run the server inside an IEx shell
 
 .PHONY: dependencies
 dependencies: ## Install dependencies
-	mix deps.get --force
-	npm ci --prefix assets
+	mix deps.get
+	npm install --prefix assets
 
 .PHONY: clean
 clean: ## Clean dependencies
