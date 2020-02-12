@@ -36,7 +36,7 @@ defmodule Environment do
     url = get(key)
 
     case URI.parse(url).host do
-      host when host in ~w(localhost 127.0.0.1) -> url
+      host when host in ~w(0.0.0.0 127.0.0.1 localhost host.docker.internal) -> url
       host -> raise "Expected host of the #{key} environment variable to be `localhost` or `127.0.0.1`, got: #{host}"
     end
   end
