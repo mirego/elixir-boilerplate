@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         otp: [22.2.8]
-        elixir: [1.9.4, 1.10.2]
+        elixir: [1.10.2]
 
     services:
       db:
@@ -31,6 +31,10 @@ jobs:
           elixir-version: ${{ matrix.elixir }}
           otp-version: ${{ matrix.otp }}
 
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.15
+
       - uses: actions/cache@v1
         id: deps-cache
         with:
@@ -44,10 +48,6 @@ jobs:
         with:
           path: _build
           key: ${{ runner.os }}-build-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
-
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12.15
 
       - uses: actions/cache@v1
         id: npm-cache
