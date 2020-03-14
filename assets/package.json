@@ -5,7 +5,7 @@
   "engine-strict": true,
   "engines": {
     "node": "^12.15",
-    "npm": "^6.9"
+    "npm": "^6.13"
   },
   "scripts": {
     "deploy": "npm run enforce-engine-versions && npx webpack --mode production",

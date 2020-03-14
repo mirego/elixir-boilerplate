@@ -107,7 +107,7 @@ check-code-security:
 .PHONY: check-format
 check-format:
 	mix format --dry-run --check-formatted
-	./assets/node_modules/.bin/prettier --check $(PRETTIER_FILES_PATTERN)
+	npx prettier --ignore-path assets/.prettierignore --check $(PRETTIER_FILES_PATTERN)
 
 .PHONY: check-unused-dependencies
 check-unused-dependencies:
@@ -116,7 +116,7 @@ check-unused-dependencies:
 .PHONY: format
 format: ## Format project files
 	mix format
-	./assets/node_modules/.bin/prettier --write $(PRETTIER_FILES_PATTERN)
+	npx prettier --ignore-path assets/.prettierignore --write $(PRETTIER_FILES_PATTERN)
 
 .PHONY: lint
 lint: lint-elixir lint-scripts lint-styles ## Lint project files
@@ -128,8 +128,8 @@ lint-elixir:
 
 .PHONY: lint-scripts
 lint-scripts:
-	./assets/node_modules/.bin/eslint --config assets/.eslintrc --ignore-path assets/.eslintignore assets
+	npx eslint --config assets/.eslintrc --ignore-path assets/.eslintignore --resolve-plugins-relative-to assets assets
 
 .PHONY: lint-styles
 lint-styles:
-	./assets/node_modules/.bin/stylelint --syntax scss --config assets/.stylelintrc $(STYLES_PATTERN)
+	npx stylelint --syntax scss --config assets/.stylelintrc $(STYLES_PATTERN)
