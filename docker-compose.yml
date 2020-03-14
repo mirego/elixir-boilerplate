@@ -11,7 +11,7 @@ services:
     depends_on:
       - postgresql
   postgresql:
-    image: postgres:11-alpine
+    image: postgres:12-alpine
     container_name: elixir_boilerplate-postgres
     environment:
       - POSTGRES_DB=elixir_boilerplate_dev

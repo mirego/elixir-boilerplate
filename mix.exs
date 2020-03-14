@@ -78,7 +78,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:credo_naming, "~> 0.4", only: [:dev, :test], runtime: false},
 
       # Security check
-      {:sobelow, "~> 0.8", only: [:dev, :test], runtime: true},
+      {:sobelow, "~> 0.10", only: [:dev, :test], runtime: true},
 
       # Health
       {:plug_checkup, "~> 0.6"},
