@@ -56,6 +56,11 @@ targets:
 # Build targets
 # -------------
 
+.PHONY: prepare
+prepare: ## Install dependencies
+	mix deps.get
+	npm ci --prefix assets
+
 .PHONY: build
 build: ## Build the Docker image for the OTP release
 	docker build --build-arg APP_NAME=$(APP_NAME) --build-arg APP_VERSION=$(APP_VERSION) --rm --tag $(DOCKER_LOCAL_IMAGE) .
@@ -74,7 +79,7 @@ run: ## Run the server inside an IEx shell
 
 .PHONY: dependencies
 dependencies: ## Install dependencies
-	mix deps.get --force
+	mix deps.get
 	npm install --prefix assets
 
 .PHONY: clean
@@ -102,7 +107,7 @@ check-code-security:
 .PHONY: check-format
 check-format:
 	mix format --dry-run --check-formatted
-	./assets/node_modules/.bin/prettier --check $(PRETTIER_FILES_PATTERN)
+	npx prettier --ignore-path assets/.prettierignore --check $(PRETTIER_FILES_PATTERN)
 
 .PHONY: check-unused-dependencies
 check-unused-dependencies:
@@ -111,7 +116,7 @@ check-unused-dependencies:
 .PHONY: format
 format: ## Format project files
 	mix format
-	./assets/node_modules/.bin/prettier --write $(PRETTIER_FILES_PATTERN)
+	npx prettier --ignore-path assets/.prettierignore --write $(PRETTIER_FILES_PATTERN)
 
 .PHONY: lint
 lint: lint-elixir lint-scripts lint-styles ## Lint project files
@@ -123,8 +128,8 @@ lint-elixir:
 
 .PHONY: lint-scripts
 lint-scripts:
-	./assets/node_modules/.bin/eslint --config assets/.eslintrc --ignore-path assets/.eslintignore assets
+	npx eslint --config assets/.eslintrc --ignore-path assets/.eslintignore --resolve-plugins-relative-to assets assets
 
 .PHONY: lint-styles
 lint-styles:
-	./assets/node_modules/.bin/stylelint --syntax scss --config assets/.stylelintrc $(STYLES_PATTERN)
+	npx stylelint --syntax scss --config assets/.stylelintrc $(STYLES_PATTERN)
