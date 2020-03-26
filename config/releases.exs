@@ -5,7 +5,7 @@ defmodule Environment do
   This modules provides various helpers to handle environment metadata
   """
 
-  @local_hosts ~w(0.0.0.0 127.0.0.1 localhost host.docker.internal) 
+  @local_hosts ~w(0.0.0.0 127.0.0.1 localhost host.docker.internal)
 
   def get(key), do: System.get_env(key)
 
