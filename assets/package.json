@@ -8,8 +8,8 @@
     "npm": "^6.13"
   },
   "scripts": {
-    "deploy": "npm run enforce-engine-versions && npx webpack --mode production",
-    "watch": "npm run enforce-engine-versions && npx webpack --mode development --watch-stdin",
+    "deploy": "npm run enforce-engine-versions && webpack --mode production",
+    "watch": "npm run enforce-engine-versions && webpack --mode development --watch-stdin",
     "enforce-engine-versions": "./scripts/enforce-engine-versions.js",
     "preinstall": "npm run enforce-engine-versions",
     "postinstall": "npm run enforce-engine-versions"
@@ -27,7 +27,7 @@
     "babel-loader": "^8.0.0",
     "copy-webpack-plugin": "^4.5.0",
     "css-loader": "^2.1.1",
-    "eslint": "^5.16.0",
+    "eslint": "^6.8.0",
     "eslint-plugin-mirego": "0.0.1",
     "mini-css-extract-plugin": "^0.4.0",
     "optimize-css-assets-webpack-plugin": "^4.0.0",

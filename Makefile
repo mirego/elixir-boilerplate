@@ -12,8 +12,8 @@ DOCKER_REMOTE_IMAGE = $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
 # Linter and formatter configuration
 # ----------------------------------
 
-PRETTIER_FILES_PATTERN = 'assets/.babelrc' 'assets/webpack.config.js' 'assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' '**/*.md'
-STYLES_PATTERN = 'assets/css'
+PRETTIER_FILES_PATTERN = '.babelrc' 'webpack.config.js' '{js,css,scripts}/**/*.{js,graphql,scss,css}' '**/*.md'
+STYLES_PATTERN = 'css'
 
 # Introspection targets
 # ---------------------
@@ -107,7 +107,7 @@ check-code-security:
 .PHONY: check-format
 check-format:
 	mix format --dry-run --check-formatted
-	npx prettier --ignore-path assets/.prettierignore --check $(PRETTIER_FILES_PATTERN)
+	cd assets && npx prettier --check $(PRETTIER_FILES_PATTERN)
 
 .PHONY: check-unused-dependencies
 check-unused-dependencies:
@@ -116,7 +116,7 @@ check-unused-dependencies:
 .PHONY: format
 format: ## Format project files
 	mix format
-	npx prettier --ignore-path assets/.prettierignore --write $(PRETTIER_FILES_PATTERN)
+	cd assets && npx prettier --write $(PRETTIER_FILES_PATTERN)
 
 .PHONY: lint
 lint: lint-elixir lint-scripts lint-styles ## Lint project files
@@ -128,8 +128,8 @@ lint-elixir:
 
 .PHONY: lint-scripts
 lint-scripts:
-	npx eslint --config assets/.eslintrc --ignore-path assets/.eslintignore --resolve-plugins-relative-to assets assets
+	cd assets && npx eslint .
 
 .PHONY: lint-styles
 lint-styles:
-	npx stylelint --syntax scss --config assets/.stylelintrc $(STYLES_PATTERN)
+	cd assets && npx stylelint --syntax scss $(STYLES_PATTERN)
