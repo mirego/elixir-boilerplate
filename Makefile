@@ -12,8 +12,8 @@ DOCKER_REMOTE_IMAGE = $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
 # Linter and formatter configuration
 # ----------------------------------
 
-PRETTIER_FILES_PATTERN = 'assets/.babelrc' 'assets/webpack.config.js' 'assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' '**/*.md'
-STYLES_PATTERN = 'assets/css'
+PRETTIER_FILES_PATTERN = '.babelrc' 'webpack.config.js' '{js,css,scripts}/**/*.{js,graphql,scss,css}' '**/*.md'
+STYLES_PATTERN = 'css'
 
 # Introspection targets
 # ---------------------
@@ -51,10 +51,15 @@ header:
 targets:
 	@echo "\033[34mTargets\033[0m"
 	@echo "\033[34m---------------------------------------------------------------\033[0m"
-	@perl -nle'print $& if m{^[a-zA-Z_-]+:.*?## .*$$}' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-22s\033[0m %s\n", $$1, $$2}'
+	@perl -nle'print $& if m{^[a-zA-Z_-\d]+:.*?## .*$$}' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-22s\033[0m %s\n", $$1, $$2}'
 
 # Build targets
 # -------------
+
+.PHONY: prepare
+prepare: ## Install dependencies
+	mix deps.get
+	npm ci --prefix assets
 
 .PHONY: build
 build: ## Build the Docker image for the OTP release
@@ -74,7 +79,7 @@ run: ## Run the server inside an IEx shell
 
 .PHONY: dependencies
 dependencies: ## Install dependencies
-	mix deps.get --force
+	mix deps.get
 	npm install --prefix assets
 
 .PHONY: clean
@@ -102,7 +107,7 @@ check-code-security:
 .PHONY: check-format
 check-format:
 	mix format --dry-run --check-formatted
-	./assets/node_modules/.bin/prettier --check $(PRETTIER_FILES_PATTERN)
+	cd assets && npx prettier --check $(PRETTIER_FILES_PATTERN)
 
 .PHONY: check-unused-dependencies
 check-unused-dependencies:
@@ -111,7 +116,7 @@ check-unused-dependencies:
 .PHONY: format
 format: ## Format project files
 	mix format
-	./assets/node_modules/.bin/prettier --write $(PRETTIER_FILES_PATTERN)
+	cd assets && npx prettier --write $(PRETTIER_FILES_PATTERN)
 
 .PHONY: lint
 lint: lint-elixir lint-scripts lint-styles ## Lint project files
@@ -123,8 +128,8 @@ lint-elixir:
 
 .PHONY: lint-scripts
 lint-scripts:
-	./assets/node_modules/.bin/eslint --config assets/.eslintrc --ignore-path assets/.eslintignore assets
+	cd assets && npx eslint .
 
 .PHONY: lint-styles
 lint-styles:
-	./assets/node_modules/.bin/stylelint --syntax scss --config assets/.stylelintrc $(STYLES_PATTERN)
+	cd assets && npx stylelint --syntax scss $(STYLES_PATTERN)

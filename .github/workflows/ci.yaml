@@ -1,0 +1,64 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        otp-version: [22.2.8]
+        elixir-version: [1.10.2]
+
+    services:
+      db:
+        image: postgres:12
+        env:
+          POSTGRES_DB: elixir_boilerplate_test
+          POSTGRES_PASSWORD: boilerplate
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    env:
+      MIX_ENV: test
+      DATABASE_URL: postgres://postgres:boilerplate@localhost/elixir_boilerplate_test
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-elixir@v1
+        with:
+          elixir-version: ${{ matrix.elixir-version }}
+          otp-version: ${{ matrix.otp-version }}
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.15
+
+      - uses: actions/cache@v1
+        id: deps-cache
+        with:
+          path: deps
+          key: ${{ runner.os }}-deps-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
+          restore-keys: |
+            ${{ runner.os }}-deps-
+
+      - uses: actions/cache@v1
+        id: build-cache
+        with:
+          path: _build
+          key: ${{ runner.os }}-build-${{ matrix.otp-version }}-${{ matrix.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
+
+      - uses: actions/cache@v1
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles(format('{0}/assets/package-lock.json', github.workspace)) }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - run: make prepare
+      - run: make check
+      - run: make lint
+      - run: make test
+      - run: make build DOCKER_IMAGE_TAG=latest
