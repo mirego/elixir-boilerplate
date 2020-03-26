@@ -12,6 +12,10 @@ Since it is a boilerplate project, there are technically no official (versioned)
 
 - `make` targets using `npx` now work properly since we now change the current working directory to `assets` before running them
 
+### Added
+
+- Added a local database URL check for the test configuration which prevents tests from being run on an external database
+
 ## 2020-03-18
 
 ### Fixed
