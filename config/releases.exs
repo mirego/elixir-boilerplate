@@ -39,7 +39,7 @@ defmodule Environment do
 
     case URI.parse(url).host do
       host when host in @local_hosts -> url
-      host -> raise "Expected host of the #{key} environment variable to be one of #{Enum.join(@local_hosts), ", "}, got: #{host}"
+      host -> raise "Expected host of the #{key} environment variable to be one of #{Enum.join(@local_hosts, ", ")}, got: #{host}"
     end
   end
 end
