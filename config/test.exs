@@ -9,9 +9,10 @@ defmodule TestEnvironment do
   def enforce_test_database_name(key) do
     url = Environment.get_local_url(key)
 
-    case String.contains?(url, @database_name_suffix) do
-      true -> url
-      _ -> raise "Expected database URL to ends with '#{@database_name_suffix}', got: #{url}"
+    if String.contains?(url, @database_name_suffix) do
+      url
+    else
+      raise "Expected database URL to ends with '#{@database_name_suffix}', got: #{url}"
     end
   end
 end
