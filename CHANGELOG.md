@@ -11,6 +11,7 @@ Since it is a boilerplate project, there are technically no official (versioned)
 ### Fixed
 
 - `make` targets using `npx` now work properly since we now change the current working directory to `assets` before running them
+- The `boilerplate-setup.sh` script now supports PascalCase name with consecutive uppercase letters (eg. `FooBarBBQ` → `foo_bar_bbq`)
 
 ## 2020-03-18
 

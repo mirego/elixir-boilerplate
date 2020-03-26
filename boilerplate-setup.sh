@@ -47,7 +47,7 @@ if [[ -z "$1" ]] ; then
 fi
 
 pascalCaseAfter=$1
-snakeCaseAfter=$(echo $pascalCaseAfter | /usr/bin/sed 's/\(.\)\([A-Z]\)/\1_\2/g' | tr '[:upper:]' '[:lower:]')
+snakeCaseAfter=$(echo $pascalCaseAfter | /usr/bin/sed 's/\(.\)\([A-Z]\{1,\}\)/\1_\2/g' | tr '[:upper:]' '[:lower:]')
 kebabCaseAfter=$(echo $snakeCaseAfter | tr '_' '-')
 
 # -----------------------------------------------------------------------------
