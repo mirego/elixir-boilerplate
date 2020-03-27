@@ -3,6 +3,20 @@ import Config
 # Import runtime configuration
 import_config "releases.exs"
 
+defmodule TestEnvironment do
+  @database_name_suffix "_test"
+
+  def get_test_database_url do
+    url = Environment.get("DATABASE_URL")
+
+    if String.contains?(url, @database_name_suffix) do
+      url
+    else
+      raise "Expected database URL to ends with '#{@database_name_suffix}', got: #{url}"
+    end
+  end
+end
+
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   http: [port: 4001],
   server: false,
@@ -24,4 +38,4 @@ config :logger, level: :warn
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
-  url: Environment.get_local_url("DATABASE_URL")
+  url: TestEnvironment.get_test_database_url()
