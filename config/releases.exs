@@ -5,8 +5,6 @@ defmodule Environment do
   This modules provides various helpers to handle environment metadata
   """
 
-  @local_hosts ~w(0.0.0.0 127.0.0.1 localhost host.docker.internal)
-
   def get(key), do: System.get_env(key)
 
   def get_boolean(key) do
@@ -31,15 +29,6 @@ defmodule Environment do
     else
       value when is_list(value) -> value
       _ -> nil
-    end
-  end
-
-  def get_local_url(key) do
-    url = get(key)
-
-    case URI.parse(url).host do
-      host when host in @local_hosts -> url
-      host -> raise "Expected host of the #{key} environment variable to be one of #{Enum.join(@local_hosts, ", ")}, got: #{host}"
     end
   end
 end

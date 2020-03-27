@@ -6,8 +6,8 @@ import_config "releases.exs"
 defmodule TestEnvironment do
   @database_name_suffix "_test"
 
-  def enforce_test_database_name(key) do
-    url = Environment.get_local_url(key)
+  def get_test_database_url do
+    url = Environment.get("DATABASE_URL")
 
     if String.contains?(url, @database_name_suffix) do
       url
@@ -38,4 +38,4 @@ config :logger, level: :warn
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
-  url: TestEnvironment.enforce_test_database_name("DATABASE_URL")
+  url: TestEnvironment.get_test_database_url()
