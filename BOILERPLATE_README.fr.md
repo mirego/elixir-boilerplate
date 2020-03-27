@@ -22,11 +22,11 @@
 
 ## 🚧 Dépendances
 
-- Node.js (`>= 10.16, < 11.0`)
-- NPM (`>= 6.9, < 7.0`)
-- Elixir (`~> 1.9`)
-- Erlang (`~> 22.0`)
-- PostgreSQL (`~> 10.0`)
+- Node.js (`>= 12.15, < 13.0`)
+- NPM (`>= 6.13, < 7.0`)
+- Elixir (`~> 1.10`)
+- Erlang (`~> 22.2`)
+- PostgreSQL (`~> 12.0`)
 
 ## 🏎 Départ rapide
 

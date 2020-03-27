@@ -17,6 +17,7 @@ content=$(find . -type f \( \
   -name "*.json" -or \
   -name "*.js" -or \
   -name "*.yml" -or \
+  -name "*.yaml" -or \
   -name "*.md" -or \
   -name ".env.*" -or \
   -name "Dockerfile" -or \
@@ -30,11 +31,15 @@ content=$(find . -type f \( \
 
 # The identifiers above will be replaced in the path of the files and directories found here
 paths=$(find . -depth 2 \( \
-  -path "./lib/${snakeCaseBefore}*" -or \
+  -path "./lib/${snakeCaseBefore}" -or \
   -path "./lib/${snakeCaseBefore}_*" -or \
-  -path "./lib/${snakeCaseBefore}.*" -or \
   -path "./test/${snakeCaseBefore}" -or \
   -path "./test/${snakeCaseBefore}_*" \
+\))
+
+files=$(find . \( \
+  -path "./lib/${snakeCaseBefore}.*" -or \
+  -path "./lib/${snakeCaseBefore}*/${snakeCaseBefore}*" \
 \))
 
 # -----------------------------------------------------------------------------
@@ -87,7 +92,14 @@ success "Done!\n"
 
 header "Replacing boilerplate identifiers in file and directory paths"
 for path in $paths; do
-  run mv $path $(echo $path | /usr/bin/sed "s/$snakeCaseBefore/$snakeCaseAfter/g" | /usr/bin/sed "s/$kebabCaseBefore/$kebabCaseAfter/g" | /usr/bin/sed "s/$pascalCaseBefore/$pascalCaseAfter/g")
+  run mkdir $(echo $path | /usr/bin/sed "s/$snakeCaseBefore/$snakeCaseAfter/g" | /usr/bin/sed "s/$kebabCaseBefore/$kebabCaseAfter/g" | /usr/bin/sed "s/$pascalCaseBefore/$pascalCaseAfter/g")
+done
+for file in $files; do \
+  run mv $file $(echo $file | /usr/bin/sed "s/$snakeCaseBefore/$snakeCaseAfter/g" | /usr/bin/sed "s/$kebabCaseBefore/$kebabCaseAfter/g" | /usr/bin/sed "s/$pascalCaseBefore/$pascalCaseAfter/g")
+done
+for path in $paths; do
+  run mv $path/* $(echo $path | /usr/bin/sed "s/$snakeCaseBefore/$snakeCaseAfter/g" | /usr/bin/sed "s/$kebabCaseBefore/$kebabCaseAfter/g" | /usr/bin/sed "s/$pascalCaseBefore/$pascalCaseAfter/g")
+  run rm -rf $path
 done
 success "Done!\n"
 

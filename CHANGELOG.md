@@ -12,6 +12,8 @@ Since it is a boilerplate project, there are technically no official (versioned)
 
 - `make` targets using `npx` now work properly since we now change the current working directory to `assets` before running them
 - The `boilerplate-setup.sh` script now supports PascalCase name with consecutive uppercase letters (eg. `FooBarBBQ` → `foo_bar_bbq`)
+- The `boilerplate-setup.sh` script now takes into account deeper hierarchy files and the Github Action CI workflow file
+- The `BOILERPLATE_README.fr.md` and `BOILERPLATE_README.md` now list the correct dependencies
 
 ### Added
 
