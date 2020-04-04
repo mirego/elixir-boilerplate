@@ -57,7 +57,7 @@ targets:
 # -------------
 
 .PHONY: prepare
-prepare: ## Install dependencies
+prepare:
 	mix deps.get
 	npm ci --prefix assets
 
@@ -82,10 +82,6 @@ dependencies: ## Install dependencies
 	mix deps.get
 	npm install --prefix assets
 
-.PHONY: clean
-clean: ## Clean dependencies
-	mix deps.clean --unused --unlock
-
 .PHONY: test
 test: ## Run the test suite
 	mix test
@@ -94,7 +90,7 @@ test: ## Run the test suite
 # ------------------------------
 
 .PHONY: check
-check: check-format check-unused-dependencies check-code-security check-code-coverage
+check: check-format check-unused-dependencies check-code-security check-code-coverage ## Run various checks on project files
 
 .PHONY: check-code-coverage
 check-code-coverage:
