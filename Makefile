@@ -12,7 +12,7 @@ DOCKER_REMOTE_IMAGE = $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
 # Linter and formatter configuration
 # ----------------------------------
 
-PRETTIER_FILES_PATTERN = '.babelrc' 'webpack.config.js' '{js,css,scripts}/**/*.{js,graphql,scss,css}' '**/*.md'
+PRETTIER_FILES_PATTERN = '.babelrc' 'webpack.config.js' '{js,css,scripts}/**/*.{js,graphql,scss,css}' '../*.md' '../*/*.md'
 STYLES_PATTERN = 'css'
 
 # Introspection targets
