@@ -85,7 +85,17 @@ The `priv/scripts/ci-check.sh` script runs a set of commands (tests, linting, et
 
 ## 🚑 Troubleshooting
 
-…
+### System readiness
+
+The project exposes a `GET /ping` route that sends an HTTP `200 OK` response as soon as the server is ready to accept requests. The response also contains the project version for debugging purpose.
+
+### System health
+
+The project exposes a `GET /health` route that serves the `ElixirBoilerplateHealth` module. This module contains checks to make sure the application and its external dependencies are healthy.
+
+| Name   | Description                  |
+| ------ | ---------------------------- |
+| `NOOP` | This check is always healthy |
 
 ## 🚀 Deploy
 
