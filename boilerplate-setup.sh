@@ -46,8 +46,8 @@ files=$(find . \( \
 # Validation
 # -----------------------------------------------------------------------------
 
-if [[ -z "$1" ]] ; then
-  echo 'You must specify your project name in PascalCase as first argument.'
+if [[ -z $(echo "$1" | grep "^[A-Z]") ]] ; then
+  echo 'You must specify your project name in PascalCase as first argument (eg. FooBar).'
   exit 0
 fi
 
