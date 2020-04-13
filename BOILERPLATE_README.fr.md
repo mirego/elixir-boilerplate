@@ -85,7 +85,17 @@ Le workflow `.github/workflows/ci.yaml` s’assure que le code du projet est en 
 
 ## 🚑 Problèmes et solutions
 
-…
+### Disponibilité du système
+
+Le projet expose une route `GET /ping` qui retourne une réponse HTTP `200 OK` dès que le serveur est prêt à recevoir des requêtes. La réponse contient également la version du projet à des fin de déboguage.
+
+### Santé du système
+
+Le projet expose une route `GET /health` qui sert le module `ElixirBoilerplateHealth`. Ce module contient différents _checks_ qui s’assurent que l’application et ses services dépendants sont en santé.
+
+| Nom    | Description                         |
+| ------ | ----------------------------------- |
+| `NOOP` | Check _check_ est toujours en santé |
 
 ## 🚀 Deploiement
 
