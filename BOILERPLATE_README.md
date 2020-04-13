@@ -71,7 +71,7 @@ Several linting and formatting tools can be ran to ensure coding style consisten
 
 ### Continuous integration
 
-The `priv/scripts/ci-check.sh` script runs a set of commands (tests, linting, etc.) to make sure the project and its code are in a good state.
+The `.github/workflows/ci.yaml` workflow ensures that the codebase is in good shape on each pull request and branch push.
 
 ## 🏗 Code & architecture
 

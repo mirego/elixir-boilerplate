@@ -71,7 +71,7 @@ Plusieurs outils de _linting_ et de _formatting_ peuvent être exécutés pour s
 
 ### Intégration continue
 
-Le script `priv/scripts/ci-check.sh` exécute un ensemble de commantes (tests, _linting_, etc.) pour s’assurer que le projet et son code sont en bon état.
+Le workflow `.github/workflows/ci.yaml` s’assure que le code du projet est en bon état à chaque pull request et `push` sur une branche.
 
 ## 🏗 Code et architecture
 
