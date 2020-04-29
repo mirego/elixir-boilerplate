@@ -1,5 +1,6 @@
 defmodule ElixirBoilerplateGraphQL.Router do
   use Plug.Router
+  use NewRelic.Transaction
 
   @absinthe_configuration [
     document_providers: {ElixirBoilerplateGraphQL, :document_providers},

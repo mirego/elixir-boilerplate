@@ -60,7 +60,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:absinthe_error_payload, "~> 1.0"},
 
       # Database
-      {:ecto_sql, "~> 3.2"},
+      {:ecto_sql, "~> 3.3"},
       {:postgrex, "~> 0.15"},
 
       # Authentication
@@ -71,6 +71,11 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Errors
       {:sentry, "~> 7.1"},
+
+      # Monitoring
+      {:new_relic_agent, "~> 1.17"},
+      {:new_relic_phoenix, "~> 0.2"},
+      {:new_relic_absinthe, "~> 0.0"},
 
       # Linting
       {:credo, "~> 1.1", only: [:dev, :test], override: true},
