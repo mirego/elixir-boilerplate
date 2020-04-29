@@ -60,7 +60,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:absinthe_error_payload, "~> 1.0"},
 
       # Database
-      {:ecto_sql, "~> 3.3"},
+      {:ecto_sql, "~> 3.2"},
       {:postgrex, "~> 0.15"},
 
       # Authentication
