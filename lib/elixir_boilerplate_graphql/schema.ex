@@ -24,4 +24,8 @@ defmodule ElixirBoilerplateGraphQL.Schema do
   def plugins do
     [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
   end
+
+  def middleware(middleware, _, _) do
+    [NewRelic.Absinthe.Middleware] ++ middleware
+  end
 end

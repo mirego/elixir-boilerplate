@@ -72,6 +72,11 @@ defmodule ElixirBoilerplate.Mixfile do
       # Errors
       {:sentry, "~> 7.1"},
 
+      # Monitoring
+      {:new_relic_agent, "~> 1.17"},
+      {:new_relic_phoenix, "~> 0.2"},
+      {:new_relic_absinthe, "~> 0.0"},
+
       # Linting
       {:credo, "~> 1.1", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},

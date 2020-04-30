@@ -12,6 +12,9 @@ defmodule ElixirBoilerplateWeb.Router do
     plug(:protect_from_forgery)
     plug(ElixirBoilerplateWeb.ContentSecurityPolicy)
     plug(:put_layout, {ElixirBoilerplateWeb.Layouts.View, :app})
+    plug(NewRelic.Transaction.Plug)
+    plug(NewRelic.Phoenix.Transaction.Plug)
+    plug(NewRelic.DistributedTrace.Plug)
   end
 
   forward(

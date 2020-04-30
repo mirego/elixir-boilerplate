@@ -71,3 +71,7 @@ config :elixir_boilerplate,
 config :sentry,
   dsn: Environment.get("SENTRY_DSN"),
   environment_name: Environment.get("SENTRY_ENVIRONMENT_NAME")
+
+config :new_relic_agent,
+  app_name: System.get_env("NEW_RELIC_APP_NAME"),
+  license_key: System.get_env("NEW_RELIC_LICENSE_KEY")
