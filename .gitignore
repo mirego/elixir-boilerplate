@@ -4,6 +4,7 @@
 /deps
 /*.ez
 /cover
+/tmp
 
 # Generated on crash by the VM
 erl_crash.dump
