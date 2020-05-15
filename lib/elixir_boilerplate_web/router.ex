@@ -1,37 +1,40 @@
 defmodule ElixirBoilerplateWeb.Router do
   use Phoenix.Router
 
-  pipeline :api do
-    plug(:accepts, ["json"])
-  end
-
   pipeline :browser do
     plug(:accepts, ["html", "json"])
+
+    plug(:session)
     plug(:fetch_session)
     plug(:fetch_flash)
+
     plug(:protect_from_forgery)
     plug(ElixirBoilerplateWeb.ContentSecurityPolicy)
+
     plug(:put_layout, {ElixirBoilerplateWeb.Layouts.View, :app})
+
     plug(NewRelic.Transaction.Plug)
     plug(NewRelic.Phoenix.Transaction.Plug)
     plug(NewRelic.DistributedTrace.Plug)
   end
 
-  forward(
-    "/health",
-    PlugCheckup,
-    PlugCheckup.Options.new(
-      json_encoder: Jason,
-      checks: ElixirBoilerplateHealth.checks(),
-      error_code: ElixirBoilerplateHealth.error_code(),
-      timeout: :timer.seconds(5),
-      pretty: false
-    )
-  )
-
   scope "/", ElixirBoilerplateWeb do
     pipe_through(:browser)
 
     get("/", Home.Controller, :index, as: :home)
+  end
+
+  # The session will be stored in the cookie and signed,
+  # this means its contents can be read but not tampered with.
+  # Set :encryption_salt if you would also like to encrypt it.
+  defp session(conn, _opts) do
+    opts =
+      Plug.Session.init(
+        store: :cookie,
+        key: Application.get_env(:elixir_boilerplate, __MODULE__)[:session_key],
+        signing_salt: Application.get_env(:elixir_boilerplate, __MODULE__)[:session_signing_salt]
+      )
+
+    Plug.Session.call(conn, opts)
   end
 end

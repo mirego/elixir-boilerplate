@@ -8,6 +8,6 @@ defmodule ElixirBoilerplate.Repo do
   DATABASE_URL environment variable.
   """
   def init(_, opts) do
-    {:ok, Keyword.put(opts, :url, Application.get_env(:elixir_boilerplate, ElixirBoilerplate.Repo)[:url])}
+    {:ok, Keyword.put(opts, :url, Application.get_env(:elixir_boilerplate, __MODULE__)[:url])}
   end
 end

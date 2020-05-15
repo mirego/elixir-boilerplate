@@ -4,9 +4,6 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
   alias Plug.Conn
 
-  @health_route_path "/health"
-  @ping_route_path "/ping"
-
   socket("/socket", ElixirBoilerplateWeb.Socket)
 
   plug(:ping)
@@ -48,7 +45,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
-  plug(:session)
+  plug(ElixirBoilerplateHealth.Router)
   plug(ElixirBoilerplateGraphQL.Router)
   plug(:halt_if_sent)
   plug(ElixirBoilerplateWeb.Router)
@@ -61,7 +58,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   """
   def init(_key, config) do
     if config[:load_from_system_env] do
-      port = Application.get_env(:elixir_boilerplate, ElixirBoilerplateWeb.Endpoint)[:http][:port] || raise "expected the PORT environment variable to be set"
+      port = Application.get_env(:elixir_boilerplate, __MODULE__)[:http][:port] || raise "expected the PORT environment variable to be set"
       {:ok, Keyword.put(config, :http, [:inet6, port: port])}
     else
       {:ok, config}
@@ -69,7 +66,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   end
 
   # sobelow_skip ["XSS.SendResp"]
-  defp ping(%{request_path: @ping_route_path} = conn, _opts) do
+  defp ping(%{request_path: "/ping"} = conn, _opts) do
     version = Application.get_env(:elixir_boilerplate, :version)
     response = Jason.encode!(%{status: "ok", version: version})
 
@@ -81,7 +78,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
   defp ping(conn, _opts), do: conn
 
-  defp canonical_host(%{request_path: @health_route_path} = conn, _opts), do: conn
+  defp canonical_host(%{request_path: "/health"} = conn, _opts), do: conn
 
   defp canonical_host(conn, _opts) do
     opts = PlugCanonicalHost.init(canonical_host: Application.get_env(:elixir_boilerplate, :canonical_host))
@@ -89,7 +86,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     PlugCanonicalHost.call(conn, opts)
   end
 
-  defp force_ssl(%{request_path: @health_route_path} = conn, _opts), do: conn
+  defp force_ssl(%{request_path: "/health"} = conn, _opts), do: conn
 
   defp force_ssl(conn, _opts) do
     if Application.get_env(:elixir_boilerplate, :force_ssl) do
@@ -119,23 +116,9 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     end
   end
 
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
-  defp session(conn, _opts) do
-    opts =
-      Plug.Session.init(
-        store: :cookie,
-        key: Application.get_env(:elixir_boilerplate, ElixirBoilerplateWeb.Endpoint)[:session_key],
-        signing_salt: Application.get_env(:elixir_boilerplate, ElixirBoilerplateWeb.Endpoint)[:signing_salt]
-      )
-
-    Plug.Session.call(conn, opts)
-  end
-
-  # Splitting the Web and GraphQL router in separate modules has a negative
-  # side effect: Phoenix.Router does not check the Plug.Conn state and tries to
-  # match the route even if it was already handled/sent by Absinthe.Plug.
+  # Splitting routers in separate modules has a negative side effect:
+  # Phoenix.Router does not check the Plug.Conn state and tries to match the
+  # route even if it was already handled/sent by another router.
   defp halt_if_sent(%{state: :sent, halted: false} = conn, _opts), do: halt(conn)
   defp halt_if_sent(conn, _opts), do: conn
 end

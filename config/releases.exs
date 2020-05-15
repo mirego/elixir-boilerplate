@@ -51,14 +51,16 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
   http: [port: port],
   secret_key_base: Environment.get("SECRET_KEY_BASE"),
-  session_key: Environment.get("SESSION_KEY"),
-  signing_salt: Environment.get("SIGNING_SALT"),
   static_url: [
     scheme: Environment.get("STATIC_URL_SCHEME"),
     host: Environment.get("STATIC_URL_HOST"),
     port: Environment.get("STATIC_URL_PORT")
   ],
   url: [scheme: scheme, host: host, port: port]
+
+config :elixir_boilerplate, ElixirBoilerplateWeb.Router,
+  session_key: Environment.get("SESSION_KEY"),
+  session_signing_salt: Environment.get("SESSION_SIGNING_SALT")
 
 config :elixir_boilerplate, Corsica, origins: Environment.get_list_or_first_value("CORS_ALLOWED_ORIGINS")
 
