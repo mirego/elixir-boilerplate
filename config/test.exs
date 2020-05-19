@@ -6,7 +6,7 @@ import_config "releases.exs"
 defmodule TestEnvironment do
   @database_name_suffix "_test"
 
-  def get_test_database_url do
+  def get_database_url do
     url = Environment.get("DATABASE_URL")
 
     if is_nil(url) || String.contains?(url, @database_name_suffix) do
@@ -40,4 +40,4 @@ config :logger, level: :warn
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
-  url: TestEnvironment.get_test_database_url()
+  url: TestEnvironment.get_database_url()
