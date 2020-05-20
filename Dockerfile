@@ -16,7 +16,7 @@ RUN apk update --no-cache && \
 COPY assets assets
 RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm
 
-# Build JS/CSS assets 
+# Build JS/CSS assets
 RUN npm run --prefix assets deploy
 
 #
@@ -81,7 +81,7 @@ WORKDIR /opt/elixir_boilerplate
 
 # Copy the OTP binary from the build step
 COPY --from=otp-builder /build/_build/prod/${APP_NAME}-${APP_VERSION}.tar.gz .
-RUN tar -xvzf ${APP_NAME}-${APP_VERSION}.tar.gz && \ 
+RUN tar -xvzf ${APP_NAME}-${APP_VERSION}.tar.gz && \
     rm ${APP_NAME}-${APP_VERSION}.tar.gz
 
 # Copy Docker entrypoint
@@ -89,7 +89,7 @@ COPY priv/scripts/docker-entrypoint.sh /usr/local/bin
 RUN chmod a+x /usr/local/bin/docker-entrypoint.sh
 
 # Create non-root user
-RUN adduser -D elixir_boilerplate && \ 
+RUN adduser -D elixir_boilerplate && \
     chown -R elixir_boilerplate: /opt/elixir_boilerplate
 USER elixir_boilerplate
 
