@@ -31,6 +31,17 @@ defmodule Environment do
       _ -> nil
     end
   end
+
+  def get_static_url_config(nil), do: nil
+  def get_static_url_config(""), do: nil
+
+  def get_static_url_config(host) do
+    [
+      host: host,
+      scheme: Environment.get("STATIC_URL_SCHEME"),
+      port: Environment.get("STATIC_URL_PORT")
+    ]
+  end
 end
 
 force_ssl = Environment.get_boolean("FORCE_SSL")
@@ -51,12 +62,8 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
   http: [port: port],
   secret_key_base: Environment.get("SECRET_KEY_BASE"),
-  static_url: [
-    scheme: Environment.get("STATIC_URL_SCHEME"),
-    host: Environment.get("STATIC_URL_HOST"),
-    port: Environment.get("STATIC_URL_PORT")
-  ],
-  url: [scheme: scheme, host: host, port: port]
+  static_url: get_static_url_config(Environment.get("STATIC_URL_HOST")),
+  url: [host: host, scheme: scheme, port: port]
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Router,
   session_key: Environment.get("SESSION_KEY"),
