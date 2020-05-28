@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Since it is a boilerplate project, there are technically no official (versioned) _releases_. Therefore, the `master` branch should always be stable and usable.
 
+## 2020-05-27
+
+- Do not provide `static_url` configuration to Phoenix endpoint if `STATIC_URL_HOST` isn’t present (#110)
+
 ## 2020-05-15
 
 - Do not raise “missing `_test` suffix” error when DATABASE_URL is not present
