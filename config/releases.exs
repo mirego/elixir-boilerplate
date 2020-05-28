@@ -38,8 +38,8 @@ defmodule Environment do
   def get_endpoint_static_url_config(host) do
     [
       host: host,
-      scheme: Environment.get("STATIC_URL_SCHEME"),
-      port: Environment.get("STATIC_URL_PORT")
+      scheme: get("STATIC_URL_SCHEME"),
+      port: get("STATIC_URL_PORT")
     ]
   end
 end
