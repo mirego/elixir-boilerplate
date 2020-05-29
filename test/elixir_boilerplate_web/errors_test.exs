@@ -29,6 +29,7 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
 
     schema "users" do
       field(:email, :string)
+      field(:nicknames, {:array, :string})
 
       embeds_one(:single_role, UserRole)
       embeds_many(:multiple_roles, UserRole)
@@ -38,10 +39,11 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
 
     def changeset(%__MODULE__{} = user, params) do
       user
-      |> cast(params, [:email])
+      |> cast(params, [:email, :nicknames])
       |> cast_embed(:single_role)
       |> cast_embed(:multiple_roles)
       |> validate_length(:email, is: 10)
+      |> validate_length(:nicknames, min: 1)
       |> validate_format(:email, ~r/@/)
     end
   end
@@ -58,14 +60,15 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
   test "error_messages/1 should render error messages on changeset" do
     html =
       %User{}
-      |> User.changeset(%{"email" => "foo", "single_role" => %{"type" => "bar"}, "multiple_roles" => [%{"type" => ""}]})
+      |> User.changeset(%{"email" => "foo", "nicknames" => [], "single_role" => %{"type" => "bar"}, "multiple_roles" => [%{"type" => ""}]})
       |> changeset_to_error_messages()
 
     assert html == """
              <ul>
                  <li>email has invalid format</li>
-                 <li>email should be 10 character(s)</li>
+                 <li>email should be 10 characters</li>
                  <li>multiple_roles.type can’t be blank</li>
+                 <li>nicknames should have at least 1 item</li>
                  <li>single_role.type is invalid</li>
              </ul>
            """
