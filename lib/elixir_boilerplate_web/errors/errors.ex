@@ -6,7 +6,7 @@ defmodule ElixirBoilerplateWeb.Errors do
   Generates a human-readable block containing all errors in a changeset. Errors
   are then localized using translations in the `ecto` domain.
 
-  For example, you could have an `ecto.po` file in the french locale:
+  For example, you could have an `errors.po` file in the french locale:
 
   ```
   msgid ""
@@ -25,9 +25,9 @@ defmodule ElixirBoilerplateWeb.Errors do
 
   defp translate_error({message, options}) do
     if options[:count] do
-      Gettext.dngettext(ElixirBoilerplate.Gettext, "ecto", message, message, options[:count], options)
+      Gettext.dngettext(ElixirBoilerplate.Gettext, "errors", message, message, options[:count], options)
     else
-      Gettext.dgettext(ElixirBoilerplate.Gettext, "ecto", message, options)
+      Gettext.dgettext(ElixirBoilerplate.Gettext, "errors", message, options)
     end
   end
 
