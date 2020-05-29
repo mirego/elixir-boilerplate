@@ -65,7 +65,7 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
              <ul>
                  <li>email has invalid format</li>
                  <li>email should be 10 character(s)</li>
-                 <li>multiple_roles.type can&#39;t be blank</li>
+                 <li>multiple_roles.type can’t be blank</li>
                  <li>single_role.type is invalid</li>
              </ul>
            """

@@ -82,6 +82,10 @@ dependencies: ## Install dependencies
 	mix deps.get
 	npm install --prefix assets
 
+.PHONY: sync-translations
+sync-translations: ## Synchronize translations with Accent
+	./node_modules/.bin/accent sync
+
 .PHONY: test
 test: ## Run the test suite
 	mix test

@@ -1,0 +1,11 @@
+{
+  "apiUrl": "",
+  "apiKey": "",
+  "files": [
+    {
+      "format": "gettext",
+      "source": "priv/gettext/en/LC_MESSAGES/*.po",
+      "target": "priv/gettext/%slug%/LC_MESSAGES/%document_path%.po"
+    }
+  ]
+}

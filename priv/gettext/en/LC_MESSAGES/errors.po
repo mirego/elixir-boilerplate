@@ -1,0 +1,78 @@
+msgid ""
+msgstr ""
+"Language: en"
+
+msgid "can't be blank"
+msgstr "can’t be blank"
+
+msgid "has already been taken"
+msgstr "has already been taken"
+
+msgid "is invalid"
+msgstr "is invalid"
+
+msgid "must be accepted"
+msgstr "must be accepted"
+
+msgid "has invalid format"
+msgstr "has invalid format"
+
+msgid "has an invalid entry"
+msgstr "has an invalid entry"
+
+msgid "is reserved"
+msgstr "is reserved"
+
+msgid "does not match confirmation"
+msgstr "does not match confirmation"
+
+msgid "is still associated with this entry"
+msgstr "is still associated with this entry"
+
+msgid "are still associated with this entry"
+msgstr "are still associated with this entry"
+
+msgid "should be %{count} character(s)"
+msgid_plural "should be %{count} character(s)"
+msgstr[0] "should be %{count} character(s)"
+msgstr[1] "should be %{count} character(s)"
+
+msgid "should have %{count} item(s)"
+msgid_plural "should have %{count} item(s)"
+msgstr[0] "should have %{count} item(s)"
+msgstr[1] "should have %{count} item(s)"
+
+msgid "should be at least %{count} character(s)"
+msgid_plural "should be at least %{count} character(s)"
+msgstr[0] "should be at least %{count} character(s)"
+msgstr[1] "should be at least %{count} character(s)"
+
+msgid "should have at least %{count} item(s)"
+msgid_plural "should have at least %{count} item(s)"
+msgstr[0] "should have at least %{count} item(s)"
+msgstr[1] "should have at least %{count} item(s)"
+
+msgid "should be at most %{count} character(s)"
+msgid_plural "should be at most %{count} character(s)"
+msgstr[0] "should be at most %{count} character(s)"
+msgstr[1] "should be at most %{count} character(s)"
+
+msgid "should have at most %{count} item(s)"
+msgid_plural "should have at most %{count} item(s)"
+msgstr[0] "should have at most %{count} item(s)"
+msgstr[1] "should have at most %{count} item(s)"
+
+msgid "must be less than %{number}"
+msgstr "must be less than %{number}"
+
+msgid "must be greater than %{number}"
+msgstr "must be greater than %{number}"
+
+msgid "must be less than or equal to %{number}"
+msgstr "must be less than or equal to %{number}"
+
+msgid "must be greater than or equal to %{number}"
+msgstr "must be greater than or equal to %{number}"
+
+msgid "must be equal to %{number}"
+msgstr "must be equal to %{number}"
