@@ -84,7 +84,7 @@ dependencies: ## Install dependencies
 
 .PHONY: sync-translations
 sync-translations: ## Synchronize translations with Accent
-	./node_modules/.bin/accent sync
+	npx accent sync
 
 .PHONY: test
 test: ## Run the test suite
