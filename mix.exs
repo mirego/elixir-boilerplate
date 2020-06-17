@@ -84,6 +84,7 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Security check
       {:sobelow, "~> 0.10", only: [:dev, :test], runtime: true},
+      {:mix_audit, "~> 0.1", only: [:dev, :test], runtime: false},
 
       # Health
       {:plug_checkup, "~> 0.6"},
