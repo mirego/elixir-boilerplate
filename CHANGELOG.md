@@ -8,7 +8,7 @@ Since it is a boilerplate project, there are technically no official (versioned)
 
 ## 2020-06-17
 
-- Add MixAudit vulnerability security scanning (#?)
+- Add MixAudit vulnerability security scanning (#114)
 
 ## 2020-05-27
 
