@@ -94,11 +94,15 @@ test: ## Run the test suite
 # ------------------------------
 
 .PHONY: check
-check: check-format check-unused-dependencies check-code-security check-code-coverage ## Run various checks on project files
+check: check-format check-unused-dependencies check-dependencies-security check-code-security check-code-coverage ## Run various checks on project files
 
 .PHONY: check-code-coverage
 check-code-coverage:
 	mix coveralls
+
+.PHONY: check-dependencies-security
+check-dependencies-security:
+	mix deps.audit
 
 .PHONY: check-code-security
 check-code-security:
