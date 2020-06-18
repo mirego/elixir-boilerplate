@@ -4,6 +4,10 @@
   <a href="https://travis-ci.com/mirego/elixir-boilerplate"><img src="https://travis-ci.com/mirego/elixir-boilerplate.svg?branch=master" /></a>
 </div>
 
+## Introduction
+
+To learn more about _why_ we created and maintain this boilerplate project, read our [blog post](https://shift.mirego.com/en/boilerplate-projects).
+
 ## Content
 
 This boilerplate comes with batteries included, you’ll find:
