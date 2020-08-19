@@ -9,10 +9,10 @@ defmodule TestEnvironment do
   def get_database_url do
     url = Environment.get("DATABASE_URL")
 
-    if is_nil(url) || String.contains?(url, @database_name_suffix) do
+    if is_nil(url) || String.ends_with?(url, @database_name_suffix) do
       url
     else
-      raise "Expected database URL to ends with '#{@database_name_suffix}', got: #{url}"
+      raise "Expected database URL to end with '#{@database_name_suffix}', got: #{url}"
     end
   end
 end
