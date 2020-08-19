@@ -63,9 +63,6 @@ defmodule ElixirBoilerplate.Mixfile do
       {:ecto_sql, "~> 3.2"},
       {:postgrex, "~> 0.15"},
 
-      # Authentication
-      {:basic_auth, "~> 2.2"},
-
       # Translations
       {:gettext, "~> 0.16"},
 
