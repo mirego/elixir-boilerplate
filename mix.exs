@@ -91,7 +91,10 @@ defmodule ElixirBoilerplate.Mixfile do
       {:faker, "~> 0.12", only: :test},
 
       # Test coverage
-      {:excoveralls, "~> 0.11", only: :test}
+      {:excoveralls, "~> 0.11", only: :test},
+
+      # Utils
+      {:hex_core, "~> 0.6.10"}
     ]
   end
 
