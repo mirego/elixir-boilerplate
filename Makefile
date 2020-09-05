@@ -110,7 +110,7 @@ check-code-security:
 
 .PHONY: check-format
 check-format:
-	mix format --dry-run --check-formatted
+	mix format --check-formatted
 	cd assets && npx prettier --check $(PRETTIER_FILES_PATTERN)
 
 .PHONY: check-unused-dependencies
