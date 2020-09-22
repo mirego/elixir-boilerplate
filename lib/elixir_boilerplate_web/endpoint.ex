@@ -108,7 +108,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     basic_auth_config = Application.get_env(:elixir_boilerplate, :basic_auth)
 
     if basic_auth_config[:username] do
-      Plug.BasicAuth.call(conn, basic_auth_config)
+      Plug.BasicAuth.basic_auth(conn, basic_auth_config)
     else
       conn
     end
