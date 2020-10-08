@@ -34,8 +34,7 @@ defmodule ElixirBoilerplate.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"],
-      "compile.app": ["check.erlang_version", "compile.app"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 
