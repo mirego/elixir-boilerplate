@@ -8,6 +8,7 @@ defmodule ElixirBoilerplate.Application do
   def start(_type, _args) do
     children = [
       ElixirBoilerplate.Repo,
+      {Phoenix.PubSub, [name: ElixirBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2]},
       ElixirBoilerplateWeb.Endpoint
     ]
 

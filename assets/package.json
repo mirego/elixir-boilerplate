@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "phoenix": "phoenixframework/phoenix#v1.4.12",
-    "phoenix_html": "phoenixframework/phoenix_html#v2.13.3",
+    "phoenix": "phoenixframework/phoenix#v1.5.5",
+    "phoenix_html": "phoenixframework/phoenix_html#v2.14.2",
     "simple-css-reset": "^3.0.0"
   },
   "devDependencies": {

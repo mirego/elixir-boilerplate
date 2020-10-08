@@ -42,42 +42,42 @@ defmodule ElixirBoilerplate.Mixfile do
   defp deps do
     [
       # HTTP server
-      {:plug_cowboy, "~> 2.1"},
-      {:plug_canonical_host, "~> 1.0"},
+      {:plug_cowboy, "~> 2.3"},
+      {:plug_canonical_host, "~> 2.0"},
       {:corsica, "~> 1.1"},
 
       # Phoenix
-      {:phoenix, "~> 1.4.12"},
-      {:phoenix_html, "~> 2.13.3"},
-      {:phoenix_ecto, "~> 4.0"},
+      {:phoenix, "~> 1.5.5"},
+      {:phoenix_html, "~> 2.14.2"},
+      {:phoenix_ecto, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:jason, "~> 1.1"},
+      {:jason, "~> 1.2"},
 
       # GraphQL
-      {:absinthe, "~> 1.4"},
-      {:absinthe_plug, "~> 1.4"},
+      {:absinthe, "~> 1.5"},
+      {:absinthe_plug, "~> 1.5"},
       {:dataloader, "~> 1.0"},
-      {:absinthe_error_payload, "~> 1.0"},
+      {:absinthe_error_payload, "~> 1.1"},
 
       # Database
-      {:ecto_sql, "~> 3.2"},
+      {:ecto_sql, "~> 3.4"},
       {:postgrex, "~> 0.15"},
 
       # Translations
-      {:gettext, "~> 0.16"},
+      {:gettext, "~> 0.18"},
 
       # Errors
       {:sentry, "~> 7.1"},
 
       # Monitoring
-      {:new_relic_agent, "~> 1.17"},
-      {:new_relic_phoenix, "~> 0.2"},
+      {:new_relic_agent, "~> 1.20"},
+      {:new_relic_phoenix, "~> 0.3"},
       {:new_relic_absinthe, "~> 0.0"},
 
       # Linting
-      {:credo, "~> 1.1", only: [:dev, :test], override: true},
+      {:credo, "~> 1.4", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},
-      {:credo_naming, "~> 0.4", only: [:dev, :test], runtime: false},
+      {:credo_naming, "~> 0.6", only: [:dev, :test], runtime: false},
 
       # Security check
       {:sobelow, "~> 0.10", only: [:dev, :test], runtime: true},
@@ -87,11 +87,11 @@ defmodule ElixirBoilerplate.Mixfile do
       {:plug_checkup, "~> 0.6"},
 
       # Test factories
-      {:ex_machina, "~> 2.3", only: :test},
+      {:ex_machina, "~> 2.4", only: :test},
       {:faker, "~> 0.12", only: :test},
 
       # Test coverage
-      {:excoveralls, "~> 0.11", only: :test}
+      {:excoveralls, "~> 0.13", only: :test}
     ]
   end
 
