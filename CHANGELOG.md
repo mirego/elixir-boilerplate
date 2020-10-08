@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Since it is a boilerplate project, there are technically no official (versioned) _releases_. Therefore, the `master` branch should always be stable and usable.
 
+## 2020-10-08
+
+- Upgrage to Erlang `23.1.1` and Alpine `1.12.0`
+- Upgrade to Phoenix `1.5`
+- Upgrade to Ecto `3.5`
+- Upgrade to Absinthe `1.5`
+
+### New Relic instrumentation for Phoenix
+
+The `instrumenters` configuration was deprecated from `Phoenix.Endpoint`, and there is no update in [`new_relix_phoenix`](https://hex.pm/packages/new_relic_phoenix) yet to reflect this change! The instrumenter might not work properly…
+
+> [warn] :instrumenters configuration for ElixirBoilerplateWeb.Endpoint is deprecated and has no effect
+
 ## 2020-06-17
 
 - Add MixAudit vulnerability security scanning (#114)

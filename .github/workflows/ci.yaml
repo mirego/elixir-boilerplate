@@ -1,14 +1,18 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
   ci:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        otp-version: [22.2.8]
-        elixir-version: [1.10.2]
+        otp-version: [23.1.1]
+        elixir-version: [1.10.4]
 
     services:
       db:
