@@ -88,7 +88,7 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Test factories
       {:ex_machina, "~> 2.4", only: :test},
-      {:faker, "~> 0.12", only: :test},
+      {:faker, "~> 0.15", only: :test},
 
       # Test coverage
       {:excoveralls, "~> 0.13", only: :test}
