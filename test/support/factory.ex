@@ -3,6 +3,6 @@ defmodule ElixirBoilerplate.Factory do
 
   # This is a sample factory to make sure our setup is working correctly.
   def name_factory(_) do
-    Faker.Name.name()
+    Faker.Person.name()
   end
 end
