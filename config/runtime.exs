@@ -1,29 +1,8 @@
 import Config
 
-defmodule Environment do
-  @moduledoc """
-  This modules provides various helpers to handle environment metadata
-  """
-
-  def get(key), do: System.get_env(key)
-
-  def get_boolean(key) do
-    case get(key) do
-      "true" -> true
-      "1" -> true
-      _ -> false
-    end
-  end
-
-  def get_integer(key) do
-    case get(key) do
-      value when is_bitstring(value) -> String.to_integer(value)
-      _ -> nil
-    end
-  end
-
+defmodule RuntimeEnvironment do
   def get_cors_origins do
-    case get("CORS_ALLOWED_ORIGINS") do
+    case Environment.get("CORS_ALLOWED_ORIGINS") do
       origins when is_bitstring(origins) ->
         origins
         |> String.split(",")
@@ -81,7 +60,7 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Router,
   session_key: Environment.get("SESSION_KEY"),
   session_signing_salt: Environment.get("SESSION_SIGNING_SALT")
 
-config :elixir_boilerplate, Corsica, origins: Environment.get_cors_origins()
+config :elixir_boilerplate, Corsica, origins: RuntimeEnvironment.get_cors_origins()
 
 config :elixir_boilerplate,
   basic_auth: [

@@ -1,5 +1,28 @@
 import Config
 
+defmodule Environment do
+  @moduledoc """
+  This modules provides various helpers to handle environment metadata
+  """
+
+  def get(key), do: System.get_env(key)
+
+  def get_boolean(key) do
+    case get(key) do
+      "true" -> true
+      "1" -> true
+      _ -> false
+    end
+  end
+
+  def get_integer(key) do
+    case get(key) do
+      value when is_bitstring(value) -> String.to_integer(value)
+      _ -> nil
+    end
+  end
+end
+
 version = Mix.Project.config()[:version]
 
 config :elixir_boilerplate,
