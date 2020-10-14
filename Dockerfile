@@ -22,7 +22,7 @@ RUN npm run --prefix assets deploy
 #
 # Step 2 - build the OTP binary
 #
-FROM hexpm/elixir:1.10.4-erlang-23.1.1-alpine-3.12.0 AS otp-builder
+FROM hexpm/elixir:1.11.0-erlang-23.1.1-alpine-3.12.0 AS otp-builder
 
 ARG APP_NAME
 ARG APP_VERSION

@@ -22,13 +22,18 @@ defmodule Environment do
     end
   end
 
-  def get_list_or_first_value(key) do
-    with value when is_bitstring(value) <- get(key),
-         [single_value] <- String.split(value, ",") do
-      single_value
-    else
-      value when is_list(value) -> value
-      _ -> nil
+  def get_cors_origins do
+    case get("CORS_ALLOWED_ORIGINS") do
+      origins when is_bitstring(origins) ->
+        origins
+        |> String.split(",")
+        |> case do
+          [origin] -> origin
+          origins -> origins
+        end
+
+      _ ->
+        nil
     end
   end
 
@@ -76,7 +81,7 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Router,
   session_key: Environment.get("SESSION_KEY"),
   session_signing_salt: Environment.get("SESSION_SIGNING_SALT")
 
-config :elixir_boilerplate, Corsica, origins: Environment.get_list_or_first_value("CORS_ALLOWED_ORIGINS")
+config :elixir_boilerplate, Corsica, origins: Environment.get_cors_origins()
 
 config :elixir_boilerplate,
   basic_auth: [

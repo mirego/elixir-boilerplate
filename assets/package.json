@@ -9,7 +9,7 @@
   },
   "scripts": {
     "deploy": "npm run enforce-engine-versions && webpack --mode production",
-    "watch": "npm run enforce-engine-versions && webpack --mode development --watch-stdin",
+    "watch": "npm run enforce-engine-versions && webpack --mode development --colors --watch-stdin",
     "enforce-engine-versions": "./scripts/enforce-engine-versions.js",
     "preinstall": "npm run enforce-engine-versions",
     "postinstall": "npm run enforce-engine-versions"

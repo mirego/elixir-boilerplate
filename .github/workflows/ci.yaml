@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         otp-version: [23.1.1]
-        elixir-version: [1.10.4]
+        elixir-version: [1.11.0]
 
     services:
       db:

@@ -1,8 +1,5 @@
 import Config
 
-# Import runtime configuration
-import_config "releases.exs"
-
 defmodule TestEnvironment do
   @database_name_suffix "_test"
 
