@@ -63,6 +63,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
+      - name: Setup environment variables
+        uses: c-py/action-dotenv-to-setenv@v2
+        with:
+          env-file: .env.test
+
       - run: make prepare
       - run: make check
       - run: make lint
