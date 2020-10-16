@@ -21,9 +21,10 @@ config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
 config :elixir_boilerplate, ElixirBoilerplateWeb.ContentSecurityPolicy, allow_unsafe_scripts: false
 
 config :sentry,
-  included_environments: ~w(prod)a,
   root_source_code_path: File.cwd!(),
   release: version
+
+config :logger, backends: [:console, Sentry.LoggerBackend]
 
 # Import environment configuration
 import_config "#{Mix.env()}.exs"

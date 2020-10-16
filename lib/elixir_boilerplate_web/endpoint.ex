@@ -1,6 +1,6 @@
 defmodule ElixirBoilerplateWeb.Endpoint do
+  use Sentry.PlugCapture
   use Phoenix.Endpoint, otp_app: :elixir_boilerplate
-  use Sentry.Phoenix.Endpoint
 
   alias Plug.Conn
 
@@ -42,6 +42,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     json_decoder: Phoenix.json_library()
   )
 
+  plug(Sentry.PlugContext)
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
