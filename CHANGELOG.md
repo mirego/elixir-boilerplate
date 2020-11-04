@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Since it is a boilerplate project, there are technically no official (versioned) _releases_. Therefore, the `master` branch should always be stable and usable.
 
+## 2020-11-04
+
+- Move `Plug.SSL` plug initialization to endpoint module attribute (#130)
+
 ## 2020-10-08
 
 - Upgrage to Erlang `23.1.1` and Alpine `1.12.0`
