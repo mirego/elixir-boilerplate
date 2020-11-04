@@ -4,6 +4,8 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
   alias Plug.Conn
 
+  @plug_ssl Plug.SSL.init(rewrite_on: [:x_forwarded_proto])
+
   socket("/socket", ElixirBoilerplateWeb.Socket)
 
   plug(:ping)
@@ -91,9 +93,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
   defp force_ssl(conn, _opts) do
     if Application.get_env(:elixir_boilerplate, :force_ssl) do
-      opts = Plug.SSL.init(rewrite_on: [:x_forwarded_proto])
-
-      Plug.SSL.call(conn, opts)
+      Plug.SSL.call(conn, @plug_ssl)
     else
       conn
     end
