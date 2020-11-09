@@ -43,6 +43,22 @@ This boilerplate comes with batteries included, you’ll find:
 4. Create a new Git repository (`git init`)
 5. Create the initial Git commit (`git commit -a -m "Initial commit"`)
 
+## Preferred libraries
+
+Some batteries aren’t included since all projects have their own needs and requirements. Here’s a list of our preferred libraries to help you get started:
+
+| Category                    | Libraries                                                                              |
+| --------------------------- | -------------------------------------------------------------------------------------- |
+| Authentication              | [`ueberauth`](https://hex.pm/packages/ueberauth), [`pow`](https://hex.pm/packages/pow) |
+| Asynchronous job processing | [`oban`](https://hex.pm/packages/oban)                                                 |
+| Emails                      | [`bamboo`](https://hex.pm/packages/bamboo), [`swoosh`](https://hex.pm/packages/swoosh) |
+| File upload                 | [`waffle`](https://hex.pm/packages/waffle)                                             |
+| HTTP client                 | [`tesla`](https://hex.pm/packages/tesla)                                               |
+| HTML parsing                | [`floki`](https://hex.pm/packages/floki)                                               |
+| Pagination                  | [`scrivener`](https://hex.pm/packages/scrivener)                                       |
+| Mocks                       | [`mox`](https://hex.pm/packages/mox), [`mimic`](https://hex.pm/packages/mimic)         |
+| Search                      | [`elasticsearch`](https://hex.pm/packages/elasticsearch)                               |
+
 ## License
 
 Elixir Boilerplate is © 2017-2020 [Mirego](https://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause). See the [`LICENSE.md`](https://github.com/mirego/elixir-boilerplate/blob/master/LICENSE.md) file.
