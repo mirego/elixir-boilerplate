@@ -32,26 +32,33 @@ defmodule Environment do
     end
   end
 
-  def get_endpoint_static_url_config(nil), do: nil
-  def get_endpoint_static_url_config(""), do: nil
+  def get_endpoint_url_config(nil), do: nil
+  def get_endpoint_url_config(""), do: nil
 
-  def get_endpoint_static_url_config(host) do
+  def get_endpoint_url_config(uri) do
     [
-      host: host,
-      scheme: get("STATIC_URL_SCHEME"),
-      port: get("STATIC_URL_PORT")
+      host: uri.host,
+      scheme: uri.scheme,
+      port: uri.port
     ]
   end
+
+  def get_uri_part(%URI{host: host}, :host), do: host
+  def get_uri_part(%URI{port: port}, :port), do: port
+  def get_uri_part(%URI{scheme: scheme}, :scheme), do: scheme
+  def get_uri_part(_, _), do: nil
+
+  def get_safe_uri(nil), do: nil
+  def get_safe_uri(""), do: nil
+  def get_safe_uri(url), do: URI.parse(url)
 end
 
-force_ssl = Environment.get_boolean("FORCE_SSL")
-scheme = if force_ssl, do: "https", else: "http"
-host = Environment.get("CANONICAL_HOST")
-port = Environment.get("PORT")
+canonical_uri = Environment.get_safe_uri(Environment.get("CANONICAL_URL"))
+static_uri = Environment.get_safe_uri(Environment.get("STATIC_URL"))
 
 config :elixir_boilerplate,
-  canonical_host: host,
-  force_ssl: force_ssl
+  canonical_host: Environment.get_uri_part(canonical_uri, :host),
+  force_ssl: Environment.get_uri_part(canonical_uri, :scheme) == "https"
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool_size: Environment.get_integer("DATABASE_POOL_SIZE"),
@@ -60,10 +67,10 @@ config :elixir_boilerplate, ElixirBoilerplate.Repo,
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
-  http: [port: port],
+  http: [port: Environment.get_uri_part(canonical_uri, :port)],
   secret_key_base: Environment.get("SECRET_KEY_BASE"),
-  static_url: Environment.get_endpoint_static_url_config(Environment.get("STATIC_URL_HOST")),
-  url: [host: host, scheme: scheme, port: port]
+  static_url: Environment.get_endpoint_url_config(static_uri),
+  url: Environment.get_endpoint_url_config(canonical_uri)
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Router,
   session_key: Environment.get("SESSION_KEY"),

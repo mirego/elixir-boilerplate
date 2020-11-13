@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Since it is a boilerplate project, there are technically no official (versioned) _releases_. Therefore, the `master` branch should always be stable and usable.
 
+## 2020-11-12
+
+Simplification of the Router URLs configuration.
+
+Router's Endpoint config now requires only a CANONICAL_URL and a STATIC_URL from which it extrapolates the different URI components such as `scheme`, `host` and `port`.
+
+Environment variables changes:
+
+_Added_
+
+- `CANONICAL_URL=`
+- `STATIC_URL=`
+
+_Removed_
+
+- `PORT=`
+- `FORCE_SSL=`
+- `STATIC_URL_SCHEME=`
+- `STATIC_URL_HOST=`
+- `STATIC_URL_PORT=`
+
 ## 2020-11-04
 
 - Move `Plug.SSL` plug initialization to endpoint module attribute (#130)
