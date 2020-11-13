@@ -67,7 +67,7 @@ config :elixir_boilerplate, ElixirBoilerplate.Repo,
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
-  http: [port: Environment.get_uri_part(canonical_uri, :port)],
+  http: [port: Environment.get("PORT")],
   secret_key_base: Environment.get("SECRET_KEY_BASE"),
   static_url: Environment.get_endpoint_url_config(static_uri),
   url: Environment.get_endpoint_url_config(canonical_uri)
