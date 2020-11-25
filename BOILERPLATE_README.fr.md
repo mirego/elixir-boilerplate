@@ -22,10 +22,8 @@
 
 ## 🚧 Dépendances
 
-- Node.js (`>= 12.15, < 13.0`)
-- NPM (`>= 6.13, < 7.0`)
-- Elixir (`~> 1.11`)
-- Erlang (`~> 23.1`)
+Toutes les versions des dépendances _runtime_ sont définies dans le fichier `.tool-versions`. Ces dépendances externes sont également requises :
+
 - PostgreSQL (`~> 12.0`)
 
 ## 🏎 Départ rapide
