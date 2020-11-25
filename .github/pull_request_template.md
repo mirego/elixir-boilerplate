@@ -9,3 +9,7 @@
 ## 📓 References
 
 <!-- Does this pull request fix any reported issue (eg. `Fixes #34`) in this repository? -->
+
+## 🦀 Dispatch
+
+- `#dispatch/elixir`
