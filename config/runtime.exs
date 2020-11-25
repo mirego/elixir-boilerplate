@@ -1,6 +1,27 @@
 import Config
 
-defmodule RuntimeEnvironment do
+defmodule Environment do
+  @moduledoc """
+  This modules provides various helpers to handle environment metadata
+  """
+
+  def get(key), do: System.get_env(key)
+
+  def get_boolean(key) do
+    case get(key) do
+      "true" -> true
+      "1" -> true
+      _ -> false
+    end
+  end
+
+  def get_integer(key) do
+    case get(key) do
+      value when is_bitstring(value) -> String.to_integer(value)
+      _ -> nil
+    end
+  end
+
   def get_cors_origins do
     case Environment.get("CORS_ALLOWED_ORIGINS") do
       origins when is_bitstring(origins) ->
@@ -37,12 +58,12 @@ defmodule RuntimeEnvironment do
   def get_safe_uri(url), do: URI.parse(url)
 end
 
-canonical_uri = RuntimeEnvironment.get_safe_uri(Environment.get("CANONICAL_URL"))
-static_uri = RuntimeEnvironment.get_safe_uri(Environment.get("STATIC_URL"))
+canonical_uri = Environment.get_safe_uri(Environment.get("CANONICAL_URL"))
+static_uri = Environment.get_safe_uri(Environment.get("STATIC_URL"))
 
 config :elixir_boilerplate,
-  canonical_host: RuntimeEnvironment.get_uri_part(canonical_uri, :host),
-  force_ssl: RuntimeEnvironment.get_uri_part(canonical_uri, :scheme) == "https"
+  canonical_host: Environment.get_uri_part(canonical_uri, :host),
+  force_ssl: Environment.get_uri_part(canonical_uri, :scheme) == "https"
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool_size: Environment.get_integer("DATABASE_POOL_SIZE"),
@@ -53,14 +74,14 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
   http: [port: Environment.get("PORT")],
   secret_key_base: Environment.get("SECRET_KEY_BASE"),
-  static_url: RuntimeEnvironment.get_endpoint_url_config(static_uri),
-  url: RuntimeEnvironment.get_endpoint_url_config(canonical_uri)
+  static_url: Environment.get_endpoint_url_config(static_uri),
+  url: Environment.get_endpoint_url_config(canonical_uri)
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Router,
   session_key: Environment.get("SESSION_KEY"),
   session_signing_salt: Environment.get("SESSION_SIGNING_SALT")
 
-config :elixir_boilerplate, Corsica, origins: RuntimeEnvironment.get_cors_origins()
+config :elixir_boilerplate, Corsica, origins: Environment.get_cors_origins()
 
 config :elixir_boilerplate,
   basic_auth: [
