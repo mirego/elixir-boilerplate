@@ -1,7 +1,7 @@
 #
 # Step 1 - build the JS/CSS assets
 #
-FROM node:12.15-alpine AS js-builder
+FROM node:14.15-alpine3.12 AS js-builder
 
 ENV NODE_ENV=prod
 
@@ -22,7 +22,7 @@ RUN npm run --prefix assets deploy
 #
 # Step 2 - build the OTP binary
 #
-FROM hexpm/elixir:1.11.0-erlang-23.1.1-alpine-3.12.0 AS otp-builder
+FROM hexpm/elixir:1.11.2-erlang-23.1.3-alpine-3.12.1 AS otp-builder
 
 ARG APP_NAME
 ARG APP_VERSION
@@ -64,7 +64,7 @@ RUN mix release
 #
 # Step 3 - build a lean runtime container
 #
-FROM alpine:3.12.0
+FROM alpine:3.12.1
 
 ARG APP_NAME
 ARG APP_VERSION

@@ -4,8 +4,8 @@
   "private": true,
   "engine-strict": true,
   "engines": {
-    "node": "^12.15",
-    "npm": "^6.13"
+    "node": "^14.15",
+    "npm": "^6.14"
   },
   "scripts": {
     "deploy": "npm run enforce-engine-versions && webpack --mode production",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "phoenix": "phoenixframework/phoenix#v1.5.5",
+    "phoenix": "phoenixframework/phoenix#v1.5.7",
     "phoenix_html": "phoenixframework/phoenix_html#v2.14.2",
     "simple-css-reset": "^3.0.0"
   },

@@ -45,15 +45,15 @@ defmodule ElixirBoilerplate.Mixfile do
       {:hackney, "~> 1.16"},
 
       # HTTP server
-      {:plug_cowboy, "~> 2.3"},
+      {:plug_cowboy, "~> 2.4"},
       {:plug_canonical_host, "~> 2.0"},
       {:corsica, "~> 1.1"},
 
       # Phoenix
-      {:phoenix, "~> 1.5.5"},
+      {:phoenix, "~> 1.5.7"},
       {:phoenix_html, "~> 2.14.2"},
-      {:phoenix_ecto, "~> 4.1"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_ecto, "~> 4.2"},
+      {:phoenix_live_reload, "~> 1.3", only: :dev},
       {:jason, "~> 1.2"},
 
       # GraphQL
@@ -63,7 +63,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:absinthe_error_payload, "~> 1.1"},
 
       # Database
-      {:ecto_sql, "~> 3.4"},
+      {:ecto_sql, "~> 3.5"},
       {:postgrex, "~> 0.15"},
 
       # Translations
@@ -78,7 +78,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:new_relic_absinthe, "~> 0.0"},
 
       # Linting
-      {:credo, "~> 1.4", only: [:dev, :test], override: true},
+      {:credo, "~> 1.5", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},
       {:credo_naming, "~> 0.6", only: [:dev, :test], runtime: false},
 
@@ -91,7 +91,7 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Test factories
       {:ex_machina, "~> 2.4", only: :test},
-      {:faker, "~> 0.15", only: :test},
+      {:faker, "~> 0.16", only: :test},
 
       # Test coverage
       {:excoveralls, "~> 0.13", only: :test}
