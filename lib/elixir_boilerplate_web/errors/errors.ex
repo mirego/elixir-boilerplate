@@ -33,11 +33,17 @@ defmodule ElixirBoilerplateWeb.Errors do
 
   defp convert_errors_to_html(errors, schema) do
     errors = Enum.reduce(errors, [], &convert_error_field(&1, &2, schema))
+
     View.render("error_messages.html", %{errors: errors})
   end
 
-  defp convert_error_field({field, errors}, memo, schema) when is_list(errors), do: memo ++ Enum.flat_map(errors, &convert_error_subfield(&1, field, [], schema))
-  defp convert_error_field({field, errors}, memo, schema) when is_map(errors), do: memo ++ Enum.flat_map(Map.keys(errors), &convert_error_subfield(&1, field, errors[&1], schema))
+  defp convert_error_field({field, errors}, memo, schema) when is_list(errors) do
+    memo ++ Enum.flat_map(errors, &convert_error_subfield(&1, field, [], schema))
+  end
+
+  defp convert_error_field({field, errors}, memo, schema) when is_map(errors) do
+    memo ++ Enum.flat_map(Map.keys(errors), &convert_error_subfield(&1, field, errors[&1], schema))
+  end
 
   defp convert_error_subfield(message, field, _, _schema) when is_binary(message) do
     # NOTE `schema` is available here if we want to use something like

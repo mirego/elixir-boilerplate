@@ -63,15 +63,11 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
       |> User.changeset(%{"email" => "foo", "nicknames" => [], "single_role" => %{"type" => "bar"}, "multiple_roles" => [%{"type" => ""}]})
       |> changeset_to_error_messages()
 
-    assert html == """
-             <ul>
-                 <li>email has invalid format</li>
-                 <li>email should be 10 characters</li>
-                 <li>multiple_roles.type can’t be blank</li>
-                 <li>nicknames should have at least 1 item</li>
-                 <li>single_role.type is invalid</li>
-             </ul>
-           """
+    assert html =~ "<li>email has invalid format</li>"
+    assert html =~ "<li>email should be 10 characters</li>"
+    assert html =~ "<li>multiple_roles.type can’t be blank</li>"
+    assert html =~ "<li>nicknames should have at least 1 item</li>"
+    assert html =~ "<li>single_role.type is invalid</li>"
   end
 
   defp changeset_to_error_messages(changeset) do
