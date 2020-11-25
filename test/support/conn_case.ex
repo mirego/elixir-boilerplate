@@ -40,10 +40,8 @@ defmodule ElixirBoilerplateWeb.ConnCase do
       Sandbox.mode(Repo, {:shared, self()})
     end
 
-    conn = Map.put(ConnTest.build_conn(), :host, host())
-
-    {:ok, conn: conn}
+    {:ok, conn: %{ConnTest.build_conn() | host: host()}}
   end
 
-  defp host, do: System.get_env("CANONICAL_HOST")
+  defp host, do: Application.get_env(:elixir_boilerplate, :canonical_host)
 end
