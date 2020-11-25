@@ -37,12 +37,12 @@ defmodule RuntimeEnvironment do
   def get_safe_uri(url), do: URI.parse(url)
 end
 
-canonical_uri = Environment.get_safe_uri(Environment.get("CANONICAL_URL"))
-static_uri = Environment.get_safe_uri(Environment.get("STATIC_URL"))
+canonical_uri = RuntimeEnvironment.get_safe_uri(Environment.get("CANONICAL_URL"))
+static_uri = RuntimeEnvironment.get_safe_uri(Environment.get("STATIC_URL"))
 
 config :elixir_boilerplate,
-  canonical_host: Environment.get_uri_part(canonical_uri, :host),
-  force_ssl: Environment.get_uri_part(canonical_uri, :scheme) == "https"
+  canonical_host: RuntimeEnvironment.get_uri_part(canonical_uri, :host),
+  force_ssl: RuntimeEnvironment.get_uri_part(canonical_uri, :scheme) == "https"
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool_size: Environment.get_integer("DATABASE_POOL_SIZE"),
@@ -53,8 +53,8 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   debug_errors: Environment.get_boolean("DEBUG_ERRORS"),
   http: [port: Environment.get("PORT")],
   secret_key_base: Environment.get("SECRET_KEY_BASE"),
-  static_url: Environment.get_endpoint_url_config(static_uri),
-  url: Environment.get_endpoint_url_config(canonical_uri)
+  static_url: RuntimeEnvironment.get_endpoint_url_config(static_uri),
+  url: RuntimeEnvironment.get_endpoint_url_config(canonical_uri)
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Router,
   session_key: Environment.get("SESSION_KEY"),
