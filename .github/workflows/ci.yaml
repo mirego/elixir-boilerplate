@@ -37,7 +37,7 @@ jobs:
           elixir-version: ${{ matrix.elixir-version }}
           otp-version: ${{ matrix.otp-version }}
 
-      - uses: actions/setup-node@v1
+      - uses: erlef/setup-elixir@v1
         with:
           node-version: 14.15
 
