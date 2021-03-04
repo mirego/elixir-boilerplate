@@ -22,7 +22,7 @@ RUN npm run --prefix assets deploy
 #
 # Step 2 - build the OTP binary
 #
-FROM hexpm/elixir:1.11.2-erlang-23.1.3-alpine-3.12.1 AS otp-builder
+FROM hexpm/elixir:1.11.3-erlang-23.2.7-alpine-3.13.2 AS otp-builder
 
 ARG APP_NAME
 ARG APP_VERSION
@@ -64,7 +64,7 @@ RUN mix release
 #
 # Step 3 - build a lean runtime container
 #
-FROM alpine:3.12.1
+FROM alpine:3.12.2
 
 ARG APP_NAME
 ARG APP_VERSION
