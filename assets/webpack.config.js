@@ -1,24 +1,26 @@
 /* eslint-env node */
 const path = require('path');
 const glob = require('glob');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (_env, _options) => ({
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({cache: true, parallel: true, sourceMap: false}),
-      new OptimizeCSSAssetsPlugin({})
-    ]
+      new TerserPlugin({cache: true, parallel: true, sourceMap: false}),
+      new OptimizeCSSAssetsPlugin({}),
+    ],
   },
   entry: {
-    './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js'))
+    './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js')),
   },
   output: {
     filename: 'app.js',
-    path: path.resolve(__dirname, '../priv/static/js')
+    path: path.resolve(__dirname, '../priv/static/js'),
   },
   module: {
     rules: [
@@ -26,17 +28,17 @@ module.exports = (_env, _options) => ({
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
-      }
-    ]
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({filename: '../css/app.css'}),
-    new CopyWebpackPlugin([{from: 'static/', to: '../'}])
-  ]
+    new CopyWebpackPlugin({patterns: [{from: 'static/', to: '../'}]}),
+  ],
 });
