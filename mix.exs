@@ -49,8 +49,8 @@ defmodule ElixirBoilerplate.Mixfile do
       {:corsica, "~> 1.1"},
 
       # Phoenix
-      {:phoenix, "~> 1.5.7"},
-      {:phoenix_html, "~> 2.14.2"},
+      {:phoenix, "~> 1.5.8"},
+      {:phoenix_html, "~> 2.14.3"},
       {:phoenix_ecto, "~> 4.2"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
       {:jason, "~> 1.2"},
@@ -72,28 +72,28 @@ defmodule ElixirBoilerplate.Mixfile do
       {:sentry, "~> 8.0"},
 
       # Monitoring
-      {:new_relic_agent, "~> 1.20"},
+      {:new_relic_agent, "~> 1.23"},
       {:new_relic_phoenix, "~> 0.3"},
       {:new_relic_absinthe, "~> 0.0"},
 
       # Linting
       {:credo, "~> 1.5", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},
-      {:credo_naming, "~> 0.6", only: [:dev, :test], runtime: false},
+      {:credo_naming, "~> 1.0", only: [:dev, :test], runtime: false},
 
       # Security check
-      {:sobelow, "~> 0.10", only: [:dev, :test], runtime: true},
+      {:sobelow, "~> 0.11", only: [:dev, :test], runtime: true},
       {:mix_audit, "~> 0.1", only: [:dev, :test], runtime: false},
 
       # Health
       {:plug_checkup, "~> 0.6"},
 
       # Test factories
-      {:ex_machina, "~> 2.4", only: :test},
+      {:ex_machina, "~> 2.6", only: :test},
       {:faker, "~> 0.16", only: :test},
 
       # Test coverage
-      {:excoveralls, "~> 0.13", only: :test}
+      {:excoveralls, "~> 0.14", only: :test}
     ]
   end
 
