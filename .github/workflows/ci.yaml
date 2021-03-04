@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        otp-version: [23.1.5, 23.2.7]
+        otp-version: [23.2.7]
         elixir-version: [1.11.3]
 
     services:
