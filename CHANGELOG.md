@@ -10,6 +10,13 @@ Since it is a boilerplate project, there are technically no official (versioned)
 
 - Add `Credo.Check.Readability.StrictModuleLayout` readability check
 
+## 2021-03-03
+
+- Upgrade to Erlang `23.2`
+- Upgrade mix dependencies
+- Upgrage NPM dependencies to the latest compatible versions of Webpack 4
+- Change configuration files to adopt the \*.config.js standard
+
 ## 2020-11-25
 
 - Upgrage to Elixir `1.11` and NodeJS `14.15`
