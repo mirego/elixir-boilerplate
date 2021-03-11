@@ -1,7 +1,7 @@
 defmodule ElixirBoilerplate.ReleaseTasks do
-  @app :elixir_boilerplate
-
   alias Ecto.Migrator
+
+  @app :elixir_boilerplate
 
   def migrate do
     IO.puts("Running migrations for #{@app}")
