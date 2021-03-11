@@ -12,10 +12,10 @@ Since it is a boilerplate project, there are technically no official (versioned)
 
 ## 2021-03-03
 
-- Upgrage to Erlang `23.2`
+- Upgrade to Erlang `23.2`
 - Upgrade mix dependencies
 - Upgrage NPM dependencies to the latest compatible versions of Webpack 4
-- Change configuration files to adpot the \*.config.js standard
+- Change configuration files to adopt the \*.config.js standard
 
 ## 2020-11-25
 
