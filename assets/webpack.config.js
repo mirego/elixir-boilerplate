@@ -8,7 +8,12 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = (_env, _options) => ({
+const buildDevtoolOption = (mode) => {
+  if (mode == 'production') return 'source-map';
+  return 'eval';
+};
+
+module.exports = (_, {mode}) => ({
   optimization: {
     minimizer: [
       new TerserPlugin({cache: true, parallel: true}),
@@ -41,5 +46,5 @@ module.exports = (_env, _options) => ({
     new MiniCssExtractPlugin({filename: '../css/app.css'}),
     new CopyWebpackPlugin({patterns: [{from: 'static/', to: '../'}]})
   ],
-  devtool: 'source-map'
+  devtool: buildDevtoolOption(mode)
 });
