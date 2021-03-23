@@ -11,7 +11,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = (_env, _options) => ({
   optimization: {
     minimizer: [
-      new TerserPlugin({cache: true, parallel: true, sourceMap: false}),
+      new TerserPlugin({cache: true, parallel: true}),
       new OptimizeCSSAssetsPlugin({})
     ]
   },
@@ -40,5 +40,6 @@ module.exports = (_env, _options) => ({
   plugins: [
     new MiniCssExtractPlugin({filename: '../css/app.css'}),
     new CopyWebpackPlugin({patterns: [{from: 'static/', to: '../'}]})
-  ]
+  ],
+  devtool: 'source-map'
 });
