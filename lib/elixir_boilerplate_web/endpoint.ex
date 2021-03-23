@@ -21,7 +21,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   plug(Plug.Static,
     at: "/",
     from: :elixir_boilerplate,
-    gzip: false,
+    gzip: true,
     only: ~w(css fonts images js favicon.ico robots.txt)
   )
 
