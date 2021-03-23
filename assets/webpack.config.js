@@ -9,7 +9,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const devtoolOption = (mode) => {
-  if (mode == 'production') return 'source-map';
+  if (mode === 'production') return 'source-map';
   return 'eval';
 };
 
