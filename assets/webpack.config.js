@@ -8,43 +8,42 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const devtoolOption = (mode) => {
-  if (mode === 'production') return 'source-map';
-  return 'eval';
-};
+module.exports = (_env, options) => {
+  const devMode = options.mode !== 'production';
 
-module.exports = (_, {mode}) => ({
-  optimization: {
-    minimizer: [
-      new TerserPlugin({cache: true, parallel: true}),
-      new OptimizeCSSAssetsPlugin({})
-    ]
-  },
-  entry: {
-    './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js'))
-  },
-  output: {
-    filename: 'app.js',
-    path: path.resolve(__dirname, '../priv/static/js')
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
+  return {
+    optimization: {
+      minimizer: [
+        new TerserPlugin({cache: true, parallel: true}),
+        new OptimizeCSSAssetsPlugin({})
+      ]
+    },
+    entry: {
+      './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js'))
+    },
+    output: {
+      filename: 'app.js',
+      path: path.resolve(__dirname, '../priv/static/js')
+    },
+    devtool: devMode ? 'eval-cheap-module-source-map' : 'source-map',
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader'
+          }
+        },
+        {
+          test: /\.css$/,
+          use: [MiniCssExtractPlugin.loader, 'css-loader']
         }
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
-      }
+      ]
+    },
+    plugins: [
+      new MiniCssExtractPlugin({filename: '../css/app.css'}),
+      new CopyWebpackPlugin({patterns: [{from: 'static/', to: '../'}]})
     ]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({filename: '../css/app.css'}),
-    new CopyWebpackPlugin({patterns: [{from: 'static/', to: '../'}]})
-  ],
-  devtool: devtoolOption(mode)
-});
+  };
+};
