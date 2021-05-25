@@ -14,7 +14,7 @@ RUN apk update --no-cache && \
 
 # Install JS dependencies
 COPY assets assets
-RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm
+RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm --progress=false --loglevel=error
 
 # Build JS/CSS assets
 RUN npm run --prefix assets deploy
