@@ -40,9 +40,6 @@ defmodule ElixirBoilerplate.Mixfile do
 
   defp deps do
     [
-      # HTTP Client
-      {:hackney, "~> 1.16"},
-
       # HTTP server
       {:plug_cowboy, "~> 2.5"},
       {:plug_canonical_host, "~> 2.0"},
