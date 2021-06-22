@@ -18,15 +18,11 @@ module.exports = (_env, options) => {
       filename: '[name].js',
       publicPath: '/js/'
     },
+    resolve: {
+      modules: ['node_modules']
+    },
     module: {
       rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader'
-          }
-        },
         {
           test: /\.css$/,
           use: [MiniCssExtractPlugin.loader, 'css-loader']
@@ -40,6 +36,6 @@ module.exports = (_env, options) => {
     optimization: {
       minimizer: [new CssMinimizerPlugin()]
     },
-    devtool: devMode ? 'eval-cheap-module-source-map' : 'source-map'
+    devtool: devMode ? 'source-map' : undefined
   };
 };

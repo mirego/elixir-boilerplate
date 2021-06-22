@@ -12,26 +12,22 @@
     "watch": "webpack --mode development --watch --watch-options-stdin --color"
   },
   "dependencies": {
-    "phoenix": "phoenixframework/phoenix#v1.5.9",
-    "phoenix_html": "phoenixframework/phoenix_html#v2.14.3",
+    "phoenix": "file:../deps/phoenix",
+    "phoenix_html": "file:../deps/phoenix_html",
     "simple-css-reset": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/eslint-parser": "^7.14.4",
-    "@babel/preset-env": "^7.14.4",
-    "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^9.0.0",
     "css-loader": "^5.2.6",
     "css-minimizer-webpack-plugin": "^3.0.1",
-    "eslint": "^7.27.0",
+    "eslint": "^7.29.0",
     "eslint-plugin-mirego": "0.0.1",
     "mini-css-extract-plugin": "^1.6.0",
-    "prettier": "2.3.0",
+    "prettier": "2.3.1",
     "stylelint": "13.13.1",
     "stylelint-config-mirego": "2.0.0",
     "stylelint-order": "4.1.0",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0"
+    "webpack": "^5.40.0",
+    "webpack-cli": "^4.7.2"
   }
 }

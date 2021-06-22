@@ -1,5 +1,24 @@
+# Step 1 - hex dependencies
 #
-# Step 1 - build the JS/CSS assets
+FROM hexpm/elixir:1.12.1-erlang-24.0.2-alpine-3.13.3 AS otp-dependencies
+
+ENV MIX_ENV=prod
+
+WORKDIR /build
+
+# Install Alpine dependencies
+RUN apk add --no-cache git   
+
+# Install Erlang dependencies
+RUN mix local.rebar --force && \
+    mix local.hex --force
+
+# Install hex dependencies
+COPY mix.* ./
+RUN mix deps.get --only prod
+
+#
+# Step 2 - npm dependencies + build the JS/CSS assets
 #
 FROM node:14.17-alpine3.13 AS js-builder
 
@@ -12,7 +31,10 @@ RUN apk update --no-cache && \
     apk upgrade --no-cache && \
     apk add --no-cache git
 
-# Install JS dependencies
+# Copy hex dependencies
+COPY --from=otp-dependencies /build/deps deps
+
+# Install npm dependencies
 COPY assets assets
 RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm --progress=false --loglevel=error
 
@@ -20,7 +42,7 @@ RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm --progress=false 
 RUN npm run --prefix assets deploy
 
 #
-# Step 2 - build the OTP binary
+# Step 3 - build the OTP binary
 #
 FROM hexpm/elixir:1.11.3-erlang-23.3.4.1-alpine-3.13.3 AS otp-builder
 
@@ -42,10 +64,10 @@ RUN apk update --no-cache && \
 RUN mix local.rebar --force && \
     mix local.hex --force
 
-# Install dependencies
+# Copy hex dependencies
 COPY mix.* ./
-RUN mix deps.get --only prod && \
-    mix deps.compile
+COPY --from=otp-dependencies /build/deps deps
+RUN mix deps.compile
 
 # Compile codebase
 COPY config config
@@ -62,7 +84,7 @@ COPY rel rel
 RUN mix release
 
 #
-# Step 3 - build a lean runtime container
+# Step 4 - build a lean runtime container
 #
 FROM alpine:3.13.3
 
