@@ -44,12 +44,12 @@ defmodule ElixirBoilerplate.Mixfile do
       {:hackney, "~> 1.16"},
 
       # HTTP server
-      {:plug_cowboy, "~> 2.4"},
+      {:plug_cowboy, "~> 2.5"},
       {:plug_canonical_host, "~> 2.0"},
       {:corsica, "~> 1.1"},
 
       # Phoenix
-      {:phoenix, "~> 1.5.8"},
+      {:phoenix, "~> 1.5.9"},
       {:phoenix_html, "~> 2.14.3"},
       {:phoenix_ecto, "~> 4.2"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
@@ -62,7 +62,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:absinthe_error_payload, "~> 1.1"},
 
       # Database
-      {:ecto_sql, "~> 3.5"},
+      {:ecto_sql, "~> 3.6"},
       {:postgrex, "~> 0.15"},
 
       # Translations
