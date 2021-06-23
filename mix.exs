@@ -41,7 +41,7 @@ defmodule ElixirBoilerplate.Mixfile do
   defp deps do
     [
       # HTTP Client
-      {:hackney, "~> 1.16"},
+      {:hackney, "~> 1.17"},
 
       # HTTP server
       {:plug_cowboy, "~> 2.5"},
@@ -51,7 +51,7 @@ defmodule ElixirBoilerplate.Mixfile do
       # Phoenix
       {:phoenix, "~> 1.5.9"},
       {:phoenix_html, "~> 2.14.3"},
-      {:phoenix_ecto, "~> 4.2"},
+      {:phoenix_ecto, "~> 4.3"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
       {:jason, "~> 1.2"},
 

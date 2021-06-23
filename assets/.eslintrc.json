@@ -1,12 +1,16 @@
 {
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
   "plugins": [
     "mirego"
   ],
   "extends": [
     "plugin:mirego/recommended"
-  ],
-  "env": {
-    "es6": true,
-    "jquery": true
-  }
+  ] 
 }
