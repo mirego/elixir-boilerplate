@@ -20,7 +20,7 @@ RUN mix deps.get --only prod
 #
 # Step 2 - npm dependencies + build the JS/CSS assets
 #
-FROM node:16.10-alpine3.14 AS js-builder
+FROM node:14.18-alpine3.14 AS js-builder
 
 ENV NODE_ENV=prod
 
