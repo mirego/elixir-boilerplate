@@ -5,8 +5,8 @@ defmodule ElixirBoilerplate.Mixfile do
     [
       app: :elixir_boilerplate,
       version: "0.0.1",
-      elixir: "~> 1.11",
-      erlang: "~> 23.1",
+      elixir: "~> 1.12",
+      erlang: "~> 24.1",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
       test_pattern: "**/*_test.exs",
@@ -41,7 +41,7 @@ defmodule ElixirBoilerplate.Mixfile do
   defp deps do
     [
       # HTTP Client
-      {:hackney, "~> 1.17"},
+      {:hackney, "~> 1.18"},
 
       # HTTP server
       {:plug_cowboy, "~> 2.5"},
@@ -49,20 +49,20 @@ defmodule ElixirBoilerplate.Mixfile do
       {:corsica, "~> 1.1"},
 
       # Phoenix
-      {:phoenix, "~> 1.5.9"},
-      {:phoenix_html, "~> 2.14.3"},
-      {:phoenix_ecto, "~> 4.3"},
+      {:phoenix, "~> 1.6"},
+      {:phoenix_html, "~> 3.0"},
+      {:phoenix_ecto, "~> 4.4"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
       {:jason, "~> 1.2"},
 
       # GraphQL
-      {:absinthe, "~> 1.5"},
-      {:absinthe_plug, "~> 1.5"},
+      {:absinthe, "~> 1.6"},
+      {:absinthe_plug, "~> 1.5.8"},
       {:dataloader, "~> 1.0"},
       {:absinthe_error_payload, "~> 1.1"},
 
       # Database
-      {:ecto_sql, "~> 3.6"},
+      {:ecto_sql, "~> 3.7"},
       {:postgrex, "~> 0.15"},
 
       # Translations
@@ -72,8 +72,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:sentry, "~> 8.0"},
 
       # Monitoring
-      {:new_relic_agent, "~> 1.23"},
-      {:new_relic_phoenix, "~> 0.3"},
+      {:new_relic_agent, "~> 1.27"},
       {:new_relic_absinthe, "~> 0.0"},
 
       # Linting
@@ -89,7 +88,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:plug_checkup, "~> 0.6"},
 
       # Test factories
-      {:ex_machina, "~> 2.6", only: :test},
+      {:ex_machina, "~> 2.7", only: :test},
       {:faker, "~> 0.16", only: :test},
 
       # Test coverage
