@@ -3,8 +3,8 @@
   "private": true,
   "engine-strict": true,
   "engines": {
-    "node": "^16.10",
-    "npm": "^7.24"
+    "node": "^14.18",
+    "npm": "^6.14"
   },
   "devDependencies": {
     "accent-cli": "^0.9.2"
