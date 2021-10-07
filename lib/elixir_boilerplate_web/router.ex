@@ -12,10 +12,6 @@ defmodule ElixirBoilerplateWeb.Router do
     plug(ElixirBoilerplateWeb.ContentSecurityPolicy)
 
     plug(:put_layout, {ElixirBoilerplateWeb.Layouts.View, :app})
-
-    plug(NewRelic.Transaction.Plug)
-    plug(NewRelic.Phoenix.Transaction.Plug)
-    plug(NewRelic.DistributedTrace.Plug)
   end
 
   scope "/", ElixirBoilerplateWeb do

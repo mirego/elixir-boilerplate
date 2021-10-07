@@ -4,8 +4,8 @@
   "private": true,
   "engine-strict": true,
   "engines": {
-    "node": "^14.17",
-    "npm": "^6.14"
+    "node": "^16.10",
+    "npm": "^7.24"
   },
   "scripts": {
     "deploy": "NODE_ENV=production webpack --mode production",

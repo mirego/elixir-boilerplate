@@ -3,7 +3,6 @@ defmodule ElixirBoilerplateGraphQL.Router do
 
   defmodule GraphQL do
     use Plug.Router
-    use NewRelic.Transaction
 
     plug(:match)
     plug(:dispatch)

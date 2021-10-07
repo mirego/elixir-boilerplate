@@ -1,6 +1,6 @@
 # Step 1 - hex dependencies
 #
-FROM hexpm/elixir:1.11.4-erlang-23.3.4.4-alpine-3.13.3 AS otp-dependencies
+FROM hexpm/elixir:1.12.3-erlang-24.1.2-alpine-3.14.2 AS otp-dependencies
 
 ENV MIX_ENV=prod
 
@@ -20,7 +20,7 @@ RUN mix deps.get --only prod
 #
 # Step 2 - npm dependencies + build the JS/CSS assets
 #
-FROM node:14.17-alpine3.13 AS js-builder
+FROM node:16.10-alpine3.14 AS js-builder
 
 ENV NODE_ENV=prod
 
@@ -44,7 +44,7 @@ RUN npm run --prefix assets deploy
 #
 # Step 3 - build the OTP binary
 #
-FROM hexpm/elixir:1.11.4-erlang-23.3.4.4-alpine-3.13.3 AS otp-builder
+FROM hexpm/elixir:1.12.3-erlang-24.1.2-alpine-3.14.2 AS otp-builder
 
 ARG APP_NAME
 ARG APP_VERSION
@@ -86,7 +86,7 @@ RUN mix release
 #
 # Step 4 - build a lean runtime container
 #
-FROM alpine:3.13.3
+FROM alpine:3.14.2
 
 ARG APP_NAME
 ARG APP_VERSION
