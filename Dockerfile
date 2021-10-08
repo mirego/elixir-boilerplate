@@ -97,7 +97,7 @@ ENV APP_NAME=${APP_NAME} \
 # Install Alpine dependencies
 RUN apk update --no-cache && \
     apk upgrade --no-cache && \
-    apk add --no-cache bash openssl
+    apk add --no-cache bash openssl libgcc libstdc++ ncurses-libs
 
 WORKDIR /opt/elixir_boilerplate
 
