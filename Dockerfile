@@ -7,7 +7,7 @@ ENV MIX_ENV=prod
 WORKDIR /build
 
 # Install Alpine dependencies
-RUN apk add --no-cache git   
+RUN apk add --no-cache git
 
 # Install Erlang dependencies
 RUN mix local.rebar --force && \
@@ -37,9 +37,6 @@ COPY --from=otp-dependencies /build/deps deps
 # Install npm dependencies
 COPY assets assets
 RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm --progress=false --loglevel=error
-
-# Build JS/CSS assets
-RUN npm run --prefix assets deploy
 
 #
 # Step 3 - build the OTP binary
@@ -76,8 +73,8 @@ COPY priv priv
 RUN mix compile
 
 # Copy assets from step 1
-COPY --from=js-builder /build/priv/static priv/static
-RUN mix phx.digest
+COPY --from=js-builder /build/assets assets
+RUN mix assets.deploy
 
 # Build OTP release
 COPY rel rel

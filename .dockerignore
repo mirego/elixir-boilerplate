@@ -3,7 +3,7 @@ _build/
 assets/node_modules/
 deps/
 test/
-priv/static/
+priv/static/assets/
 
 .*
 docker-compose.yml

@@ -15,8 +15,11 @@ npm-debug.log
 # Static artifacts
 /assets/node_modules
 
-# Since we are building assets from assets/, we ignore priv/static
-/priv/static
+# Ignore assets that are produced by build tools
+/priv/static/assets
+
+# Ignore digested assets cache.
+/priv/static/cache_manifest.json
 
 # Local environment variable files
 .env.local
