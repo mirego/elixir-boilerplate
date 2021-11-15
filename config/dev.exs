@@ -4,11 +4,7 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   code_reloader: true,
   check_origin: false,
   watchers: [
-    npm: [
-      "run",
-      "watch",
-      cd: Path.expand("../assets", __DIR__)
-    ]
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
   ],
   live_reload: [
     patterns: [

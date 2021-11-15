@@ -12,7 +12,7 @@ defmodule ElixirBoilerplate.Mixfile do
       test_pattern: "**/*_test.exs",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: [:gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
@@ -32,6 +32,10 @@ defmodule ElixirBoilerplate.Mixfile do
 
   defp aliases do
     [
+      "assets.deploy": [
+        "esbuild default --minify",
+        "phx.digest"
+      ],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"]
@@ -40,6 +44,9 @@ defmodule ElixirBoilerplate.Mixfile do
 
   defp deps do
     [
+      # Assets bundling
+      {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
+
       # HTTP Client
       {:hackney, "~> 1.18"},
 
@@ -50,7 +57,7 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Phoenix
       {:phoenix, "~> 1.6"},
-      {:phoenix_html, "~> 3.0"},
+      {:phoenix_html, "~> 3.1"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
       {:jason, "~> 1.2"},
@@ -82,7 +89,7 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Security check
       {:sobelow, "~> 0.11", only: [:dev, :test], runtime: true},
-      {:mix_audit, "~> 0.1", only: [:dev, :test], runtime: false},
+      {:mix_audit, "~> 1.0", only: [:dev, :test], runtime: false},
 
       # Health
       {:plug_checkup, "~> 0.6"},

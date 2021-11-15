@@ -7,28 +7,16 @@
     "node": "^14.18",
     "npm": "^6.14"
   },
-  "scripts": {
-    "deploy": "NODE_ENV=production webpack --mode production",
-    "watch": "webpack --mode development --watch --watch-options-stdin --color"
-  },
   "dependencies": {
-    "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html",
     "simple-css-reset": "^3.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "copy-webpack-plugin": "^9.0.0",
-    "css-loader": "^5.2.6",
-    "css-minimizer-webpack-plugin": "^3.0.1",
     "eslint": "^7.29.0",
     "eslint-plugin-mirego": "0.0.1",
-    "mini-css-extract-plugin": "^1.6.0",
     "prettier": "2.3.1",
     "stylelint": "13.13.1",
     "stylelint-config-mirego": "2.0.0",
-    "stylelint-order": "4.1.0",
-    "webpack": "^5.40.0",
-    "webpack-cli": "^4.7.2"
+    "stylelint-order": "4.1.0"
   }
 }
