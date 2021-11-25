@@ -121,6 +121,7 @@ check-unused-dependencies:
 format: ## Format project files
 	mix format
 	cd assets && npx prettier --write $(PRETTIER_FILES_PATTERN)
+	cd assets && npx stylelint $(STYLES_PATTERN) --fix --quiet
 
 .PHONY: lint
 lint: lint-elixir lint-scripts lint-styles ## Lint project files
