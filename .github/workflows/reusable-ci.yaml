@@ -3,40 +3,39 @@ name: Reusable CI
 on:
   workflow_call:
     inputs:
-      otp-version:
+      database-image:
         required: true
         type: string
       elixir-version:
         required: true
         type: string
+      otp-version:
+        required: true
+        type: string
 jobs:
   reusable-ci:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        otp-version: ${{ inputs.otp-version }}
-        elixir-version: ${{ inputs.elixir-version }}
 
     services:
       db:
-        image: postgres:12
+        image: ${{ inputs.database-image }}
         env:
-          POSTGRES_DB: elixir_boilerplate_test
-          POSTGRES_PASSWORD: boilerplate
+          POSTGRES_DB: database_test
+          POSTGRES_PASSWORD: password
         ports: ["5432:5432"]
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     env:
       MIX_ENV: test
-      DATABASE_URL: postgres://postgres:boilerplate@localhost/elixir_boilerplate_test
+      DATABASE_URL: postgres://postgres:password@localhost/database_test
 
     steps:
       - uses: actions/checkout@v2
 
       - uses: erlef/setup-elixir@v1
         with:
-          elixir-version: ${{ matrix.elixir-version }}
-          otp-version: ${{ matrix.otp-version }}
+          elixir-version: ${{ inputs.elixir-version }}
+          otp-version: ${{ inputs.otp-version }}
 
       - uses: actions/setup-node@v1
         with:
