@@ -119,6 +119,10 @@ header "Removing boilerplate code of conduct and contribution information → ht
 run rm -fr CODE_OF_CONDUCT.md CONTRIBUTING.md
 success "Done!\n"
 
+header "Removing reusable-ci GitHub Actions workflow"
+run rm -fr .github/workflows/reusable-ci.yaml
+success "Done!\n"
+
 header "Removing boilerplate setup script"
 run rm -fr boilerplate-setup.sh
 success "Done!\n"
