@@ -2,14 +2,20 @@ name: Reusable CI
 
 on:
   workflow_call:
-
+    inputs:
+      otp-version:
+        required: true
+        type: string
+      elixir-version:
+        required: true
+        type: string
 jobs:
   reusable-ci:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        otp-version: [24.1.2]
-        elixir-version: [1.12.3]
+        otp-version: ${{ inputs.otp-version }}
+        elixir-version: ${{ inputs.elixir-version }}
 
     services:
       db:

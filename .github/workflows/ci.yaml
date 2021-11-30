@@ -12,3 +12,6 @@ on:
 jobs:
   ci:
     uses: mirego/elixir-boilerplate/.github/workflows/reusable-ci.yaml@feature/convert-ci-to-reusable-ci
+    with:
+      otp-version: [24.1.2]
+      elixir-version: [1.12.3]
