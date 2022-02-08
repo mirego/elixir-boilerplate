@@ -11,12 +11,13 @@
     "simple-css-reset": "^3.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^8.8.0",
+    "@babel/eslint-parser": "^7.17.0",
+    "eslint": "^7.32.0",
     "eslint-plugin-mirego": "1.0.0",
     "prettier": "2.5.1",
     "stylelint": "14.4.0",
     "stylelint-config-mirego": "2.1.0",
+    "stylelint-scss": "4.1.0",
     "stylelint-order": "5.0.0"
   }
 }
