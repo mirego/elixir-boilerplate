@@ -45,7 +45,7 @@ defmodule ElixirBoilerplate.Mixfile do
   defp deps do
     [
       # Assets bundling
-      {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
 
       # HTTP Client
       {:hackney, "~> 1.18"},
@@ -57,23 +57,23 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Phoenix
       {:phoenix, "~> 1.6"},
-      {:phoenix_html, "~> 3.1"},
+      {:phoenix_html, "~> 3.2"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
       {:jason, "~> 1.2"},
 
       # GraphQL
-      {:absinthe, "~> 1.6"},
+      {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5.8"},
       {:dataloader, "~> 1.0"},
       {:absinthe_error_payload, "~> 1.1"},
 
       # Database
       {:ecto_sql, "~> 3.7"},
-      {:postgrex, "~> 0.15"},
+      {:postgrex, "~> 0.16"},
 
       # Translations
-      {:gettext, "~> 0.18"},
+      {:gettext, "~> 0.19"},
 
       # Errors
       {:sentry, "~> 8.0"},
@@ -83,7 +83,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:new_relic_absinthe, "~> 0.0"},
 
       # Linting
-      {:credo, "~> 1.5", only: [:dev, :test], override: true},
+      {:credo, "~> 1.6", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},
       {:credo_naming, "~> 1.0", only: [:dev, :test], runtime: false},
 
@@ -96,7 +96,7 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Test factories
       {:ex_machina, "~> 2.7", only: :test},
-      {:faker, "~> 0.16", only: :test},
+      {:faker, "~> 0.17", only: :test},
 
       # Test coverage
       {:excoveralls, "~> 0.14", only: :test}

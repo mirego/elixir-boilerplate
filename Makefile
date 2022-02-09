@@ -137,4 +137,4 @@ lint-scripts:
 
 .PHONY: lint-styles
 lint-styles:
-	cd assets && npx stylelint --syntax scss $(STYLES_PATTERN)
+	cd assets && npx stylelint $(STYLES_PATTERN)
