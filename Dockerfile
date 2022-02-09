@@ -1,116 +1,91 @@
-# Step 1 - hex dependencies
 #
-FROM hexpm/elixir:1.13.2-erlang-24.2.1-alpine-3.15.0 AS otp-dependencies
-
-ENV MIX_ENV=prod
-
-WORKDIR /build
-
-# Install Alpine dependencies
-RUN apk add --no-cache git
-
-# Install Erlang dependencies
-RUN mix local.rebar --force && \
-    mix local.hex --force
-
-# Install hex dependencies
-COPY mix.* ./
-RUN mix deps.get --only prod
-
+# Step 1 - npm dependencies
 #
-# Step 2 - npm dependencies + build the JS/CSS assets
-#
-FROM node:16.13-alpine3.14 AS js-builder
+FROM node:16.13-bullseye-slim AS npm-builder
 
-ENV NODE_ENV=prod
+# Install Debian dependencies
+RUN apt-get update -y && \
+    apt-get install -y build-essential git && \
+    apt-get clean && \
+    rm -f /var/lib/apt/lists/*_*
 
-WORKDIR /build
-
-# Install Alpine dependencies
-RUN apk update --no-cache && \
-    apk upgrade --no-cache && \
-    apk add --no-cache git
-
-# Copy hex dependencies
-COPY --from=otp-dependencies /build/deps deps
+WORKDIR /app
 
 # Install npm dependencies
 COPY assets assets
-RUN npm ci --prefix assets --no-audit --no-color --unsafe-perm --progress=false --loglevel=error
+RUN npm ci --prefix assets
 
 #
-# Step 3 - build the OTP binary
+# Step 2 - hex dependencies
 #
-FROM hexpm/elixir:1.13.2-erlang-24.2.1-alpine-3.15.0 AS otp-builder
+FROM hexpm/elixir:1.13.2-erlang-24.2.1-debian-bullseye-20210902-slim AS otp-builder
 
-ARG APP_NAME
-ARG APP_VERSION
+# Install Debian dependencies
+RUN apt-get update -y && \
+    apt-get install -y build-essential git && \
+    apt-get clean && \
+    rm -f /var/lib/apt/lists/*_*
 
-ENV APP_NAME=${APP_NAME} \
-    APP_VERSION=${APP_VERSION} \
-    MIX_ENV=prod
-
-WORKDIR /build
-
-# Install Alpine dependencies
-RUN apk update --no-cache && \
-    apk upgrade --no-cache && \
-    apk add --no-cache git
+WORKDIR /app
 
 # Install Erlang dependencies
 RUN mix local.rebar --force && \
     mix local.hex --force
 
-# Copy hex dependencies
-COPY mix.* ./
-COPY --from=otp-dependencies /build/deps deps
+ENV MIX_ENV="prod"
+
+# Install mix dependencies
+COPY mix.exs mix.lock ./
+RUN mix deps.get --only $MIX_ENV
+
+# Copy compile-time config files before we compile dependencies
+# to ensure any relevant config change will trigger the dependencies
+# to be re-compiled.
+RUN mkdir config
+COPY config/config.exs config/${MIX_ENV}.exs config/
+
+# Compile mix dependencies
 RUN mix deps.compile
 
-# Compile codebase
-COPY config config
-COPY lib lib
+# Compile assets
+COPY --from=npm-builder /app/assets assets 
 COPY priv priv
+RUN mix esbuild default
+RUN mix phx.digest
+
+# Compile code
+COPY lib lib
 RUN mix compile
 
-# Copy assets from step 1
-COPY --from=js-builder /build/assets assets
-RUN mix assets.deploy
+# Changes to config/runtime.exs don't require recompiling the code
+COPY config/runtime.exs config/
 
-# Build OTP release
 COPY rel rel
 RUN mix release
 
 #
-# Step 4 - build a lean runtime container
+# Step 3 - Bundle release in cuntime container
 #
-FROM alpine:3.15.0
+FROM debian:bullseye-20210902-slim
 
-ARG APP_NAME
-ARG APP_VERSION
+RUN apt-get update -y && \
+    apt-get install -y libstdc++6 openssl libncurses5 locales && \
+    apt-get clean && \
+    rm -f /var/lib/apt/lists/*_*
 
-ENV APP_NAME=${APP_NAME} \
-    APP_VERSION=${APP_VERSION}
+# Set the locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
-# Install Alpine dependencies
-RUN apk update --no-cache && \
-    apk upgrade --no-cache && \
-    apk add --no-cache bash openssl libgcc libstdc++ ncurses-libs
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
-WORKDIR /opt/elixir_boilerplate
+WORKDIR "/opt/elixir_boilerplate"
+RUN chown nobody /opt/elixir_boilerplate
 
-# Copy the OTP binary from the build step
-COPY --from=otp-builder /build/_build/prod/${APP_NAME}-${APP_VERSION}.tar.gz .
-RUN tar -xvzf ${APP_NAME}-${APP_VERSION}.tar.gz && \
-    rm ${APP_NAME}-${APP_VERSION}.tar.gz
+# Only copy the final release from the build stage
+COPY --from=otp-builder --chown=nobody:root /app/_build/prod/rel/elixir_boilerplate ./
 
-# Copy Docker entrypoint
-COPY priv/scripts/docker-entrypoint.sh /usr/local/bin
-RUN chmod a+x /usr/local/bin/docker-entrypoint.sh
+USER nobody
 
-# Create non-root user
-RUN adduser -D elixir_boilerplate && \
-    chown -R elixir_boilerplate: /opt/elixir_boilerplate
-USER elixir_boilerplate
-
-ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["start"]
+CMD ["/opt/elixir_boilerplate/bin/server"]

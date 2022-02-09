@@ -1,10 +1,10 @@
-defmodule ElixirBoilerplate.ReleaseTasks do
+defmodule ElixirBoilerplate.Release do
   alias Ecto.Migrator
 
   @app :elixir_boilerplate
 
   def migrate do
-    IO.puts("Running migrations for #{@app}")
+    load_app()
 
     for repo <- repos() do
       {:ok, _, _} = Migrator.with_repo(repo, &Migrator.run(&1, :up, all: true))
@@ -12,11 +12,16 @@ defmodule ElixirBoilerplate.ReleaseTasks do
   end
 
   def rollback(repo, version) do
+    load_app()
+
     {:ok, _, _} = Migrator.with_repo(repo, &Migrator.run(&1, :down, to: version))
   end
 
   defp repos do
-    Application.load(@app)
     Application.fetch_env!(@app, :ecto_repos)
+  end
+
+  defp load_app do
+    Application.load(@app)
   end
 end
