@@ -18,7 +18,7 @@ RUN npm ci --prefix assets
 #
 # Step 2 - hex dependencies
 #
-FROM hexpm/elixir:1.13.2-erlang-24.2.1-debian-bullseye-20210902-slim AS otp-builder
+FROM hexpm/elixir:1.13.3-erlang-24.3.3-debian-bullseye-20210902-slim AS otp-builder
 
 # Install Debian dependencies
 RUN apt-get update -y && \
@@ -48,7 +48,7 @@ COPY config/config.exs config/${MIX_ENV}.exs config/
 RUN mix deps.compile
 
 # Compile assets
-COPY --from=npm-builder /app/assets assets 
+COPY --from=npm-builder /app/assets assets
 COPY priv priv
 RUN mix esbuild default
 RUN mix phx.digest
