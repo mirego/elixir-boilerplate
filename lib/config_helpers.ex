@@ -1,6 +1,6 @@
 defmodule ElixirBoilerplate.ConfigHelpers do
   @moduledoc """
-  This modules provides various helpers to handle environment metadata
+  This modules provides various helpers to handle environment variables
   """
 
   @type value_type :: :string | :integer | :boolean | :uri | :cors
@@ -28,9 +28,7 @@ defmodule ElixirBoilerplate.ConfigHelpers do
   defp parse_env(nil, :cors), do: nil
 
   defp parse_env(value, :cors) when is_bitstring(value) do
-    value
-    |> String.split(",")
-    |> case do
+    case String.split(value, ",") do
       [origin] -> origin
       origins -> origins
     end
