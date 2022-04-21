@@ -1,3 +1,4 @@
+# credo:disable-for-this-file CredoNaming.Check.Warning.AvoidSpecificTermsInModuleNames
 defmodule ElixirBoilerplate.ConfigHelpers do
   @moduledoc """
   This modules provides various helpers to handle environment variables
@@ -8,14 +9,16 @@ defmodule ElixirBoilerplate.ConfigHelpers do
 
   @spec get_env(String.t(), nil | value_type()) :: config_type()
   def get_env(key, type \\ :string) do
-    System.get_env(key)
-    |> parse_env(type)
+    value = System.get_env(key)
+
+    parse_env(value, type)
   end
 
   @spec get_env!(String.t(), nil | value_type()) :: config_type()
   def get_env!(key, type \\ :string) do
-    System.fetch_env!(key)
-    |> parse_env(type)
+    value = System.fetch_env!(key)
+
+    parse_env(value, type)
   end
 
   defp parse_env(value, :string), do: value
