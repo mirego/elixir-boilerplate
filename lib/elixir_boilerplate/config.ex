@@ -1,5 +1,4 @@
-# credo:disable-for-this-file CredoNaming.Check.Warning.AvoidSpecificTermsInModuleNames
-defmodule ElixirBoilerplate.ConfigHelpers do
+defmodule ElixirBoilerplate.Config do
   @moduledoc """
   This modules provides various helpers to handle environment variables
   """

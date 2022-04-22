@@ -1,5 +1,5 @@
 import Config
-import ElixirBoilerplate.ConfigHelpers
+import ElixirBoilerplate.Config
 
 canonical_uri = get_env("CANONICAL_URL", :uri)
 static_uri = get_env("STATIC_URL", :uri)
