@@ -45,7 +45,7 @@ defmodule ElixirBoilerplate.Mixfile do
   defp deps do
     [
       # Assets bundling
-      {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
 
       # HTTP Client
       {:hackney, "~> 1.18"},
@@ -53,7 +53,7 @@ defmodule ElixirBoilerplate.Mixfile do
       # HTTP server
       {:plug_cowboy, "~> 2.5"},
       {:plug_canonical_host, "~> 2.0"},
-      {:corsica, "~> 1.1"},
+      {:corsica, "~> 1.2"},
 
       # Phoenix
       {:phoenix, "~> 1.6"},
@@ -69,7 +69,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:absinthe_error_payload, "~> 1.1"},
 
       # Database
-      {:ecto_sql, "~> 3.7"},
+      {:ecto_sql, "~> 3.8"},
       {:postgrex, "~> 0.16"},
 
       # Translations

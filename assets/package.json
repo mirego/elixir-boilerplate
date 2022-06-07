@@ -4,20 +4,20 @@
   "private": true,
   "engine-strict": true,
   "engines": {
-    "node": "^16.13",
-    "npm": "^8.1"
+    "node": "^16.14",
+    "npm": "^8.5"
   },
   "dependencies": {
     "simple-css-reset": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.17.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-mirego": "1.0.0",
-    "prettier": "2.5.1",
-    "stylelint": "14.4.0",
-    "stylelint-config-mirego": "2.1.0",
-    "stylelint-scss": "4.1.0",
-    "stylelint-order": "5.0.0"
+    "@babel/eslint-parser": "^7.18.2",
+    "eslint": "^8.17.0",
+    "eslint-plugin-mirego": "^1.0.0",
+    "prettier": "^2.6.2",
+    "stylelint": "^14.9.1",
+    "stylelint-config-mirego": "^2.1.0",
+    "stylelint-scss": "^4.2.0",
+    "stylelint-order": "^5.0.0"
   }
 }
