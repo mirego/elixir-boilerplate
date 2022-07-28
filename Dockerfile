@@ -1,7 +1,7 @@
 # -----------------------------------------------
 # Stage: npm dependencies
 # -----------------------------------------------
-FROM node:16.13-bullseye-slim AS npm-builder
+FROM node:16.16-bullseye-slim AS npm-builder
 
 # Install Debian dependencies
 RUN apt-get update -y && \
@@ -18,7 +18,7 @@ RUN npm ci --prefix assets
 # -----------------------------------------------
 # Stage: hex dependencies
 # -----------------------------------------------
-FROM hexpm/elixir:1.13.3-erlang-24.3.3-debian-bullseye-20210902-slim AS otp-builder
+FROM hexpm/elixir:1.13.4-erlang-25.0.3-debian-bullseye-20210902-slim AS otp-builder
 
 # Install Debian dependencies
 RUN apt-get update -y && \

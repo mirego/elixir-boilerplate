@@ -73,7 +73,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:postgrex, "~> 0.16"},
 
       # Translations
-      {:gettext, "~> 0.19"},
+      {:gettext, "~> 0.20"},
 
       # Errors
       {:sentry, "~> 8.0"},
