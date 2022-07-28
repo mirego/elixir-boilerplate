@@ -64,9 +64,9 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
       |> changeset_to_error_messages()
 
     assert html =~ "<li>email has invalid format</li>"
-    assert html =~ "<li>email should be 10 characters</li>"
-    assert html =~ "<li>multiple_roles.type can’t be blank</li>"
-    assert html =~ "<li>nicknames should have at least 1 item</li>"
+    assert html =~ "<li>email should be 10 character(s)</li>"
+    assert html =~ "<li>multiple_roles.type can&#39;t be blank</li>"
+    assert html =~ "<li>nicknames should have at least 1 item(s)</li>"
     assert html =~ "<li>single_role.type is invalid</li>"
   end
 
