@@ -20,4 +20,7 @@ config :elixir_boilerplate, ElixirBoilerplate.Repo,
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint, server: false
 
+# This config is to output keys instead of translated message in test
+config :elixir_boilerplate, ElixirBoilerplate.Gettext, priv: "priv/null"
+
 config :logger, level: :warn
