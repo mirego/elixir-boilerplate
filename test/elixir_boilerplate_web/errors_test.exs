@@ -28,6 +28,7 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
     import Ecto.Changeset
 
     schema "users" do
+      field(:username, :string)
       field(:email, :string)
       field(:nicknames, {:array, :string})
 
@@ -42,6 +43,7 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
       |> cast(params, [:email, :nicknames])
       |> cast_embed(:single_role)
       |> cast_embed(:multiple_roles)
+      |> validate_required(:username)
       |> validate_length(:email, is: 10)
       |> validate_length(:nicknames, min: 1)
       |> validate_format(:email, ~r/@/)
@@ -63,11 +65,11 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
       |> User.changeset(%{"email" => "foo", "nicknames" => [], "single_role" => %{"type" => "bar"}, "multiple_roles" => [%{"type" => ""}]})
       |> changeset_to_error_messages()
 
-    assert html =~ "<li>email has invalid format</li>"
-    assert html =~ "<li>email should be 10 characters</li>"
-    assert html =~ "<li>multiple_roles.type can’t be blank</li>"
-    assert html =~ "<li>nicknames should have at least 1 item</li>"
-    assert html =~ "<li>single_role.type is invalid</li>"
+    assert html =~ "<li>email has invalid format[validation=:format]</li>"
+    assert html =~ "<li>email should be %{count} character(s)[count=10,kind=:is,type=:string,validation=:length]</li>"
+    assert html =~ "<li>multiple_roles.type can&#39;t be blank[validation=:required]</li>"
+    assert html =~ "<li>nicknames should have at least %{count} item(s)[count=1,kind=:min,type=:list,validation=:length]</li>"
+    assert html =~ "<li>single_role.type is invalid[enum=admin,moderator,member,validation=:inclusion]</li>"
   end
 
   defp changeset_to_error_messages(changeset) do
