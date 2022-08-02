@@ -10,23 +10,24 @@ kebabCaseBefore="elixir-boilerplate"
 
 # The identifiers above will be replaced in the content of the files found below
 content=$(find . -type f \( \
-  -name "*.ex" -or \
-  -name "*.exs" -or \
-  -name "*.ees" -or \
-  -name "*.sh" -or \
-  -name "*.json" -or \
-  -name "*.js" -or \
-  -name "*.yml" -or \
-  -name "*.yaml" -or \
-  -name "*.md" -or \
-  -name ".env.*" -or \
-  -name "Dockerfile" -or \
-  -name "Makefile" \
-\) \
-  -and ! -path "./boilerplate-setup.sh" \
-  -and ! -path "./assets/node_modules/*" \
-  -and ! -path "./_build/*" \
-  -and ! -path "./deps/*" \
+    -name "*.ex" -or \
+    -name "*.exs" -or \
+    -name "*.ees" -or \
+    -name "*.sh" -or \
+    -name "*.json" -or \
+    -name "*.js" -or \
+    -name "*.yml" -or \
+    -name "*.yaml" -or \
+    -name "*.md" -or \
+    -name ".env.*" -or \
+    -name "Dockerfile" -or \
+    -name "Makefile" -or \
+    -path "./rel/overlays/bin/*" \
+  \) -and \
+  ! -path "./boilerplate-setup.sh" -and \
+  ! -path "./deps/*" -and \
+  ! -path "./_build/*" -and \
+  ! -path "./assets/node_modules/*" \
 )
 
 # The identifiers above will be replaced in the path of the files and directories found here
