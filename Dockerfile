@@ -1,7 +1,7 @@
-#
-# Step 1 - npm dependencies
-#
-FROM node:16.13-bullseye-slim AS npm-builder
+# -----------------------------------------------
+# Stage: npm dependencies
+# -----------------------------------------------
+FROM node:16.16-bullseye-slim AS npm-builder
 
 # Install Debian dependencies
 RUN apt-get update -y && \
@@ -15,10 +15,10 @@ WORKDIR /app
 COPY assets assets
 RUN npm ci --prefix assets
 
-#
-# Step 2 - hex dependencies
-#
-FROM hexpm/elixir:1.13.3-erlang-24.3.3-debian-bullseye-20210902-slim AS otp-builder
+# -----------------------------------------------
+# Stage: hex dependencies
+# -----------------------------------------------
+FROM hexpm/elixir:1.13.4-erlang-25.0.3-debian-bullseye-20210902-slim AS otp-builder
 
 # Install Debian dependencies
 RUN apt-get update -y && \
@@ -63,9 +63,9 @@ COPY config/runtime.exs config/
 COPY rel rel
 RUN mix release
 
-#
-# Step 3 - Bundle release in cuntime container
-#
+# -----------------------------------------------
+# Stage: Bundle release in a docker image
+# -----------------------------------------------
 FROM debian:bullseye-20210902-slim
 
 RUN apt-get update -y && \

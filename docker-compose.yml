@@ -1,4 +1,3 @@
-version: '3.3'
 services:
   application:
     image: elixir_boilerplate:0.0.1
@@ -11,7 +10,7 @@ services:
     depends_on:
       - postgresql
   postgresql:
-    image: postgres:12-alpine
+    image: postgres:14-bullseye
     container_name: elixir_boilerplate-postgres
     environment:
       - POSTGRES_DB=elixir_boilerplate_dev
