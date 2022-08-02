@@ -32,6 +32,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
     plug(Phoenix.LiveReloader)
     plug(Phoenix.CodeReloader)
+    plug(Phoenix.Ecto.CheckRepoStatus, otp_app: :elixir_boilerplate)
   end
 
   plug(Plug.RequestId)

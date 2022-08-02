@@ -1,0 +1,7 @@
+#!/bin/sh
+cd -P -- "$(dirname -- "$0")"
+
+# Always run migrations
+./elixir_boilerplate eval ElixirBoilerplate.Release.migrate
+
+exec ./elixir_boilerplate start
