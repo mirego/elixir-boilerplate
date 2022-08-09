@@ -27,3 +27,6 @@ npm-debug.log
 
 # Sobelow version breadcrumb
 .sobelow
+
+# Ignore Dialyzer’s Persistent Lookup Table (PLT)
+/priv/plts/

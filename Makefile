@@ -138,3 +138,10 @@ lint-scripts:
 .PHONY: lint-styles
 lint-styles:
 	cd assets && npx stylelint $(STYLES_PATTERN)
+
+# Static code analysis
+# ----------------------------
+
+.PHONY: static-analysis
+static-analysis: ## Run static code analysis
+	mix dialyzer
