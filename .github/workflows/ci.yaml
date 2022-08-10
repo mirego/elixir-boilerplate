@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        otp-version: [24.3]
+        otp-version: [25.0]
         elixir-version: [1.13]
 
     services:
       db:
-        image: postgres:12
+        image: postgres:14
         env:
           POSTGRES_DB: elixir_boilerplate_test
           POSTGRES_PASSWORD: boilerplate
@@ -30,38 +30,25 @@ jobs:
       DATABASE_URL: postgres://postgres:boilerplate@localhost/elixir_boilerplate_test
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: erlef/setup-elixir@v1
         with:
-          elixir-version: ${{ matrix.elixir-version }}
           otp-version: ${{ matrix.otp-version }}
+          elixir-version: ${{ matrix.elixir-version }}
 
-      - uses: actions/setup-node@v1
+      - uses: actions/cache@v3
         with:
-          node-version: 16.13
+          path: |
+            deps
+            _build
+            priv/plts
+          key: ${{ runner.os }}-mix-${{ matrix.otp-version }}-${{ matrix.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
 
-      - uses: actions/cache@v2
-        id: deps-cache
+      - uses: actions/setup-node@v3
         with:
-          path: deps
-          key: ${{ runner.os }}-deps-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
-          restore-keys: |
-            ${{ runner.os }}-deps-
-
-      - uses: actions/cache@v2
-        id: build-cache
-        with:
-          path: _build
-          key: ${{ runner.os }}-build-${{ matrix.otp-version }}-${{ matrix.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
-
-      - uses: actions/cache@v2
-        id: npm-cache
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles(format('{0}/assets/package-lock.json', github.workspace)) }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
+          node-version: 16.15
+          cache: 'npm'
 
       - name: Setup environment variables
         uses: c-py/action-dotenv-to-setenv@v2

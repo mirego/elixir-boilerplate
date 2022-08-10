@@ -62,7 +62,7 @@ prepare:
 	npm ci --prefix assets
 
 .PHONY: build
-build: ## Build the Docker image for the OTP release
+build: ## Build a Docker image for the OTP release
 	docker build --rm --tag $(DOCKER_LOCAL_IMAGE) .
 
 .PHONY: push
@@ -74,11 +74,11 @@ push: ## Push the Docker image to the registry
 # -------------------
 
 .PHONY: run
-run: ## Run the server inside an IEx shell
+run: ## Run the server in an IEx shell
 	iex -S mix phx.server
 
 .PHONY: dependencies
-dependencies: ## Install dependencies
+dependencies: ## Install hex and npm dependencies
 	mix deps.get
 	npm install --prefix assets
 
@@ -94,7 +94,7 @@ test: ## Run the test suite
 # ------------------------------
 
 .PHONY: check
-check: check-format check-unused-dependencies check-dependencies-security check-code-security check-code-coverage ## Run various checks on project files
+check: check-format check-unused-dependencies check-dependencies-security check-code-security check-static-typing check-code-coverage ## Run various checks on source files
 
 .PHONY: check-code-coverage
 check-code-coverage:
@@ -117,14 +117,18 @@ check-format:
 check-unused-dependencies:
 	mix deps.unlock --check-unused
 
+.PHONY: check-static-typing
+check-static-typing:
+	mix dialyzer
+
 .PHONY: format
-format: ## Format project files
+format: ## Format source files
 	mix format
 	cd assets && npx prettier --write $(PRETTIER_FILES_PATTERN)
 	cd assets && npx stylelint $(STYLES_PATTERN) --fix --quiet
 
 .PHONY: lint
-lint: lint-elixir lint-scripts lint-styles ## Lint project files
+lint: lint-elixir lint-scripts lint-styles ## Lint source files
 
 .PHONY: lint-elixir
 lint-elixir:

@@ -5,8 +5,8 @@ defmodule ElixirBoilerplate.Mixfile do
     [
       app: :elixir_boilerplate,
       version: "0.0.1",
-      elixir: "~> 1.12",
-      erlang: "~> 24.1",
+      erlang: "~> 25.0",
+      elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
       test_pattern: "**/*_test.exs",
@@ -16,6 +16,7 @@ defmodule ElixirBoilerplate.Mixfile do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
+      dialyzer: dialyzer(),
       releases: releases()
     ]
   end
@@ -64,7 +65,7 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # GraphQL
       {:absinthe, "~> 1.7"},
-      {:absinthe_plug, "~> 1.5.8"},
+      {:absinthe_plug, "~> 1.5"},
       {:dataloader, "~> 1.0"},
       {:absinthe_error_payload, "~> 1.1"},
 
@@ -99,7 +100,17 @@ defmodule ElixirBoilerplate.Mixfile do
       {:faker, "~> 0.17", only: :test},
 
       # Test coverage
-      {:excoveralls, "~> 0.14", only: :test}
+      {:excoveralls, "~> 0.14", only: :test},
+
+      # Dialyzer
+      {:dialyxir, "~> 1.2", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp dialyzer do
+    [
+      plt_file: {:no_warn, "priv/plts/elixir_boilerplate.plt"},
+      plt_add_apps: [:mix, :ex_unit]
     ]
   end
 
