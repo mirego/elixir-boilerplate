@@ -36,7 +36,3 @@ config :sentry,
   dsn: get_env("SENTRY_DSN"),
   environment_name: get_env("SENTRY_ENVIRONMENT_NAME"),
   included_environments: [get_env("SENTRY_ENVIRONMENT_NAME")]
-
-config :new_relic_agent,
-  app_name: get_env("NEW_RELIC_APP_NAME"),
-  license_key: get_env("NEW_RELIC_LICENSE_KEY")
