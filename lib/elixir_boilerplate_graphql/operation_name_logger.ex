@@ -5,8 +5,11 @@ defmodule ElixirBoilerplateGraphQL.OperationNameLogger do
 
   def call(resolution, _opts) do
     case Enum.find(resolution.path, &current_operation?/1) do
-      %Operation{name: name} when not is_nil(name) -> Logger.metadata(graphql_operation_name: name)
-      _ -> Logger.metadata(graphql_operation_name: "#NULL")
+      %Operation{name: name} when not is_nil(name) ->
+        Logger.metadata(graphql_operation_name: name)
+
+      _ ->
+        Logger.metadata(graphql_operation_name: "#NULL")
     end
 
     resolution
