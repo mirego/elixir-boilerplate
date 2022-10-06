@@ -2,9 +2,9 @@ defmodule ElixirBoilerplateGraphQL.OperationNameLogger do
   @behaviour Absinthe.Middleware
 
   def call(resolution, _opts) do
-    current_operation = Enum.find(resolution.path, &current_operation?/1)
-
-    Logger.metadata(graphql_operation_name: current_operation.name)
+    with %Absinthe.Blueprint.Document.Operation{name: name} <- Enum.find(resolution.path, &current_operation?/1) do
+      Logger.metadata(graphql_operation_name: name)
+    end
 
     resolution
   end
