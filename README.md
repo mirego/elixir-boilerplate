@@ -22,7 +22,7 @@ This boilerplate comes with batteries included, you’ll find:
 - Security scanning with [MixAudit](https://hex.pm/packages/mix_audit) and [Sobelow](https://hexdocs.pm/sobelow)
 - Healthcheck setup with [plug_checkup](https://hexdocs.pm/plug_checkup)
 - OTP release using [`mix release`](https://hexdocs.pm/mix/Mix.Tasks.Release.html) and [Docker](https://www.docker.com)
-- Useful utilities for web features: Basic authentication with [BasicAuth](https://hexdocs.pm/basic_auth), canonical host with [PlugCanonicalHost](https://hexdocs.pm/plug_canonical_host), etc.
+- Useful utilities for web features: Basic authentication with [BasicAuth](https://hexdocs.pm/plug/Plug.BasicAuth.html), canonical host with [PlugCanonicalHost](https://hexdocs.pm/plug_canonical_host), etc.
 - Error reporting with [Sentry](https://hexdocs.pm/sentry)
 - A clean and useful `README.md` template (in both [english](./BOILERPLATE_README.md) and [french](./BOILERPLATE_README.fr.md))
 
