@@ -1,7 +1,7 @@
 # -----------------------------------------------
 # Stage: npm dependencies
 # -----------------------------------------------
-FROM node:16.16-bullseye-slim AS npm-builder
+FROM node:19.1-bullseye-slim AS npm-builder
 
 # Install Debian dependencies
 RUN apt-get update -y && \
