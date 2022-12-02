@@ -23,7 +23,7 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Plus.Security, allow_unsafe_scr
 config :elixir_boilerplate, ElixirBoilerplateGraphQL, enable_introspection: false
 
 config :esbuild,
-  version: "0.14.41",
+  version: "0.16.4",
   default: [
     args: ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets),
     cd: Path.expand("../assets", __DIR__),

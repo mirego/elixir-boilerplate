@@ -1,7 +1,7 @@
 # -----------------------------------------------
 # Stage: npm dependencies
 # -----------------------------------------------
-FROM node:19-bullseye-slim AS npm-builder
+FROM node:18-bullseye-slim AS npm-builder
 
 # Install Debian dependencies
 RUN apt-get update -y && \
@@ -18,7 +18,7 @@ RUN npm ci --prefix assets
 # -----------------------------------------------
 # Stage: hex dependencies
 # -----------------------------------------------
-FROM hexpm/elixir:1.14.3-erlang-25.2.1-debian-bullseye-20230109-slim AS otp-builder
+FROM hexpm/elixir:1.14.3-erlang-25.2.2-debian-bullseye-20230109-slim AS otp-builder
 
 # Install Debian dependencies
 RUN apt-get update -y && \
@@ -37,6 +37,9 @@ ENV MIX_ENV="prod"
 # Install mix dependencies
 COPY mix.exs mix.lock ./
 RUN mix deps.get --only $MIX_ENV
+
+# Install Esbuild so it is cached
+RUN mix esbuild.install --if-missing
 
 # Copy compile-time config files before we compile dependencies
 # to ensure any relevant config change will trigger the dependencies

@@ -46,7 +46,7 @@ defmodule ElixirBoilerplate.Mixfile do
   defp deps do
     [
       # Assets bundling
-      {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.6", runtime: Mix.env() == :dev},
 
       # HTTP Client
       {:hackney, "~> 1.18"},
@@ -74,7 +74,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:postgrex, "~> 0.16"},
 
       # Translations
-      {:gettext, "~> 0.20"},
+      {:gettext, "~> 0.21"},
 
       # Errors
       {:sentry, "~> 8.0"},
@@ -90,7 +90,7 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Security check
       {:sobelow, "~> 0.11", only: [:dev, :test], runtime: true},
-      {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
+      {:mix_audit, "~> 2.1", only: [:dev, :test], runtime: false},
 
       # Health
       {:plug_checkup, "~> 0.6"},
@@ -103,7 +103,10 @@ defmodule ElixirBoilerplate.Mixfile do
       {:excoveralls, "~> 0.15", only: :test},
 
       # Dialyzer
-      {:dialyxir, "~> 1.2", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.2", only: [:dev, :test], runtime: false},
+
+      {:observer_cli, "~> 1.7"},
+      {:recon, "~> 2.5"}
     ]
   end
 
