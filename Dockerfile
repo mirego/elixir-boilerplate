@@ -38,6 +38,9 @@ ENV MIX_ENV="prod"
 COPY mix.exs mix.lock ./
 RUN mix deps.get --only $MIX_ENV
 
+# Install Esbuild so it is cached
+RUN mix esbuild.install --if-missing
+
 # Copy compile-time config files before we compile dependencies
 # to ensure any relevant config change will trigger the dependencies
 # to be re-compiled.
