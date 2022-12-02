@@ -52,15 +52,15 @@ defmodule ElixirBoilerplate.Mixfile do
       {:hackney, "~> 1.18"},
 
       # HTTP server
-      {:plug_cowboy, "~> 2.5"},
+      {:plug_cowboy, "~> 2.6"},
       {:plug_canonical_host, "~> 2.0"},
-      {:corsica, "~> 1.2"},
+      {:corsica, "~> 1.3"},
 
       # Phoenix
       {:phoenix, "~> 1.6"},
       {:phoenix_html, "~> 3.2"},
       {:phoenix_ecto, "~> 4.4"},
-      {:phoenix_live_reload, "~> 1.3", only: :dev},
+      {:phoenix_live_reload, "~> 1.4", only: :dev},
       {:jason, "~> 1.2"},
 
       # GraphQL
@@ -100,7 +100,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:faker, "~> 0.17", only: :test},
 
       # Test coverage
-      {:excoveralls, "~> 0.14", only: :test},
+      {:excoveralls, "~> 0.15", only: :test},
 
       # Dialyzer
       {:dialyxir, "~> 1.2", only: [:dev, :test], runtime: false}

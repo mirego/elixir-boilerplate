@@ -1,7 +1,7 @@
 # -----------------------------------------------
 # Stage: npm dependencies
 # -----------------------------------------------
-FROM node:16.16-bullseye-slim AS npm-builder
+FROM node:18.12-bullseye-slim AS npm-builder
 
 # Install Debian dependencies
 RUN apt-get update -y && \
@@ -18,7 +18,7 @@ RUN npm ci --prefix assets
 # -----------------------------------------------
 # Stage: hex dependencies
 # -----------------------------------------------
-FROM hexpm/elixir:1.13.4-erlang-25.0.3-debian-bullseye-20210902-slim AS otp-builder
+FROM hexpm/elixir:1.14.2-erlang-25.1.2-debian-bullseye-20221004-slim AS otp-builder
 
 # Install Debian dependencies
 RUN apt-get update -y && \
@@ -66,7 +66,7 @@ RUN mix release
 # -----------------------------------------------
 # Stage: Bundle release in a docker image
 # -----------------------------------------------
-FROM debian:bullseye-20210902-slim
+FROM debian:bullseye-20221004-slim
 
 RUN apt-get update -y && \
     apt-get install -y libstdc++6 openssl libncurses5 locales && \
