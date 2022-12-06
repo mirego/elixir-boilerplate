@@ -43,7 +43,7 @@ jobs:
             deps
             _build
             priv/plts
-          key: ${{ runner.os }}-mix-${{ setup-beam.otp-version }}-${{ setup-beam.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
+          key: ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
 
       - uses: actions/setup-node@v3
         with:
