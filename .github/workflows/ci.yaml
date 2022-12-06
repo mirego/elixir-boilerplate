@@ -15,10 +15,6 @@ concurrency:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        otp-version: [25.0]
-        elixir-version: [1.13]
 
     services:
       db:
@@ -36,10 +32,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: erlef/setup-elixir@v1
+      - uses: erlef/setup-beam@v1
+        id: setup-beam
         with:
-          otp-version: ${{ matrix.otp-version }}
-          elixir-version: ${{ matrix.elixir-version }}
+          version-file: .tool-versions
 
       - uses: actions/cache@v3
         with:
@@ -47,12 +43,12 @@ jobs:
             deps
             _build
             priv/plts
-          key: ${{ runner.os }}-mix-${{ matrix.otp-version }}-${{ matrix.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
+          key: ${{ runner.os }}-mix-${{ setup-beam.otp-version }}-${{ setup-beam.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.15
-          cache: 'npm'
+          node-version-file: .tool-versions
+          cache: npm
 
       - name: Setup environment variables
         uses: c-py/action-dotenv-to-setenv@v2
