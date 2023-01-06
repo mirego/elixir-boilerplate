@@ -31,7 +31,6 @@ jobs:
 
     env:
       MIX_ENV: test
-      DATABASE_URL: postgres://postgres:boilerplate@localhost/elixir_boilerplate_test
 
     steps:
       - uses: actions/checkout@v3
