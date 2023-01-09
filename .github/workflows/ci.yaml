@@ -50,10 +50,7 @@ jobs:
           node-version-file: .tool-versions
           cache: npm
 
-      - name: Setup environment variables
-        uses: c-py/action-dotenv-to-setenv@v2
-        with:
-          env-file: .env.test
+      - run: grep -v '^\(#.*\|\s\?\)$' .env.test >> $GITHUB_ENV
 
       - run: make prepare
       - run: make check
