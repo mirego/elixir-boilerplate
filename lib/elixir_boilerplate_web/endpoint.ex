@@ -49,6 +49,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
+  plug(ElixirBoilerplateWeb.Plugs.Security)
   plug(ElixirBoilerplateHealth.Router)
   plug(ElixirBoilerplateGraphQL.Router)
   plug(:halt_if_sent)
