@@ -14,7 +14,7 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
     ]
   ]
 
-config :elixir_boilerplate, ElixirBoilerplateWeb.ContentSecurityPolicy, allow_unsafe_scripts: true
+config :elixir_boilerplate, ElixirBoilerplateWeb.Plugs.Security, allow_unsafe_scripts: true
 
 config :logger, :console, format: "[$level] $message\n"
 

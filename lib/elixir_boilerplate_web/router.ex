@@ -9,7 +9,6 @@ defmodule ElixirBoilerplateWeb.Router do
     plug(:fetch_flash)
 
     plug(:protect_from_forgery)
-    plug(ElixirBoilerplateWeb.ContentSecurityPolicy)
 
     plug(:put_layout, {ElixirBoilerplateWeb.Layouts.View, :app})
   end
