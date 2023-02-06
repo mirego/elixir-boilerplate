@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Since it is a boilerplate project, there are technically no official (versioned) _releases_. Therefore, the `main` branch should always be stable and usable.
 
+## 2023-02-06
+
+- Disable GraphQL introspection by default (#245)
+
 ## 2023-01-27
 
 - Add security HTTP headers for the whole endpoint (#241)
