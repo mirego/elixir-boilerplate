@@ -26,6 +26,6 @@ defmodule ElixirBoilerplateGraphQL.Schema do
   end
 
   def middleware(middleware, _, _) do
-    [NewRelic.Absinthe.Middleware, ElixirBoilerplateGraphQL.OperationNameLogger] ++ middleware
+    [NewRelic.Absinthe.Middleware, ElixirBoilerplateGraphQL.Middleware.OperationNameLogger] ++ middleware
   end
 end

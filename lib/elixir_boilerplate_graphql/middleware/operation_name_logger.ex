@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplateGraphQL.OperationNameLogger do
+defmodule ElixirBoilerplateGraphQL.Middleware.OperationNameLogger do
   @behaviour Absinthe.Middleware
 
   alias Absinthe.Blueprint.Document.Operation
