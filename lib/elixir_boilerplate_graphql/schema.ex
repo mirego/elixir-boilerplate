@@ -3,17 +3,7 @@ defmodule ElixirBoilerplateGraphQL.Schema do
 
   alias ElixirBoilerplate.Repo
 
-  defmodule Introspection do
-    @enable_introspection Application.compile_env(:elixir_boilerplate, ElixirBoilerplateGraphQL)[:enable_introspection]
-
-    if @enable_introspection do
-      def pipeline(pipeline), do: pipeline
-    else
-      def pipeline(pipeline), do: Absinthe.Pipeline.without(pipeline, Absinthe.Phase.Schema.Introspection)
-    end
-  end
-
-  @pipeline_modifier Introspection
+  @pipeline_modifier ElixirBoilerplateGraphQL.Pipeline.Introspection
 
   import_types(Absinthe.Type.Custom)
   import_types(ElixirBoilerplateGraphQL.Application.Types)
