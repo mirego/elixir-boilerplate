@@ -10,7 +10,7 @@ config :phoenix, :json_library, Jason
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   pubsub_server: ElixirBoilerplate.PubSub,
-  render_errors: [view: ElixirBoilerplateWeb.Errors.View, accepts: ~w(html json)]
+  render_errors: [view: ElixirBoilerplateWeb.Errors, accepts: ~w(html json)]
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo, start_apps_before_migration: [:ssl]
 

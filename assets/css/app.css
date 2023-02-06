@@ -5,6 +5,9 @@
   align-items: center;
   padding: 40px;
   text-align: center;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', 'Liberation Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   line-height: 1.4;
 }
 
@@ -19,4 +22,11 @@
 
 .home p:last-child {
   margin-bottom: 0;
+}
+
+.flash-messages {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 10px;
 }

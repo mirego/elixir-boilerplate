@@ -74,7 +74,8 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
 
   defp changeset_to_error_messages(changeset) do
     changeset
-    |> Errors.error_messages()
-    |> Phoenix.HTML.safe_to_string()
+    |> Errors.changeset_to_error_messages()
+    |> Phoenix.HTML.Safe.to_iodata()
+    |> IO.iodata_to_binary()
   end
 end

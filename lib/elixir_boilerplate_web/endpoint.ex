@@ -7,6 +7,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   @plug_ssl Plug.SSL.init(rewrite_on: [:x_forwarded_proto])
 
   socket("/socket", ElixirBoilerplateWeb.Socket)
+  socket("/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: {ElixirBoilerplateWeb.Session, :config, []}]])
 
   plug(ElixirBoilerplateWeb.Plugs.Security)
   plug(:ping)

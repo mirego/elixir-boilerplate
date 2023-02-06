@@ -1,16 +1,18 @@
 defmodule ElixirBoilerplateWeb.Router do
   use Phoenix.Router
+  import Phoenix.LiveView.Router
 
   pipeline :browser do
     plug(:accepts, ["html", "json"])
 
     plug(:session)
     plug(:fetch_session)
-    plug(:fetch_flash)
 
     plug(:protect_from_forgery)
+    plug(:fetch_live_flash)
 
-    plug(:put_layout, {ElixirBoilerplateWeb.Layouts.View, :app})
+    plug(:put_layout, {ElixirBoilerplateWeb.Layouts, :app})
+    plug(:put_root_layout, {ElixirBoilerplateWeb.Layouts, :root})
   end
 
   scope "/", ElixirBoilerplateWeb do
@@ -19,17 +21,17 @@ defmodule ElixirBoilerplateWeb.Router do
     get("/", Home.Controller, :index, as: :home)
   end
 
+  scope "/", ElixirBoilerplateWeb do
+    pipe_through(:browser)
+
+    live("/live", Home.Live, :index, as: :live_home)
+  end
+
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   defp session(conn, _opts) do
-    opts =
-      Plug.Session.init(
-        store: :cookie,
-        key: Application.get_env(:elixir_boilerplate, __MODULE__)[:session_key],
-        signing_salt: Application.get_env(:elixir_boilerplate, __MODULE__)[:session_signing_salt]
-      )
-
+    opts = Plug.Session.init(ElixirBoilerplateWeb.Session.config())
     Plug.Session.call(conn, opts)
   end
 end

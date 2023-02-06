@@ -1,0 +1,8 @@
+<div
+  :if={msg = Phoenix.Flash.get(@flash, @kind)}
+  id={"flash-" <> to_string(@kind)}
+  phx-click={hide_flash("#" <> "flash-" <> to_string(@kind))}
+  phx-hook="Flash"
+>
+  <%= msg %>
+</div>
