@@ -6,12 +6,17 @@ defmodule ElixirBoilerplate.Mixfile do
       app: :elixir_boilerplate,
       version: "0.0.1",
       erlang: "~> 25.0",
-      elixir: "~> 1.13",
+      elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
       test_pattern: "**/*_test.exs",
       test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ],
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
@@ -32,10 +37,9 @@ defmodule ElixirBoilerplate.Mixfile do
 
   defp aliases do
     [
-      "assets.deploy": [
-        "esbuild default --minify",
-        "phx.digest"
-      ],
+      setup: ["deps.get", "ecto.setup", "assets.setup"],
+      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
+      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"]
@@ -46,6 +50,7 @@ defmodule ElixirBoilerplate.Mixfile do
     [
       # Assets bundling
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.1.8", runtime: Mix.env() == :dev},
 
       # HTTP Client
       {:hackney, "~> 1.18"},
@@ -59,9 +64,12 @@ defmodule ElixirBoilerplate.Mixfile do
       {:phoenix, "~> 1.7"},
       {:phoenix_view, "~> 2.0"},
       {:phoenix_html, "~> 3.3"},
+      {:phoenix_live_view, "~> 0.18.3"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
+      {:phoenix_live_dashboard, "~> 0.7.2"},
       {:jason, "~> 1.4"},
+      {:heroicons, "~> 0.5"},
 
       # GraphQL
       {:absinthe, "~> 1.7"},
