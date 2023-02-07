@@ -8,7 +8,7 @@
     "npm": "^9.3.1"
   },
   "dependencies": {
-    "simple-css-reset": "^3.0.0"
+    "topbar": "^2.0.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
