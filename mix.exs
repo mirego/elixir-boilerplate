@@ -62,12 +62,11 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Phoenix
       {:phoenix, "~> 1.7.0-rc.2", override: true},
+      {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.2"},
       {:phoenix_live_view, "~> 0.18.3"},
-      {:phoenix_ecto, "~> 4.4"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.7.2"},
-      {:jason, "~> 1.2"},
+      {:jason, "~> 1.4"},
       {:heroicons, "~> 0.5"},
 
       # GraphQL
@@ -102,6 +101,10 @@ defmodule ElixirBoilerplate.Mixfile do
       # Health
       {:plug_checkup, "~> 0.6"},
 
+      # Telemtry plugins
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 1.0"},
+
       # Test factories
       {:ex_machina, "~> 2.7", only: :test},
       {:faker, "~> 0.17", only: :test},
@@ -111,7 +114,6 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Dialyzer
       {:dialyxir, "~> 1.2", only: [:dev, :test], runtime: false},
-
       {:observer_cli, "~> 1.7"},
       {:recon, "~> 2.5"}
     ]

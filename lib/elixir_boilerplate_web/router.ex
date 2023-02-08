@@ -10,13 +10,13 @@ defmodule ElixirBoilerplateWeb.Router do
 
     plug(:protect_from_forgery)
 
-    plug(:put_layout, {ElixirBoilerplateWeb.Layouts.View, :app})
+    plug(:put_root_layout, {ElixirBoilerplateWeb.Layouts, :root})
   end
 
   scope "/", ElixirBoilerplateWeb do
     pipe_through(:browser)
 
-    get("/", Home.Controller, :index, as: :home)
+    get("/", PageController, :home)
   end
 
   # The session will be stored in the cookie and signed,

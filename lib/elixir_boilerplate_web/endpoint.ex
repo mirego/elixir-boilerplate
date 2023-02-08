@@ -22,7 +22,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     at: "/",
     from: :elixir_boilerplate,
     gzip: true,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: ElixirBoilerplateWeb.static_paths()
   )
 
   # Code reloading can be explicitly enabled under the
@@ -50,9 +50,9 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   plug(Plug.Head)
 
   plug(ElixirBoilerplateWeb.Plugs.Security)
-  plug(ElixirBoilerplateHealth.Router)
-  plug(ElixirBoilerplateGraphQL.Router)
-  plug(:halt_if_sent)
+  # plug(ElixirBoilerplateHealth.Router)
+  # plug(ElixirBoilerplateGraphQL.Router)
+  # plug(:halt_if_sent)
   plug(ElixirBoilerplateWeb.Router)
 
   @doc """
@@ -63,7 +63,10 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   """
   def init(_key, config) do
     if config[:load_from_system_env] do
-      port = Application.get_env(:elixir_boilerplate, __MODULE__)[:http][:port] || raise "expected the PORT environment variable to be set"
+      port =
+        Application.get_env(:elixir_boilerplate, __MODULE__)[:http][:port] ||
+          raise "expected the PORT environment variable to be set"
+
       {:ok, Keyword.put(config, :http, [:inet6, port: port])}
     else
       {:ok, config}
