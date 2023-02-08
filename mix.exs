@@ -103,6 +103,10 @@ defmodule ElixirBoilerplate.Mixfile do
       # Health
       {:plug_checkup, "~> 0.6"},
 
+      # Telemtry plugins
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 1.0"},
+
       # Test factories
       {:ex_machina, "~> 2.7", only: :test},
       {:faker, "~> 0.17", only: :test},
