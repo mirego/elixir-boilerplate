@@ -12,6 +12,7 @@ defmodule ElixirBoilerplateGraphQL.Schema do
   # Uncomment it when you add the first mutation.
   #
   # mutation do
+  #   import_fields(:application_mutations)
   # end
 
   def context(context) do

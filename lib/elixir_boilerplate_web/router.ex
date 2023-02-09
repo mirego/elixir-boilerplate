@@ -2,7 +2,7 @@ defmodule ElixirBoilerplateWeb.Router do
   use Phoenix.Router
 
   pipeline :browser do
-    plug(:accepts, ["html", "json"])
+    plug(:accepts, ~w[html json])
 
     plug(:session)
     plug(:fetch_session)
@@ -13,10 +13,29 @@ defmodule ElixirBoilerplateWeb.Router do
     plug(:put_root_layout, {ElixirBoilerplateWeb.Layouts, :root})
   end
 
+  pipeline :api do
+    plug(:accepts, ~w[json])
+
+    plug(:session)
+  end
+
   scope "/", ElixirBoilerplateWeb do
-    pipe_through(:browser)
+    pipe_through :browser
 
     get("/", PageController, :home)
+  end
+
+  scope "/api" do
+    pipe_through :api
+
+    forward("/graphql", Absinthe.Plug, schema: ElixirBoilerplateGraphQL.Schema)
+
+    if Mix.env() == :dev do
+      forward("/graphiql", Absinthe.Plug.GraphiQL,
+        schema: ElixirBoilerplateGraphQL.Schema,
+        socket: ElixirBoilerplateWeb.Socket
+      )
+    end
   end
 
   # The session will be stored in the cookie and signed,

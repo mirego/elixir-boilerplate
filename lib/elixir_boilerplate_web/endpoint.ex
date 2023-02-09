@@ -1,6 +1,9 @@
 defmodule ElixirBoilerplateWeb.Endpoint do
   use Sentry.PlugCapture
+
   use Phoenix.Endpoint, otp_app: :elixir_boilerplate
+
+  use Absinthe.Phoenix.Endpoint
 
   alias Plug.Conn
 
@@ -51,9 +54,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   plug(Plug.Head)
 
   plug(ElixirBoilerplateWeb.Plugs.Security)
-  # plug(ElixirBoilerplateHealth.Router)
-  # plug(ElixirBoilerplateGraphQL.Router)
-  # plug(:halt_if_sent)
+  plug(ElixirBoilerplateHealth.Router)
   plug(ElixirBoilerplateWeb.Router)
 
   @doc """
@@ -120,10 +121,4 @@ defmodule ElixirBoilerplateWeb.Endpoint do
       conn
     end
   end
-
-  # Splitting routers in separate modules has a negative side effect:
-  # Phoenix.Router does not check the Plug.Conn state and tries to match the
-  # route even if it was already handled/sent by another router.
-  defp halt_if_sent(%{state: :sent, halted: false} = conn, _opts), do: halt(conn)
-  defp halt_if_sent(conn, _opts), do: conn
 end

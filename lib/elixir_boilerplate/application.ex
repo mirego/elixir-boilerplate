@@ -10,7 +10,8 @@ defmodule ElixirBoilerplate.Application do
       ElixirBoilerplateWeb.Telemetry,
       ElixirBoilerplate.Repo,
       {Phoenix.PubSub, [name: ElixirBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2]},
-      ElixirBoilerplateWeb.Endpoint
+      ElixirBoilerplateWeb.Endpoint,
+      {Absinthe.Subscription, ElixirBoilerplateWeb.Endpoint}
     ]
 
     opts = [strategy: :one_for_one, name: ElixirBoilerplate.Supervisor]
