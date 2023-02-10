@@ -131,7 +131,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   end
 
   defp session(conn, _opts) do
-    opts = Plug.Session.init(FoundationWeb.Session.get_options())
+    opts = Plug.Session.init(ElixirBoilerplateWeb.Session.get_options())
 
     Plug.Session.call(conn, opts)
   end

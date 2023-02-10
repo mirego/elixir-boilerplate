@@ -36,4 +36,16 @@ defmodule ElixirBoilerplateWeb.Router do
       )
     end
   end
+
+  forward(
+    "/health",
+    PlugCheckup,
+    PlugCheckup.Options.new(
+      json_encoder: Phoenix.json_library(),
+      checks: ElixirBoilerplateWeb.Healthcheck.checks(),
+      error_code: ElixirBoilerplateWeb.Healthcheck.error_code(),
+      timeout: :timer.seconds(5),
+      pretty: false
+    )
+  )
 end

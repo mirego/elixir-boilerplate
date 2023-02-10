@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplateHealth do
+defmodule ElixirBoilerplateWeb.Healthcheck do
   @health_check_error_code 422
 
   def checks do
