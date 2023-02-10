@@ -21,7 +21,7 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   static_url: get_endpoint_url_config(static_uri),
   debug_errors: get_env("DEBUG_ERRORS", :boolean)
 
-config :elixir_boilerplate, ElixirBoilerplateWeb.Router,
+config :elixir_boilerplate, ElixirBoilerplateWeb.Session,
   session_key: get_env!("SESSION_KEY"),
   session_signing_salt: get_env!("SESSION_SIGNING_SALT")
 

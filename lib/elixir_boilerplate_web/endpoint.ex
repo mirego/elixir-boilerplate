@@ -11,7 +11,13 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
   socket("/socket", ElixirBoilerplateWeb.Socket)
 
-  plug(ElixirBoilerplateWeb.Plugs.Security)
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [
+      connect_info: [
+        session: {ElixirBoilerplateWeb.Session, :get_options, []}
+      ]
+    ]
+
   plug(:ping)
   plug(:canonical_host)
   plug(:force_ssl)
@@ -50,11 +56,13 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   )
 
   plug(Sentry.PlugContext)
+
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
-  plug(ElixirBoilerplateWeb.Plugs.Security)
-  plug(ElixirBoilerplateHealth.Router)
+  plug(:session)
+
+  # plug(ElixirBoilerplateHealth.Router)
   plug(ElixirBoilerplateWeb.Router)
 
   @doc """
@@ -120,5 +128,11 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     else
       conn
     end
+  end
+
+  defp session(conn, _opts) do
+    opts = Plug.Session.init(FoundationWeb.Session.get_options())
+
+    Plug.Session.call(conn, opts)
   end
 end
