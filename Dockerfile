@@ -66,7 +66,7 @@ RUN mix release
 # -----------------------------------------------
 # Stage: Bundle release in a docker image
 # -----------------------------------------------
-FROM debian:bullseye-20230109-slim
+FROM debian:bullseye-20230208-slim
 
 RUN apt-get update -y && \
     apt-get install -y libstdc++6 openssl libncurses5 locales && \
