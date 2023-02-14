@@ -11,7 +11,8 @@ config :elixir_boilerplate,
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   url: get_env!("DATABASE_URL"),
   ssl: get_env("DATABASE_SSL", :boolean),
-  pool_size: get_env!("DATABASE_POOL_SIZE", :integer)
+  pool_size: get_env!("DATABASE_POOL_SIZE", :integer),
+  socket_options: if(get_env("DATABASE_IPV6", :boolean), do: [:inet6], else: [])
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   http: [port: get_env!("PORT", :integer)],
