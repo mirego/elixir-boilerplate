@@ -3,8 +3,6 @@ defmodule ElixirBoilerplateGraphQL.Schema do
 
   alias ElixirBoilerplate.Repo
 
-  @pipeline_modifier ElixirBoilerplateGraphQL.Pipeline.Introspection
-
   import_types(Absinthe.Type.Custom)
   import_types(ElixirBoilerplateGraphQL.Application.Types)
 
