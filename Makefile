@@ -1,13 +1,13 @@
 # Build configuration
 # -------------------
 
-APP_NAME = `grep -Eo 'app: :\w*' mix.exs | cut -d ':' -f 3`
-APP_VERSION = `grep -Eo 'version: "[0-9\.]*"' mix.exs | cut -d '"' -f 2`
-GIT_REVISION = `git rev-parse HEAD`
+APP_NAME := $(shell grep -Eo 'app: :\w*' mix.exs | cut -d ':' -f 3)
+APP_VERSION := $(shell grep -Eo 'version: "[0-9\.]*"' mix.exs | cut -d '"' -f 2)
+GIT_REVISION := $(shell git rev-parse HEAD)
 DOCKER_IMAGE_TAG ?= $(APP_VERSION)
 DOCKER_REGISTRY ?=
-DOCKER_LOCAL_IMAGE = $(APP_NAME):$(DOCKER_IMAGE_TAG)
-DOCKER_REMOTE_IMAGE = $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
+DOCKER_LOCAL_IMAGE:= $(APP_NAME):$(DOCKER_IMAGE_TAG)
+DOCKER_REMOTE_IMAGE:= $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
 
 # Linter and formatter configuration
 # ----------------------------------
