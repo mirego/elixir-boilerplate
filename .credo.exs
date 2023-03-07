@@ -61,7 +61,7 @@
           {Credo.Check.Refactor.NegatedConditionsInUnless, []},
           {Credo.Check.Refactor.NegatedConditionsWithElse, []},
           {Credo.Check.Refactor.Nesting, []},
-          {Credo.Check.Refactor.PipeChainStart, [excluded_argument_types: ~w(atom binary fn keyword)a]},
+          {Credo.Check.Refactor.PipeChainStart, [excluded_argument_types: ~w(atom binary fn keyword)a, excluded_functions: ~w(from)]},
           {Credo.Check.Refactor.UnlessWithElse, []},
           {Credo.Check.Refactor.WithClauses, []},
           {Credo.Check.Refactor.FilterFilter, []},
