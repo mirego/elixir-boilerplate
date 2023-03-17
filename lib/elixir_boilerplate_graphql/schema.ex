@@ -10,9 +10,8 @@ defmodule ElixirBoilerplateGraphQL.Schema do
     import_fields(:application_queries)
   end
 
-  # Even if having an empty mutation block is valid and works in Absinthe, it
-  # causes a JavaScript error in GraphiQL so uncomment it when you add the
-  # first mutation.
+  # Having an empty mutation block is invalid and raises an error in Absinthe.
+  # Uncomment it when you add the first mutation.
   #
   # mutation do
   # end

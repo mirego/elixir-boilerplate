@@ -21,7 +21,7 @@ jobs:
         image: postgres:14
         env:
           POSTGRES_DB: elixir_boilerplate_test
-          POSTGRES_PASSWORD: boilerplate
+          POSTGRES_PASSWORD: development
         ports: ["5432:5432"]
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
