@@ -16,7 +16,7 @@
     "eslint-plugin-mirego": "^1.0.0",
     "prettier": "^2.8.4",
     "stylelint": "^15.2.0",
-    "stylelint-config-mirego": "^2.1.0",
+    "stylelint-config-mirego": "^2.2.0",
     "stylelint-order": "^6.0.3",
     "stylelint-scss": "^4.4.0"
   }
