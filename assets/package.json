@@ -18,6 +18,6 @@
     "stylelint": "^15.3.0",
     "stylelint-config-mirego": "^2.1.0",
     "stylelint-order": "^6.0.3",
-    "stylelint-scss": "^4.4.0"
+    "stylelint-scss": "^4.6.0"
   }
 }
