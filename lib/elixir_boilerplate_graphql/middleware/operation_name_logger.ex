@@ -1,20 +1,8 @@
 defmodule ElixirBoilerplateGraphQL.Middleware.OperationNameLogger do
-  @behaviour Absinthe.Middleware
+  def run(blueprint, _opts) do
+    operation_name = Absinthe.Blueprint.current_operation(blueprint).name || "#NULL"
+    Logger.metadata(graphql_operation_name: operation_name)
 
-  alias Absinthe.Blueprint.Document.Operation
-
-  def call(resolution, _opts) do
-    case Enum.find(resolution.path, &current_operation?/1) do
-      %Operation{name: name} when not is_nil(name) ->
-        Logger.metadata(graphql_operation_name: name)
-
-      _ ->
-        Logger.metadata(graphql_operation_name: "#NULL")
-    end
-
-    resolution
+    {:ok, blueprint}
   end
-
-  defp current_operation?(%Operation{current: true}), do: true
-  defp current_operation?(_), do: false
 end
