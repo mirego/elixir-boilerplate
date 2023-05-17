@@ -18,7 +18,7 @@ config :elixir_boilerplate, Corsica, allow_headers: :all
 
 config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
 
-config :elixir_boilerplate, ElixirBoilerplateWeb.Plus.Security, allow_unsafe_scripts: false
+config :elixir_boilerplate, ElixirBoilerplateWeb.Plugs.Security, allow_unsafe_scripts: false
 
 config :esbuild,
   version: "0.14.41",
