@@ -9,10 +9,7 @@ defmodule ElixirBoilerplateGraphQL.Router do
 
     forward("/",
       to: Absinthe.Plug,
-      init_opts: [
-        json_codec: Jason,
-        schema: ElixirBoilerplateGraphQL.Schema
-      ]
+      init_opts: ElixirBoilerplateGraphQL.configuration()
     )
   end
 

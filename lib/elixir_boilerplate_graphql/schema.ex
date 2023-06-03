@@ -1,8 +1,6 @@
 defmodule ElixirBoilerplateGraphQL.Schema do
   use Absinthe.Schema
 
-  alias ElixirBoilerplate.Repo
-
   import_types(Absinthe.Type.Custom)
   import_types(ElixirBoilerplateGraphQL.Application.Types)
 
@@ -17,7 +15,7 @@ defmodule ElixirBoilerplateGraphQL.Schema do
   # end
 
   def context(context) do
-    Map.put(context, :loader, Dataloader.add_source(Dataloader.new(), Repo, Dataloader.Ecto.new(Repo)))
+    Map.put(context, :loader, Dataloader.add_source(Dataloader.new(), :repo, Dataloader.Ecto.new(ElixirBoilerplate.Repo)))
   end
 
   def plugins do
@@ -25,6 +23,6 @@ defmodule ElixirBoilerplateGraphQL.Schema do
   end
 
   def middleware(middleware, _, _) do
-    [NewRelic.Absinthe.Middleware, ElixirBoilerplateGraphQL.Middleware.OperationNameLogger] ++ middleware
+    [NewRelic.Absinthe.Middleware] ++ middleware
   end
 end
