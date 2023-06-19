@@ -12,7 +12,6 @@ defmodule ElixirBoilerplate.Mixfile do
       test_pattern: "**/*_test.exs",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
-      compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
@@ -46,7 +45,7 @@ defmodule ElixirBoilerplate.Mixfile do
   defp deps do
     [
       # Assets bundling
-      {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
 
       # HTTP Client
       {:hackney, "~> 1.18"},
@@ -57,11 +56,12 @@ defmodule ElixirBoilerplate.Mixfile do
       {:corsica, "~> 1.3"},
 
       # Phoenix
-      {:phoenix, "~> 1.6"},
-      {:phoenix_html, "~> 3.2"},
+      {:phoenix, "~> 1.7"},
+      {:phoenix_view, "~> 2.0"},
+      {:phoenix_html, "~> 3.3"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
-      {:jason, "~> 1.2"},
+      {:jason, "~> 1.4"},
 
       # GraphQL
       {:absinthe, "~> 1.7"},
@@ -70,11 +70,11 @@ defmodule ElixirBoilerplate.Mixfile do
       {:absinthe_error_payload, "~> 1.1"},
 
       # Database
-      {:ecto_sql, "~> 3.8"},
-      {:postgrex, "~> 0.16"},
+      {:ecto_sql, "~> 3.10"},
+      {:postgrex, "~> 0.17"},
 
       # Translations
-      {:gettext, "~> 0.20"},
+      {:gettext, "~> 0.22"},
 
       # Errors
       {:sentry, "~> 8.0"},
@@ -84,13 +84,13 @@ defmodule ElixirBoilerplate.Mixfile do
       {:new_relic_absinthe, "~> 0.0"},
 
       # Linting
-      {:credo, "~> 1.6", only: [:dev, :test], override: true},
+      {:credo, "~> 1.7", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},
       {:credo_naming, "~> 2.0", only: [:dev, :test], runtime: false},
 
       # Security check
-      {:sobelow, "~> 0.11", only: [:dev, :test], runtime: true},
-      {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.12", only: [:dev, :test], runtime: true},
+      {:mix_audit, "~> 2.1", only: [:dev, :test], runtime: false},
 
       # Health
       {:plug_checkup, "~> 0.6"},
@@ -100,10 +100,10 @@ defmodule ElixirBoilerplate.Mixfile do
       {:faker, "~> 0.17", only: :test},
 
       # Test coverage
-      {:excoveralls, "~> 0.15", only: :test},
+      {:excoveralls, "~> 0.16", only: :test},
 
       # Dialyzer
-      {:dialyxir, "~> 1.2", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false}
     ]
   end
 

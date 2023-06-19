@@ -10,7 +10,7 @@ services:
     depends_on:
       - postgresql
   postgresql:
-    image: postgres:14-bullseye
+    image: postgres:14-bookworm
     container_name: elixir_boilerplate-postgres
     environment:
       - POSTGRES_DB=elixir_boilerplate_dev

@@ -21,7 +21,7 @@ config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
 config :elixir_boilerplate, ElixirBoilerplateWeb.Plugs.Security, allow_unsafe_scripts: false
 
 config :esbuild,
-  version: "0.14.41",
+  version: "0.16.4",
   default: [
     args: ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets),
     cd: Path.expand("../assets", __DIR__),
