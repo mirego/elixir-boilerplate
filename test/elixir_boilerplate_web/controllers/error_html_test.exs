@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplateWeb.ErrorHTMLTest do
+defmodule ElixirBoilerplateWeb.Controllers.ErrorHTMLTest do
   use ElixirBoilerplateWeb.ConnCase, async: true
 
   # Bring render_to_string/4 for testing custom views

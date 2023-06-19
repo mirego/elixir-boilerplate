@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplateWeb.ErrorJSONTest do
+defmodule ElixirBoilerplateWeb.Controllers.ErrorJSONTest do
   use ElixirBoilerplateWeb.ConnCase, async: true
 
   test "renders 404" do

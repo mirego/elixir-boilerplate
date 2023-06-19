@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplateWeb.Layouts do
+defmodule ElixirBoilerplateWeb.Components.Layouts do
   use ElixirBoilerplateWeb, :html
 
   embed_templates "layouts/*"

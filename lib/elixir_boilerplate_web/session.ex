@@ -1,6 +1,6 @@
 defmodule ElixirBoilerplateWeb.Session do
   @spec get_options() :: keyword()
-  def get_options() do
+  def get_options do
     [
       store: :cookie,
       key: Application.get_env(:elixir_boilerplate, __MODULE__)[:session_key],

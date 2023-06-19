@@ -10,7 +10,7 @@ defmodule ElixirBoilerplateWeb.Router do
     plug(:protect_from_forgery)
     plug(ElixirBoilerplateWeb.Plugs.Security)
 
-    plug(:put_root_layout, html: {ElixirBoilerplateWeb.Layouts, :root})
+    plug(:put_root_layout, html: {ElixirBoilerplateWeb.Components.Layouts, :root})
   end
 
   pipeline :api do
@@ -20,7 +20,7 @@ defmodule ElixirBoilerplateWeb.Router do
   scope "/", ElixirBoilerplateWeb do
     pipe_through :browser
 
-    get("/", PageController, :home)
+    get("/", Controllers.Page, :home)
   end
 
   scope "/api" do

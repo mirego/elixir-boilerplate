@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplateWeb.PageControllerTest do
+defmodule ElixirBoilerplateWeb.Controllers.PageTest do
   use ElixirBoilerplateWeb.ConnCase
 
   test "GET /", %{conn: conn} do

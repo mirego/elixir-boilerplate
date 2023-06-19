@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplateWeb.PageHTML do
+defmodule ElixirBoilerplateWeb.Controllers.PageHTML do
   use ElixirBoilerplateWeb, :html
 
   attr :message, :string, default: nil
