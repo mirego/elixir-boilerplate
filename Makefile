@@ -8,6 +8,7 @@ DOCKER_IMAGE_TAG ?= $(APP_VERSION)
 DOCKER_REGISTRY ?=
 DOCKER_LOCAL_IMAGE:= $(APP_NAME):$(DOCKER_IMAGE_TAG)
 DOCKER_REMOTE_IMAGE:= $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
+HEROICONS_VERSION := 2.0.18
 
 # Linter and formatter configuration
 # ----------------------------------
@@ -89,6 +90,13 @@ sync-translations: ## Synchronize translations with Accent
 .PHONY: test
 test: ## Run the test suite
 	mix test
+
+.PHONY: update-heroicons
+update-heroicons: ## Update Heroicons assets
+	cd assets/vendor && \
+	curl -L "https://github.com/tailwindlabs/heroicons/archive/refs/tags/v${HEROICONS_VERSION}.tar.gz" | \
+  tar -xvz --strip-components=1 heroicons-${HEROICONS_VERSION}/optimized
+	
 
 # Check, lint and format targets
 # ------------------------------

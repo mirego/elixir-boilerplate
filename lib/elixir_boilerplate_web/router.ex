@@ -10,7 +10,7 @@ defmodule ElixirBoilerplateWeb.Router do
     plug(:protect_from_forgery)
     plug(ElixirBoilerplateWeb.Plugs.Security)
 
-    plug(:put_root_layout, {ElixirBoilerplateWeb.Layouts, :root})
+    plug(:put_root_layout, html: {ElixirBoilerplateWeb.Layouts, :root})
   end
 
   pipeline :api do

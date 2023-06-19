@@ -3,8 +3,10 @@
 /db
 /deps
 /*.ez
-/cover
+
+# Temporary files
 /tmp
+/cover
 
 # Generated on crash by the VM
 erl_crash.dump

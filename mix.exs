@@ -37,8 +37,9 @@ defmodule ElixirBoilerplate.Mixfile do
 
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "assets.setup"],
+      setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
+      "assets.build": ["tailwind default", "esbuild default"],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
@@ -117,7 +118,6 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Dialyzer
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
-
       {:observer_cli, "~> 1.7"},
       {:recon, "~> 2.5"}
     ]

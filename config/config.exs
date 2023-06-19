@@ -24,7 +24,7 @@ config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
 config :elixir_boilerplate, ElixirBoilerplateWeb.Plugs.Security, allow_unsafe_scripts: false
 
 config :esbuild,
-  version: "0.16.4",
+  version: "0.17.11",
   default: [
     args: ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
@@ -32,7 +32,7 @@ config :esbuild,
   ]
 
 config :tailwind,
-  version: "3.2.4",
+  version: "3.2.7",
   default: [
     args: ~w(
       --config=tailwind.config.js
