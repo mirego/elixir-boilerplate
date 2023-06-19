@@ -11,7 +11,7 @@ config :phoenix, :json_library, Jason
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   pubsub_server: ElixirBoilerplate.PubSub,
   render_errors: [
-    formats: [html: ElixirBoilerplateWeb.ErrorHTML, json: ElixirBoilerplateWeb.ErrorJSON],
+    formats: [html: ElixirBoilerplateWeb.Controllers.ErrorHTML, json: ElixirBoilerplateWeb.Controllers.ErrorJSON],
     layout: false
   ]
 
