@@ -10,8 +10,8 @@
 
   <body>
     <main role="main">
-      <p role="alert"><%= get_flash(@conn, :info) %></p>
-      <p role="alert"><%= get_flash(@conn, :error) %></p>
+      <p role="alert"><%= get(@flash, :info) %></p>
+      <p role="alert"><%= get(@flash, :error) %></p>
 
       <%= @inner_content %>
     </main>
