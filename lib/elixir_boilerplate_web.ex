@@ -40,7 +40,7 @@ defmodule ElixirBoilerplateWeb do
       use Phoenix.Controller,
         namespace: ElixirBoilerplateWeb,
         formats: [:html, :json],
-        layouts: [html: ElixirBoilerplateWeb.Components.Layouts]
+        layouts: [html: ElixirBoilerplateWeb.Layouts]
 
       import Plug.Conn
       import ElixirBoilerplate.Gettext
@@ -52,7 +52,7 @@ defmodule ElixirBoilerplateWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {ElixirBoilerplateWeb.Components.Layouts, :app}
+        layout: {ElixirBoilerplateWeb.Layouts, :app}
 
       unquote(html_helpers())
     end

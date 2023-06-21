@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplateWeb.Controllers.Page do
+defmodule ElixirBoilerplateWeb.Controllers.LandingPage do
   use ElixirBoilerplateWeb, :controller
 
   @spec home(Plug.Conn.t(), map) :: Plug.Conn.t()
