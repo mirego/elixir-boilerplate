@@ -15,8 +15,8 @@ jobs:
 
     steps:
       - uses: remi/actions-permissions/monitor@main
-      - run: sudo docker stop
-      - run: sudo docker start
+      - run: sudo service docker stop
+      - run: sudo service docker start
 
       - uses: actions/checkout@v3
 
