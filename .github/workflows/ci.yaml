@@ -29,6 +29,9 @@ jobs:
       MIX_ENV: test
 
     steps:
+      - uses: GitHubSecurityLab/actions-permissions/monitor@v1
+      - run: apt-get install erlang-ssl --reinstall
+
       - uses: actions/checkout@v3
 
       - uses: erlef/setup-beam@v1
