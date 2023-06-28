@@ -73,6 +73,16 @@ run() {
   eval "${@}"
 }
 
+replace_in_file() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed="/usr/bin/sed -i ''"
+  else
+    sed="/usr/bin/sed -i"
+  fi
+
+  run $sed $1 $2
+}
+
 # -----------------------------------------------------------------------------
 # Execution
 # -----------------------------------------------------------------------------
@@ -85,9 +95,9 @@ echo ""
 
 header "Replacing boilerplate identifiers in content"
 for file in $content; do
-  run /usr/bin/sed -i "''" "s/$snakeCaseBefore/$snakeCaseAfter/g" $file
-  run /usr/bin/sed -i "''" "s/$kebabCaseBefore/$kebabCaseAfter/g" $file
-  run /usr/bin/sed -i "''" "s/$pascalCaseBefore/$pascalCaseAfter/g" $file
+  replace_in_file "s/$snakeCaseBefore/$snakeCaseAfter/g" $file
+  replace_in_file "s/$kebabCaseBefore/$kebabCaseAfter/g" $file
+  replace_in_file "s/$pascalCaseBefore/$pascalCaseAfter/g" $file
 done
 success "Done!\n"
 
