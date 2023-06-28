@@ -1,34 +1,23 @@
-name: CI
+name: Test actions-permissions/monitor action
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - "**"
+      - feature/add-actions-permissions-monitor-in-ci-workflow
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  ci:
+  test-actions-permissions-monitor-action:
     runs-on: ubuntu-latest
 
-    services:
-      db:
-        image: postgres:14
-        env:
-          POSTGRES_DB: elixir_boilerplate_test
-          POSTGRES_PASSWORD: development
-        ports: ["5432:5432"]
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-
-    env:
-      MIX_ENV: test
-
     steps:
+      - uses: remi/actions-permissions/monitor@main
+      - run: sudo docker stop
+      - run: sudo docker start
+
       - uses: actions/checkout@v3
 
       - uses: erlef/setup-beam@v1
@@ -53,7 +42,4 @@ jobs:
       - run: grep -v '^\(#.*\|\s\?\)$' .env.test >> $GITHUB_ENV
 
       - run: make prepare
-      - run: make check
-      - run: make lint
-      - run: make test
       - run: make build DOCKER_IMAGE_TAG=latest
