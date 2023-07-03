@@ -53,7 +53,7 @@ defmodule ElixirBoilerplate.Mixfile do
       # HTTP server
       {:plug_cowboy, "~> 2.6"},
       {:plug_canonical_host, "~> 2.0"},
-      {:corsica, "~> 1.3"},
+      {:corsica, "~> 2.0"},
 
       # Phoenix
       {:phoenix, "~> 1.7"},
