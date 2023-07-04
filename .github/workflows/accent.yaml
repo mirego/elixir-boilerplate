@@ -1,0 +1,27 @@
+name: Accent
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install -g accent-cli
+      - run: accent sync --add-translations --merge-type=passive --order-by=key
+      - uses: mirego/create-pull-request@v5
+        with:
+          add-paths: "*.json"
+          commit-message: Update translations
+          committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          branch: accent
+          draft: false
+          delete-branch: true
+          title: New translations are available to merge
+          body: The translation files have been updated, feel free to merge this pull request after review.
