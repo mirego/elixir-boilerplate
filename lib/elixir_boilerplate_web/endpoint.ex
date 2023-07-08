@@ -8,6 +8,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
   socket("/socket", ElixirBoilerplateWeb.Socket)
 
+  plug(ElixirBoilerplateWeb.Plugs.Security)
   plug(:ping)
   plug(:canonical_host)
   plug(:force_ssl)
@@ -49,7 +50,6 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
-  plug(ElixirBoilerplateWeb.Plugs.Security)
   plug(ElixirBoilerplateHealth.Router)
   plug(ElixirBoilerplateGraphQL.Router)
   plug(:halt_if_sent)
