@@ -31,7 +31,7 @@ content=$(find . -type f \( \
 )
 
 # The identifiers above will be replaced in the path of the files and directories found here
-paths=$(find . -depth 2 \( \
+paths=$(find . -maxdepth 2 \( \
   -path "./lib/${snakeCaseBefore}" -or \
   -path "./lib/${snakeCaseBefore}_*" -or \
   -path "./test/${snakeCaseBefore}" -or \
