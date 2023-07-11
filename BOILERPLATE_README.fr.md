@@ -4,8 +4,8 @@
 | ------------------------------------------------------- | ------------------------------------------------------------------ |
 | [🎯 Objectifs et contexte](#-objectifs-et-contexte)     | Introduction et contexte du projet                                 |
 | [🚧 Dépendances](#-dépendances)                         | Dépendances techniques et comment les installer                    |
-| [🏎 Départ rapide](#-départ-rapide)                      | Détails sur comment démarrer rapidement le développement du projet |
-| [🏗 Code et architecture](#-code-et-architecture)        | Détails sur les composantes techniques de l’application            |
+| [🏎 Départ rapide](#-départ-rapide)                     | Détails sur comment démarrer rapidement le développement du projet |
+| [🏗 Code et architecture](#-code-et-architecture)       | Détails sur les composantes techniques de l’application            |
 | [🔭 Améliorations possibles](#-améliorations-possibles) | Améliorations, idées et _refactors_ potentiels                     |
 | [🚑 Problèmes et solutions](#-problèmes-et-solutions)   | Problèmes récurrents et solutions éprouvées                        |
 | [🚀 Déploiement](#-deploiement)                         | Détails pour le déploiement dans différents environnements         |
