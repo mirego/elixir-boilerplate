@@ -1,11 +1,15 @@
 defmodule ElixirBoilerplate.Planning.Project do
   use ElixirBoilerplate.Schema
 
+  alias ElixirBoilerplate.Planning.Task
+
   schema "projects" do
     field :description, :string
-    field :launch_at, :naive_datetime
-    field :next_milestone_at, :naive_datetime
+    field :launch_at, :utc_datetime
+    field :next_milestone_at, :utc_datetime
     field :title, :string
+
+    has_many :tasks, Task
 
     timestamps()
   end
