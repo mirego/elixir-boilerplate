@@ -51,7 +51,7 @@ defmodule ElixirBoilerplate.Mixfile do
     [
       # Assets bundling
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.1.8", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
 
       # HTTP Client
       {:hackney, "~> 1.18"},
@@ -65,10 +65,10 @@ defmodule ElixirBoilerplate.Mixfile do
       {:phoenix, "~> 1.7"},
       {:phoenix_view, "~> 2.0"},
       {:phoenix_html, "~> 3.3"},
-      {:phoenix_live_view, "~> 0.18.3"},
+      {:phoenix_live_view, "~> 0.19.5"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.7.2"},
+      {:phoenix_live_dashboard, "~> 0.8.0"},
       {:jason, "~> 1.4"},
       {:heroicons, "~> 0.5"},
 
