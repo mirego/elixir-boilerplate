@@ -9,16 +9,20 @@ const Hooks = {};
 
 Hooks.Flash = {
   mounted() {
-    const hide = () =>
-      liveSocket.execJS(this.el, this.el.getAttribute('phx-click'));
-    this.timer = setTimeout(() => hide(), FLASH_TTL);
+    this.timer = setTimeout(() => this._hide(), FLASH_TTL);
+
     this.el.addEventListener('mouseover', () => {
       clearTimeout(this.timer);
-      this.timer = setTimeout(() => hide(), FLASH_TTL);
+      this.timer = setTimeout(() => this._hide(), FLASH_TTL);
     });
   },
+
   destroyed() {
     clearTimeout(this.timer);
+  },
+
+  _hide() {
+    liveSocket.execJS(this.el, this.el.getAttribute('phx-click'));
   }
 };
 
