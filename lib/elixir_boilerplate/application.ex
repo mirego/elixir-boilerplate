@@ -7,9 +7,11 @@ defmodule ElixirBoilerplate.Application do
 
   def start(_type, _args) do
     children = [
+      ElixirBoilerplateWeb.Telemetry,
       ElixirBoilerplate.Repo,
       {Phoenix.PubSub, [name: ElixirBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2]},
-      ElixirBoilerplateWeb.Endpoint
+      ElixirBoilerplateWeb.Endpoint,
+      {Absinthe.Subscription, ElixirBoilerplateWeb.Endpoint}
     ]
 
     opts = [strategy: :one_for_one, name: ElixirBoilerplate.Supervisor]

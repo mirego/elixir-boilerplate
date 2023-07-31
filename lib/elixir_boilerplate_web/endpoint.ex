@@ -1,6 +1,9 @@
 defmodule ElixirBoilerplateWeb.Endpoint do
   use Sentry.PlugCapture
+
   use Phoenix.Endpoint, otp_app: :elixir_boilerplate
+
+  use Absinthe.Phoenix.Endpoint
 
   alias Plug.Conn
 
@@ -8,7 +11,13 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
   socket("/socket", ElixirBoilerplateWeb.Socket)
 
-  plug(ElixirBoilerplateWeb.Plugs.Security)
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [
+      connect_info: [
+        session: {ElixirBoilerplateWeb.Session, :get_options, []}
+      ]
+    ]
+
   plug(:ping)
   plug(:canonical_host)
   plug(:force_ssl)
@@ -23,7 +32,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     at: "/",
     from: :elixir_boilerplate,
     gzip: true,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: ElixirBoilerplateWeb.static_paths()
   )
 
   # Code reloading can be explicitly enabled under the
@@ -47,12 +56,13 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   )
 
   plug(Sentry.PlugContext)
+
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
-  plug(ElixirBoilerplateHealth.Router)
-  plug(ElixirBoilerplateGraphQL.Router)
-  plug(:halt_if_sent)
+  plug(:session)
+
+  # plug(ElixirBoilerplateHealth.Router)
   plug(ElixirBoilerplateWeb.Router)
 
   @doc """
@@ -63,7 +73,10 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   """
   def init(_key, config) do
     if config[:load_from_system_env] do
-      port = Application.get_env(:elixir_boilerplate, __MODULE__)[:http][:port] || raise "expected the PORT environment variable to be set"
+      port =
+        Application.get_env(:elixir_boilerplate, __MODULE__)[:http][:port] ||
+          raise "expected the PORT environment variable to be set"
+
       {:ok, Keyword.put(config, :http, [:inet6, port: port])}
     else
       {:ok, config}
@@ -117,9 +130,9 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     end
   end
 
-  # Splitting routers in separate modules has a negative side effect:
-  # Phoenix.Router does not check the Plug.Conn state and tries to match the
-  # route even if it was already handled/sent by another router.
-  defp halt_if_sent(%{state: :sent, halted: false} = conn, _opts), do: halt(conn)
-  defp halt_if_sent(conn, _opts), do: conn
+  defp session(conn, _opts) do
+    opts = Plug.Session.init(ElixirBoilerplateWeb.Session.get_options())
+
+    Plug.Session.call(conn, opts)
+  end
 end

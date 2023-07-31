@@ -38,6 +38,9 @@ ENV MIX_ENV="prod"
 COPY mix.exs mix.lock ./
 RUN mix deps.get --only $MIX_ENV
 
+# Setup assets dependencies (Esbuild, Tailwind, etc…) so the are cached
+RUN mix assets.setup
+
 # Copy compile-time config files before we compile dependencies
 # to ensure any relevant config change will trigger the dependencies
 # to be re-compiled.
@@ -50,8 +53,7 @@ RUN mix deps.compile
 # Compile assets
 COPY --from=npm-builder /app/assets assets
 COPY priv priv
-RUN mix esbuild default
-RUN mix phx.digest
+RUN mix assets.deploy
 
 # Compile code
 COPY lib lib
