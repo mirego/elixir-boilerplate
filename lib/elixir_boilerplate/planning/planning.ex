@@ -4,7 +4,7 @@ defmodule ElixirBoilerplate.Planning do
 
   import Ecto.Query
 
-  def list() do
+  def list do
     projects =
       queryable()
       |> Repo.all()
@@ -21,7 +21,7 @@ defmodule ElixirBoilerplate.Planning do
     {:ok, project}
   end
 
-  defp queryable() do
+  defp queryable do
     from(p in Project,
       join: t in assoc(p, :tasks),
       order_by: [asc: field(t, :priority)],
