@@ -66,7 +66,7 @@ RUN mix release
 # -----------------------------------------------
 # Stage: Bundle release in a docker image
 # -----------------------------------------------
-FROM debian:bookworm-20230522-slim
+FROM debian:bookworm-20230725-slim
 
 RUN apt-get update -y && \
     apt-get install -y libstdc++6 openssl libncurses5 locales && \
