@@ -13,7 +13,8 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   render_errors: [view: ElixirBoilerplateWeb.Errors.View, accepts: ~w(html json)]
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
-  migration_primary_key: [name: :id, type: :binary_id],
+  migration_primary_key: [type: :binary_id, default: {:fragment, "gen_random_uuid()"}],
+  migration_timestamps: [type: :utc_datetime],
   start_apps_before_migration: [:ssl]
 
 config :elixir_boilerplate, Corsica, allow_headers: :all
