@@ -53,7 +53,7 @@ defmodule ElixirBoilerplate.Mixfile do
       # HTTP server
       {:plug_cowboy, "~> 2.6"},
       {:plug_canonical_host, "~> 2.0"},
-      {:corsica, "~> 2.0"},
+      {:corsica, "~> 2.1"},
 
       # Phoenix
       {:phoenix, "~> 1.7"},
@@ -66,7 +66,7 @@ defmodule ElixirBoilerplate.Mixfile do
       # GraphQL
       {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},
-      {:dataloader, "~> 1.0"},
+      {:dataloader, "~> 2.0"},
       {:absinthe_error_payload, "~> 1.1"},
 
       # Database
@@ -77,7 +77,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:gettext, "~> 0.22"},
 
       # Errors
-      {:sentry, "~> 8.0"},
+      {:sentry, "~> 8.1"},
 
       # Monitoring
       {:new_relic_agent, "~> 1.27"},
