@@ -12,7 +12,10 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   pubsub_server: ElixirBoilerplate.PubSub,
   render_errors: [view: ElixirBoilerplateWeb.Errors, accepts: ~w(html json)]
 
-config :elixir_boilerplate, ElixirBoilerplate.Repo, start_apps_before_migration: [:ssl]
+config :elixir_boilerplate, ElixirBoilerplate.Repo,
+  migration_primary_key: [type: :binary_id, default: {:fragment, "gen_random_uuid()"}],
+  migration_timestamps: [type: :utc_datetime_usec],
+  start_apps_before_migration: [:ssl]
 
 config :elixir_boilerplate, Corsica, allow_headers: :all
 
