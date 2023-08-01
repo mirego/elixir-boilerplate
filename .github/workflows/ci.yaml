@@ -56,4 +56,11 @@ jobs:
       - run: make check
       - run: make lint
       - run: make test
+
+      - name: Install Docker Buildx
+      - uses: docker/setup-buildx-action@v1
+        id: docker-buildx
+        with:
+          install: true
+
       - run: make build DOCKER_IMAGE_TAG=latest
