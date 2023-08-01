@@ -17,13 +17,12 @@ config :elixir_boilerplate, ElixirBoilerplate.Repo,
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   http: [port: get_env!("PORT", :integer)],
   secret_key_base: get_env!("SECRET_KEY_BASE"),
+  session_key: get_env!("SESSION_KEY"),
+  session_signing_salt: get_env!("SESSION_SIGNING_SALT"),
+  live_view: [signing_salt: get_env!("SESSION_SIGNING_SALT")],
   url: get_endpoint_url_config(canonical_uri),
   static_url: get_endpoint_url_config(static_uri),
   debug_errors: get_env("DEBUG_ERRORS", :boolean)
-
-config :elixir_boilerplate, ElixirBoilerplateWeb.Router,
-  session_key: get_env!("SESSION_KEY"),
-  session_signing_salt: get_env!("SESSION_SIGNING_SALT")
 
 config :elixir_boilerplate, Corsica, origins: get_env("CORS_ALLOWED_ORIGINS", :cors)
 

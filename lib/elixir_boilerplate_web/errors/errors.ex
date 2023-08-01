@@ -1,6 +1,9 @@
 defmodule ElixirBoilerplateWeb.Errors do
   alias Ecto.Changeset
-  alias ElixirBoilerplateWeb.Errors.View
+
+  import Phoenix.Template, only: [embed_templates: 1]
+
+  embed_templates("templates/*")
 
   @doc """
   Generates a human-readable block containing all errors in a changeset. Errors
@@ -17,7 +20,7 @@ defmodule ElixirBoilerplateWeb.Errors do
   msgstr "ne peut être vide"
   ```
   """
-  def error_messages(changeset) do
+  def changeset_to_error_messages(changeset) do
     changeset
     |> Changeset.traverse_errors(&translate_error/1)
     |> convert_errors_to_html(changeset.data.__struct__)
@@ -34,7 +37,7 @@ defmodule ElixirBoilerplateWeb.Errors do
   defp convert_errors_to_html(errors, schema) do
     errors = Enum.reduce(errors, [], &convert_error_field(&1, &2, schema))
 
-    View.render("error_messages.html", %{errors: errors})
+    error_messages(%{errors: errors})
   end
 
   defp convert_error_field({field, errors}, memo, schema) when is_list(errors) do
