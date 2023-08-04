@@ -2,15 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href={Routes.static_url(@conn, "/assets/app.css")} />
-    <meta name="csrf-token" content={Plug.CSRFProtection.get_csrf_token()} />
-    <script type="text/javascript" src={Routes.static_url(@conn, "/assets/app.js")}>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+
+    <.live_title suffix=" · ElixirBoilerplate">
+      <%= assigns[:page_title] || "ElixirBoilerplate" %>
+    </.live_title>
+
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
   </head>
 
-  <body>
+  <body class="font-sans bg-white antialiased">
     <%= @inner_content %>
   </body>
 </html>

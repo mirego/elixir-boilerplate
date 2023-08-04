@@ -1,8 +1,6 @@
 <main role="main">
   <div class="flash-messages">
-    <.flash flash={@flash} kind={:success} />
-    <.flash flash={@flash} kind={:error} />
-    <.flash flash={@flash} kind={:info} />
+    <.flash_group flash={@flash} />
   </div>
 
   <%= @inner_content %>

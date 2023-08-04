@@ -10,7 +10,10 @@ config :phoenix, :json_library, Jason
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   pubsub_server: ElixirBoilerplate.PubSub,
-  render_errors: [view: ElixirBoilerplateWeb.Errors, accepts: ~w(html json)]
+  render_errors: [
+    formats: [html: ElixirBoilerplateWeb.Controllers.ErrorHTML, json: ElixirBoilerplateWeb.Controllers.ErrorJSON],
+    layout: false
+  ]
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   migration_primary_key: [type: :binary_id, default: {:fragment, "gen_random_uuid()"}],

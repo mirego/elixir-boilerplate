@@ -7,9 +7,14 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   @plug_ssl Plug.SSL.init(rewrite_on: [:x_forwarded_proto], subdomains: true)
 
   socket("/socket", ElixirBoilerplateWeb.Socket)
-  socket("/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: {ElixirBoilerplateWeb.Session, :config, []}]])
 
-  plug(ElixirBoilerplateWeb.Plugs.Security)
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [
+      connect_info: [
+        session: {ElixirBoilerplateWeb.Session, :config, []}
+      ]
+    ]
+
   plug(:ping)
   plug(:canonical_host)
   plug(:force_ssl)
@@ -24,7 +29,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     at: "/",
     from: :elixir_boilerplate,
     gzip: true,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: ElixirBoilerplateWeb.static_paths()
   )
 
   # Code reloading can be explicitly enabled under the
@@ -48,9 +53,8 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
-  plug(ElixirBoilerplateHealth.Router)
-  plug(ElixirBoilerplateGraphQL.Router)
-  plug(:halt_if_sent)
+  plug(:session)
+
   plug(ElixirBoilerplateWeb.Router)
 
   @doc """
@@ -115,9 +119,9 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     end
   end
 
-  # Splitting routers in separate modules has a negative side effect:
-  # Phoenix.Router does not check the Plug.Conn state and tries to match the
-  # route even if it was already handled/sent by another router.
-  defp halt_if_sent(%{state: :sent, halted: false} = conn, _opts), do: halt(conn)
-  defp halt_if_sent(conn, _opts), do: conn
+  defp session(conn, _opts) do
+    opts = Plug.Session.init(ElixirBoilerplateWeb.Session.config())
+
+    Plug.Session.call(conn, opts)
+  end
 end

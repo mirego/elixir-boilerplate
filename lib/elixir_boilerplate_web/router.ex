@@ -1,5 +1,5 @@
 defmodule ElixirBoilerplateWeb.Router do
-  use Phoenix.Router
+  use Phoenix.Router, helpers: false
 
   import Phoenix.LiveView.Router
 
@@ -11,20 +11,24 @@ defmodule ElixirBoilerplateWeb.Router do
       json_decoder: Phoenix.json_library()
     )
 
-    plug(:accepts, ["html", "json"])
+    plug(:accepts, ~w[html json])
 
-    plug(:session)
     plug(:fetch_session)
+    plug(:fetch_live_flash)
 
     plug(:protect_from_forgery)
-    plug(:fetch_live_flash)
+    plug(ElixirBoilerplateWeb.Plugs.Security)
 
     plug(:put_layout, {ElixirBoilerplateWeb.Layouts, :app})
     plug(:put_root_layout, {ElixirBoilerplateWeb.Layouts, :root})
   end
 
+  pipeline :api do
+    plug(:accepts, ~w[json])
+  end
+
   scope "/" do
-    pipe_through(:browser)
+    pipe_through :browser
 
     # To enable metrics dashboard use `telemetry_ui_allowed: true` as assigns value
     #
@@ -34,22 +38,41 @@ defmodule ElixirBoilerplateWeb.Router do
   end
 
   scope "/", ElixirBoilerplateWeb do
-    pipe_through(:browser)
+    pipe_through :browser
 
     get("/", Home.Controller, :index, as: :home)
-  end
-
-  scope "/", ElixirBoilerplateWeb do
-    pipe_through(:browser)
-
     live("/live", Home.Live, :index, as: :live_home)
   end
 
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
-  defp session(conn, _opts) do
-    opts = Plug.Session.init(ElixirBoilerplateWeb.Session.config())
-    Plug.Session.call(conn, opts)
+  scope "/api", ElixirBoilerplateWeb.Api do
+    pipe_through :api
+
+    get("/version", Version.Controller, :index, as: :version)
   end
+
+  scope "/" do
+    pipe_through :api
+
+    forward("/graphql", Absinthe.Plug, schema: ElixirBoilerplateGraphQL.Schema)
+
+    if Mix.env() == :dev do
+      forward("/graphiql", Absinthe.Plug.GraphiQL,
+        schema: ElixirBoilerplateGraphQL.Schema,
+        socket: ElixirBoilerplateWeb.Socket,
+        interface: :playground
+      )
+    end
+  end
+
+  forward(
+    "/health",
+    PlugCheckup,
+    PlugCheckup.Options.new(
+      json_encoder: Phoenix.json_library(),
+      checks: ElixirBoilerplateHealth.checks(),
+      error_code: ElixirBoilerplateHealth.error_code(),
+      timeout: :timer.seconds(5),
+      pretty: false
+    )
+  )
 end

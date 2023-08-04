@@ -1,4 +1,20 @@
-<div class="home">
-  <.header />
-  <.message text={@message} />
-</div>
+<.home_header />
+
+<main class="px-4 py-20 sm:px-6 lg:px-8">
+  <.flash_group flash={@flash} />
+
+  <div class="mx-auto max-w-2xl">
+    <div class="home">
+      <a target="_blank" href="https://github.com/mirego/elixir-boilerplate">
+        <.logo width={500} />
+      </a>
+
+      <p>
+        This repository is the stable base upon which we build our Elixir projects at Mirego.<br />
+        We want to share it with the world so you can build awesome Elixir applications too.
+      </p>
+
+      <.message class="pt-8" text={@message} />
+    </div>
+  </div>
+</main>

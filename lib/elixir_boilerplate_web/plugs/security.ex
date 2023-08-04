@@ -33,13 +33,20 @@ defmodule ElixirBoilerplateWeb.Plugs.Security do
   defp media_src_directive, do: "'self'"
   defp font_src_directive, do: "'self'"
   defp connect_src_directive, do: "'self'"
-  defp style_src_directive, do: "'self' 'unsafe-inline'"
   defp frame_src_directive, do: "'self'"
   defp image_src_directive, do: "'self' data:"
 
+  defp style_src_directive do
+    if Application.get_env(:elixir_boilerplate, __MODULE__)[:allow_unsafe_scripts] do
+      "'self' 'unsafe-inline' cdn.jsdelivr.net"
+    else
+      "'self'"
+    end
+  end
+
   defp script_src_directive do
     if Application.get_env(:elixir_boilerplate, __MODULE__)[:allow_unsafe_scripts] do
-      "'self' 'unsafe-eval' 'unsafe-inline'"
+      "'self' 'unsafe-eval' 'unsafe-inline' cdn.jsdelivr.net"
     else
       "'self'"
     end

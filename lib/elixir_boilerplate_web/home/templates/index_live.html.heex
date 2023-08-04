@@ -1,17 +1,31 @@
-<div class="home">
-  <.header />
-  <.message text={@message} />
+<.home_header />
 
-  <hr />
+<main class="px-4 py-20 sm:px-6 lg:px-8">
+  <.flash_group flash={@flash} />
 
-  <div style="display: flex; gap: 10px">
-    <button type="button" phx-click="decrement_counter">-</button>
-    <strong><%= @counter %></strong>
-    <button type="button" phx-click="increment_counter">+</button>
+  <div class="mx-auto max-w-2xl">
+    <div class="home">
+      <a target="_blank" href="https://github.com/mirego/elixir-boilerplate">
+        <.logo width={500} />
+      </a>
+
+      <p>
+        This repository is the stable base upon which we build our Elixir projects at Mirego.<br />
+        We want to share it with the world so you can build awesome Elixir applications too.
+      </p>
+
+      <.message class="pt-8" text={@message} />
+    </div>
+
+    <div class="pt-8">
+      <.button type="button" phx-click="decrement_counter">-</.button>
+      <strong><%= @counter %></strong>
+      <.button type="button" phx-click="increment_counter">+</.button>
+    </div>
+
+    <div class="pt-8">
+      <.button phx-click="add_flash_success">Add flash success</.button>
+      <.button phx-click="add_flash_error">Add flash error</.button>
+    </div>
   </div>
-
-  <hr />
-
-  <button type="button" phx-click="add_flash_success">Add flash success</button>
-  <button type="button" phx-click="add_flash_error">Add flash error</button>
-</div>
+</main>
