@@ -5,8 +5,8 @@ defmodule ElixirBoilerplate.Mixfile do
     [
       app: :elixir_boilerplate,
       version: "0.0.1",
-      erlang: "~> 25.0",
-      elixir: "~> 1.13",
+      erlang: "~> 26.0",
+      elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
       test_pattern: "**/*_test.exs",
@@ -32,10 +32,10 @@ defmodule ElixirBoilerplate.Mixfile do
 
   defp aliases do
     [
-      "assets.deploy": [
-        "esbuild default --minify",
-        "phx.digest"
-      ],
+      setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
+      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
+      "assets.build": ["tailwind default", "esbuild default"],
+      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"]
@@ -46,6 +46,7 @@ defmodule ElixirBoilerplate.Mixfile do
     [
       # Assets bundling
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
 
       # HTTP Client
       {:hackney, "~> 1.18"},
@@ -76,6 +77,10 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Database check
       {:excellent_migrations, "~> 0.1", only: [:dev, :test], runtime: false},
+
+      # Telemtry plugins
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 1.0"},
 
       # Translations
       {:gettext, "~> 0.22"},
@@ -111,7 +116,11 @@ defmodule ElixirBoilerplate.Mixfile do
       {:excoveralls, "~> 0.16", only: :test},
 
       # Dialyzer
-      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
+
+      # BEAM debugging utilities
+      {:observer_cli, "~> 1.7"},
+      {:recon, "~> 2.5"}
     ]
   end
 

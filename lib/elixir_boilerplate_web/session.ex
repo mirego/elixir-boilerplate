@@ -9,6 +9,6 @@ defmodule ElixirBoilerplateWeb.Session do
   end
 
   defp app_config(key) do
-    Keyword.fetch!(Application.get_env(:elixir_boilerplate, ElixirBoilerplateWeb.Endpoint), key)
+    Keyword.fetch!(Application.get_env(:elixir_boilerplate, __MODULE__), key)
   end
 end

@@ -30,11 +30,22 @@ config :absinthe_security, AbsintheSecurity.Phase.MaxDepthCheck, max_depth_count
 config :absinthe_security, AbsintheSecurity.Phase.MaxDirectivesCheck, max_directive_count: 100
 
 config :esbuild,
-  version: "0.16.4",
+  version: "0.17.11",
   default: [
-    args: ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets),
+    args: ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
+
+config :tailwind,
+  version: "3.2.7",
+  default: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/app.css
+      --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
   ]
 
 config :sentry,
