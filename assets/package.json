@@ -4,8 +4,8 @@
   "private": true,
   "engine-strict": true,
   "engines": {
-    "node": "^18.16.0",
-    "npm": "^9.5.1"
+    "node": "^20.5.0",
+    "npm": "^9.8.0"
   },
   "dependencies": {
     "phoenix": "^1.7.7",
