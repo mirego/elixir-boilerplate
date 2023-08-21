@@ -20,7 +20,7 @@
     "prettier": "^3.0.2",
     "stylelint": "^15.10.3",
     "stylelint-config-mirego": "^2.3.0",
-    "stylelint-scss": "^5.0.1",
+    "stylelint-scss": "^5.1.0",
     "stylelint-order": "^6.0.3"
   }
 }
