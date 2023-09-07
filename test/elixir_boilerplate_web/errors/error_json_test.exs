@@ -1,4 +1,5 @@
-defmodule ElixirBoilerplateWeb.ErrorJsonTest do
+# credo:disable-for-this-file CredoNaming.Check.Consistency.ModuleFilename
+defmodule ElixirBoilerplateWeb.Errors.ErrorJsonTest do
   use ElixirBoilerplate.DataCase, async: true
 
   alias ElixirBoilerplateWeb.Errors.ErrorJSON

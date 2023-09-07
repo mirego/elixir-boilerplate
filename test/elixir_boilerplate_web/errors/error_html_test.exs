@@ -1,4 +1,5 @@
-defmodule ElixirBoilerplateWeb.ErrorHtmlTest do
+# credo:disable-for-this-line CredoNaming.Check.Consistency.ModuleFilename
+defmodule ElixirBoilerplateWeb.Errors.ErrorHtmlTest do
   use ElixirBoilerplate.DataCase, async: true
 
   # Bring render_to_string/3 for testing custom views
