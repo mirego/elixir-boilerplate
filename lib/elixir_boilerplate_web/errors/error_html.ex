@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplateWeb.Controllers.ErrorHTML do
+defmodule ElixirBoilerplateWeb.Errors.ErrorHTML do
   use ElixirBoilerplateWeb, :html
 
   # If you want to customize your error pages,

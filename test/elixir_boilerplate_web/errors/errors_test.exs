@@ -1,8 +1,6 @@
 defmodule ElixirBoilerplateWeb.ErrorsTest do
   use ElixirBoilerplate.DataCase, async: true
 
-  alias ElixirBoilerplateWeb.Errors
-
   defmodule UserRole do
     @moduledoc false
     use Ecto.Schema
@@ -76,7 +74,7 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
 
   defp changeset_to_error_messages(changeset) do
     changeset
-    |> Errors.changeset_to_error_messages()
+    |> ElixirBoilerplateWeb.Errors.changeset_to_error_messages()
     |> Phoenix.HTML.Safe.to_iodata()
     |> IO.iodata_to_binary()
   end
