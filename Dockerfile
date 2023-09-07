@@ -50,8 +50,7 @@ RUN mix deps.compile
 # Compile assets
 COPY --from=npm-builder /app/assets assets
 COPY priv priv
-RUN mix esbuild default
-RUN mix phx.digest
+RUN mix assets.deploy
 
 # Compile code
 COPY lib lib
