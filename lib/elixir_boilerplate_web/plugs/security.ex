@@ -38,7 +38,7 @@ defmodule ElixirBoilerplateWeb.Plugs.Security do
 
   defp style_src_directive do
     if Application.get_env(:elixir_boilerplate, __MODULE__)[:allow_unsafe_scripts] do
-      "'self' 'unsafe-inline' cdn.jsdelivr.net"
+      "'self' 'unsafe-inline'"
     else
       "'self'"
     end
@@ -46,7 +46,7 @@ defmodule ElixirBoilerplateWeb.Plugs.Security do
 
   defp script_src_directive do
     if Application.get_env(:elixir_boilerplate, __MODULE__)[:allow_unsafe_scripts] do
-      "'self' 'unsafe-eval' 'unsafe-inline' cdn.jsdelivr.net"
+      "'self' 'unsafe-eval' 'unsafe-inline'"
     else
       "'self'"
     end

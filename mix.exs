@@ -78,10 +78,6 @@ defmodule ElixirBoilerplate.Mixfile do
       # Database check
       {:excellent_migrations, "~> 0.1", only: [:dev, :test], runtime: false},
 
-      # Telemtry plugins
-      {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"},
-
       # Translations
       {:gettext, "~> 0.22"},
 
