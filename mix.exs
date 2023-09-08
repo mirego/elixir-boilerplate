@@ -113,10 +113,6 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Dialyzer
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
-
-      # BEAM debugging utilities
-      {:observer_cli, "~> 1.7"},
-      {:recon, "~> 2.5"}
     ]
   end
 
