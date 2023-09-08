@@ -1,5 +1,5 @@
 defmodule ElixirBoilerplateWeb.Home.Live do
-  use ElixirBoilerplateWeb, :live_view
+  use ElixirBoilerplateWeb.LiveView
 
   def mount(_, _, socket) do
     socket = assign(socket, :message, "Hello, world!")

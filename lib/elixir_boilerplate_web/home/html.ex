@@ -1,5 +1,7 @@
 defmodule ElixirBoilerplateWeb.Home.HTML do
-  use ElixirBoilerplateWeb, :html
+  use ElixirBoilerplateWeb.HTML
+
+  alias ElixirBoilerplateWeb.Components.Branding
 
   embed_templates("templates/*")
 

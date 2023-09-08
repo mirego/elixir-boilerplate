@@ -1,5 +1,5 @@
 defmodule ElixirBoilerplateWeb.Errors.ErrorHTML do
-  use ElixirBoilerplateWeb, :html
+  use ElixirBoilerplateWeb.HTML
 
   # If you want to customize your error pages,
   # uncomment the embed_templates/1 call below

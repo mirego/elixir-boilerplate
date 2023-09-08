@@ -112,7 +112,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:excoveralls, "~> 0.16", only: :test},
 
       # Dialyzer
-      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false}
     ]
   end
 

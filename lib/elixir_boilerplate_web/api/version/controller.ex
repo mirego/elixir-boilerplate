@@ -1,5 +1,5 @@
 defmodule ElixirBoilerplateWeb.Api.Version.Controller do
-  use ElixirBoilerplateWeb, :controller
+  use ElixirBoilerplateWeb.Controller
 
   @spec index(Plug.Conn.t(), map) :: Plug.Conn.t()
   def index(conn, _) do

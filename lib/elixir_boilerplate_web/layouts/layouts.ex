@@ -1,5 +1,5 @@
 defmodule ElixirBoilerplateWeb.Layouts do
-  use ElixirBoilerplateWeb, :html
+  use ElixirBoilerplateWeb.HTML
 
   embed_templates("templates/*")
 
