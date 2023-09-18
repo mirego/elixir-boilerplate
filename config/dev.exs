@@ -2,6 +2,7 @@ import Config
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   code_reloader: true,
+  debug_errors: true,
   check_origin: false,
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
@@ -19,3 +20,4 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Plugs.Security, allow_unsafe_sc
 config :logger, :console, format: "[$level] $message\n"
 
 config :phoenix, :stacktrace_depth, 20
+config :phoenix, :plug_init_mode, :runtime
