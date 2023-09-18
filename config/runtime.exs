@@ -21,8 +21,7 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   session_signing_salt: get_env!("SESSION_SIGNING_SALT"),
   live_view: [signing_salt: get_env!("SESSION_SIGNING_SALT")],
   url: get_endpoint_url_config(canonical_uri),
-  static_url: get_endpoint_url_config(static_uri),
-  debug_errors: get_env("DEBUG_ERRORS", :boolean)
+  static_url: get_endpoint_url_config(static_uri)
 
 config :elixir_boilerplate, Corsica, origins: get_env("CORS_ALLOWED_ORIGINS", :cors)
 
