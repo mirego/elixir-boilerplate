@@ -77,7 +77,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:gettext, "~> 0.22"},
 
       # Errors
-      {:sentry, "~> 8.1"},
+      {:sentry, "~> 9.0"},
 
       # Monitoring
       {:new_relic_agent, "~> 1.27"},
