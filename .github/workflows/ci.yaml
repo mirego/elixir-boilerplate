@@ -58,7 +58,8 @@ jobs:
 
       - run: grep -v '^\(#.*\|\s\?\)$' .env.test >> $GITHUB_ENV
 
-      - run: make prepare
+      - run: mix deps.get
+      - run: npm ci --prefix assets
       - run: make check
       - run: make lint
       - run: make test
