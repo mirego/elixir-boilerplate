@@ -31,6 +31,8 @@ config :elixir_boilerplate,
     password: get_env("BASIC_AUTH_PASSWORD")
   ]
 
+config :elixir_boilerplate, ElixirBoilerplate.TelemetryUI, share_key: get_env("TELEMETRY_UI_SHARE_KEY")
+
 config :sentry,
   dsn: get_env("SENTRY_DSN"),
   environment_name: get_env("SENTRY_ENVIRONMENT_NAME")
