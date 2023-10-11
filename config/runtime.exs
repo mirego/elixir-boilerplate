@@ -33,5 +33,4 @@ config :elixir_boilerplate,
 
 config :sentry,
   dsn: get_env("SENTRY_DSN"),
-  environment_name: get_env("SENTRY_ENVIRONMENT_NAME"),
-  included_environments: [get_env("SENTRY_ENVIRONMENT_NAME")]
+  environment_name: get_env("SENTRY_ENVIRONMENT_NAME")
