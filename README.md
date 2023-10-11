@@ -44,20 +44,6 @@ This boilerplate comes with batteries included, you’ll find:
 4. Create a new Git repository (`git init`)
 5. Create the initial Git commit (`git commit -a -m "Initial commit"`)
 
-### Telemetry UI
-
-:warning: Metrics are publicly exposed but in your project you should protect it under authorization.
-See https://github.com/mirego/telemetry_ui#security
-
-```elixir
- # module ElixirBoilerplateWeb.Router
- scope "/" do
-   pipe_through(:browser)
-   # Metrics can contains sensitive data you should protect it under authorization
-   get("/metrics", TelemetryUI.Web, [], assigns: %{telemetry_ui_allowed: true})
- end
-```
-
 ## Preferred libraries
 
 Some batteries aren’t included since all projects have their own needs and requirements. Here’s a list of our preferred libraries to help you get started:
