@@ -32,6 +32,7 @@ config :esbuild,
   ]
 
 config :sentry,
+  included_environments: [:all],
   root_source_code_path: File.cwd!(),
   release: version
 
