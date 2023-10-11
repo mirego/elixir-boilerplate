@@ -12,6 +12,8 @@ defmodule ElixirBoilerplate.Application do
       ElixirBoilerplateWeb.Endpoint
     ]
 
+    :logger.add_handler(:sentry_handler, Sentry.LoggerHandler, %{})
+
     opts = [strategy: :one_for_one, name: ElixirBoilerplate.Supervisor]
     Supervisor.start_link(children, opts)
   end
