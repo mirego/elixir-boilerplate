@@ -25,6 +25,7 @@ This boilerplate comes with batteries included, you’ll find:
 - Useful utilities for web features: Basic authentication with [BasicAuth](https://hexdocs.pm/plug/Plug.BasicAuth.html), canonical host with [PlugCanonicalHost](https://hexdocs.pm/plug_canonical_host), etc.
 - Error reporting with [Sentry](https://hexdocs.pm/sentry)
 - A clean and useful `README.md` template (in both [english](./BOILERPLATE_README.md) and [french](./BOILERPLATE_README.fr.md))
+- Dashboard metrics using [TelemetryUI](https://github.com/mirego/telemetry_ui).
 
 ## Usage
 
@@ -42,6 +43,20 @@ This boilerplate comes with batteries included, you’ll find:
 3. Run the boilerplate setup script (`./boilerplate-setup.sh YourProjectName`)
 4. Create a new Git repository (`git init`)
 5. Create the initial Git commit (`git commit -a -m "Initial commit"`)
+
+### Telemetry UI
+
+:warning: Metrics are publicly exposed but in your project you should protect it under authorization.
+See https://github.com/mirego/telemetry_ui#security
+
+```elixir
+ # module ElixirBoilerplateWeb.Router
+ scope "/" do
+   pipe_through(:browser)
+   # Metrics can contains sensitive data you should protect it under authorization
+   get("/metrics", TelemetryUI.Web, [], assigns: %{telemetry_ui_allowed: true})
+ end
+```
 
 ## Preferred libraries
 
