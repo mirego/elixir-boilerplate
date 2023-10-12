@@ -95,6 +95,10 @@ Le projet expose une route `GET /health` qui sert le module `ElixirBoilerplateHe
 | ------ | ----------------------------------- |
 | `NOOP` | Check _check_ est toujours en santé |
 
+### Métriques
+
+Le projet expose un tableau de bord [Telemetry UI](https://github.com/mirego/telemetry_ui) via la route `GET /metrics`. Les métriques sont configurables [ici](lib/elixir_boilerplate/telemetry_ui/telemetry_ui.ex).
+
 ## 🚀 Deploiement
 
 ### Versions et branches

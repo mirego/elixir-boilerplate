@@ -83,6 +83,9 @@ defmodule ElixirBoilerplate.Mixfile do
       {:new_relic_agent, "~> 1.27"},
       {:new_relic_absinthe, "~> 0.0"},
 
+      # Telemetry
+      {:telemetry_ui, "~> 4.0"},
+
       # Linting
       {:credo, "~> 1.7", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},

@@ -9,7 +9,8 @@ defmodule ElixirBoilerplate.Application do
     children = [
       ElixirBoilerplate.Repo,
       {Phoenix.PubSub, [name: ElixirBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2]},
-      ElixirBoilerplateWeb.Endpoint
+      ElixirBoilerplateWeb.Endpoint,
+      {TelemetryUI, ElixirBoilerplate.TelemetryUI.config()}
     ]
 
     :logger.add_handler(:sentry_handler, Sentry.LoggerHandler, %{})
