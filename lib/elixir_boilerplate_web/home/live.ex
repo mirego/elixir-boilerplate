@@ -1,4 +1,5 @@
 defmodule ElixirBoilerplateWeb.Home.Live do
+  @moduledoc false
   use Phoenix.LiveView, layout: {ElixirBoilerplateWeb.Layouts, :live}
 
   def mount(_, _, socket) do

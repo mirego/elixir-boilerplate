@@ -1,4 +1,5 @@
 defmodule ElixirBoilerplateGraphQL do
+  @moduledoc false
   alias Absinthe.Phase.Document.Result
   alias ElixirBoilerplateGraphQL.Middleware
 

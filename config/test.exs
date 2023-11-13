@@ -1,6 +1,7 @@
 import Config
 
 defmodule TestEnvironment do
+  @moduledoc false
   @database_name_suffix "_test"
 
   def get_database_url do

@@ -2,6 +2,7 @@ defmodule ElixirBoilerplateHealth.Router do
   use Plug.Router
 
   defmodule Health do
+    @moduledoc false
     use Plug.Router
 
     plug(:match)

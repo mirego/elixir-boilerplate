@@ -1,4 +1,5 @@
 defmodule ElixirBoilerplateHealth do
+  @moduledoc false
   @health_check_error_code 422
 
   def checks do

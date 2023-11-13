@@ -1,13 +1,14 @@
 defmodule ElixirBoilerplateWeb.Plugs.Security do
+  @moduledoc false
+  @behaviour Plug
+
+  import Phoenix.Controller, only: [put_secure_browser_headers: 2]
+
   @doc """
   This plug adds Phoenix secure HTTP headers including a
   “Content-Security-Policy” header to responses.You will need to customize each
   policy directive to fit your application needs.
   """
-
-  @behaviour Plug
-
-  import Phoenix.Controller, only: [put_secure_browser_headers: 2]
 
   def init(opts), do: opts
 

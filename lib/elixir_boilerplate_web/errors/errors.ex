@@ -1,7 +1,8 @@
 defmodule ElixirBoilerplateWeb.Errors do
-  alias Ecto.Changeset
-
+  @moduledoc false
   import Phoenix.Template, only: [embed_templates: 1]
+
+  alias Ecto.Changeset
 
   embed_templates("templates/*")
 
