@@ -47,7 +47,11 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     json_decoder: Phoenix.json_library()
   )
 
-  plug(Sentry.PlugContext)
+  plug(Sentry.PlugContext,
+    body_scrubber: {ElixirBoilerplate.Errors.Sentry, :scrub_params},
+    remote_address_reader: {ElixirBoilerplate.Errors.Sentry, :scrubbed_remote_address}
+  )
+
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
