@@ -23,10 +23,9 @@ defmodule ElixirBoilerplateWeb.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
-      import Plug.Conn
-      import Phoenix.ConnTest
-
       import ElixirBoilerplateWeb.Router.Helpers
+      import Phoenix.ConnTest
+      import Plug.Conn
 
       # The default endpoint for testing
       @endpoint Endpoint

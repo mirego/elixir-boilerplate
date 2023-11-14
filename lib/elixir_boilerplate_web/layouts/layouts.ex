@@ -1,4 +1,5 @@
 defmodule ElixirBoilerplateWeb.Layouts do
+  @moduledoc false
   use Phoenix.Component
 
   alias ElixirBoilerplateWeb.Router.Helpers, as: Routes

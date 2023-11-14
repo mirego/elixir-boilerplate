@@ -90,6 +90,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:credo, "~> 1.7", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},
       {:credo_naming, "~> 2.0", only: [:dev, :test], runtime: false},
+      {:styler, "~> 0.10", only: [:dev, :test], runtime: false},
 
       # Security check
       {:sobelow, "~> 0.12", only: [:dev, :test], runtime: true},

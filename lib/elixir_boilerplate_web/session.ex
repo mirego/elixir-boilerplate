@@ -1,4 +1,5 @@
 defmodule ElixirBoilerplateWeb.Session do
+  @moduledoc false
   def config do
     [
       store: :cookie,

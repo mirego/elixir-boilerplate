@@ -1,4 +1,5 @@
 defmodule ElixirBoilerplateGraphQL.Plugs.Context do
+  @moduledoc false
   @behaviour Plug
 
   import Plug.Conn

@@ -1,4 +1,5 @@
 defmodule ElixirBoilerplateGraphQL.Schema do
+  @moduledoc false
   use Absinthe.Schema
 
   import_types(Absinthe.Type.Custom)

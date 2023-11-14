@@ -1,5 +1,7 @@
 defmodule ElixirBoilerplateGraphQL.Middleware.ErrorReporting do
+  @moduledoc false
   defmodule Error do
+    @moduledoc false
     defexception [:message]
   end
 

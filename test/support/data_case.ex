@@ -20,12 +20,12 @@ defmodule ElixirBoilerplate.DataCase do
 
   using do
     quote do
-      alias ElixirBoilerplate.Repo
-
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
       import ElixirBoilerplate.DataCase
+
+      alias ElixirBoilerplate.Repo
     end
   end
 

@@ -1,4 +1,5 @@
 defmodule ElixirBoilerplate.Factory do
+  @moduledoc false
   use ExMachina.Ecto, repo: ElixirBoilerplate.Repo
 
   # This is a sample factory to make sure our setup is working correctly.

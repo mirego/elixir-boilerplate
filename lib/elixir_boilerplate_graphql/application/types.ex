@@ -1,4 +1,5 @@
 defmodule ElixirBoilerplateGraphQL.Application.Types do
+  @moduledoc false
   use Absinthe.Schema.Notation
 
   object :application do

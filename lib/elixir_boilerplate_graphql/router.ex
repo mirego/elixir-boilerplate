@@ -2,6 +2,7 @@ defmodule ElixirBoilerplateGraphQL.Router do
   use Plug.Router
 
   defmodule GraphQL do
+    @moduledoc false
     use Plug.Router
 
     plug(:match)

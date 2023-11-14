@@ -1,4 +1,5 @@
 defmodule ElixirBoilerplate.Release do
+  @moduledoc false
   alias Ecto.Migrator
 
   @app :elixir_boilerplate

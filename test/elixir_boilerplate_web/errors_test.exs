@@ -4,6 +4,7 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
   alias ElixirBoilerplateWeb.Errors
 
   defmodule UserRole do
+    @moduledoc false
     use Ecto.Schema
 
     import Ecto.Changeset
@@ -23,6 +24,7 @@ defmodule ElixirBoilerplateWeb.ErrorsTest do
   end
 
   defmodule User do
+    @moduledoc false
     use Ecto.Schema
 
     import Ecto.Changeset
