@@ -54,7 +54,6 @@ jobs:
       - run: grep -v '^\(#.*\|\s\?\)$' .env.test >> $GITHUB_ENV
 
       - run: make prepare
-      - run: make check
       - run: make lint
-      - run: make test
+      - run: make check
       - run: make build DOCKER_IMAGE_TAG=latest
