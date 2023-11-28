@@ -73,6 +73,9 @@ defmodule ElixirBoilerplate.Mixfile do
       {:ecto_sql, "~> 3.10"},
       {:postgrex, "~> 0.17"},
 
+      # Database check
+      {:excellent_migrations, "~> 0.1", only: [:dev, :test], runtime: false},
+
       # Translations
       {:gettext, "~> 0.22"},
 
