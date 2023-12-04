@@ -1,6 +1,8 @@
 defmodule ElixirBoilerplateGraphQL do
   @moduledoc false
+
   alias Absinthe.Phase.Document.Result
+  alias Absinthe.Pipeline
   alias ElixirBoilerplateGraphQL.Middleware
 
   def configuration do
@@ -17,8 +19,8 @@ defmodule ElixirBoilerplateGraphQL do
 
     config
     |> Absinthe.Plug.default_pipeline(options)
-    |> Absinthe.Pipeline.insert_before(Result, Middleware.OperationNameLogger)
-    |> Absinthe.Pipeline.insert_after(Result, Middleware.ErrorReporting)
+    |> Pipeline.insert_before(Result, Middleware.OperationNameLogger)
+    |> Pipeline.insert_after(Result, Middleware.ErrorReporting)
   end
 
   defp build_options(options) do
@@ -26,7 +28,7 @@ defmodule ElixirBoilerplateGraphQL do
       [
         token_limit: Application.get_env(:elixir_boilerplate, ElixirBoilerplateGraphQL)[:token_limit]
       ],
-      Absinthe.Pipeline.options(options)
+      Pipeline.options(options)
     )
   end
 end
