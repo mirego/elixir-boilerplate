@@ -19,6 +19,8 @@ defmodule ElixirBoilerplateGraphQL.Router do
   plug(:match)
   plug(:dispatch)
 
+  # It is intentional that we do not *serve* GraphiQL as part of the API.
+  # Developers should use standalone GraphQL clients that connect to the API instead.
   forward("/graphql", to: GraphQL)
 
   match(_, do: conn)
