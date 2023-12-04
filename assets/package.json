@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",
-    "eslint": "^8.54.0",
+    "eslint": "^8.55.0",
     "eslint-plugin-mirego": "^1.0.0",
     "prettier": "^3.1.0",
     "stylelint": "^15.11.0",
