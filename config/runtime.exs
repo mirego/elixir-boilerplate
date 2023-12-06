@@ -15,6 +15,7 @@ config :elixir_boilerplate, ElixirBoilerplate.Repo,
   socket_options: if(get_env("DATABASE_IPV6", :boolean), do: [:inet6], else: [])
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
+  server: get_env("PHX_SERVER", :boolean),
   http: [port: get_env!("PORT", :integer)],
   secret_key_base: get_env!("SECRET_KEY_BASE"),
   session_key: get_env!("SESSION_KEY"),
