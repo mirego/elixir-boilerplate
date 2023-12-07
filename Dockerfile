@@ -79,12 +79,12 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-WORKDIR "/opt/elixir_boilerplate"
-RUN chown nobody /opt/elixir_boilerplate
+WORKDIR "/app"
+RUN chown nobody /app
 
 # Only copy the final release from the build stage
 COPY --from=otp-builder --chown=nobody:root /app/_build/prod/rel/elixir_boilerplate ./
 
 USER nobody
 
-CMD ["/opt/elixir_boilerplate/bin/server"]
+CMD ["sh", "-c", "/app/bin/migrate && /app/bin/server"]
