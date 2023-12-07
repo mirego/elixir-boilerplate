@@ -4,6 +4,13 @@ defmodule ElixirBoilerplateWeb.Router do
   import Phoenix.LiveView.Router
 
   pipeline :browser do
+    plug(
+      Plug.Parsers,
+      parsers: [:urlencoded, :multipart, :json],
+      pass: ["*/*"],
+      json_decoder: Phoenix.json_library()
+    )
+
     plug(:accepts, ["html", "json"])
 
     plug(:session)
