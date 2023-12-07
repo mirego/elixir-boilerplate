@@ -14,8 +14,13 @@ config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool_size: get_env!("DATABASE_POOL_SIZE", :integer),
   socket_options: if(get_env("DATABASE_IPV6", :boolean), do: [:inet6], else: [])
 
+# NOTE: Only set `server` to `true` if `PHX_SERVER` is present. We cannot set
+# it to `false` otherwise because `mix phx.server` will stop working without it.
+if get_env("PHX_SERVER", :boolean) == true do
+  config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint, server: true
+end
+
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
-  server: get_env("PHX_SERVER", :boolean),
   http: [port: get_env!("PORT", :integer)],
   secret_key_base: get_env!("SECRET_KEY_BASE"),
   session_key: get_env!("SESSION_KEY"),
