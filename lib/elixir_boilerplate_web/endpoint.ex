@@ -4,7 +4,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
   alias Plug.Conn
 
-  @plug_ssl Plug.SSL.init(rewrite_on: [:x_forwarded_proto], subdomains: true)
+  @plug_ssl Plug.SSL.init(rewrite_on: [:x_forwarded_proto])
 
   socket("/socket", ElixirBoilerplateWeb.Socket)
   socket("/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: {ElixirBoilerplateWeb.Session, :config, []}]])
