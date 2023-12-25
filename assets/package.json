@@ -10,7 +10,7 @@
   "dependencies": {
     "phoenix": "^1.7.7",
     "phoenix_html": "^3.3.1",
-    "phoenix_live_view": "^0.20.1",
+    "phoenix_live_view": "^0.20.2",
     "simple-css-reset": "^3.0.0"
   },
   "devDependencies": {
