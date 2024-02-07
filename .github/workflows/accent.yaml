@@ -16,7 +16,7 @@ jobs:
       - run: accent sync --add-translations --merge-type=passive --order-by=key
       - uses: mirego/create-pull-request@v5
         with:
-          add-paths: "*.json"
+          add-paths: "*.po"
           commit-message: Update translations
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
