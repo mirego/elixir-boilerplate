@@ -17,7 +17,7 @@
     "@babel/eslint-parser": "^7.23.10",
     "eslint": "^8.56.0",
     "eslint-plugin-mirego": "^1.0.0",
-    "prettier": "^3.2.4",
+    "prettier": "^3.2.5",
     "stylelint": "^15.11.0",
     "stylelint-config-mirego": "^2.3.0",
     "stylelint-scss": "^5.3.2",
