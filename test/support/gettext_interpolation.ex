@@ -16,6 +16,8 @@ defmodule ElixirBoilerplate.GettextInterpolation do
   {:ok, "test[arg=:atom]"}
   iex> runtime_interpolate("test", %{arg: [:atom,:atom2]})
   {:ok, "test[arg=:atom,:atom2]"}
+  iex> runtime_interpolate("test", %{b: 1, a: [:a, :b]})
+  {:ok, "test[a=:a,:b,b=1]"}
   """
   @impl true
   def runtime_interpolate(message, bindings), do: {:ok, format(message, bindings)}
@@ -35,7 +37,11 @@ defmodule ElixirBoilerplate.GettextInterpolation do
   defp format_bindings(bindings) when is_map(bindings) and map_size(bindings) === 0, do: ""
 
   defp format_bindings(bindings) when is_map(bindings) do
-    bindings = Enum.map_join(bindings, ",", fn {key, value} -> "#{key}=#{format_value(value)}" end)
+    bindings =
+      bindings
+      |> Enum.sort(fn {k1, _}, {k2, _} -> k1 < k2 end)
+      |> Enum.map_join(",", fn {key, value} -> "#{key}=#{format_value(value)}" end)
+
     "[#{bindings}]"
   end
 
