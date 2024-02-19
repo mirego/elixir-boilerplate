@@ -14,7 +14,7 @@ This boilerplate comes with batteries included, you’ll find:
 
 - [Phoenix](https://phoenixframework.org), the battle-tested production-ready web framework
 - Database integration using [Ecto](https://hexdocs.pm/ecto)
-- GraphQL API setup with [Absinthe](https://hexdocs.pm/absinthe), [Absinthe.Plug](https://hexdocs.pm/absinthe_plug), [Dataloader](https://hexdocs.pm/dataloader) and [AbsintheErrorPayload](https://hexdocs.pm/absinthe_error_payload)
+- GraphQL API setup with [Absinthe](https://hexdocs.pm/absinthe), [Absinthe.Plug](https://hexdocs.pm/absinthe_plug), [Dataloader](https://hexdocs.pm/dataloader), [AbsintheErrorPayload](https://hexdocs.pm/absinthe_error_payload) and [AbsintheSecurity](https://hexdocs.pm/absinthe_security).
 - Translations with [Gettext](https://hexdocs.pm/gettext) and [Accent](https://www.accent.reviews) (using a scheduled GitHub Actions [workflow](./.github/workflows/accent.yaml))
 - [ExUnit](https://hexdocs.pm/ex_unit) tests, factories using [ExMachina](https://hexdocs.pm/ex_machina) and code coverage using [ExCoveralls](https://hexdocs.pm/excoveralls)
 - CORS management with [Corsica](https://github.com/whatyouhide/corsica)

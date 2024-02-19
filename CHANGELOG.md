@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Since it is a boilerplate project, there are technically no official (versioned) _releases_. Therefore, the `main` branch should always be stable and usable.
 
+## 2024-02-19
+
+- Add AbsintheSecurity (#500)
+
 ## 2023-10-11
 
 - Add TelemetryUI (#414)
