@@ -25,6 +25,10 @@ config :elixir_boilerplate, ElixirBoilerplateGraphQL, token_limit: 2000
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Plugs.Security, allow_unsafe_scripts: false
 
+config :absinthe_security, AbsintheSecurity.Phase.MaxAliasesCheck, max_alias_count: 100
+config :absinthe_security, AbsintheSecurity.Phase.MaxDepthCheck, max_depth_count: 100
+config :absinthe_security, AbsintheSecurity.Phase.MaxDirectivesCheck, max_directive_count: 100
+
 config :esbuild,
   version: "0.16.4",
   default: [

@@ -65,6 +65,7 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # GraphQL
       {:absinthe, "~> 1.7"},
+      {:absinthe_security, "~> 0.1"},
       {:absinthe_plug, "~> 1.5"},
       {:dataloader, "~> 2.0"},
       {:absinthe_error_payload, "~> 1.1"},

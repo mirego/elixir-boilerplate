@@ -42,3 +42,6 @@ config :elixir_boilerplate, ElixirBoilerplate.TelemetryUI, share_key: get_env("T
 config :sentry,
   dsn: get_env("SENTRY_DSN"),
   environment_name: get_env("SENTRY_ENVIRONMENT_NAME")
+
+config :absinthe_security, AbsintheSecurity.Phase.IntrospectionCheck, enable_introspection: get_env("GRAPHQL_ENABLE_INTROSPECTION", :boolean)
+config :absinthe_security, AbsintheSecurity.Phase.FieldSuggestionsCheck, enable_field_suggestions: get_env("GRAPHQL_ENABLE_FIELD_SUGGESTIONS", :boolean)
