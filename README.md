@@ -14,7 +14,7 @@ This boilerplate comes with batteries included, you’ll find:
 
 - [Phoenix](https://phoenixframework.org), the battle-tested production-ready web framework
 - Database integration using [Ecto](https://hexdocs.pm/ecto)
-- GraphQL API setup with [Absinthe](https://hexdocs.pm/absinthe), [Absinthe.Plug](https://hexdocs.pm/absinthe_plug), [Dataloader](https://hexdocs.pm/dataloader), [AbsintheErrorPayload](https://hexdocs.pm/absinthe_error_payload) and [AbsintheSecurity](https://hexdocs.pm/absinthe_security).
+- GraphQL API setup with [Absinthe](https://hexdocs.pm/absinthe), [Absinthe.Plug](https://hexdocs.pm/absinthe_plug), [Dataloader](https://hexdocs.pm/dataloader), [AbsintheErrorPayload](https://hexdocs.pm/absinthe_error_payload) and [AbsintheSecurity](https://hexdocs.pm/absinthe_security)
 - Translations with [Gettext](https://hexdocs.pm/gettext) and [Accent](https://www.accent.reviews) (using a scheduled GitHub Actions [workflow](./.github/workflows/accent.yaml))
 - [ExUnit](https://hexdocs.pm/ex_unit) tests, factories using [ExMachina](https://hexdocs.pm/ex_machina) and code coverage using [ExCoveralls](https://hexdocs.pm/excoveralls)
 - CORS management with [Corsica](https://github.com/whatyouhide/corsica)
@@ -25,7 +25,7 @@ This boilerplate comes with batteries included, you’ll find:
 - Useful utilities for web features: Basic authentication with [BasicAuth](https://hexdocs.pm/plug/Plug.BasicAuth.html), canonical host with [PlugCanonicalHost](https://hexdocs.pm/plug_canonical_host), etc.
 - Error reporting with [Sentry](https://hexdocs.pm/sentry)
 - A clean and useful `README.md` template (in both [english](./BOILERPLATE_README.md) and [french](./BOILERPLATE_README.fr.md))
-- Dashboard metrics using [TelemetryUI](https://github.com/mirego/telemetry_ui).
+- Dashboard metrics using [TelemetryUI](https://github.com/mirego/telemetry_ui)
 
 ## Usage
 
