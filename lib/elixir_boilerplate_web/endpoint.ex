@@ -40,6 +40,13 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   plug(Plug.RequestId)
   plug(Plug.Telemetry, event_prefix: [:phoenix, :endpoint])
 
+  plug(
+    Plug.Parsers,
+    parsers: [:urlencoded, :multipart, :json],
+    pass: ["*/*"],
+    json_decoder: Phoenix.json_library()
+  )
+
   plug(Sentry.PlugContext,
     body_scrubber: {ElixirBoilerplate.Errors.Sentry, :scrub_params},
     remote_address_reader: {ElixirBoilerplate.Errors.Sentry, :scrubbed_remote_address}
