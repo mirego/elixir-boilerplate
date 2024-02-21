@@ -8,3 +8,6 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   level: :info,
   metadata: ~w(request_id graphql_operation_name)a
+
+# Runtime production configuration, including reading
+# of environment variables, is done on config/runtime.exs.
