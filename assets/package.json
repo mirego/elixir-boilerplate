@@ -14,7 +14,7 @@
     "simple-css-reset": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.23.10",
+    "@babel/eslint-parser": "^7.24.6",
     "eslint": "^8.57.0",
     "eslint-plugin-mirego": "^1.0.0",
     "prettier": "^3.2.5",
