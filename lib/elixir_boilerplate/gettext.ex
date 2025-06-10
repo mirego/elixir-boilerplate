@@ -4,5 +4,5 @@ defmodule ElixirBoilerplate.Gettext do
   application.
   """
 
-  use Gettext, otp_app: :elixir_boilerplate
+  use Gettext.Backend, otp_app: :elixir_boilerplate
 end

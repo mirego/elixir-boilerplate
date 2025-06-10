@@ -60,21 +60,6 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   plug(:halt_if_sent)
   plug(ElixirBoilerplateWeb.Router)
 
-  @doc """
-  Callback invoked for dynamically configuring the endpoint.
-
-  It receives the endpoint configuration and checks if
-  configuration should be loaded from the system environment.
-  """
-  def init(_key, config) do
-    if config[:load_from_system_env] do
-      port = Application.get_env(:elixir_boilerplate, __MODULE__)[:http][:port] || raise "expected the PORT environment variable to be set"
-      {:ok, Keyword.put(config, :http, [:inet6, port: port])}
-    else
-      {:ok, config}
-    end
-  end
-
   # sobelow_skip ["XSS.SendResp"]
   defp ping(%{request_path: "/ping"} = conn, _opts) do
     version = Application.get_env(:elixir_boilerplate, :version)

@@ -5,8 +5,8 @@ defmodule ElixirBoilerplate.Mixfile do
     [
       app: :elixir_boilerplate,
       version: "0.0.1",
-      erlang: "~> 25.0",
-      elixir: "~> 1.13",
+      erlang: "~> 27.0",
+      elixir: "~> 1.18",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
       test_pattern: "**/*_test.exs",
@@ -58,7 +58,7 @@ defmodule ElixirBoilerplate.Mixfile do
       # Phoenix
       {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 3.3"},
-      {:phoenix_live_view, "~> 0.19"},
+      {:phoenix_live_view, "~> 1.0"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
       {:jason, "~> 1.4"},
@@ -81,20 +81,20 @@ defmodule ElixirBoilerplate.Mixfile do
       {:gettext, "~> 0.22"},
 
       # Errors
-      {:sentry, "~> 9.1"},
+      {:sentry, "~> 10.10"},
 
       # Monitoring
       {:new_relic_agent, "~> 1.27"},
       {:new_relic_absinthe, "~> 0.0"},
 
       # Telemetry
-      {:telemetry_ui, "~> 4.0"},
+      {:telemetry_ui, "~> 5.0"},
 
       # Linting
       {:credo, "~> 1.7", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},
       {:credo_naming, "~> 2.0", only: [:dev, :test], runtime: false},
-      {:styler, "~> 0.10", only: [:dev, :test], runtime: false},
+      {:styler, "~> 1.0", only: [:dev, :test], runtime: false},
 
       # Security check
       {:sobelow, "~> 0.12", only: [:dev, :test], runtime: true},
