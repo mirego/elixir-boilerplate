@@ -23,7 +23,7 @@ defmodule ElixirBoilerplateWeb.Router do
     #
     # Metrics can contains sensitive data you should protect it under authorization
     # See https://github.com/mirego/telemetry_ui#security
-    get("/metrics", TelemetryUI.Web, [], assigns: %{telemetry_ui_allowed: true})
+    get("/metrics", TelemetryUI.Web, [], assigns: %{telemetry_ui_allowed: false})
   end
 
   scope "/", ElixirBoilerplateWeb do
