@@ -39,25 +39,25 @@ body {
 }
 
 .flash-messages {
+  display: flex;
   position: fixed;
+  z-index: 1000;
   top: 5px;
   right: 5px;
-  display: flex;
   flex-direction: column;
   gap: 5px;
-  z-index: 1000;
 }
 
 #flash-success {
   padding: 10px;
-  color: #123c12;
   border: 1px solid rgb(62, 146, 62);
   background-color: #90d690;
+  color: #123c12;
 }
 
 #flash-error {
   padding: 10px;
-  color: #3c1212;
   border: 1px solid rgb(144, 35, 35);
   background-color: #d68d8d;
+  color: #3c1212;
 }
