@@ -2,9 +2,12 @@ defmodule ElixirBoilerplateWeb.Home.Live do
   @moduledoc false
   use Phoenix.LiveView, layout: {ElixirBoilerplateWeb.Layouts, :live}
 
+  on_mount(Sentry.LiveViewHook)
+
   def mount(_, _, socket) do
     socket = assign(socket, :message, "Hello, world!")
     socket = assign(socket, :counter, 0)
+    socket = assign(socket, :page_title, "Home")
 
     {:ok, socket}
   end

@@ -16,7 +16,7 @@ defmodule ElixirBoilerplateHealth.Router do
           json_encoder: Jason,
           checks: ElixirBoilerplateHealth.checks(),
           error_code: ElixirBoilerplateHealth.error_code(),
-          timeout: :timer.seconds(5),
+          timeout: to_timeout(second: 5),
           pretty: false
         )
     )

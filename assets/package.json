@@ -4,23 +4,24 @@
   "private": true,
   "engine-strict": true,
   "engines": {
-    "node": "^20.5.0",
-    "npm": "^9.8.0"
+    "node": "^22.17.0",
+    "npm": "^10.9.0"
   },
   "dependencies": {
-    "phoenix": "^1.7.7",
-    "phoenix_html": "^3.3.1",
-    "phoenix_live_view": "^0.20.14",
-    "simple-css-reset": "^3.0.0"
+    "phoenix": "file:../deps/phoenix",
+    "phoenix_html": "file:../deps/phoenix_html",
+    "phoenix_live_view": "file:../deps/phoenix_live_view"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.10",
+    "@types/phoenix": "^1.6.6",
+    "@types/phoenix_live_view": "^1.0.0",
     "eslint": "^8.57.0",
     "eslint-plugin-mirego": "^1.0.0",
     "prettier": "^3.2.5",
     "stylelint": "^15.11.0",
     "stylelint-config-mirego": "^2.3.0",
-    "stylelint-scss": "^5.3.2",
-    "stylelint-order": "^6.0.4"
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^5.3.2"
   }
 }

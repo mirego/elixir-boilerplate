@@ -13,7 +13,7 @@ defmodule ElixirBoilerplate.Application do
       {TelemetryUI, ElixirBoilerplate.TelemetryUI.config()}
     ]
 
-    :logger.add_handler(:sentry_handler, Sentry.LoggerHandler, %{})
+    Logger.add_handlers(:elixir_boilerplate)
 
     opts = [strategy: :one_for_one, name: ElixirBoilerplate.Supervisor]
     Supervisor.start_link(children, opts)

@@ -1,3 +1,5 @@
+alias Credo.Check.Refactor.ABCSize
+
 %{
   configs: [
     %{
@@ -41,7 +43,7 @@
           {Credo.Check.Readability.VariableNames, []},
 
           # Refactoring Opportunities
-          {Credo.Check.Refactor.ABCSize, max_size: 40},
+          {ABCSize, max_size: 40},
           {Credo.Check.Refactor.Apply, []},
           {Credo.Check.Refactor.CyclomaticComplexity, []},
           {Credo.Check.Refactor.FunctionArity, []},
@@ -107,7 +109,7 @@
           {Credo.Check.Readability.UnnecessaryAliasExpansion, []},
           {Credo.Check.Readability.WithCustomTaggedTuple, []},
           {Credo.Check.Readability.WithSingleClause, []},
-          {Credo.Check.Refactor.ABCSize, []},
+          {ABCSize, []},
           {Credo.Check.Refactor.AppendSingleItem, []},
           {Credo.Check.Refactor.CaseTrivialMatches, false},
           {Credo.Check.Refactor.CondStatements, []},
