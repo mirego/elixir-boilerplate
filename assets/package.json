@@ -18,7 +18,7 @@
     "@types/phoenix_live_view": "^1.0.0",
     "eslint": "^8.57.0",
     "eslint-plugin-mirego": "^1.0.0",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.2",
     "stylelint": "^15.11.0",
     "stylelint-config-mirego": "^2.3.0",
     "stylelint-order": "^6.0.4",
