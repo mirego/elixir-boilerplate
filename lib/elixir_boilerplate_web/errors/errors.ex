@@ -1,7 +1,5 @@
 defmodule ElixirBoilerplateWeb.Errors do
   @moduledoc false
-  use Gettext, backend: ElixirBoilerplate.Gettext
-
   import Phoenix.Template, only: [embed_templates: 1]
 
   alias Ecto.Changeset
@@ -31,9 +29,9 @@ defmodule ElixirBoilerplateWeb.Errors do
 
   defp translate_error({message, options}) do
     if options[:count] do
-      Gettext.dngettext("errors", message, message, options[:count], options)
+      Gettext.dngettext(ElixirBoilerplate.Gettext, "errors", message, message, options[:count], options)
     else
-      Gettext.dgettext("errors", message, options)
+      Gettext.dgettext(ElixirBoilerplate.Gettext, "errors", message, options)
     end
   end
 

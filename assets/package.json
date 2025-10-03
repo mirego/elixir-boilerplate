@@ -4,13 +4,13 @@
   "private": true,
   "engine-strict": true,
   "engines": {
-    "node": "^20.5.0",
-    "npm": "^9.8.0"
+    "node": "^22.17.0",
+    "npm": "^10.9.0"
   },
   "dependencies": {
-    "phoenix": "^1.7.7",
-    "phoenix_html": "^3.3.1",
-    "phoenix_live_view": "^1.0.0"
+    "phoenix": "file:../deps/phoenix",
+    "phoenix_html": "file:../deps/phoenix_html",
+    "phoenix_live_view": "file:../deps/phoenix_live_view"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.10",

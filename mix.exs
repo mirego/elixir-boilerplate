@@ -13,6 +13,7 @@ defmodule ElixirBoilerplate.Mixfile do
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
       start_permanent: Mix.env() == :prod,
+      listeners: [Phoenix.CodeReloader],
       aliases: aliases(),
       deps: deps(),
       dialyzer: dialyzer(),
@@ -78,7 +79,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:excellent_migrations, "~> 0.1", only: [:dev, :test], runtime: false},
 
       # Translations
-      {:gettext, "~> 0.22"},
+      {:gettext, "~> 1.0", override: true},
 
       # Errors
       {:sentry, "~> 10.10"},
