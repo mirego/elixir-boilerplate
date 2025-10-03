@@ -24,7 +24,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     at: "/",
     from: :elixir_boilerplate,
     gzip: true,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: ~w(assets fonts images favicon.svg robots.txt)
   )
 
   # Code reloading can be explicitly enabled under the

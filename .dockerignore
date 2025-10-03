@@ -3,6 +3,7 @@ _build/
 assets/node_modules/
 deps/
 test/
+priv/plts
 priv/static/assets/
 
 .*

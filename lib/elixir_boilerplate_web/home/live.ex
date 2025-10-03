@@ -7,6 +7,7 @@ defmodule ElixirBoilerplateWeb.Home.Live do
   def mount(_, _, socket) do
     socket = assign(socket, :message, "Hello, world!")
     socket = assign(socket, :counter, 0)
+    socket = assign(socket, :page_title, "Home")
 
     {:ok, socket}
   end
