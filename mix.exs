@@ -85,7 +85,6 @@ defmodule ElixirBoilerplate.Mixfile do
 
       # Monitoring
       {:new_relic_agent, "~> 1.27"},
-      {:new_relic_absinthe, "~> 0.0"},
 
       # Telemetry
       {:telemetry_ui, "~> 4.0"},
