@@ -4,9 +4,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <Phoenix.Component.live_title>
+      <%= assigns[:page_title] || "ElixirBoilerplate" %>
+    </Phoenix.Component.live_title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href={Routes.static_url(@conn, "/assets/app.css")} />
     <meta name="csrf-token" content={Plug.CSRFProtection.get_csrf_token()} />
-    <script type="text/javascript" src={Routes.static_url(@conn, "/assets/app.js")}></script>
+    <script defer type="text/javascript" src={Routes.static_url(@conn, "/assets/app.js")}></script>
   </head>
 
   <body>

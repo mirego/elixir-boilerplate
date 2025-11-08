@@ -15,13 +15,13 @@ defmodule TestEnvironment do
   end
 end
 
+# This config is to output keys instead of translated message in test
+config :elixir_boilerplate, ElixirBoilerplate.Gettext, priv: "priv/null", interpolation: ElixirBoilerplate.GettextInterpolation
+
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   url: TestEnvironment.get_database_url()
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint, server: false
-
-# This config is to output keys instead of translated message in test
-config :elixir_boilerplate, ElixirBoilerplate.Gettext, priv: "priv/null", interpolation: ElixirBoilerplate.GettextInterpolation
 
 config :logger, level: :warning

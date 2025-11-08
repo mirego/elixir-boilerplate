@@ -88,7 +88,7 @@ sync-translations: ## Synchronize translations with Accent
 
 .PHONY: test
 test: ## Run the test suite
-	mix test
+	mix test --warnings-as-errors
 
 # Check, lint and format targets
 # ------------------------------
@@ -125,10 +125,9 @@ check-static-typing:
 format: ## Format source files
 	mix format
 	cd assets && npx prettier --write $(PRETTIER_FILES_PATTERN)
-	cd assets && npx stylelint $(STYLES_PATTERN) --fix --quiet
 
 .PHONY: lint
-lint: lint-elixir lint-scripts lint-styles ## Lint source files
+lint: lint-elixir lint-scripts ## Lint source files
 
 .PHONY: lint-elixir
 lint-elixir:
@@ -138,7 +137,3 @@ lint-elixir:
 .PHONY: lint-scripts
 lint-scripts:
 	cd assets && npx eslint .
-
-.PHONY: lint-styles
-lint-styles:
-	cd assets && npx stylelint $(STYLES_PATTERN)

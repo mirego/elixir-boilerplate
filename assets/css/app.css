@@ -1,10 +1,4 @@
-.home {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  text-align: center;
+body {
   font-family:
     system-ui,
     -apple-system,
@@ -19,6 +13,15 @@
     'Segoe UI Emoji',
     'Segoe UI Symbol',
     'Noto Color Emoji';
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
   line-height: 1.4;
 }
 
@@ -36,8 +39,25 @@
 }
 
 .flash-messages {
+  display: flex;
   position: fixed;
-  top: 0;
-  right: 0;
+  z-index: 1000;
+  top: 5px;
+  right: 5px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#flash-success {
   padding: 10px;
+  border: 1px solid rgb(62, 146, 62);
+  background-color: #90d690;
+  color: #123c12;
+}
+
+#flash-error {
+  padding: 10px;
+  border: 1px solid rgb(144, 35, 35);
+  background-color: #d68d8d;
+  color: #3c1212;
 }

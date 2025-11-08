@@ -1,5 +1,5 @@
 defmodule ElixirBoilerplateWeb.Home.Controller do
-  use Phoenix.Controller
+  use Phoenix.Controller, formats: []
 
   plug(:put_view, ElixirBoilerplateWeb.Home.HTML)
 

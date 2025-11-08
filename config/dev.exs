@@ -19,5 +19,5 @@ config :elixir_boilerplate, ElixirBoilerplateWeb.Plugs.Security, allow_unsafe_sc
 
 config :logger, :console, format: "[$level] $message\n"
 
-config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
+config :phoenix, :stacktrace_depth, 20

@@ -41,7 +41,7 @@ defmodule ElixirBoilerplateWeb.Plugs.Security do
     if Application.get_env(:elixir_boilerplate, __MODULE__)[:allow_unsafe_scripts] do
       "'self' 'unsafe-eval' 'unsafe-inline'"
     else
-      "'self'"
+      "'self' 'unsafe-inline'"
     end
   end
 end
