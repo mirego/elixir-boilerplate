@@ -52,7 +52,7 @@ defmodule ElixirBoilerplate.Mixfile do
       {:hackney, "~> 1.18"},
 
       # HTTP server
-      {:plug_cowboy, "~> 2.6"},
+      {:bandit, "~> 1.0"},
       {:plug_canonical_host, "~> 2.0"},
       {:corsica, "~> 2.1"},
 
