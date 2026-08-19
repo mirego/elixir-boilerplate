@@ -7,8 +7,9 @@ defmodule ElixirBoilerplate.Application do
 
   def start(_type, _args) do
     children = [
+      ElixirBoilerplateWeb.Telemetry,
       ElixirBoilerplate.Repo,
-      {Phoenix.PubSub, [name: ElixirBoilerplate.PubSub, adapter: Phoenix.PubSub.PG2]},
+      {Phoenix.PubSub, name: ElixirBoilerplate.PubSub},
       ElixirBoilerplateWeb.Endpoint,
       {TelemetryUI, ElixirBoilerplate.TelemetryUI.config()}
     ]

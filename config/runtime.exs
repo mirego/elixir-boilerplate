@@ -29,9 +29,6 @@ config :elixir_boilerplate, ElixirBoilerplate.TelemetryUI, share_key: get_env("T
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
   http: [port: get_env!("PORT", :integer)],
   secret_key_base: get_env!("SECRET_KEY_BASE"),
-  session_key: get_env!("SESSION_KEY"),
-  session_signing_salt: get_env!("SESSION_SIGNING_SALT"),
-  live_view: [signing_salt: get_env!("SESSION_SIGNING_SALT")],
   url: get_endpoint_url_config(canonical_uri),
   static_url: get_endpoint_url_config(static_uri)
 

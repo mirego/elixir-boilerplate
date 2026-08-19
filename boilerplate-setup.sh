@@ -13,9 +13,11 @@ content=$(find . -type f \( \
     -name "*.ex" -or \
     -name "*.exs" -or \
     -name "*.ees" -or \
+    -name "*.heex" -or \
     -name "*.sh" -or \
     -name "*.json" -or \
     -name "*.js" -or \
+    -name "*.css" -or \
     -name "*.yml" -or \
     -name "*.yaml" -or \
     -name "*.md" -or \
@@ -30,16 +32,19 @@ content=$(find . -type f \( \
   ! -path "./assets/node_modules/*" \
 )
 
-# The identifiers above will be replaced in the path of the files and directories found here
-paths=$(find . -maxdepth 2 \( \
+# Directories only — without -type d, lib/${snakeCaseBefore}_web.ex is treated as a
+# path, mkdir creates an empty directory, and the real .ex file is later removed.
+paths=$(find . -maxdepth 2 -type d \( \
   -path "./lib/${snakeCaseBefore}" -or \
   -path "./lib/${snakeCaseBefore}_*" -or \
   -path "./test/${snakeCaseBefore}" -or \
   -path "./test/${snakeCaseBefore}_*" \
 \))
 
-files=$(find . \( \
-  -path "./lib/${snakeCaseBefore}.*" -or \
+# Top-level app modules and nested modules named after the app (e.g. *_graphql.ex)
+files=$(find . -type f \( \
+  -path "./lib/${snakeCaseBefore}.ex" -or \
+  -path "./lib/${snakeCaseBefore}_*.ex" -or \
   -path "./lib/${snakeCaseBefore}*/${snakeCaseBefore}*" \
 \))
 
@@ -47,14 +52,14 @@ files=$(find . \( \
 # Validation
 # -----------------------------------------------------------------------------
 
-if [[ -z $(echo "$1" | grep "^[A-Z]") ]] ; then
+if [ -z "$(echo "$1" | grep "^[A-Z]")" ] ; then
   echo 'You must specify your project name in PascalCase as first argument (eg. FooBar).'
   exit 0
 fi
 
 pascalCaseAfter=$1
-snakeCaseAfter=$(echo $pascalCaseAfter | /usr/bin/sed 's/\(.\)\([A-Z]\{1,\}\)/\1_\2/g' | tr '[:upper:]' '[:lower:]')
-kebabCaseAfter=$(echo $snakeCaseAfter | tr '_' '-')
+snakeCaseAfter=$(echo "$pascalCaseAfter" | /usr/bin/sed 's/\(.\)\([A-Z]\{1,\}\)/\1_\2/g' | tr '[:upper:]' '[:lower:]')
+kebabCaseAfter=$(echo "$snakeCaseAfter" | tr '_' '-')
 
 # -----------------------------------------------------------------------------
 # Helper functions
@@ -69,18 +74,25 @@ success() {
 }
 
 run() {
-  echo ${@}
-  eval "${@}"
+  echo "$@"
+  "$@"
 }
 
 replace_in_file() {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    sed="/usr/bin/sed -i ''"
-  else
-    sed="/usr/bin/sed -i"
-  fi
+  pattern=$1
+  file=$2
 
-  run $sed $1 $2
+  if [ "$(uname)" = "Darwin" ]; then
+    echo "/usr/bin/sed -i '' $pattern $file"
+    /usr/bin/sed -i '' "$pattern" "$file"
+  else
+    echo "/usr/bin/sed -i $pattern $file"
+    /usr/bin/sed -i "$pattern" "$file"
+  fi
+}
+
+renamed_path() {
+  echo "$1" | /usr/bin/sed "s/$snakeCaseBefore/$snakeCaseAfter/g" | /usr/bin/sed "s/$kebabCaseBefore/$kebabCaseAfter/g" | /usr/bin/sed "s/$pascalCaseBefore/$pascalCaseAfter/g"
 }
 
 # -----------------------------------------------------------------------------
@@ -95,27 +107,28 @@ echo ""
 
 header "Replacing boilerplate identifiers in content"
 for file in $content; do
-  replace_in_file "s/$snakeCaseBefore/$snakeCaseAfter/g" $file
-  replace_in_file "s/$kebabCaseBefore/$kebabCaseAfter/g" $file
-  replace_in_file "s/$pascalCaseBefore/$pascalCaseAfter/g" $file
+  replace_in_file "s/$snakeCaseBefore/$snakeCaseAfter/g" "$file"
+  replace_in_file "s/$kebabCaseBefore/$kebabCaseAfter/g" "$file"
+  replace_in_file "s/$pascalCaseBefore/$pascalCaseAfter/g" "$file"
 done
 success "Done!\n"
 
 header "Replacing boilerplate identifiers in file and directory paths"
 for path in $paths; do
-  run mkdir $(echo $path | /usr/bin/sed "s/$snakeCaseBefore/$snakeCaseAfter/g" | /usr/bin/sed "s/$kebabCaseBefore/$kebabCaseAfter/g" | /usr/bin/sed "s/$pascalCaseBefore/$pascalCaseAfter/g")
+  run mkdir "$(renamed_path "$path")"
 done
-for file in $files; do \
-  run mv $file $(echo $file | /usr/bin/sed "s/$snakeCaseBefore/$snakeCaseAfter/g" | /usr/bin/sed "s/$kebabCaseBefore/$kebabCaseAfter/g" | /usr/bin/sed "s/$pascalCaseBefore/$pascalCaseAfter/g")
+for file in $files; do
+  run mv "$file" "$(renamed_path "$file")"
 done
 for path in $paths; do
-  run mv $path/* $(echo $path | /usr/bin/sed "s/$snakeCaseBefore/$snakeCaseAfter/g" | /usr/bin/sed "s/$kebabCaseBefore/$kebabCaseAfter/g" | /usr/bin/sed "s/$pascalCaseBefore/$pascalCaseAfter/g")
-  run rm -rf $path
+  run mv "$path"/* "$(renamed_path "$path")"
+  run rm -rf "$path"
 done
 success "Done!\n"
 
 header "Importing project README.md and README.fr.md"
-run "rm -fr README.md && mv BOILERPLATE_README.md README.md && mv BOILERPLATE_README.fr.md README.fr.md"
+echo "rm -fr README.md && mv BOILERPLATE_README.md README.md && mv BOILERPLATE_README.fr.md README.fr.md"
+rm -fr README.md && mv BOILERPLATE_README.md README.md && mv BOILERPLATE_README.fr.md README.fr.md
 success "Done!\n"
 
 header "Removing boilerplate license → https://choosealicense.com"
@@ -128,6 +141,13 @@ success "Done!\n"
 
 header "Removing boilerplate code of conduct and contribution information → https://help.github.com/articles/setting-guidelines-for-repository-contributors/"
 run rm -fr CODE_OF_CONDUCT.md CONTRIBUTING.md
+success "Done!\n"
+
+header "Generating new signing salts"
+session_signing_salt=$(openssl rand -base64 6 | tr -d '=/' | head -c 8)
+live_view_signing_salt=$(openssl rand -base64 6 | tr -d '=/' | head -c 8)
+replace_in_file "s/signing_salt: \"RVdYAXAX\"/signing_salt: \"$session_signing_salt\"/" "lib/${snakeCaseAfter}_web/endpoint.ex"
+replace_in_file "s/signing_salt: \"m3V4R9a4\"/signing_salt: \"$live_view_signing_salt\"/" config/config.exs
 success "Done!\n"
 
 header "Removing boilerplate setup script"

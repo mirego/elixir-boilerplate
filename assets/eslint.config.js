@@ -7,7 +7,26 @@ import globals from 'globals';
 export default [
   js.configs.recommended,
   {
-    ignores: ['node_modules/*', '**/static/*.js', 'static/**/*.js']
+    ignores: ['node_modules/*', '**/static/*.js', 'static/**/*.js', 'vendor/*']
+  },
+  {
+    files: ['**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.es2021,
+        process: 'readonly'
+      }
+    },
+    plugins: {
+      mirego: miregoPlugin
+    },
+    rules: {
+      ...miregoPlugin.configs.recommended.rules,
+      'no-unused-vars': ['error', {argsIgnorePattern: '^_'}]
+    }
   },
   {
     files: ['**/*.ts'],
@@ -20,7 +39,8 @@ export default [
       },
       globals: {
         ...globals.browser,
-        ...globals.es2021
+        ...globals.es2021,
+        process: 'readonly'
       }
     },
     plugins: {

@@ -16,7 +16,7 @@ defmodule TestEnvironment do
 end
 
 # This config is to output keys instead of translated message in test
-config :elixir_boilerplate, ElixirBoilerplate.Gettext, priv: "priv/null", interpolation: ElixirBoilerplate.GettextInterpolation
+config :elixir_boilerplate, ElixirBoilerplate.Gettext, priv: "priv/null"
 
 config :elixir_boilerplate, ElixirBoilerplate.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
@@ -24,4 +24,17 @@ config :elixir_boilerplate, ElixirBoilerplate.Repo,
 
 config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint, server: false
 
+config :html_test_identifiers, provider: HTMLTestIdentifiers.TestID
+
 config :logger, level: :warning
+
+# Initialize plugs at runtime for faster test compilation
+config :phoenix, :plug_init_mode, :runtime
+
+# Sort query params output of verified routes for robust url comparisons
+config :phoenix,
+  sort_verified_routes_query_params: true
+
+# Enable helpful, but potentially expensive runtime checks
+config :phoenix_live_view,
+  enable_expensive_runtime_checks: true
