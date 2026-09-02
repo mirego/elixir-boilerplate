@@ -36,6 +36,12 @@ config :elixir_boilerplate,
   basic_auth: [
     username: get_env("BASIC_AUTH_USERNAME"),
     password: get_env("BASIC_AUTH_PASSWORD")
+  ],
+  session_options: [
+    store: :cookie,
+    key: "_elixir_boilerplate_key",
+    signing_salt: get_env!("SESSION_SIGNING_SALT"),
+    same_site: "Lax"
   ]
 
 config :sentry,

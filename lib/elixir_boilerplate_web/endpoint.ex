@@ -4,21 +4,11 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
   alias Plug.Conn
 
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
-  @session_options [
-    store: :cookie,
-    key: "_elixir_boilerplate_key",
-    signing_salt: "RVdYAXAX",
-    same_site: "Lax"
-  ]
-
   @plug_ssl Plug.SSL.init(rewrite_on: [:x_forwarded_proto], subdomains: true)
 
   socket("/live", Phoenix.LiveView.Socket,
-    websocket: [connect_info: [session: @session_options]],
-    longpoll: [connect_info: [session: @session_options]]
+    websocket: [connect_info: [session: {__MODULE__, :session_options, []}]],
+    longpoll: [connect_info: [session: {__MODULE__, :session_options, []}]]
   )
 
   plug(:ping)
@@ -70,7 +60,7 @@ defmodule ElixirBoilerplateWeb.Endpoint do
 
   plug(Plug.MethodOverride)
   plug(Plug.Head)
-  plug(Plug.Session, @session_options)
+  plug(:session)
 
   plug(ElixirBoilerplateHealth.Router)
   plug(ElixirBoilerplateGraphQL.Router)
@@ -108,6 +98,11 @@ defmodule ElixirBoilerplateWeb.Endpoint do
     end
   end
 
+  defp session(conn, _opts) do
+    opts = Plug.Session.init(session_options())
+    Plug.Session.call(conn, opts)
+  end
+
   defp cors(conn, _opts) do
     opts = Corsica.init(Application.get_env(:elixir_boilerplate, Corsica))
 
@@ -129,4 +124,8 @@ defmodule ElixirBoilerplateWeb.Endpoint do
   # route even if it was already handled/sent by another router.
   defp halt_if_sent(%{state: :sent, halted: false} = conn, _opts), do: halt(conn)
   defp halt_if_sent(conn, _opts), do: conn
+
+  def session_options do
+    Application.fetch_env!(:elixir_boilerplate, :session_options)
+  end
 end
